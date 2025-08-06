@@ -1,0 +1,280 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide-1": {
+          "type": "image",
+          "settings": {
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "Slide title",
+            "content": "Tell your story",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "Button",
+            "link": ""
+          }
+        },
+        "slide-2": {
+          "type": "image",
+          "settings": {
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "Slide title",
+            "content": "Tell your story",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "Button",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "slide-2"
+      ],
+      "settings": {
+        "edge_to_edge": false,
+        "section_size": "preserve_ratio",
+        "carousel_effect": "slide",
+        "autoplay": true,
+        "cycle_speed": 5
+      }
+    },
+    "promotion_list_H9Gak8": {
+      "type": "promotion-list",
+      "blocks": {
+        "item_MCPcJk": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Collection-highbays-lighting.png",
+            "stretch_image": true,
+            "show_overlay": true,
+            "overlay_opacity": 66,
+            "background": "#ffffff",
+            "text_color": "#ffffff",
+            "title": "Your heading",
+            "content": "",
+            "content_position": "bottom_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#6f42ef",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "item_hpHaeF": {
+          "type": "item",
+          "settings": {
+            "stretch_image": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#fc2a68",
+            "text_color": "#ffffff",
+            "title": "Your heading",
+            "content": "<p>Tell more about your product, collection...<\/p>",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "Learn more",
+            "button_link": ""
+          }
+        },
+        "item_U7Njxt": {
+          "type": "item",
+          "settings": {
+            "stretch_image": false,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#26c1ce",
+            "text_color": "#ffffff",
+            "title": "Your heading",
+            "content": "<p>Tell more about your product, collection...<\/p>",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#26c1ce",
+            "button_text": "Learn more",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_MCPcJk",
+        "item_hpHaeF",
+        "item_U7Njxt"
+      ],
+      "name": "Promotion blocks",
+      "settings": {
+        "expand_items": false,
+        "section_size": "medium",
+        "stack_mobile": false
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "alta-led-high-bay-light",
+        "title": "Deal Zone",
+        "products_count": 4,
+        "layout": "vertical",
+        "stack_products": false,
+        "show_quick_buy": true,
+        "link_title": "View all",
+        "link_url": ""
+      }
+    },
+    "collection-list": {
+      "type": "collection-list",
+      "blocks": {
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-5": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-6": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection-1",
+        "collection-2",
+        "collection-3",
+        "collection-4",
+        "collection-5",
+        "collection-6"
+      ],
+      "settings": {
+        "title": "Our collections",
+        "link_title": "View all",
+        "link": "shopify:\/\/collections",
+        "round_images": true,
+        "show_collection_title": true
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Newsletter",
+        "content": "<p>A short sentence describing what someone will receive by subscribing<\/p>",
+        "background": "#1e2d7d",
+        "text": "#ffffff"
+      }
+    },
+    "featured-product": {
+      "type": "featured-product",
+      "blocks": {
+        "product-meta": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": true,
+            "show_sku": false,
+            "show_reviews_badge": false,
+            "show_share_buttons": true
+          }
+        },
+        "featured-description": {
+          "type": "featured_description",
+          "settings": {}
+        },
+        "variant-selector": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "swatch",
+            "variant_image_options": "",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 0,
+            "progress_bar_max_value": 50
+          }
+        },
+        "buy-buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "product-meta",
+        "featured-description",
+        "variant-selector",
+        "buy-buttons"
+      ],
+      "settings": {
+        "product": "",
+        "title": "Featured product",
+        "link_title": "View details",
+        "link_url": "",
+        "image_size": "small",
+        "enable_image_zoom": true,
+        "enable_video_looping": false,
+        "zoom_effect": "outside",
+        "carousel_effect": "fade"
+      }
+    },
+    "blog-posts": {
+      "type": "blog-posts",
+      "settings": {
+        "blog": "shop-talk",
+        "blog_posts_count": 3,
+        "title": "Blog posts",
+        "link_title": "View all",
+        "show_category": true,
+        "show_author": true,
+        "show_date": true,
+        "show_excerpt": false,
+        "stack_mobile": false
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "promotion_list_H9Gak8",
+    "featured-collection",
+    "collection-list",
+    "newsletter",
+    "featured-product",
+    "blog-posts"
+  ]
+}

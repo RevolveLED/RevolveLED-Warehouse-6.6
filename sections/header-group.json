@@ -1,0 +1,36 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "background": "#1e2d7d",
+        "text_color": "#ffffff",
+        "text": "Announce something here",
+        "link": "",
+        "newsletter_button": "Subscribe & Save",
+        "newsletter_title": "Newsletter",
+        "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo": "",
+        "logo_max_width": 140,
+        "mobile_logo_max_width": 100,
+        "navigation_menu": "main-menu",
+        "desktop_navigation_layout": "inline",
+        "desktop_navigation_open_trigger": "hover",
+        "navigation_phone_number": "Call us 000-000-0000",
+        "navigation_email": "info@yourwebsite.com",
+        "search_menu": ""
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
