@@ -1,0 +1,203 @@
+/* collection */
+.nav-l2-box .nav-box-item {
+    display: inline-block;
+    vertical-align: middle;
+    list-style: none;
+    text-align: center;
+}
+
+.nav-l2-box .link-image {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+}
+
+.nav-l2-box .nav-box-item a {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collection-layout-left .filter-type .filter-item-list,
+.filter-popup .filter-item-list {
+    display: none;
+}
+
+.collection-main .card {
+    border: none;
+}
+
+.collection-main .layout__section:only-child {
+    max-width: unset;
+}
+
+.value-picker-button svg {
+    width: 16px;
+    height: 16px;
+    margin-bottom: -2px;
+    margin-left: 5px;
+}
+
+.collection-layout-left .filter-type .filter-item-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding: 10px 0;
+}
+
+.filterboxx .plus-button {
+    display: block;
+    position: relative;
+    right: 0;
+    top: calc(50% - 5px);
+    width: 30px;
+    height: 30px;
+}
+
+.collection-layout-left ul li {
+    list-style: none;
+    clear: both;
+}
+
+.collection-layout-left .tag-close:before {
+    border: 1px solid #000;
+    content: "";
+    color: transparent;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    line-height: .8;
+    margin-right: 5px;
+    margin-bottom: -3px;
+}
+
+.collection-layout-left ul li .count {
+    float: right;
+}
+
+.product-item--horizontal,
+.product-item--list .box {
+    display: flex;
+}
+
+.product-item .box {
+    background: #fff;
+    padding: 10px;
+    position: relative;
+    height: 100%;
+}
+
+.product-item--list .box .product-item__info-inner .item-top {
+    display: flex;
+    flex: 1 0 50%;
+    flex-direction: column;
+}
+
+.product-item__info-inner .item-top {
+    padding-bottom: 50px;
+}
+
+@media screen and (min-width: 1440px) {
+    .nav-l2-box .link-image {
+        max-width: 150px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .nav-l2-box .link-image {
+        max-width: 80px;
+    }
+
+    .text-with-icons__content-wrapper {
+        width: 70%;
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+    }
+}
+
+[data-section-type="collection"] .page__sub-header {
+    display: none;
+}
+
+/* text with icons */
+.text-with-icons__title {
+    margin-bottom: 4px;
+    color: #00487f;
+}
+
+@media only screen and (max-width:1000px) {
+    .section-text-with-icons {
+        padding: 6% 0 0 !important;
+    }
+
+    .text-with-icons {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .text-with-icons__icon-wrapper {
+        margin: 0 !important;
+    }
+
+    .text-with-icons__item {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px !important;
+    }
+
+    .text-with-icons__title {
+        text-align: center;
+        margin: 10px 0;
+
+        font-style: normal;
+        font-weight: 600;
+        font-size: 17px;
+        color: #00487F;
+    }
+
+    .text-with-icons__content {
+        display: none;
+    }
+
+    [data-section-type="text-with-icons"] {
+        padding: 6% 0 0 !important;
+    }
+}
+
+@media only screen and (max-width:514px) {
+    .text-with-icons__title {
+        font-size: 13px;
+        line-height: 1.75;
+    }
+}
+
+.mytooltip2 {
+    position: relative;
+    display: inline-block;
+}
+
+.mytooltip2 .mytooltiptext2 {
+    visibility: hidden;
+    width: 200px;
+    background-color: #1f9cfb;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 6px;
+    top: -10px;
+    left: 10%;
+    position: absolute;
+    z-index: 1;
+}
+
+.mytooltip2:hover .mytooltiptext2 {
+    visibility: visible;
+}

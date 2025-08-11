@@ -1,0 +1,101 @@
+{{ 'collection-nav.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-nav">
+  <div class="container container--flush">
+    <div class="breadcrumb-wrapper">
+      <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+            {% render 'icon', icon: 'arrow-right' %}
+          </li>
+
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__link" aria-current="page">
+              {%- if collection.handle == 'all' -%}
+                {{- 'collection.general.all_products' | t -}}
+              {%- else -%}
+                {{- collection.title -}}
+              {%- endif -%}
+            </span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    {%- assign navigation_menu_handle = section.settings.navigation_menu | default: 'main-menu' -%}
+    {%- assign navigation_menu = linklists[navigation_menu_handle] -%}
+    {%- liquid
+      # 先计算符合条件的子菜单项数量
+      assign has_sub_items = false
+      for link in navigation_menu.links
+        for sub_link in link.links
+          if sub_link.current
+            for sub_sub_link in sub_link.links
+              assign has_sub_items = true
+              break
+            endfor
+          endif
+          if has_sub_items
+            break
+          endif
+        endfor
+        if has_sub_items
+          break
+        endif
+      endfor
+    -%}
+
+    {%- if has_sub_items -%}
+      <ul class="nav-l2-box">
+        {%- for link in navigation_menu.links -%}
+          {%- for sub_link in link.links -%}
+            {% if sub_link.current %}
+              {%- for sub_sub_link in sub_link.links -%}
+                <li class="nav-box-item">
+                  <a href="{{ sub_sub_link.url }}">
+                    <img
+                      class="link-image lazyload"
+                      data-src="{{ sub_sub_link.title | handle | prepend: 'menu-' | append: '.png' | file_img_url: 'master' }}"
+                      alt=""
+                      onerror="this.src='{{ 'default-image.png' | asset_url }};this.onerror=null'"
+                      width="150"
+                      height="150"
+                    >
+                    <h2>
+                      <button type="button">{{- sub_sub_link.title -}}</button>
+                    </h2>
+                  </a>
+                </li>
+              {%- endfor -%}
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% javascript %}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Collection Nav",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "navigation_menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Collection Nav",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{{ 'collection-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-banner">
+  <div class="bg-wrapper">
+    {% comment %} 如果是 'all' 集合页，并且设置了专用横幅 {% endcomment %}
+    {% if collection.handle == 'all' and settings.collection_all_banner_img != blank %}
+      <img 
+        src="{{ settings.collection_all_banner_img | image_url }}" 
+        alt="{{ settings.collection_all_banner_img.alt | escape }}" 
+        loading="lazy"
+        width="{{ settings.collection_all_banner_img.width }}"
+        height="{{ settings.collection_all_banner_img.height }}"
+      >
+    {% comment %} 其他情况使用默认背景图 {% endcomment %}
+    {% elsif section.settings.background != blank %}
+      <img 
+        src="{{ section.settings.background | image_url }}" 
+        alt="{{ section.settings.background.alt | escape }}" 
+        loading="lazy"
+        width="{{ section.settings.background.width }}"
+        height="{{ section.settings.background.height }}"
+      >
+    {% endif %}
+  </div>
+  <div class="outer">
+    <div class="content-wrapper">
+      <h2 class="title">{{ collection.title }}</h2>
+      {% if collection.handle == 'all' and settings.collection_all_banner_text != blank %}
+        {{ settings.collection_all_banner_text  }}
+      {% else %}
+        {{ collection.description }}
+      {% endif  %}
+    </div>
+  </div>
+</div>
+
+{% javascript %}
+
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Collection Banner",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

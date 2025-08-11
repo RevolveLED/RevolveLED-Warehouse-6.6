@@ -1,0 +1,375 @@
+{%- comment -%}Color labels used to detect what is a color swatch{%- endcomment -%}
+{%- assign color_label = 'color,colour,couleur,colore,farbe,색,色,カラー,färg,farve' | split: ',' -%}
+{% assign customDesc = product.metafields.custom_metafield %}
+<div class="product-item {% if horizontal %}product-item--horizontal{% elsif list %}product-item--list{% else %}product-item--vertical{% endif %} {% if section.id == 'blog-sidebar' %}product-item--compact{% endif %} {{ grid_classes }}">
+  <div class="box">
+
+    <div class="item-tag">
+      {% assign new_flag = product.metafields.global.new.value | downcase %}
+      {% assign last_flag = product.metafields.global.latest.value | downcase %}
+      {% assign pricedrop_flag = product.metafields.global.priceDropped.value | downcase %}
+      {% if new_flag == "yes" %}
+        <img
+          class="lazyload"
+          src="{{ section.settings["new"] | img_url: '10px' }}"
+          data-src="{{  section.settings["new"] | img_url: 'master' }}"
+          width="{{  section.settings["new"].width }}"
+          height="{{  section.settings["new"].height }}"
+        >
+      {%  elsif last_flag == "yes" %}
+        <img
+          class="lazyload"
+          src="{{ section.settings["latest"] | img_url: '10px' }}"
+          data-src="{{  section.settings["latest"] | img_url: 'master' }}"
+          width="{{  section.settings["latest"].width }}"
+          height="{{  section.settings["latest"].height }}"
+        >
+      {%  elsif pricedrop_flag == "yes" %}
+        <img
+          class="lazyload"
+          src="{{ section.settings["priceDropped"] | img_url: '10px' }}"
+          data-src="{{  section.settings["priceDropped"] | img_url: 'master' }}"
+          width="{{  section.settings["priceDropped"].width }}"
+          height="{{  section.settings["priceDropped"].height }}"
+        >
+      {% endif %}
+    </div>
+
+
+    {% if page.template_suffix == 'outlet'%}
+    	{% if block.settings.show_tab %}
+    		<div class="product-item-tab">{{block.settings.tab}}</div>
+    	{% endif %}
+    {% endif %}
+    
+    <div class="label"></div>
+
+
+
+    {%- if settings.show_secondary_image and product.media.size > 1 -%}
+      {%- assign show_secondary_image = true -%}
+    {%- else -%}
+      {%- assign show_secondary_image = false -%}
+    {%- endif -%}
+
+    {%- assign filtered_variant = '' -%}
+
+    {%- if product.media.size > 0 -%}
+      {%- comment -%}
+        Are you ready for some Liquid crazyness? Let's start!
+        The idea here is that when we are on a collection page that is filtered using a color swatch, instead of showing the featured
+        image, we'd like to show a variant image that is attached to the selected color. Unfortunately, because filtering is done using
+        tag, there is no direct relationship between tags and variants. We therefore have to do some crazy processing to match a filter
+        with a variant. Because this code is within a collection page, it is executed for each product, so it's pretty performance
+        sensitive. Disabling this piece of code may slightly improve the performance if you have lot of variants.
+      {%- endcomment -%}
+
+      {%- assign primary_image = product.featured_media -%}
+
+      {%- if template.name == 'collection' and section.settings.show_filters and section.settings.filter_type == 'group' -%}
+        {%- assign matched_color_option = '' -%}
+
+        {%- for tag in current_tags -%}
+          {%- assign tag_parts = tag | split: '_' -%}
+          {%- assign tag_group_name = tag_parts | first | downcase -%}
+          {%- assign tag_group_value = tag_parts | last | downcase -%}
+
+          {%- if color_label contains tag_group_name -%}
+
+            {%- comment -%}We have found a matching color label, then we check if this product contains an option named the same{%- endcomment -%}
+
+            {%- for option in product.options -%}
+              {%- assign downcased_option = option | downcase -%}
+
+              {%- if downcased_option == tag_group_name -%}
+                {%- comment -%}We have found the index of the matching option, so we can iterate through the variants{%- endcomment -%}
+                {%- assign option_index = 'option' | append: forloop.index -%}
+
+                {%- for variant in product.variants -%}
+                  {%- assign variant_option_value = variant[option_index] | downcase -%}
+
+                  {%- if variant_option_value == tag_group_value and variant.media -%}
+                    {%- assign primary_image = variant.media -%}
+                    {%- assign filtered_variant = variant -%}
+                    {%- break -%}
+                  {%- endif %}
+                {%- endfor -%}
+
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+
+      <div class="left-wrapper">
+        <a href="{{ filtered_variant.url | default: product.url }}" class="product-item__image-wrapper {% if show_secondary_image %}product-item__image-wrapper--with-secondary{% endif %}">
+        
+          {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,500,600,700,800', image: primary_image -%}{%- endcapture -%}
+          {%- assign image_url = primary_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+          <div>
+            <img class="lazyload" s data-image-id="{{ primary_image.id }}" data-src="{{ image_url }}" data-sizes="auto" data-widths="[{{ supported_sizes }}]" alt="{{ primary_image.alt | escape }}" width="400" height="400">
+
+            {%- if show_secondary_image -%}
+              {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,500,600,700,800', image: product.media[1] -%}{%- endcapture -%}
+              {%- assign image_url = product.media[1] | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+              <img class="lazyload"  data-src="{{ image_url }}" data-sizes="auto" data-widths="[{{ supported_sizes }}]" alt="{{ product.media[1].alt | escape }}" width="400" height="400">
+            {%- endif -%}
+
+            <noscript>
+              <img src="{{ primary_image | img_url: '600x' }}" alt="{{ primary_image.alt | escape }}">
+            </noscript>
+          </div>
+        </a>
+      </div>
+    {%- endif -%}
+
+    <div class="product-item__info">
+      <div class="product-item__info-inner">
+        
+
+        <div class="item-top">
+          {% comment %} <img 
+            src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/same-day-shipping-blue_612b2894-2bc6-404d-afa7-abc33c47dd76.png" 
+            loading="lazy"
+            width="100"
+            height="24"
+          > {% endcomment %}
+          {%- if settings.product_price_position == 'before_title' -%}
+            {{ price_list }}
+          {%- endif -%}
+          {% comment %}
+            Gio added same day shipping 2021-02-17 - ***** USING METAFIELD "QuickShip"
+          {% endcomment %}
+          {%- render 'custom-category-quick-ship' product:product -%}
+          <a href="{{ filtered_variant.url | default: product.url }}" class="product-item__title text--strong link">{{ product.title }}</a>
+          {% comment %} <a href="{{ filtered_variant.url | default: product.url | within: collection }}" class="product-item__title text--strong link">{{ product.title }}</a> {% endcomment %}
+          <div class="variant-sku"><strong>SKU: </strong>{{ product.selected_or_first_available_variant.sku }}<span class="divider">|</span><strong>SEARCH CODE: </strong>{{ product.metafields.global.search_code.value }}</div>
+
+          <!-- Shopper Approved Category Code - snippets/product-item.liquid -->
+          <div class="star_container {{ product.id }}"></div>
+          
+          <!-- END Shopper Approved Category Code - snippets/product-item.liquid -->
+
+          <div class="bullet-content">{{ product.metafields.custom_metafield.bullet.value }}</div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="vertical-divider"></div>
+
+    <div class="item-bottom">
+      <div class="top">
+        <div class="price-wrapper">
+          {% if product.variants.size == 1 %} 
+            <h2 class="current-price">{{ product.price | money }}</h2>
+            {% if product.compare_at_price > product.price %}
+              <h4 class="compare-price">{{ product.compare_at_price | money }}</h4>
+            {% endif %}
+          {% else %}
+            {% assign sorted_variants = product.variants | sort: 'price' %}
+            {% assign cheapest_variant = sorted_variants.first %}
+            {% assign min_price = cheapest_variant.price %}
+            {% comment %} {% assign min_compare_at = cheapest_variant.compare_at_price %} {% endcomment %}
+          
+            <h2 class="current-price">Starting At {{ min_price | money }}</h2>
+          
+            {% comment %} {% if min_compare_at > min_price %}
+              <h4 class="compare-price">{{ min_compare_at | money }}</h4>
+            {% endif %} {% endcomment %}
+          {% endif %}
+        </div>
+  
+        {%- if request.page_type == 'collection' or request.page_type == 'product' or request.page_type == 'search' or show_add_to_cart  or page.template_suffix == 'outlet'-%}
+          {%- if section.settings.show_quick_view == 'list_grid' or section.settings.show_quick_buy == 'list_grid' or show_add_to_cart -%}
+            {% if customDesc.replacement == true %}
+              {%- assign product_form_classes = ' product-item__action-list button-stack auto' -%}
+            {% else %}
+              {%- assign product_form_classes = ' product-item__action-list button-stack' -%}
+            {% endif %}
+          {%- else -%}
+            {% if customDesc.replacement == true %}
+              {%- assign product_form_classes = 'product-item__action-list product-item__action-list--list-view-only button-stack auto' -%}
+            {% else %}
+              {%- assign product_form_classes = 'product-item__action-list product-item__action-list--list-view-only button-stack' -%}
+            {% endif %}
+            
+          {%- endif -%}
+      
+      
+          {%- form 'product', product, class: product_form_classes -%}
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      
+            {%- assign quick_buy_classes = 'product-item__action-button product-item__action-button--list-view-only button button--small button--primary' -%}
+      
+            <div class="btn-group">
+              {%- if product.available -%}
+                {% if customDesc.replacement == true %}
+                  <a href="{{ product.url }}" class="{{ quick_buy_classes }} add" data-product-url="{{ product.url }}" style="padding: 0 10px;font-size: 12px;background:#A5A5A5;margin: 0;height: 42px;line-height:42px;color: #ffffff;">View Only</a>
+                
+                {%- elsif product.variants.size == 1 -%}
+                  <button 
+                    type="submit" 
+                    class="{{ quick_buy_classes }} add-to-card-btn" 
+                    data-action="add-to-cart">
+                    Add To Cart
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M2.91699 3.75H3.97547C4.6712 3.75 5.01906 3.75 5.28094 3.93876C5.54283 4.12752 5.65283 4.45753 5.87284 5.11754L6.25033 6.25" stroke="white" stroke-linecap="round"/>
+                      <path d="M14.5837 14.5834H6.70941C6.0736 14.5834 5.62463 13.9605 5.82569 13.3573V13.3573C6.07928 12.5965 6.79122 12.0834 7.59314 12.0834H12.0837" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M11.6677 12.0833H9.41206C8.43579 12.0833 7.94766 12.0833 7.53805 11.8872C7.37379 11.8085 7.22103 11.7078 7.08403 11.5878C6.74241 11.2886 6.55012 10.8399 6.16555 9.9426C5.55132 8.5094 5.24421 7.79281 5.44971 7.23305C5.52971 7.01513 5.6592 6.81876 5.82799 6.65938C6.26153 6.25 7.04117 6.25 8.60043 6.25H12.4464C14.2546 6.25 15.1587 6.25 15.6046 6.73714C15.7507 6.89668 15.8605 7.08593 15.9266 7.2919C16.1283 7.92079 15.6797 8.70575 14.7826 10.2757C14.3378 11.0541 14.1154 11.4434 13.7742 11.6944C13.6576 11.7801 13.5321 11.853 13.3998 11.9116C13.0126 12.0833 12.5643 12.0833 11.6677 12.0833Z" stroke="white" stroke-linecap="round"/>
+                      <circle cx="14.1663" cy="16.6667" r="0.833333" fill="white"/>
+                      <ellipse cx="7.50033" cy="16.6667" rx="0.833333" ry="0.833333" fill="white"/>
+                    </svg>
+                  </button>
+                {%- else -%}
+                  <button 
+                    type="button" 
+                    class="{{ quick_buy_classes }} add-to-card-btn" 
+                    data-action="open-modal" 
+                    data-secondary-action="open-quick-view" 
+                    aria-controls="modal-quick-view-{{ section.id }}" 
+                    data-product-url="{{ product.url }}">
+                    Add To Cart
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M2.91699 3.75H3.97547C4.6712 3.75 5.01906 3.75 5.28094 3.93876C5.54283 4.12752 5.65283 4.45753 5.87284 5.11754L6.25033 6.25" stroke="white" stroke-linecap="round"/>
+                      <path d="M14.5837 14.5834H6.70941C6.0736 14.5834 5.62463 13.9605 5.82569 13.3573V13.3573C6.07928 12.5965 6.79122 12.0834 7.59314 12.0834H12.0837" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M11.6677 12.0833H9.41206C8.43579 12.0833 7.94766 12.0833 7.53805 11.8872C7.37379 11.8085 7.22103 11.7078 7.08403 11.5878C6.74241 11.2886 6.55012 10.8399 6.16555 9.9426C5.55132 8.5094 5.24421 7.79281 5.44971 7.23305C5.52971 7.01513 5.6592 6.81876 5.82799 6.65938C6.26153 6.25 7.04117 6.25 8.60043 6.25H12.4464C14.2546 6.25 15.1587 6.25 15.6046 6.73714C15.7507 6.89668 15.8605 7.08593 15.9266 7.2919C16.1283 7.92079 15.6797 8.70575 14.7826 10.2757C14.3378 11.0541 14.1154 11.4434 13.7742 11.6944C13.6576 11.7801 13.5321 11.853 13.3998 11.9116C13.0126 12.0833 12.5643 12.0833 11.6677 12.0833Z" stroke="white" stroke-linecap="round"/>
+                      <circle cx="14.1663" cy="16.6667" r="0.833333" fill="white"/>
+                      <ellipse cx="7.50033" cy="16.6667" rx="0.833333" ry="0.833333" fill="white"/>
+                    </svg>
+                  </button>
+                {%- endif -%}
+                  
+              {%- else -%}
+                <button class="{{ quick_buy_classes | replace: 'button--primary', 'button--disabled' }} add-to-card-btn" disabled>
+                  Add To Cart
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2.91699 3.75H3.97547C4.6712 3.75 5.01906 3.75 5.28094 3.93876C5.54283 4.12752 5.65283 4.45753 5.87284 5.11754L6.25033 6.25" stroke="white" stroke-linecap="round"/>
+                    <path d="M14.5837 14.5834H6.70941C6.0736 14.5834 5.62463 13.9605 5.82569 13.3573V13.3573C6.07928 12.5965 6.79122 12.0834 7.59314 12.0834H12.0837" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.6677 12.0833H9.41206C8.43579 12.0833 7.94766 12.0833 7.53805 11.8872C7.37379 11.8085 7.22103 11.7078 7.08403 11.5878C6.74241 11.2886 6.55012 10.8399 6.16555 9.9426C5.55132 8.5094 5.24421 7.79281 5.44971 7.23305C5.52971 7.01513 5.6592 6.81876 5.82799 6.65938C6.26153 6.25 7.04117 6.25 8.60043 6.25H12.4464C14.2546 6.25 15.1587 6.25 15.6046 6.73714C15.7507 6.89668 15.8605 7.08593 15.9266 7.2919C16.1283 7.92079 15.6797 8.70575 14.7826 10.2757C14.3378 11.0541 14.1154 11.4434 13.7742 11.6944C13.6576 11.7801 13.5321 11.853 13.3998 11.9116C13.0126 12.0833 12.5643 12.0833 11.6677 12.0833Z" stroke="white" stroke-linecap="round"/>
+                    <circle cx="14.1663" cy="16.6667" r="0.833333" fill="white"/>
+                    <ellipse cx="7.50033" cy="16.6667" rx="0.833333" ry="0.833333" fill="white"/>
+                  </svg>
+                </button>
+              {%- endif -%}
+  
+              <button type="button"
+                class="rfq-btn"
+                onclick="GRFQApp.addProduct(this, {{ product.id }});">
+                Request For Quote
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                  <path d="M13.417 4.16663C14.5874 4.16663 15.1726 4.16663 15.5929 4.44751C15.7749 4.56911 15.9312 4.72536 16.0528 4.90734C16.3337 5.32771 16.3337 5.91291 16.3337 7.08329V15C16.3337 16.5713 16.3337 17.357 15.8455 17.8451C15.3573 18.3333 14.5717 18.3333 13.0003 18.3333H8.00033C6.42898 18.3333 5.6433 18.3333 5.15515 17.8451C4.66699 17.357 4.66699 16.5713 4.66699 15V7.08329C4.66699 5.91291 4.66699 5.32771 4.94788 4.90734C5.06947 4.72536 5.22572 4.56911 5.40771 4.44751C5.82808 4.16663 6.41327 4.16663 7.58366 4.16663" stroke="#00487F"/>
+                  <path d="M8 4.16667C8 3.24619 8.74619 2.5 9.66667 2.5H11.3333C12.2538 2.5 13 3.24619 13 4.16667C13 5.08714 12.2538 5.83333 11.3333 5.83333H9.66667C8.74619 5.83333 8 5.08714 8 4.16667Z" stroke="#00487F"/>
+                  <path d="M8 10L13 10" stroke="#00487F" stroke-linecap="round"/>
+                  <path d="M8 13.3334L11.3333 13.3334" stroke="#00487F" stroke-linecap="round"/>
+                </svg>
+              </button>
+              
+              <a href="{{ product.url }}" class="learn-btn">
+                Learn More
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                  <path d="M8 5L13 10L8 15" stroke="#00487F"/>
+                </svg>
+              </a>
+            </div>
+          {%- endform -%}
+        
+            
+        {%- endif -%}
+          
+  
+        {% comment %} {%- if settings.show_inventory_quantity and product.template_suffix != 'pre-order' -%}
+          {%- if product.available -%}
+            {%- assign should_calculate_inventory = true -%}
+  
+            {%- for variant in product.variants -%}
+              {%- comment -%}
+              If we have one variant that is set to "continue" or that do not have any inventory management, then we skip the calculation of inventory as this
+              means at least one of the variant is always purchasable
+              {%- endcomment -%}
+  
+              {%- if variant.inventory_policy == 'continue' or variant.inventory_management == null -%}
+                {%- assign should_calculate_inventory = false -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+  
+            {%- if should_calculate_inventory and settings.low_inventory_threshold > 0 -%}
+              {%- assign all_inventory = 0 -%}
+  
+              {%- for variant in product.variants -%}
+                {%- if variant.inventory_management -%}
+                  {%- assign all_inventory = variant.inventory_quantity | at_least: 0 | plus: all_inventory -%}
+                {%- endif -%}
+              {%- endfor -%}
+  
+              {%- if all_inventory <= settings.low_inventory_threshold -%}
+                <span class="product-item__inventory inventory inventory--low">{{ 'collection.product.low_stock_with_quantity_count' | t: count: all_inventory }}</span>
+              {%- else -%}
+                <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.in_stock_with_quantity_count' | t: count: all_inventory }}</span>
+              {%- endif -%}
+            {%- else -%}
+              <span class="product-item__inventory inventory inventory--high">{{ 'collection.product.in_stock' | t }}</span>
+            {%- endif -%}
+          {%- else -%}
+            <span class="product-item__inventory inventory">{{ 'collection.product.sold_out' | t }}</span>
+          {%- endif -%}
+        {%- endif -%} {% endcomment %}
+      </div>
+      <div class="bottom">
+        <div class="certifications">
+          {% assign icon_map = 
+            "us_company:us_company,
+            ul_listed:ul_listed,
+            Title24Compliant:Title24Compliant,
+            Title20Compliant:Title20Compliant,
+            seven_years_warranty:seven-years-warranty,
+            ten_years_warranty:ten-years-warranty,
+            five_years_warranty:five-years-warranty,
+            three_years_warranty:three-years-warranty,
+            rohs:rohs,
+            ip66:ip66,
+            ip65:ip65,
+            fcc_certification:fcc_certification,
+            etl_listed:etl_listed,
+            energy_star_certification:energy-star_certification,
+            dlc_qpl_premium:dlc_qpl_premium,
+            dlc_listed:dlc_listed,
+            dimmable_110v:dimmable_110v,
+            dimmable_010v:dimmable_010v,
+            QuickShip:QuickShip" | split: "," %}
+
+          {% for pair in icon_map %}
+            {% assign parts = pair | split: ":" %}
+            {% assign metafield_name = parts[0] | strip %}
+            {% assign setting_name = parts[1] | strip %}
+
+            {% if product.metafields.global[metafield_name].value == "Yes" %}
+              <div class="certificate-item">
+                <img
+                class="lazyload pro-block-img"
+                src="{{ section.settings[setting_name] | img_url: '10px' }}"
+                data-src="{{ section.settings[setting_name] | img_url: 'master' }}"
+                width="{{ section.settings[setting_name].width }}"
+                height="{{ section.settings[setting_name].height }}"
+                alt="{{ metafield_name | replace: "_", " " | capitalize }}"
+              >
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      </div>  
+    </div>   
+  </div>
+
+
+
+
+

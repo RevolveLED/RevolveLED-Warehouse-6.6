@@ -171,6 +171,11 @@
         "one": "{{count}} product",
         "other": "{{count}} products"
       },
+      "showing_count_html": {
+        "zero": "No products",
+        "one": "<strong>{{count}}<\/strong> product",
+        "other": "<strong>{{count}}<\/strong> products"
+      },
       "results_count": {
         "zero": "{{count}} results",
         "one": "{{count}} result",

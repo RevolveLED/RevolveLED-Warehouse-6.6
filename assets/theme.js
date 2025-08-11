@@ -9289,6 +9289,7 @@ var CollectionSection = class {
           let tempElement = document.createElement("div");
           tempElement.innerHTML = content;
           this.element.querySelector(".collection__dynamic-part").innerHTML = tempElement.querySelector(".collection__dynamic-part").innerHTML;
+          this.element.querySelector(".collection__toolbar .right-wrapper").innerHTML = tempElement.querySelector(".collection__toolbar .right-wrapper").innerHTML;
           let desktopFilters = this.element.querySelector("#desktop-filters-form"), mobileFilters = this.element.querySelector("#mobile-collection-filters"), previousMobileScrollTop = 0;
           if (mobileFilters) {
             previousMobileScrollTop = mobileFilters.querySelector(".collection-drawer__inner").scrollTop;

@@ -1,0 +1,697 @@
+{{ 'collection-main.css' | asset_url | stylesheet_tag }}
+
+{%- assign items_per_page = cart.attributes.collection_products_per_page | default: 12 -%}
+
+{%- capture grid_classes -%}1/3--tablet 1/{{ section.settings.products_per_row }}--lap-and-up{%- endcapture -%}
+{%- assign view_mode = cart.attributes.collection_layout | default: section.settings.default_view_layout -%}
+
+{% assign one_sections = collection.description | split: '[abovetext]' %}
+
+{% assign custom_metafield = collection.metafields.custom_metafield %}
+{%- capture section_settings -%}
+  {
+    "currentSortBy": {{ collection.sort_by | default: collection.default_sort_by | json }},
+    "currentTags": [{% for tag in current_tags %}{{ tag | handle | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "filterType": "group",
+    "defaultLayout": {{ view_mode | json }},
+    "defaultProductsPerPage": {{ items_per_page | json }},
+    "isAutomatic": false,
+    "gridClasses": {{ grid_classes | json }}
+  }
+  {%- endcapture -%}
+<section
+  data-section-id="{{ section.id }}"
+  data-section-type="collection"
+  data-section-settings="{{ section_settings | escape_once }}"
+>
+  <div class="collection-main">
+    <div class="container container--flush">
+      <div class="layout">
+        {%- comment -%}
+          --------------------------------------------------------------------------------------
+          FILTER BAR (DESKTOP)
+          --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        {%- paginate collection.products by items_per_page -%}
+          <div class="layout__section">
+            <div class="collection">
+              {%- comment -%}
+                --------------------------------------------------------------------------------------
+                TOP PART (COLLECTION INFO + TOOLBAR)
+                --------------------------------------------------------------------------------------
+              {%- endcomment -%}
+
+              <div class="card">
+                <!-- Gio 4/3/2024 - category images were here -->
+                <div class="collection__toolbar {% if collection.description != blank or collection.template_suffix == 'brand' %}collection__toolbar--bordered{% endif %}">
+                  <h2 class="filter-by">Filter by</h2>
+                  <div class="right-wrapper">
+                    <div class="collection__toolbar-item collection__toolbar-item--count">
+                      {%- assign offset = paginate.current_offset | plus: 1 -%}
+                      {%- assign page_size = paginate.current_offset
+                        | plus: paginate.page_size
+                        | at_most: paginate.items
+                      -%}
+                      <span class="collection__showing-count hidden-lap">
+                        {{-
+                          'collection.general.showing_count_html'
+                          | t: offset: offset, page_size: page_size, count: paginate.items
+                        -}}
+                      </span>
+                      <div class="value-picker-wrapper hidden-phone">
+                        <button
+                          class="value-picker-button page-picker"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          aria-controls="display-by-selector"
+                          data-action="open-value-picker"
+                        >
+                          <span class="hidden-phone"
+                            ><strong>{{ 'collection.general.display' | t }}</strong>:
+                            {{ 'collection.general.page_size' | t: page_size: paginate.page_size -}}
+                          </span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.6719 6.28595L12.7291 5.34314L8.01502 10.0572L3.30098 5.34314L2.35817 6.28595L7.54357 11.4714C7.54357 11.4714 7.54362 11.4714 8.01502 11L7.54357 11.4714L8.01502 11.9428L13.6719 6.28595Z" fill="#1D2129"/>
+                          </svg>
+                        </button>
+
+                        <div
+                          id="display-by-selector"
+                          class="value-picker"
+                          aria-hidden="true"
+                        >
+                          {% render 'icon', icon: 'nav-triangle-borderless' %}
+
+                          <div class="value-picker__inner">
+                            <header class="value-picker__header">
+                              <span class="value-picker__title text--strong">
+                                {{- 'collection.general.display' | t -}}
+                              </span>
+                              <button
+                                class="value-picker__close"
+                                data-action="close-value-picker"
+                                aria-controls="display-by-selector"
+                                aria-label="{{ 'general.accessibility.close' | t }}"
+                              >
+                                {% render 'icon', icon: 'close' %}
+                              </button>
+                            </header>
+
+                            <div class="value-picker__choice-list">
+                              <button
+                                class="value-picker__choice-item link {% if items_per_page == 24 %}is-selected{% endif %}"
+                                data-action="select-value"
+                                data-value="24"
+                              >
+                                {{ 'collection.general.page_size' | t: page_size: 24 }}
+                                {% render 'icon', icon: 'check-2' %}
+                              </button>
+                              <button
+                                class="value-picker__choice-item link {% if items_per_page == 36 %}is-selected{% endif %}"
+                                data-action="select-value"
+                                data-value="36"
+                              >
+                                {{ 'collection.general.page_size' | t: page_size: 36 }}
+                                {% render 'icon', icon: 'check-2' %}
+                              </button>
+                              <button
+                                class="value-picker__choice-item link {% if items_per_page == 48 %}is-selected{% endif %}"
+                                data-action="select-value"
+                                data-value="48"
+                              >
+                                {{ 'collection.general.page_size' | t: page_size: 48 }}
+                                {% render 'icon', icon: 'check-2' %}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {%- assign collection_sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+                      {%- for option in collection.sort_options -%}
+                        {%- if option.value == collection_sort_by -%}
+                          {%- assign collection_sort_by_name = option.name -%}
+                          {%- break -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      <div class="value-picker-wrapper">
+                        <button
+                          class="value-picker-button sort-by-picker"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          aria-controls="sort-by-selector"
+                          data-action="open-value-picker"
+                        >
+                          <span class=""
+                            ><strong>{{ 'collection.sorting.title' | t }}</strong>: {{ collection_sort_by_name -}}
+                          </span>
+                          <!-- {%- render 'icon', icon: 'arrow-bottom' -%} -->
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.6719 6.28595L12.7291 5.34314L8.01502 10.0572L3.30098 5.34314L2.35817 6.28595L7.54357 11.4714C7.54357 11.4714 7.54362 11.4714 8.01502 11L7.54357 11.4714L8.01502 11.9428L13.6719 6.28595Z" fill="#1D2129"/>
+                          </svg>
+                        </button>
+
+                        <div
+                          id="sort-by-selector"
+                          class="value-picker"
+                          aria-hidden="true"
+                        >
+                          {% render 'icon', icon: 'nav-triangle-borderless' %}
+
+                          <div class="value-picker__inner">
+                            <header class="value-picker__header">
+                              <span class="value-picker__title text--strong">{{ 'collection.sorting.title' | t }}</span>
+                              <button
+                                class="value-picker__close"
+                                data-action="close-value-picker"
+                                aria-controls="sort-by-selector"
+                                aria-label="{{ 'general.accessibility.close' | t }}"
+                              >
+                                {% render 'icon', icon: 'close' %}
+                              </button>
+                            </header>
+
+                            <div class="value-picker__choice-list">
+                              {%- for option in collection.sort_options -%}
+                                <button
+                                  class="value-picker__choice-item link {% if option.value == collection_sort_by %}is-selected{% endif %}"
+                                  data-action="select-value"
+                                  data-value="{{ option.value }}"
+                                >
+                                  {{ option.name }}
+                                  {% render 'icon', icon: 'check-2' %}
+                                </button>
+                              {%- endfor -%}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="show-filter-mb">
+                      Show Filter
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                        <path d="M4.66699 10L4.66699 3.33333" stroke="#00487F" stroke-linecap="round"/>
+                        <path d="M16.333 16.6667L16.333 15" stroke="#00487F" stroke-linecap="round"/>
+                        <path d="M4.66699 16.6667L4.66699 13.3334" stroke="#00487F" stroke-linecap="round"/>
+                        <path d="M16.333 10L16.333 3.33333" stroke="#00487F" stroke-linecap="round"/>
+                        <path d="M10.5 5.83331L10.5 3.33331" stroke="#00487F" stroke-linecap="round"/>
+                        <path d="M10.5 16.6667L10.5 10" stroke="#00487F" stroke-linecap="round"/>
+                        <ellipse cx="4.66667" cy="11.6667" rx="1.66667" ry="1.66667" stroke="#00487F" stroke-linecap="round"/>
+                        <ellipse cx="10.4997" cy="7.49998" rx="1.66667" ry="1.66667" stroke="#00487F" stroke-linecap="round"/>
+                        <ellipse cx="16.3337" cy="12.5" rx="1.66667" ry="1.66667" stroke="#00487F" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="filter-popup">
+                      <div class="filter-popup-content">
+                        <div class="filter-by-mb">
+                          Filter by
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path d="M18 6L6 18" stroke="#33363F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 6L18 18" stroke="#33363F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </div>
+                        {% include 'filter-tag' %}
+                        {% comment %} <button class="close-filter-popup">Close</button> {% endcomment %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layout">
+                  {% if section.settings.show_filters %}
+                    <div class="layout__section layout__section--secondary">
+                      <div class="card collection-layout-left">
+                        <div class="card__section card__section--tight">
+                          <div>{% include 'filter-tag' %}</div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                  <div class="collection__dynamic-part layout__section">
+                    {% comment %}
+                      <div class="collection__toolbar ">
+                        <div>{% include 'filter-tag-result' %}</div>
+                      </div>
+                    {% endcomment %}
+
+                    {%- comment -%}
+                      --------------------------------------------------------------------------------------
+                      COLLECTION PRODUCTS
+                      --------------------------------------------------------------------------------------
+                    {%- endcomment -%}
+
+                    <div class="product-list product-list--collection">
+                      {%- for product in collection.products -%}
+                        {%- include 'collection-product-item', list: true -%}
+                      {%- endfor -%}
+                    </div>
+
+                    {%- if paginate.pages > 1 -%}
+                      <div class="pagination">
+                        <div class="pagination__inner">
+                          {%- if paginate.previous -%}
+                            <a
+                              class="pagination__prev link"
+                              rel="prev"
+                              title="{{ 'general.pagination.previous_page' | t }}"
+                              data-page="{{ paginate.current_page | minus: 1 }}"
+                              href="{{ paginate.previous.url }}{{ hash }}"
+                            >
+                              {%- render 'icon', icon: 'arrow-left' -%}
+                            </a>
+                          {%- endif -%}
+
+                          <div class="pagination__nav">
+                            {%- for part in paginate.parts -%}
+                              {%- if part.is_link -%}
+                                <a
+                                  href="{{ part.url }}{{ hash }}"
+                                  data-page="{{ part.title }}"
+                                  class="pagination__nav-item link"
+                                  title="{{ 'general.pagination.go_to_page' | t: page: part.title }}"
+                                >
+                                  {{- part.title -}}
+                                </a>
+                              {%- else -%}
+                                <span class="pagination__nav-item {% if part.title == paginate.current_page %}is-active{% endif %}">
+                                  {{- part.title -}}
+                                </span>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </div>
+
+                          <span class="pagination__page-count">
+                            {{-
+                              'general.pagination.page_count'
+                              | t: current_page: paginate.current_page, pages: paginate.pages
+                            -}}
+                          </span>
+
+                          {%- if paginate.next -%}
+                            <a
+                              class="pagination__next link"
+                              rel="next"
+                              title="{{ 'general.pagination.next_page' | t }}"
+                              data-page="{{ paginate.current_page | plus: 1 }}"
+                              href="{{ paginate.next.url }}{{ hash }}"
+                            >
+                              {%- render 'icon', icon: 'arrow-right' -%}
+                            </a>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+                <!-- area below navigation: Full screen width -->
+                <script type="application/json" data-collection-products-count>
+                  {
+                    "productsCount": "{{ 'collection.general.products_count' | t: count: collection.products_count }}",
+                    "showingCount": "{{ 'collection.general.showing_count' | t: offset: offset, page_size: page_size, count: paginate.items }}"
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+        {%- endpaginate -%}
+      </div>
+    </div>
+
+    <div class="info-wrapper">
+      {{ collection.metafields.global['obx-boc'].value }}
+    </div>
+
+    {%- comment -%}
+      --------------------------------------------------------------------------------------
+      QUICK VIEW CONTAINER
+      --------------------------------------------------------------------------------------
+    {%- endcomment -%}
+
+    <div
+      id="modal-quick-view-{{ section.id }}"
+      class="modal"
+      aria-hidden="true"
+    >
+      <div class="modal__dialog modal__dialog--stretch" role="dialog">
+        <button class="modal__close link" data-action="close-modal">{%- include 'icon' with 'close' -%}</button>
+
+        <div class="modal__loader">
+          {%- include 'icon' with 'search-loader' -%}
+        </div>
+
+        <div class="modal__inner"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.querySelector('.collection-layout-left');
+    const header = document.querySelector('header.header');
+    const nav = document.querySelector('nav.nav-bar');
+
+    const headerHeight = header ? header.offsetHeight : 0;
+    const navHeight = nav ? nav.offsetHeight : 0;
+    const combinedHeight = headerHeight + navHeight;
+
+    const container = sidebar.parentElement;
+
+    let sidebarTop;
+
+    function updateSidebarTop() {
+      sidebarTop = sidebar.getBoundingClientRect().top + window.scrollY;
+    }
+
+    updateSidebarTop();
+    window.addEventListener('resize', updateSidebarTop);
+
+    window.addEventListener('scroll', function () {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      const containerBottom = container.getBoundingClientRect().bottom + scrollY;
+
+      const sidebarHeight = sidebar.offsetHeight;
+      const sidebarBottom = scrollY + combinedHeight + sidebarHeight;
+
+      if (scrollY > sidebarTop - combinedHeight && sidebarBottom < containerBottom) {
+        sidebar.style.position = 'fixed';
+        sidebar.style.top = combinedHeight + 32 + 'px';
+        sidebar.style.width = container.offsetWidth + 'px';
+      } else if (sidebarBottom >= containerBottom) {
+        sidebar.style.position = 'absolute';
+        sidebar.style.top = container.offsetHeight - sidebarHeight + 32 + 'px';
+        sidebar.style.width = '100%';
+      } else {
+        sidebar.style.position = '';
+        sidebar.style.top = '';
+        sidebar.style.width = '';
+      }
+    });
+  });
+</script>
+<script>
+  $('.show-filter-mb').on('click', function () {
+    $('.filter-popup').show();
+    $('.mobile-announcement.scroll').hide();
+    $('header.header--inline').hide();
+  });
+
+  $('.filter-by-mb svg').on('click', function () {
+    $('.filter-popup').hide();
+    $('.mobile-announcement.scroll').show();
+    $('header.header--inline').show();
+  });
+</script>
+
+<script>
+  $('.template-collection .layout__section .bottom-block .show-t').click(function () {
+    $(this)
+      .children()
+      .text($(this).children().text() == 'Show More' ? 'Show Less' : 'Show More');
+    $('.template-collection .layout__section .bottom-block').toggleClass('open');
+    $('.template-collection .layout__section .bottom-block .show-t').toggleClass('open');
+  });
+</script>
+
+<script>
+  $('.filter-item-title').click(function () {
+    if ($(this).next('.filter-item-list').is(':hidden')) {
+      $(this).attr('aria-expanded', 'true');
+    } else {
+      $(this).attr('aria-expanded', 'false');
+    }
+    $(this).next('.filter-item-list').slideToggle();
+  });
+
+  if ($(window).width() < 1015) {
+    $('.filterboxxtop').click(function () {
+      $(this).next('.filterboxx').slideToggle();
+      $('.filterboxxtop .tag-toggle').text($('.filterboxxtop .tag-toggle').text() == '+' ? '—' : '+');
+    });
+  }
+</script>
+
+<script>
+  function init_leftbar_filter() {
+    let wrapper = document.querySelector('.filters-toolbar');
+    if (!wrapper) return false;
+    let ary_item = wrapper.querySelectorAll('.filter-type.item');
+    let ary_filter = ['EQUIVALENT', 'WATTAGE', 'LUMENS', 'INPUT VOLTAGE'];
+    // let ary_filter = [{{ section.settings.customtag_sort  }}];
+    let ary_obj = [];
+    function get_num(str) {}
+
+    for (let item of ary_item) {
+      for (let filter of ary_filter) {
+        if (item.querySelector('.filter-item-title>strong').innerText == filter) {
+          ary_obj.push(item);
+        }
+      }
+    }
+    for (let el of ary_obj) {
+      let ul = el.querySelector('.filter-item-list');
+      let ary_li_o = el.querySelectorAll('.advanced-filter');
+      let ary_li = [];
+      for (let a of ary_li_o) {
+        ary_li.push(a);
+      }
+      for (let i = 0; i < ary_li.length - 1; i++) {
+        for (let j = i + 1; j < ary_li.length; j++) {
+          let text1 = parseInt(ary_li[i].querySelector('a>span:nth-of-type(2)').innerText);
+          let text2 = parseInt(ary_li[j].querySelector('a>span:nth-of-type(2)').innerText);
+          if (!isNaN(text1)) {
+            if (text1 > text2) {
+              let tmp;
+              tmp = ary_li[i];
+              ary_li[i] = ary_li[j];
+              ary_li[j] = tmp;
+            }
+          }
+        }
+      }
+      if (ary_li.length > 0) {
+        ul.innerHTML = '';
+        for (let li of ary_li) {
+          ul.appendChild(li);
+        }
+      }
+    }
+  }
+  init_leftbar_filter();
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const filterboxxLinks = document.querySelectorAll('.filterboxx a');
+    filterboxxLinks.forEach((link) => {
+      link.setAttribute('rel', 'nofollow');
+    });
+  });
+</script>
+
+{%- comment -%}
+  --------------------------------------------------------------------------------------
+  OBX SCRIPTS
+  --------------------------------------------------------------------------------------
+{%- endcomment -%}
+<script>
+  var acc = document.getElementsByClassName('accordion');
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener('click', function () {
+      /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+      this.classList.toggle('active');
+      /* Toggle between hiding and showing the active panel */
+      var panel = this.nextElementSibling;
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Collection Main",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Filter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "Show filters",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "customtag",
+      "label": "Custom tag",
+      "info": "tag name split by a ',',please watch for to distinguish analyse the size to write.in fact,tag edit in product page,the format is like 'BRAND_'"
+    },
+    {
+      "type": "textarea",
+      "id": "customtag_sort",
+      "label": "Custom tag with sort",
+      "default": "EQUIVALENT,WATTAGE,LUMENS,INPUT VOLTAGE",
+      "info": "tag name split by a ',',like : \"EQUIVALENT\", \"WATTAGE\", \"LUMENS\", \"INPUT VOLTAGE\""
+    },
+    {
+      "type": "link_list",
+      "id": "navigation_menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Product Item"
+    },
+    {
+      "type": "image_picker",
+      "id": "us_company",
+      "label": "US Company Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "ul_listed",
+      "label": "UL Listed"
+    },
+    {
+      "type": "image_picker",
+      "id": "Title24Compliant",
+      "label": "Title 24 Compliant"
+    },
+    {
+      "type": "image_picker",
+      "id": "Title20Compliant",
+      "label": "Title 20 Compliant"
+    },
+    {
+      "type": "image_picker",
+      "id": "seven-years-warranty",
+      "label": "Seven Years Warranty"
+    },
+    {
+      "type": "image_picker",
+      "id": "ten-years-warranty",
+      "label": "Ten Years Warranty"
+    },
+    {
+      "type": "image_picker",
+      "id": "five-years-warranty",
+      "label": "Five Years Warranty"
+    },
+    {
+      "type": "image_picker",
+      "id": "three-years-warranty",
+      "label": "Three Years Warranty"
+    },
+    {
+      "type": "image_picker",
+      "id": "rohs",
+      "label": "RoHS"
+    },
+    {
+      "type": "image_picker",
+      "id": "ip66",
+      "label": "IP66"
+    },
+    {
+      "type": "image_picker",
+      "id": "ip65",
+      "label": "IP65"
+    },
+    {
+      "type": "image_picker",
+      "id": "fcc_certification",
+      "label": "FCC Certification"
+    },
+    {
+      "type": "image_picker",
+      "id": "etl_listed",
+      "label": "ETL Listed"
+    },
+    {
+      "type": "image_picker",
+      "id": "energy-star_certification",
+      "label": "Energy Star Certification"
+    },
+    {
+      "type": "image_picker",
+      "id": "dlc_qpl_premium",
+      "label": "DLC QPL Premium"
+    },
+    {
+      "type": "image_picker",
+      "id": "dlc_listed",
+      "label": "DLC Listed"
+    },
+    {
+      "type": "image_picker",
+      "id": "dimmable_110v",
+      "label": "Dimmable 110V"
+    },
+    {
+      "type": "image_picker",
+      "id": "dimmable_010v",
+      "label": "Dimmable 0-10V"
+    },
+    {
+      "type": "image_picker",
+      "id": "QuickShip",
+      "label": "Quick Ship"
+    },
+    {
+      "type": "image_picker",
+      "id": "new",
+      "label": "Product New Tag"
+    },
+    {
+      "type": "image_picker",
+      "id": "latest",
+      "label": "Product Latest Model Tag"
+    },
+    {
+      "type": "image_picker",
+      "id": "priceDropped",
+      "label": "Product Price Dropped Tag"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Collection Main",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

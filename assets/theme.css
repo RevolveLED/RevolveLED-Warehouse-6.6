@@ -1022,7 +1022,7 @@ body:not(.is-tabbing) [tabindex]:focus, body:not(.is-tabbing) label:focus, body:
 
 .container {
   padding: 0 var(--mobile-container-gutter);
-  max-width: 1480px;
+  max-width: 1780px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1066,7 +1066,7 @@ body:not(.is-tabbing) [tabindex]:focus, body:not(.is-tabbing) label:focus, body:
 
 @media screen and (max-width: 640px) {
   .container--flush {
-    padding: 0;
+    padding: 16px;
   }
 
   .container--unflush {
@@ -10219,6 +10219,11 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
   display: flex;
   position: absolute;
   top: 0;
+  /* 搬迁 */
+  position: relative;
+  display: inline-block;
+  background: #1f9cfb;
+  padding: 1px 8px;
 }
 
 .pagination__prev svg, .pagination__next svg {
@@ -10243,14 +10248,18 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
   margin-left: 14px;
 }
 
-.pagination__nav, .pagination__page-count {
+.pagination__nav {
   text-align: center;
   display: block;
 }
 
-.pagination__nav {
+.pagination__page-count {
   display: none;
 }
+
+/* .pagination__nav {
+  display: none;
+} */
 
 .pagination__nav-item {
   margin: 0 2px;

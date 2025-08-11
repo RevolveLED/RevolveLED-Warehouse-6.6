@@ -1,0 +1,52 @@
+{{ 'collection-description.css' | asset_url | stylesheet_tag }}
+
+{% if collection.metafields.global.collection_tips_1.value != blank
+  and collection.metafields.global.collection_tips_1.value != blank
+%}
+  <div class="collection-description">
+    <div class="container container--flush">
+      <div class="content-wrapper">
+        <div class="left-content">
+          {% comment %} <span class="highlight">LED wall pack lights</span> {% endcomment %}
+          {{ collection.metafields.global.collection_tips_1.value }}
+        </div>
+        <div class="right-content">
+          {{ collection.metafields.global.collection_tips_2.value }}
+          <div class="btn-wrapper">
+            <div class="view-more">View More</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function () {
+    const viewMoreBtn = document.querySelector('.collection-description .right-content .view-more');
+    const rightContent = document.querySelector('.collection-description .right-content');
+
+    if (viewMoreBtn && rightContent) {
+      // console.log("Click view more true");
+      viewMoreBtn.addEventListener('click', function () {
+        rightContent.classList.add('expanded');
+        this.style.display = 'none';
+        // console.log("Click view more");
+      });
+    }
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Collection Description",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Collection Description",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

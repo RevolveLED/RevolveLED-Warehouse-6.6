@@ -1,0 +1,126 @@
+/* @media screen and (max-width: 640px) {
+  .header {
+    margin-bottom: 100px;
+  }
+} */
+
+.collection-banner {
+  position: relative;
+  color: white;
+}
+
+.collection-banner .bg-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.collection-banner .bg-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+}
+
+.collection-banner .bg-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #00487F 0%, rgba(0, 72, 127, 0) 100%);
+  backdrop-filter: blur(0px);
+  pointer-events: none;
+}
+
+.collection-banner .outer {
+  width: 100%;
+  max-width: 1780px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.collection-banner .content-wrapper {
+  max-width: 50%;
+  padding-left: 40px;
+  line-height: 24px;
+}
+
+.collection-banner .content-wrapper a {
+  color: #a5cd39 !important;
+  text-decoration: underline !important;
+}
+
+.collection-banner .content-wrapper .title{
+  margin-bottom: 8px;
+  font-family: "Avenir Next";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; 
+}
+
+.collection-banner .content-wrapper li {
+  list-style-position: outside;
+  margin-left: 1.5em;
+}
+
+
+@media (max-width: 1440px) {
+  .collection-banner .content-wrapper {
+    left: 80px;
+  }
+}
+@media (max-width:1000px){
+  .collection-banner .content-wrapper{
+    max-width:100%;
+  }
+}
+@media (max-width: 768px) {
+  .warehouse--v1 .container--flush {
+    padding-top: 0;
+  }
+
+  .collection-banner .bg-wrapper img {
+    min-height: 400px;
+    object-fit: cover;
+  }
+
+  .collection-banner .content-wrapper {
+    height: 100%;
+    left: 0;
+    padding: 24px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .collection-banner .content-wrapper .title {
+    font-size: 24px;
+  }
+
+  .collection-banner .content-wrapper p {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 8px;
+  }
+
+  .collection-banner .content-wrapper li {
+    font-size: 16px;
+  }
+
+  
+  .collection-banner .bg-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 450px;
+  }
+}

@@ -1,0 +1,149 @@
+.collection-description {
+  padding-top: 64px;
+}
+
+
+
+.collection-description .container .content-wrapper {
+  display: flex;
+  gap: 48px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid lightgray;
+}
+
+.collection-description .container .content-wrapper p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.collection-description .container .left-content{
+  flex: 1;
+  background-color: #F9F9FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  padding: 16px 24px;
+}
+.collection-description .container .right-content{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: start;
+  justify-content: center;
+}
+
+.collection-description .right-content {
+  font-family: "Avenir Next";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.collection-description .right-content h2 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  margin: 0;
+}
+
+.collection-description .right-content strong {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; 
+}
+
+.collection-description .right-content .highlight {
+  color: #00487F;
+}
+
+.collection-description .container .highlight {
+  color: #00487F;
+}
+
+.collection-description .view-more {
+  background-color: #00487F;
+  padding: 15px 12px;
+  color: white;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+
+}
+
+.collection-description .btn-wrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .collection-description {
+    padding: 24px 0px;
+    padding-bottom: 0;
+  }
+  .collection-description .container .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0px;
+    border-bottom: 0;
+  }
+
+  .collection-description .container .left-content {
+    font-size: 14px;
+  }
+
+
+  .collection-description .container .right-content {
+    position: relative;
+    max-height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: start;
+    gap: 8px;
+  }
+
+  .collection-description .container .right-content::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px; 
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFF 100%);
+    pointer-events: none;
+  }
+
+  .collection-description .container .right-content.expanded {
+    max-height: none;
+  }
+
+  .collection-description .container .right-content.expanded::after {
+    display: none;
+  }
+
+  .collection-description .btn-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .collection-description .view-more {
+    width: fit-content;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .collection-description .container .content-wrapper p {
+    font-size: 14px;
+  }
+
+}

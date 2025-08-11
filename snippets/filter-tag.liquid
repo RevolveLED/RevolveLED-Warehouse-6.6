@@ -1,0 +1,56 @@
+<div class="filters-toolbar filter-box {% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}">
+  <div class="filters-toolbar__item">
+    {% assign fcheckhave = false %}
+{% for filter_current_tag1 in collection.all_tags %}
+{% assign custom_current_tag1 = filter_current_tag1 | strip %}  
+{% assign cur_tag1 = current_tags %}
+
+{% for ct in cur_tag1 %}
+{% if ct == custom_current_tag1 %}
+{% assign fcheckhave = true %}
+    {% break%}
+{% endif %}
+{% endfor %}
+
+{% endfor %}
+    
+    
+    {% assign fcheck0 = false %}
+     {% assign gettags = section.settings.customtag %}
+	{% assign getone = gettags | split: ','%} 
+    {% assign list_current_tag = collection.all_tags %}
+    {% for filter_current_tag0 in list_current_tag %}
+    
+   
+    
+    {% for onet in getone %}
+    {% assign onetagf = onet |  append: "_"   %}
+    {%if filter_current_tag0 contains onetagf %}
+    {% assign fcheck0 = true %}
+    {% break %}
+    {% endif %}
+    {% endfor %}
+    
+
+    {% if fcheck0 %}
+    {% if filter_current_tag0 %}
+    {% comment %} <div class="filter-type  filterboxxtop">
+      <span class="tag-toggle" style="padding-left: 20px;font-size:25px;">+</span><label>{{ 'collection.filter.title' | t }}</label>
+      {% comment %}
+      {% if fcheckhave %}  <a class="clear-btn" href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}">Clear All</a> {% endif %}
+    {% endcomment %}
+    </div> {% endcomment %}
+    {% break %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}  
+    
+    
+      <div class="filterboxx">
+    {% for one in getone %}
+    {%- render 'filter-itemtag', tag: one, index: forloop.index -%}
+    {% endfor %}
+</div>
+  </div>
+</div>
+

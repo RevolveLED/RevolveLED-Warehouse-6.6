@@ -1,3 +1,10 @@
+<style>
+  [data-section-id="{{ section.id }}"]{
+    background:{{ section.settings.bg_color }};
+    padding:3% 0;
+    margin:0;
+  }
+</style>
 <section class="section section--tight" data-section-id="{{ section.id }}" data-section-type="text-with-icons">
   <div class="container container--flush">
     <div class="text-with-icons {% if section.settings.stack_mobile %}text-with-icons--stacked{% endif %}">
@@ -5,7 +12,11 @@
         <div class="text-with-icons__item" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
           <div class="text-with-icons__icon-wrapper">
             {%- if block.settings.custom_icon != blank -%}
-              <img loading="lazy" src="{{ block.settings.custom_icon | img_url: '60x' }}" alt="{{ block.settings.custom_icon.alt | escape }}">
+              <img
+                loading="lazy"
+                src="{{ block.settings.custom_icon | img_url: '60x' }}"
+                alt="{{ block.settings.custom_icon.alt | escape }}"
+              >
             {%- else -%}
               {%- render 'icon', icon: block.settings.icon, stroke_width: 1.5 -%}
             {%- endif -%}
@@ -14,12 +25,12 @@
           {%- if block.settings.title != blank or block.settings.content != blank -%}
             <div class="text-with-icons__content-wrapper">
               {%- if block.settings.title != blank -%}
-                <p class="text-with-icons__title text--strong">{{ block.settings.title | escape }}</p>
+                <p class="h4 text-with-icons__title text--strong">{{ block.settings.title | escape }}</p>
               {%- endif -%}
 
               {%- if block.settings.content != blank -%}
                 <div class="text-with-icons__content rte">
-                  {{ block.settings.content  }}
+                  {{ block.settings.content }}
                 </div>
               {%- endif -%}
             </div>
@@ -40,6 +51,12 @@
       "id": "stack_mobile",
       "label": "Stack on mobile",
       "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background colors",
+      "default": "#EFF8FF"
     }
   ],
   "blocks": [

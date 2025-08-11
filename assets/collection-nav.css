@@ -1,0 +1,65 @@
+.collection-nav {
+  background-color: #F1F8FE;
+  padding-block: 32px;
+}
+
+.collection-nav .nav-l2-box {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+  box-shadow: unset;
+}
+
+.collection-nav .nav-l2-box .nav-box-item:hover {
+  color: #00487F;
+  box-shadow: 0px 1px 1px -0.5px rgba(0, 0, 0, 0.03), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.03), 0px 6px 6px -3px rgba(0, 0, 0, 0.03), 0px 32px 32px -16px rgba(0, 0, 0, 0.03);
+}
+
+.collection-nav .nav-l2-box .nav-box-item a {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background-color: white;
+  box-shadow: 0px 1px 1px -0.5px rgba(0, 0, 0, 0.03), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.03);
+  height: 100%;
+}
+
+.collection-nav .nav-l2-box .nav-box-item img {
+  width: 100%;
+}
+
+.collection-nav .nav-l2-box .nav-box-item a h2 button {
+  font-family: "Avenir Next";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.collection-nav .breadcrumb-wrapper {
+  border-bottom: 1px solid #C9CDD4;
+}
+
+
+@media (max-width: 768px) {
+  .warehouse--v1 .container--flush {
+    padding-top: 0;
+  }
+
+  .collection-nav {
+    background-color: #F1F8FE;
+    padding-block: 24px;
+  }
+
+  .collection-nav .nav-l2-box {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .collection-nav .nav-l2-box>*:last-child {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,9 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "collection_banner_ErLq9d": {
+      "type": "collection-banner",
+      "name": "Collection Banner",
+      "settings": {
+        "background": "{{ collection.image }}"
+      }
+    },
+    "collection_nav_fDrhHU": {
+      "type": "collection-nav",
+      "name": "Collection Nav",
+      "settings": {
+        "navigation_menu": "main-menu"
+      }
+    },
+    "collection_description_86zJRR": {
+      "type": "collection-description",
+      "name": "Collection Description",
+      "settings": {}
+    },
+    "collection_main_bRRYNE": {
+      "type": "collection-main",
+      "name": "Collection Main",
+      "settings": {
+        "show_filters": true,
+        "customtag": "BRAND,WATTAGE,INPUT VOLTAGE,OUTPUT VOLTAGE,MOUNTING LOCATION,STYLE,EQUIVALENT,DLC,LUMENS,SPECIAL FEATURES,MADE IN USA,ACCESSORIES,MOUNTING TYPE,LIGHT DISTRIBUTION,CCT,QUICKSHIP,FINISH,EMERGENCY BACKUP",
+        "customtag_sort": "EQUIVALENT,WATTAGE,LUMENS,INPUT VOLTAGE",
+        "navigation_menu": "main-menu",
+        "us_company": "shopify://shop_images/us_company_f8cffe71-203f-4865-b39e-ec6e2d6c742b.svg",
+        "ul_listed": "shopify://shop_images/UL.svg",
+        "Title24Compliant": "shopify://shop_images/Title24Compliant.svg",
+        "Title20Compliant": "shopify://shop_images/Title20Compliant.svg",
+        "seven-years-warranty": "shopify://shop_images/seven-years-warranty.svg",
+        "ten-years-warranty": "shopify://shop_images/ten-years-warranty.svg",
+        "five-years-warranty": "shopify://shop_images/five-years-warranty.svg",
+        "three-years-warranty": "shopify://shop_images/three-years-warranty.svg",
+        "rohs": "shopify://shop_images/Rohs.svg",
+        "ip66": "shopify://shop_images/IP66.svg",
+        "ip65": "shopify://shop_images/IP65.svg",
+        "fcc_certification": "shopify://shop_images/fcc_certification.svg",
+        "etl_listed": "shopify://shop_images/etl_listed_70a3d45b-493a-4c33-a575-a419b34026ad.svg",
+        "energy-star_certification": "shopify://shop_images/energy-star_certifcation.svg",
+        "dlc_qpl_premium": "shopify://shop_images/DLC_Premium.svg",
+        "dlc_listed": "shopify://shop_images/DLC.svg",
+        "dimmable_110v": "shopify://shop_images/dimmable_110v.svg",
+        "dimmable_010v": "shopify://shop_images/dimmable_010v.svg",
+        "QuickShip": "shopify://shop_images/quick_ship.svg",
+        "new": "shopify://shop_images/new-yellow.svg",
+        "latest": "shopify://shop_images/latest-model.svg",
+        "priceDropped": "shopify://shop_images/price-yellow.svg"
+      }
+    },
     "main": {
       "type": "main-collection",
+      "disabled": true,
       "settings": {
-        "show_collection_image": true,
+        "show_collection_image": false,
         "collection_image_size": "small",
         "collapse_collection_description": true,
         "products_per_row": "4",
@@ -20,6 +81,7 @@
     },
     "recently-viewed-products": {
       "type": "recently-viewed-products",
+      "disabled": true,
       "settings": {
         "title": "Recently viewed",
         "show_quick_buy": false
@@ -27,6 +89,10 @@
     }
   },
   "order": [
+    "collection_banner_ErLq9d",
+    "collection_nav_fDrhHU",
+    "collection_description_86zJRR",
+    "collection_main_bRRYNE",
     "main",
     "recently-viewed-products"
   ]
