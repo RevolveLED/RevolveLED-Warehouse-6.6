@@ -168,8 +168,8 @@
       "display": "Display",
       "products_count": {
         "zero": "{{count}} products",
-        "one": "{{count}} product",
-        "other": "{{count}} products"
+        "one": "<strong>{{count}}<\/strong> product",
+        "other": "<strong>{{count}}<\/strong> products"
       },
       "showing_count_html": {
         "zero": "No products",

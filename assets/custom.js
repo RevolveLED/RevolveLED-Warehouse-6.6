@@ -34,3 +34,57 @@
  * }));
  */
 
+$(function () {
+    // 统一处理 Filter Popup 显示/隐藏
+    function toggleFilterPopup(show) {
+        $('.filter-popup').toggle(show);
+        $('.mobile-announcement.scroll').toggle(!show);
+        $('header.header--inline').toggle(!show);
+    }
+
+    // 显示 Filter Popup
+    $(document).on('click', '.show-filter-mb', function () {
+        toggleFilterPopup(true);
+    });
+
+    // 隐藏 Filter Popup
+    $(document).on('click', '.filter-by-mb svg', function () {
+        toggleFilterPopup(false);
+    });
+
+    // Filter Item Title 折叠
+    $(document).on('click', '.filter-item-title', function () {
+        var $this = $(this);
+        var $list = $this.next('.filter-item-list');
+        $this.attr('aria-expanded', $list.is(':hidden') ? 'true' : 'false');
+        $list.stop(true, true).slideToggle();
+    });
+
+    // 响应式 Filterboxx 折叠
+    const mediaQuery = window.matchMedia('(max-width: 1014px)');
+
+    function handleFilterboxClick(enable) {
+        if (enable) {
+            $(document).on('click.filterbox', '.filterboxxtop', function () {
+                $(this).next('.filterboxx').stop(true, true).slideToggle();
+                var $toggle = $(this).find('.tag-toggle');
+                $toggle.text($toggle.text().trim() === '+' ? '—' : '+');
+            });
+        } else {
+            $(document).off('click.filterbox', '.filterboxxtop');
+            $('.filterboxx').show();
+            $('.tag-toggle').text('—');
+        }
+    }
+
+    // 初始化
+    handleFilterboxClick(mediaQuery.matches);
+
+    // 监听宽度变化
+    mediaQuery.addEventListener('change', function (e) {
+        handleFilterboxClick(e.matches);
+    });
+
+    // #tidochat 移除z-index
+    // $('#tidio-chat').css('z-index', '');
+});

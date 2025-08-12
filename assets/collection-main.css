@@ -356,7 +356,8 @@
   padding-block: 60px;
 } */
 
-.collection-main .obx-container .obx-faq .container {
+.collection-main .obx-container .obx-faq .container,
+.collection-main .obx-container .content-wheel .container {
   padding-inline: 40px;
 }
 
@@ -554,7 +555,7 @@
   width: 300px;
 }
 
-.collection-layout-left .filter-type .filter-item-title .plus-button:before ,
+.collection-layout-left .filter-type .filter-item-title .plus-button:before,
 .collection__toolbar .plus-button:before {
   display: none;
 }
@@ -690,7 +691,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0;
-    padding: 8px 4px;
+    padding: 8px 0;
     /* font-family: Avenir Next; */
   }
 
@@ -746,6 +747,12 @@
 
   .layout__section .layout__section--secondary {
     display: none;
+  }
+}
+
+@media (max-width:1000px) and (min-width:769px) {
+  #sa-rotating-widget .SA__wrapper .SA__container:not(.vertical) .tns-ovh {
+    position: relative !important;
   }
 }
 

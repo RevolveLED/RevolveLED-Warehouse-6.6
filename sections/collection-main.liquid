@@ -53,7 +53,7 @@
                         | plus: paginate.page_size
                         | at_most: paginate.items
                       -%}
-                      <span class="collection__showing-count hidden-lap">
+                      <span class="collection__showing-count hidden-lap collection__products-count-total">
                         {{-
                           'collection.general.showing_count_html'
                           | t: offset: offset, page_size: page_size, count: paginate.items
@@ -243,7 +243,7 @@
 
                 <div class="layout">
                   {% if section.settings.show_filters %}
-                    <div class="layout__section layout__section--secondary">
+                    <div class="layout__section layout__section--secondary collection__filter-part">
                       <div class="card collection-layout-left">
                         <div class="card__section card__section--tight">
                           <div>{% include 'filter-tag' %}</div>
@@ -330,7 +330,7 @@
                 <!-- area below navigation: Full screen width -->
                 <script type="application/json" data-collection-products-count>
                   {
-                    "productsCount": "{{ 'collection.general.products_count' | t: count: collection.products_count }}",
+                    "productsCount": "{{ 'collection.general.products_count' | t: count: collection.products_count | replace:'&lt;', '<' | replace:'&gt;', '>' }}",
                     "showingCount": "{{ 'collection.general.showing_count' | t: offset: offset, page_size: page_size, count: paginate.items }}"
                   }
                 </script>
@@ -396,7 +396,8 @@
 
       const sidebarHeight = sidebar.offsetHeight;
       const sidebarBottom = scrollY + combinedHeight + sidebarHeight;
-
+      const productCount = document.querySelectorAll('.product-item').length;
+      if (productCount <= 0) return;
       if (scrollY > sidebarTop - combinedHeight && sidebarBottom < containerBottom) {
         sidebar.style.position = 'fixed';
         sidebar.style.top = combinedHeight + 32 + 'px';
@@ -413,19 +414,21 @@
     });
   });
 </script>
-<script>
-  $('.show-filter-mb').on('click', function () {
-    $('.filter-popup').show();
-    $('.mobile-announcement.scroll').hide();
-    $('header.header--inline').hide();
-  });
+{% comment %}
+  <script>
+    $('.show-filter-mb').on('click', function () {
+      $('.filter-popup').show();
+      $('.mobile-announcement.scroll').hide();
+      $('header.header--inline').hide();
+    });
 
-  $('.filter-by-mb svg').on('click', function () {
-    $('.filter-popup').hide();
-    $('.mobile-announcement.scroll').show();
-    $('header.header--inline').show();
-  });
-</script>
+    $('.filter-by-mb svg').on('click', function () {
+      $('.filter-popup').hide();
+      $('.mobile-announcement.scroll').show();
+      $('header.header--inline').show();
+    });
+  </script>
+{% endcomment %}
 
 <script>
   $('.template-collection .layout__section .bottom-block .show-t').click(function () {
@@ -437,7 +440,7 @@
   });
 </script>
 
-<script>
+{% comment %} <script>
   $('.filter-item-title').click(function () {
     if ($(this).next('.filter-item-list').is(':hidden')) {
       $(this).attr('aria-expanded', 'true');
@@ -453,7 +456,7 @@
       $('.filterboxxtop .tag-toggle').text($('.filterboxxtop .tag-toggle').text() == '+' ? '—' : '+');
     });
   }
-</script>
+</script> {% endcomment %}
 
 <script>
   function init_leftbar_filter() {

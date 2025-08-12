@@ -1,90 +1,108 @@
 {%- capture itemtag -%}{{ tag | append:"_" }}{%- endcapture -%}
 {%- capture link_id -%}{{ index | prepend:"filter-" }}{%- endcapture -%}
-{% assign list_current_tag = collection.all_tags %}
-{% for filter_current_tag in list_current_tag %}
-{% assign check1 = false %}
-{%if filter_current_tag contains itemtag %}
-{% assign check1 = true %}
+{% assign all_tags = collection.all_tags %}
 
+{%- comment -%}
+  判断该组是否存在符合条件的 tag
+{%- endcomment -%}
+{% assign has_matching_tag = false %}
+{%- for current_tag in all_tags -%}
+  {% if current_tag contains itemtag %}
+    {% assign has_matching_tag = true %}
+    {% break %}
+  {% endif %}
+{%- endfor -%}
 
-
-{% break %}
-{% endif %}
+{%- comment -%}
+  预先计算该组是否有激活项
+{%- endcomment -%}
+{% assign has_active_tag_in_group = false %}
+{% for current_tag in all_tags %}
+  {% assign trimmed_tag = current_tag | strip %}
+  {% if trimmed_tag contains itemtag %}
+    {% for active_tag in current_tags %}
+      {% if active_tag == trimmed_tag %}
+        {% assign has_active_tag_in_group = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if has_active_tag_in_group %}
+    {% break %}
+  {% endif %}
 {% endfor %}
-{% if check1 == true %}
-<div class="filter-type item ">
-  
-<div class="filter-item-title" aria-expanded="false">
-  <strong>
-    {% if tag == 'DLC' or tag == 'CCT' %}
-      {{ tag }}
-    {% else %}
-      {{ tag | capitalize }}
-    {% endif %}
-  </strong>
-  <span class="plus-button"></span>
-</div>
-  {% comment %} <div class="filter-item-title" aria-expanded="false">
-    <strong>{{ tag }}</strong>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M2.32812 6.28589L3.27093 5.34308L7.98498 10.0571L12.699 5.34308L13.6418 6.28589L8.45642 11.4713C8.45642 11.4713 8.45638 11.4713 7.98498 10.9999L8.45642 11.4713L7.98498 11.9427L2.32812 6.28589Z" fill="#1D2129"/>
-    </svg>
-  </div> {% endcomment %}
-  
-<!--   <div class="filter-item-title collection__filter-group-name link link--secondary text--strong" data-action="toggle-collapsible" aria-controls="{{ link_id }}" data-close-siblings="false" data-collapsible-force-overflow="true" aria-expanded="{% if is_collapsible_open %}true{% else %}false{% endif %}">
-                        <strong>{{ tag }}</strong><span class="plus-button"></span>
-                        </div> -->
-<!--   <div id="{{ link_id }}" class="collection__filter-collapsible" {% if is_collapsible_open %}aria-hidden="false" style="height: auto; overflow: visible"{% else %}aria-hidden="true"{% endif %}> -->
-  
-  <ul class="filter-item-list "  >                        
-    {% for filter_current_tag in list_current_tag %}
-    {% assign custom_current_tag = filter_current_tag | strip %}
-    {% assign fcheck = false %}
-    {% assign cur_tag = current_tags %}
-    {% assign tagCount1 = 0 %}
 
-    {% for ct in cur_tag %}
-    {% if ct == custom_current_tag %}
-    {% assign fcheck = true %}
-    {% endif %}
-    {% endfor %}
-    {%if custom_current_tag contains itemtag %}
+{% if has_matching_tag %}
+  {%- capture filter_list_markup -%}
+    <ul class="filter-item-list"{% unless has_active_tag_in_group %}style="display: none;"{% endunless %}>
+      {% for current_tag in all_tags %}
+        {% assign trimmed_tag = current_tag | strip %}
+        {% assign is_tag_active = false %}
+        {% assign product_count = 0 %}
 
-    {% for product in collection.products %}
-    {% for productTag in product.tags %}
-    {% if productTag == filter_current_tag %}
-    {% assign tagCount1 = tagCount1 | plus: 1 %}
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
+        {% for active_tag in current_tags %}
+          {% if active_tag == trimmed_tag %}
+            {% assign is_tag_active = true %}
+          {% endif %}
+        {% endfor %}
 
-    {% if fcheck %}
-    <li class="advanced-filter active-filter  " data-group="{{ itemtag}}" data-handle="{{ custom_current_tag | handleize }}">
-{{ custom_current_tag | prepend: '<span class="tag-close"></span><span>' |append:"</span>"  | link_to_remove_tag: custom_current_tag | remove: itemtag }}<span class="count">({{tagCount1}})</span></li>
-    {% else %} 
-    <li class="advanced-filter" data-group="{{ itemtag}}" data-handle="{{ custom_current_tag | handleize }}">{{ custom_current_tag | prepend: '<span class="tag-close"></span><span>' |append:"</span>" | link_to_add_tag: custom_current_tag | remove: itemtag }}<span class="count">({{tagCount1}})</span></li>
-    {% endif %}
-    
- {% comment %} 
-    <li class="collection__filter-checkbox advanced-filter">
-      <a href="javascript:void(0);">
-      <span class="checkbox-wrapper select-one">
-        <input type="checkbox" class="checkbox {% if fcheck %} is-selected {% endif %}" id="{{ link_id }}-tag-{{ custom_current_tag | handle }}" name="tag-{{ itemtag | remove:'_'  | handle   }}" data-action="toggle-tag" data-tag="{{ custom_current_tag | handle  }}" data-tag-user="{{ custom_current_tag | remove: itemtag}}" {% if current_tags contains tag %}checked="checked"{% endif %}>
-        {% render 'icon', icon: 'check' %}
-      </span>
+        {% if trimmed_tag contains itemtag %}
+          {% for product in collection.products %}
+            {% for product_tag in product.tags %}
+              {% if product_tag == current_tag %}
+                {% assign product_count = product_count | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
 
-      <span >{{custom_current_tag | remove: itemtag }}</span><span class="count">{{tagCount1}}</span>
-      </a>
-    </li>
-  {% endcomment %} 
-    
-    {% endif %}
-    {% endfor %} 
-  </ul>
-<!--     </div> -->
-</div>
+          {% if is_tag_active %}
+            <li
+              class="advanced-filter active-filter"
+              data-group="{{ itemtag }}"
+              data-handle="{{ trimmed_tag | handleize }}"
+            >
+              {{
+                trimmed_tag
+                | prepend: '<span class="tag-close"></span><span>'
+                | append: '</span>'
+                | link_to_remove_tag: trimmed_tag
+                | remove: itemtag
+              -}}
+              <span class="count">({{ product_count }})</span>
+            </li>
+          {% else %}
+            <li
+              class="advanced-filter"
+              data-group="{{ itemtag }}"
+              data-handle="{{ trimmed_tag | handleize }}"
+            >
+              {{
+                trimmed_tag
+                | prepend: '<span class="tag-close"></span><span>'
+                | append: '</span>'
+                | link_to_add_tag: trimmed_tag
+                | remove: itemtag
+              -}}
+              <span class="count">({{ product_count }})</span>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {%- endcapture -%}
+
+  <div class="filter-type item{% if has_active_tag_in_group %} active-filter-type{% endif %}">
+    <div class="filter-item-title" aria-expanded="{% if has_active_tag_in_group %}true{% else %}false{% endif %}">
+      <strong>
+        {% if tag == 'DLC' or tag == 'CCT' %}
+          {{ tag }}
+        {% else %}
+          {{ tag | capitalize }}
+        {% endif %}
+      </strong>
+      <span class="plus-button"></span>
+    </div>
+
+    {{ filter_list_markup }}
+  </div>
 {% endif %}
-<!-- end of tag setting-->
-
-
-

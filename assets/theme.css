@@ -4932,8 +4932,9 @@ select option {
 @media screen and (max-width: 640px) {
   .footer__block-item {
     margin-right: calc(-1 * var(--mobile-container-gutter));
-    padding-right: var(--mobile-container-gutter);
+    /* padding-right: var(--mobile-container-gutter); */
     border-bottom: 1px solid var(--border-color);
+    max-width: 100%;
   }
 
   .footer__block-item--newsletter {

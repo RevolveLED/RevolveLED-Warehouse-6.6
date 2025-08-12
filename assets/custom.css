@@ -21,10 +21,10 @@
     justify-content: center;
 }
 
-.collection-layout-left .filter-type .filter-item-list,
+/* .collection-layout-left .filter-type .filter-item-list,
 .filter-popup .filter-item-list {
     display: none;
-}
+} */
 
 .collection-main .card {
     border: none;
@@ -99,6 +99,12 @@
 
 .product-item__info-inner .item-top {
     padding-bottom: 50px;
+}
+
+.collection-layout-left .active-filter .tag-close:before {
+    background: url(https://cdn.shopify.com/s/files/1/0377/8933/5692/files/check1.png?v=1671173302) no-repeat;
+    background-size: 65%;
+    background-position: center;
 }
 
 @media screen and (min-width: 1440px) {
