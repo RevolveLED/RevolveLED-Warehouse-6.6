@@ -65,7 +65,8 @@
       "open_menu": "Open menu",
       "back": "Back",
       "need_help": "Need help?",
-      "follow_us": "Follow Us"
+      "follow_us": "Follow Us",
+      "view_all": "View All",
     },
     "search": {
       "open_search": "Open search",
@@ -229,6 +230,7 @@
   },
   "customer": {
     "general": {
+      "account": "Account",
       "my_account": "My account",
       "orders": "My orders",
       "addresses": "My addresses",

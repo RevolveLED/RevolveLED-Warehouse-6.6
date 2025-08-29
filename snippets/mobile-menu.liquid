@@ -8,12 +8,20 @@
       <div class="mobile-menu__section">
         <ul class="mobile-menu__nav" data-type="menu" role="list">
           {%- for link in menu.links -%}
-            <li class="mobile-menu__nav-item">
+            <li class="mobile-menu__nav-item mobile-menu__nav-bold">
               {%- if link.links != blank -%}
                 {%- capture panel_id -%}mobile-panel-{{ forloop.index0 }}{%- endcapture -%}
 
-                <button class="mobile-menu__nav-link" data-type="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="{{ panel_id }}" data-action="open-panel">
-                  {{- link.title -}} {%- render 'icon', icon: 'arrow-right' -%}
+                <button
+                  class="mobile-menu__nav-link"
+                  data-type="menuitem"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="{{ panel_id }}"
+                  data-action="open-panel"
+                >
+                  {{- link.title -}}
+                  {%- render 'icon', icon: 'arrow-right' -%}
                 </button>
               {%- else -%}
                 <a href="{{ link.url }}" class="mobile-menu__nav-link" data-type="menuitem">{{ link.title }}</a>
@@ -22,26 +30,27 @@
           {%- endfor -%}
         </ul>
       </div>
+      {% comment %}
+        {%- if section.settings.navigation_phone_number != blank or section.settings.navigation_email != blank -%}
+          <div class="mobile-menu__section mobile-menu__section--loose">
+            <p class="mobile-menu__section-title heading h5">{{ 'header.navigation.need_help' | t }}</p>
 
-      {%- if section.settings.navigation_phone_number != blank or section.settings.navigation_email != blank -%}
-        <div class="mobile-menu__section mobile-menu__section--loose">
-          <p class="mobile-menu__section-title heading h5">{{ 'header.navigation.need_help' | t }}</p>
+            {%- if section.settings.navigation_phone_number != blank -%}
+              <div class="mobile-menu__help-wrapper">
+                {%- render 'icon', icon: 'bi-phone' -%}
+                <span>{{ section.settings.navigation_phone_number | escape }}</span>
+              </div>
+            {%- endif -%}
 
-          {%- if section.settings.navigation_phone_number != blank -%}
-            <div class="mobile-menu__help-wrapper">
-              {%- render 'icon', icon: 'bi-phone' -%}
-              <span>{{ section.settings.navigation_phone_number | escape }}</span>
-            </div>
-          {%- endif -%}
-
-          {%- if section.settings.navigation_email != blank -%}
-            <div class="mobile-menu__help-wrapper">
-              {%- render 'icon', icon: 'bi-email' -%}
-              <a href="mailto:{{ section.settings.navigation_email }}">{{ section.settings.navigation_email | escape }}</a>
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
+            {%- if section.settings.navigation_email != blank -%}
+              <div class="mobile-menu__help-wrapper">
+                {%- render 'icon', icon: 'bi-email' -%}
+                <a href="mailto:{{ section.settings.navigation_email }}">{{ section.settings.navigation_email | escape }}</a>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {% endcomment %}
 
       {%- capture social_media -%}{% render 'social-media', show_social_media_name: true %}{%- endcapture -%}
 
@@ -55,14 +64,31 @@
     </div>
 
     {%- comment -%}We now need to loop again (for the second level) to create the nested panel{%- endcomment -%}
-
+    {%- assign special_menus = section.settings.special_menu | split: ',' -%}
     {%- for link in menu.links -%}
+      {% liquid
+        assign downcase_title = link.title | downcase | strip
+        assign is_spec_level_1_menu = false
+
+        for special_menu in special_menus
+          assign special_menu_setting_downcase = special_menu | downcase | strip
+          if special_menu_setting_downcase == downcase_title
+            assign is_spec_level_1_menu = true
+            break
+          endif
+        endfor
+      %}
+
       {%- if link.links != blank -%}
         {%- capture panel_id -%}mobile-panel-{{ forloop.index0 }}{%- endcapture -%}
 
         <div id="{{ panel_id }}" class="mobile-menu__panel is-nested">
-          <div class="mobile-menu__section is-sticky">
-            <button class="mobile-menu__back-button" data-action="close-panel">{% render 'icon', icon: 'arrow-left' %} {{ 'header.navigation.back' | t }}</button>
+          <div class="mobile-menu__section is-sticky mobile-menu__section-back">
+            <button class="mobile-menu__back-button mobile-menu__nav-bold" data-action="close-panel">
+              {% render 'icon', icon: 'arrow-left' %}
+              {% comment %} {{ 'header.navigation.back' | t }} {% endcomment %}
+              {{ link.title }}
+            </button>
           </div>
 
           <div class="mobile-menu__section">
@@ -85,10 +111,19 @@
 
                   <div class="mobile-menu__nav-list-item">
                     {%- if sub_link.levels == 0 -%}
-                      <a href="{{ sub_link.url }}" class="mobile-menu__nav-list-toggle text--strong">{{ sub_link.title }}</a>
+                      <a href="{{ sub_link.url }}" class="mobile-menu__nav-list-toggle text--strong">
+                        {{- sub_link.title -}}
+                      </a>
                     {%- else -%}
-                      <button class="mobile-menu__nav-list-toggle text--strong" aria-controls="{{ mobile_list_id }}" aria-expanded="false" data-action="toggle-collapsible" data-close-siblings="false">
-                        {{- sub_link.title -}} {% render 'icon', icon: 'arrow-bottom' %}
+                      <button
+                        class="mobile-menu__nav-list-toggle text--strong"
+                        aria-controls="{{ mobile_list_id }}"
+                        aria-expanded="false"
+                        data-action="toggle-collapsible"
+                        data-close-siblings="false"
+                      >
+                        {{- sub_link.title -}}
+                        {% render 'icon', icon: 'arrow-bottom' %}
                       </button>
 
                       <div id="{{ mobile_list_id }}" class="mobile-menu__nav-collapsible">
@@ -96,7 +131,9 @@
                           <ul class="mobile-menu__nav" data-type="menu" role="list">
                             {%- for sub_sub_link in sub_link.links -%}
                               <li class="mobile-menu__nav-item">
-                                <a href="{{ sub_sub_link.url }}" class="mobile-menu__nav-link" data-type="menuitem">{{ sub_sub_link.title }}</a>
+                                <a href="{{ sub_sub_link.url }}" class="mobile-menu__nav-link" data-type="menuitem">
+                                  {{- sub_sub_link.title -}}
+                                </a>
                               </li>
                             {%- endfor -%}
                           </ul>
@@ -107,7 +144,7 @@
                 {%- endfor -%}
               </div>
 
-              {%- assign mega_menu_block = nil -%}
+              {%- assign mega_menu_block = null -%}
 
               {%- for block in section.blocks -%}
                 {%- assign downcase_block_menu_item = block.settings.menu_item | downcase | strip -%}
@@ -166,21 +203,132 @@
                 {%- endif -%}
               {%- endif -%}
             {%- else -%}
-              <ul class="mobile-menu__nav" data-type="menu" role="list">
-                <li class="mobile-menu__nav-item">
-                  <a href="{{ link.url }}" class="mobile-menu__nav-link text--strong">{{ link.title }}</a>
-                </li>
+              <ul
+                class="mobile-menu__nav mobile-menu__nav-level-2{% if is_spec_level_1_menu %} mobile-menu__nav__spec_menu{% endif %}"
+                data-type="menu"
+                role="list"
+              >
+                {% comment %}
+                  <li class="mobile-menu__nav-item">
+                    <a href="{{ link.url }}" class="mobile-menu__nav-link text--strong">{{ link.title }}</a>
+                  </li>
+                {% endcomment %}
 
                 {%- for sub_link in link.links -%}
                   <li class="mobile-menu__nav-item">
                     {%- if sub_link.links != blank -%}
                       {%- capture panel_id -%}mobile-panel-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}{%- endcapture -%}
 
-                      <button class="mobile-menu__nav-link" data-type="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="{{ panel_id }}" data-action="open-panel">
-                        {{- sub_link.title -}} {%- render 'icon', icon: 'arrow-right' -%}
+                      <button
+                        class="mobile-menu__nav-link mobile-menu__nav-bold"
+                        data-type="menuitem"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-controls="{{ panel_id }}"
+                        data-action="toggle-panel"
+                      >
+                        {{- sub_link.title -}}
+                        {%- render 'icon', icon: 'arrow-bottom' -%}
                       </button>
+                      <ul
+                        class="mobile-menu__nav mobile-menu__nav-level-3"
+                        style="display:none;"
+                        data-type="menu"
+                        role="list"
+                        aria-hidden="true"
+                        id="{{ panel_id }}"
+                      >
+                        {%- for sub_sub_link in sub_link.links -%}
+                          <li class="mobile-menu__nav-item">
+                            <a
+                              href="{{ sub_sub_link.url }}"
+                              class="mobile-menu__nav-link nav-dropdown__product-item"
+                              data-type="menuitem"
+                            >
+                              <img
+                                class="colimage lazyload"
+                                loading="lazy"
+                                src=" {{ sub_sub_link.title | handle |  prepend: 'menu-'| append:'.png' | file_img_url: '160x' }}"
+                                alt="{{ sub_sub_link.title }}"
+                                width="60"
+                                height="60"
+                              >
+                              <span>{{ sub_sub_link.title }}</span>
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                        <li class="mobile-menu__nav-item nav-dropdown__item-more list--unstyled">
+                          <a
+                            class="mobile-menu__nav-link nav-dropdown__product-item"
+                            href="{{ sub_link.url}}"
+                            aria-label="{{ sub_link.title }}"
+                            title="{{ sub_link.title }}"
+                          >
+                            {{ 'header.navigation.view_all' | t }}
+                          </a>
+                        </li>
+                      </ul>
+                    {%- elsif is_spec_level_1_menu -%}
+                      {% liquid
+                        assign downcase_title = sub_link.title | downcase | strip
+                        assign is_spec_menu = false
+                        assign matched_block_index = null
+                        assign matched_block = null
+                      %}
+                      {% for block in section.blocks %}
+                        {% liquid
+                          assign spec_menu_downcase = block.settings.special_menu | downcase | strip
+                          if spec_menu_downcase == downcase_title
+                            assign is_spec_menu = true
+                            assign matched_block_index = forloop.index0
+                            # 第几个 block（从0开始）
+                            assign matched_block = block
+                            break
+                          endif
+                        %}
+                      {% endfor %}
+                      <a
+                        href="{{ sub_link.url }}"
+                        aria-label="{{ sub_link.title }}"
+                        class="mobile-menu__nav-link mobile-menu__spec_link mobile-menu__nav-bold"
+                        data-type="menuitem"
+                      >
+                        {{- sub_link.title -}}
+                      </a>
+                      {% if is_spec_menu %}
+                        {%- assign image = matched_block.settings.image -%}
+                        {%- assign content = matched_block.settings.content -%}
+                        {%- if image != blank or content != blank -%}
+                          <a
+                            href="{{ sub_link.url }}"
+                            aria-label="{{ sub_link.title }}"
+                            class="nav-dropdown__spec_menu_link_content-box"
+                            data-block-index="{{ matched_block_index }}"
+                          >
+                            {%- if image != blank -%}
+                              {{
+                                image
+                                | image_url: width: image.width
+                                | image_tag:
+                                  loading: 'lazy',
+                                  width: 60,
+                                  class: 'nav-dropdown__spec_menu_link_content-box_image'
+                              }}
+                            {%- endif -%}
+                            {%- if content != blank -%}
+                              <p class="nav-dropdown__spec_menu_link_content-box_text">{{ content }}</p>
+                            {%- endif -%}
+                          </a>
+                        {%- endif -%}
+                      {% endif %}
                     {%- else -%}
-                      <a href="{{ sub_link.url }}" class="mobile-menu__nav-link" data-type="menuitem">{{ sub_link.title }}</a>
+                      <a
+                        href="{{ sub_link.url }}"
+                        class="mobile-menu__nav-link mobile-menu__nav-bold"
+                        data-type="menuitem"
+                      >
+                        {{- sub_link.title -}}
+                      </a>
                     {%- endif -%}
                   </li>
                 {%- endfor -%}
@@ -193,38 +341,45 @@
 
     {%- comment -%}Finally we need to do the same to create the third level menus{%- endcomment -%}
 
-    {%- for link in menu.links -%}
-      {%- if link.links != blank -%}
-        {%- assign downcase_title = link.title | downcase -%}
+    {% comment %}
+      {%- for link in menu.links -%}
+        {%- if link.links != blank -%}
+          {%- assign downcase_title = link.title | downcase -%}
 
-        {%- unless mega_menus contains downcase_title -%}
-          {%- for sub_link in link.links -%}
-            {%- if sub_link.links != blank -%}
-              {%- capture panel_id -%}mobile-panel-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}{%- endcapture -%}
+          {%- unless mega_menus contains downcase_title -%}
+            {%- for sub_link in link.links -%}
+              {%- if sub_link.links != blank -%}
+                {%- capture panel_id -%}mobile-panel-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}{%- endcapture -%}
 
-              <div id="{{ panel_id }}" class="mobile-menu__panel is-nested">
-                <div class="mobile-menu__section is-sticky">
-                  <button class="mobile-menu__back-button" data-action="close-panel">{% render 'icon', icon: 'arrow-left' %} {{ 'header.navigation.back' | t }}</button>
+                <div id="{{ panel_id }}" class="mobile-menu__panel is-nested">
+                  <div class="mobile-menu__section is-sticky">
+                    <button class="mobile-menu__back-button" data-action="close-panel">
+                      {% render 'icon', icon: 'arrow-left' %}
+                      {{ 'header.navigation.back' | t }}
+                    </button>
+                  </div>
+
+                  <div class="mobile-menu__section">
+                    <ul class="mobile-menu__nav" data-type="menu" role="list">
+                      {% comment %} <li class="mobile-menu__nav-item">
+                        <a href="{{ sub_link.url }}" class="mobile-menu__nav-link text--strong">{{ sub_link.title }}</a>
+                      </li> {% endcomment %}
+
+                      {%- for sub_sub_link in sub_link.links -%}
+                        <li class="mobile-menu__nav-item">
+                          <a href="{{ sub_sub_link.url }}" class="mobile-menu__nav-link" data-type="menuitem">
+                            {{- sub_sub_link.title -}}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
                 </div>
-
-                <div class="mobile-menu__section">
-                  <ul class="mobile-menu__nav" data-type="menu" role="list">
-                    <li class="mobile-menu__nav-item">
-                      <a href="{{ sub_link.url }}" class="mobile-menu__nav-link text--strong">{{ sub_link.title }}</a>
-                    </li>
-
-                    {%- for sub_sub_link in sub_link.links -%}
-                      <li class="mobile-menu__nav-item">
-                        <a href="{{ sub_sub_link.url }}" class="mobile-menu__nav-link" data-type="menuitem">{{ sub_sub_link.title }}</a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endunless -%}
-      {%- endif -%}
-    {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {% endcomment %}
   </div>
 </div>

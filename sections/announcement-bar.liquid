@@ -4,7 +4,11 @@
 }
 {%- endcapture -%}
 
-<section data-section-id="{{ section.id }}" data-section-type="announcement-bar" data-section-settings="{{ section_settings | escape_once }}">
+<section
+  data-section-id="{{ section.id }}"
+  data-section-type="announcement-bar"
+  data-section-settings="{{ section_settings | escape_once }}"
+>
   {%- if section.settings.show_newsletter -%}
     <div id="announcement-bar-newsletter" class="announcement-bar__newsletter hidden-phone" aria-hidden="true">
       <div class="container">
@@ -39,7 +43,7 @@
                 {%- endif -%}
               {%- else -%}
                 {%- if form.errors -%}
-                  <p class="alert alert--error">{{ form.errors.messages['email'] }}</p>
+                  <p class="alert alert--error">{{ form.errors.messages.email }}</p>
                 {%- endif -%}
 
                 <input type="hidden" name="contact[tags]" value="newsletter">
@@ -47,11 +51,22 @@
 
                 <div class="form__input-row">
                   <div class="form__input-wrapper form__input-wrapper--labelled">
-                    <input type="email" id="announcement[contact][email]" name="contact[email]" class="form__field form__field--text" autofocus required>
-                    <label for="announcement[contact][email]" class="form__floating-label">{{ 'home_page.newsletter.input' | t }}</label>
+                    <input
+                      type="email"
+                      id="announcement[contact][email]"
+                      name="contact[email]"
+                      class="form__field form__field--text"
+                      autofocus
+                      required
+                    >
+                    <label for="announcement[contact][email]" class="form__floating-label">
+                      {{- 'home_page.newsletter.input' | t -}}
+                    </label>
                   </div>
 
-                  <button type="submit" class="form__submit button button--primary">{{ 'home_page.newsletter.submit' | t }}</button>
+                  <button type="submit" class="form__submit button button--primary">
+                    {{ 'home_page.newsletter.submit' | t }}
+                  </button>
                 </div>
               {%- endif -%}
             {%- endform -%}
@@ -64,18 +79,39 @@
   <div class="announcement-bar">
     <div class="container">
       <div class="announcement-bar__inner">
-        {%- if section.settings.link != blank -%}
-          <a href="{{ section.settings.link }}" class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">{{ section.settings.text | escape }}</a>
-        {%- else -%}
-          <p class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">{{ section.settings.text | escape }}</p>
-        {%- endif -%}
+        {% comment %}
+          {%- if section.settings.link != blank -%}
+            <a href="{{ section.settings.link }}" class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">{{ section.settings.text }}</a>
+          {%- else -%}
+        {% endcomment %}
+        <div class="announcement-bar__content announcement-bar__content--{{ section.settings.text_position }}">
+          {{ section.settings.text }}
+        </div>
+        {% comment %} {%- endif -%} {% endcomment %}
 
         {%- if section.settings.show_newsletter -%}
-          <button type="button" class="announcement-bar__button hidden-phone" data-action="toggle-newsletter" aria-expanded="false" aria-controls="announcement-bar-newsletter">
+          <button
+            type="button"
+            class="announcement-bar__button hidden-phone"
+            data-action="toggle-newsletter"
+            aria-expanded="false"
+            aria-controls="announcement-bar-newsletter"
+          >
             {%- render 'icon', icon: 'newsletter' -%}
             {{- section.settings.newsletter_button | escape -}}
           </button>
         {%- endif -%}
+        {% if section.settings.show_right_text %}
+          <a
+            href="{{ section.settings.link }}"
+            target="_blank"
+            aria-label="{{ section.settings.right_text | strip_html }}"
+            title="{{ section.settings.right_text | strip_html }}"
+            class="announcement-bar__content-right"
+          >
+            <span>{{ section.settings.right_text }}</span>
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -85,6 +121,13 @@
   .announcement-bar {
     background: {{ section.settings.background }};
     color: {{ section.settings.text_color }};
+  }
+  @media (max-width:749px){
+    {%- if section.settings.background_mobile != blank -%}
+      .announcement-bar {
+        background: {{ section.settings.background_mobile }};
+      }
+    {%- endif -%}
   }
 </style>
 
@@ -111,15 +154,31 @@
     },
     {
       "type": "color",
+      "id": "background_mobile",
+      "label": "Background (mobile)"
+    },
+    {
+      "type": "color",
       "id": "text_color",
       "label": "Text",
       "default": "#ffffff"
     },
     {
-      "type": "text",
+      "type": "html",
       "id": "text",
       "label": "Text",
       "default": "Announce something here"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_right_text",
+      "label": "Show right text",
+      "default": false
+    },
+    {
+      "type": "html",
+      "id": "right_text",
+      "label": "Right text"
     },
     {
       "type": "select",

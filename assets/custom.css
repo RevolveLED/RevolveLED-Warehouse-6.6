@@ -133,7 +133,7 @@
 /* text with icons */
 .text-with-icons__title {
     margin-bottom: 4px;
-    color: #00487f;
+    color: var(--color-blue);
 }
 
 @media only screen and (max-width:1000px) {
@@ -166,7 +166,7 @@
         font-style: normal;
         font-weight: 600;
         font-size: 17px;
-        color: #00487F;
+        color: var(--color-blue);
     }
 
     .text-with-icons__content {
@@ -188,6 +188,7 @@
 .mytooltip2 {
     position: relative;
     display: inline-block;
+    display: none;
 }
 
 .mytooltip2 .mytooltiptext2 {

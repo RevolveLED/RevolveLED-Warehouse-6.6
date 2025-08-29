@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header group",
@@ -5,27 +14,103 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {
-        "background": "#1e2d7d",
+        "background": "#00487f",
+        "background_mobile": "#0098c4",
         "text_color": "#ffffff",
-        "text": "Announce something here",
-        "link": "",
+        "text": "<svg class=\"announcement-svg\" xmlns=\"http://www.w3.org/2000/svg\" width=\"15\" height=\"15\" viewbox=\"0 0 15 15\" fill=\"none\">\n  <path d=\"M13.8 9.85143C12.8897 9.85559 11.9849 9.71083 11.1214 9.42286C10.9207 9.3538 10.7055 9.33823 10.497 9.37769C10.2884 9.41714 10.0937 9.51026 9.93214 9.64786L8.25 10.9443C6.43094 10.0465 4.95855 8.57406 4.06071 6.755L5.29286 5.11572C5.45086 4.95748 5.56239 4.7589 5.61529 4.54163C5.66819 4.32436 5.66043 4.09674 5.59286 3.88358C5.30489 3.02006 5.16012 2.11526 5.16429 1.205C5.16146 0.885764 5.03266 0.580559 4.80591 0.355818C4.57916 0.131078 4.27282 0.00499238 3.95357 0.00500488L1.2 0.00500488C0.88174 0.00500488 0.576515 0.131433 0.351472 0.356477C0.126428 0.58152 0 0.886745 0 1.205C0.00566732 4.86325 1.46141 8.37004 4.04819 10.9568C6.63496 13.5436 10.1418 14.9993 13.8 15.005C14.1183 15.005 14.4235 14.8786 14.6485 14.6535C14.8736 14.4285 15 14.1233 15 13.805V11.0514C15 10.7332 14.8736 10.4279 14.6485 10.2029C14.4235 9.97786 14.1183 9.85143 13.8 9.85143Z\" fill=\"currentColor\"></path>\n</svg>\n<!-- Icon end -->\n<p>\n  <a class=\"tel\" href=\"tel:1-877-718-0808\">1-877-718-0808</a>\n  <span class=\"small-hide\">Open Mon.–Fri. 8AM–6PM EST</span>\n</p>",
+        "show_right_text": true,
+        "right_text": "<text>$199</text> Free Shipping*",
+        "text_position": "left",
+        "link": "shopify://policies/shipping-policy",
+        "show_newsletter": false,
         "newsletter_button": "Subscribe & Save",
         "newsletter_title": "Newsletter",
-        "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+        "newsletter_content": "<p>A short sentence describing what someone will receive by subscribing</p>"
       }
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "spec_menu_p3mFVC": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "WAREHOUSE",
+            "content": ""
+          }
+        },
+        "spec_menu_LkzEVq": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "PARKING LOT",
+            "content": ""
+          }
+        },
+        "spec_menu_cxEzU6": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "OFFICE",
+            "content": ""
+          }
+        },
+        "spec_menu_BqbLyb": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "GARAGE",
+            "content": ""
+          }
+        },
+        "spec_menu_BMmmWR": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "ALL LED LIGHT FIXTURES",
+            "content": ""
+          }
+        },
+        "spec_menu_MiHD9U": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "PROMOTIONS",
+            "image": "shopify://shop_images/menu-all-led-light-fixtures.png",
+            "content": "Active offers expired. Come back soon!"
+          }
+        },
+        "spec_menu_98ytXd": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "CLEARANCE",
+            "image": "shopify://shop_images/menu-warehouse.png",
+            "content": "Active offers start. Go go go!"
+          }
+        }
+      },
+      "block_order": [
+        "spec_menu_p3mFVC",
+        "spec_menu_LkzEVq",
+        "spec_menu_cxEzU6",
+        "spec_menu_BqbLyb",
+        "spec_menu_BMmmWR",
+        "spec_menu_MiHD9U",
+        "spec_menu_98ytXd"
+      ],
       "settings": {
-        "logo": "",
-        "logo_max_width": 140,
+        "enable_sticky_header": true,
+        "logo": "shopify://shop_images/logo-big.png",
+        "logo_max_width": 220,
         "mobile_logo_max_width": 100,
-        "navigation_menu": "main-menu",
+        "show_locale_selector": true,
+        "show_country_selector": false,
+        "navigation_menu": "shopping-menu-new-250814",
+        "navigation_mobile_menu": "mobile-menu",
+        "special_menu": "Shop By Application,Specials",
         "desktop_navigation_layout": "inline",
         "desktop_navigation_open_trigger": "hover",
+        "show_navigation_social_media": true,
         "navigation_phone_number": "Call us 000-000-0000",
         "navigation_email": "info@yourwebsite.com",
-        "search_menu": ""
+        "show_condensed_search": true,
+        "show_search_filter": false,
+        "search_menu": "",
+        "show_search_menu_title": true
       }
     }
   },

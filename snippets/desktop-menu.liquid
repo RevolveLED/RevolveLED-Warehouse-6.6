@@ -1,13 +1,14 @@
 {%- comment -%}
-IMPLEMENTATION NOTE ABOUT MEGA MENUS: in Warehouse, on desktop, we have two different menu styles: one style where the first level is always
-visible, and a second style where the menu is displayed after hitting the "Menu" button.
+  IMPLEMENTATION NOTE ABOUT MEGA MENUS: in Warehouse, on desktop, we have two different menu styles: one style where the first level is always
+  visible, and a second style where the menu is displayed after hitting the "Menu" button.
 
-The mega menu logic is as a consequence quite difference: in the first style, the mega-menu is actually part of the second dropdown menu (as each level
-is displayed as a dropdown). However on the second style, the mega-menu is checked on the first level, as the first menu (which holds the mega-menu) is
-always visible.
+  The mega menu logic is as a consequence quite difference: in the first style, the mega-menu is actually part of the second dropdown menu (as each level
+  is displayed as a dropdown). However on the second style, the mega-menu is checked on the first level, as the first menu (which holds the mega-menu) is
+  always visible.
 {%- endcomment -%}
 
 {%- assign mega_menus = section.blocks | map: 'settings' | map: 'menu_item' -%}
+{% comment %} {%- assign spec_menus = section.blocks | map: 'settings' | map: 'special_menu' -%} {% endcomment %}
 
 {%- if section.settings.desktop_navigation_layout == 'condensed' -%}
   {%- assign is_floating = true -%}
@@ -30,62 +31,189 @@ always visible.
 {%- if is_floating == false and is_mega_menu -%}
   {%- render 'mega-menu', is_floating: is_floating, mega_menu: menu, index: index -%}
 {%- else -%}
-  <ul id="{{ index }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating {% if mega_menus.size > 0 %}nav-dropdown--fixed {% endif %}{% elsif menu.levels == 1 %}nav-dropdown--restrict{% endif %}" data-type="menu" aria-hidden="true" role="list">
+  <div
+    id="{{ index }}"
+    class="nav-dropdown nav-dropdown-container {% if is_floating %}nav-dropdown--floating {% if mega_menus.size > 0 %}nav-dropdown--fixed {% endif %}{% elsif menu.levels == 1 %}nav-dropdown--restrict{% endif %}"
+    data-type="menu"
+    aria-hidden="true"
+    role="list"
+  >
     {%- if is_floating -%}
       {%- render 'icon', icon: 'nav-triangle-borderless' -%}
     {%- endif -%}
+    <div class="nav-dropdown__inner container">
+      {%- if is_spec_level_1_menu -%}
+        <div class="nav-dropdown__spec_menu">
+          {% for link in menu.links %}
+            {% liquid
+              assign downcase_title = link.title | downcase | strip
+              assign is_spec_menu = false
+              assign matched_block_index = null
+              assign matched_block = null
+            %}
+            {% for block in section.blocks %}
+              {% liquid
+                assign spec_menu_downcase = block.settings.special_menu | downcase | strip
+                if spec_menu_downcase == downcase_title
+                  assign is_spec_menu = true
+                  assign matched_block_index = forloop.index0
+                  # 第几个 block（从0开始）
+                  assign matched_block = block
+                  break
+                endif
+              %}
+            {% endfor %}
+            <a class="nav-dropdown__spec_menu_link" href="{{ link.url }}">
+              <div class="nav-dropdown__spec_menu_link_title">
+                <span>{{ link.title }}</span>
+              </div>
+              {% if is_spec_menu %}
+                {%- assign image = matched_block.settings.image -%}
+                {%- assign content = matched_block.settings.content -%}
+                {%- if image != blank or content != blank -%}
+                  <div
+                    class="nav-dropdown__spec_menu_link_content-box"
+                    data-block-index="{{ matched_block_index }}"
+                  >
+                    {%- if image != blank -%}
+                      {{
+                        image
+                        | image_url: width: image.width
+                        | image_tag:
+                          loading: 'lazy',
+                          width: 80,
+                          class: 'nav-dropdown__spec_menu_link_content-box_image'
+                      }}
+                    {%- endif -%}
+                    {%- if content != blank -%}
+                      <p class="nav-dropdown__spec_menu_link_content-box_text">{{ content }}</p>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      {%- else -%}
+        <ul class="nav-dropdown__list nav-dropdown__list--left list--unstyled" role="list">
+          {%- for link in menu.links -%}
+            {%- assign is_mega_menu = false -%}
+            {%- assign downcase_title = link.title | downcase | strip -%}
+            {%- for mega_menu in mega_menus -%}
+              {%- assign mega_menu_setting_downcase = mega_menu | downcase | strip -%}
 
-    {%- for link in menu.links -%}
-      {%- assign is_mega_menu = false -%}
-      {%- assign downcase_title = link.title | downcase | strip -%}
+              {%- if mega_menu_setting_downcase == downcase_title -%}
+                {%- assign is_mega_menu = true -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
 
-      {%- for mega_menu in mega_menus -%}
-        {%- assign mega_menu_setting_downcase = mega_menu | downcase | strip -%}
-
-        {%- if mega_menu_setting_downcase == downcase_title -%}
-          {%- assign is_mega_menu = true -%}
-          {%- break -%}
-        {%- endif -%}
-      {%- endfor -%}
-
-      <li class="nav-dropdown__item {% if is_mega_menu %}has-mega-menu{% endif %}">
-        {%- if link.links.size == 0 -%}
-          <a href="{{ link.url }}" class="nav-dropdown__link link" data-type="menuitem">{{ link.title }}</a>
-        {%- else -%}
-          {%- capture index_nested -%}{{ index }}-{% increment nav_dropdown %}{%- endcapture -%}
-          <a href="{{ link.url }}" class="nav-dropdown__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index_nested }}" aria-haspopup="true">{{- link.title -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
-
-          {%- if is_mega_menu -%}
-            {%- render 'mega-menu', is_floating: is_floating, mega_menu: link, index: index_nested -%}
-          {%- else -%}
-            <ul id="{{ index_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list">
-              {%- render 'icon', icon: 'nav-triangle-left' -%}
-
-              {%- for sub_link in link.links -%}
-                <li class="nav-dropdown__item">
-                  {%- if sub_link.links.size == 0 -%}
-                    <a href="{{ sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem">{{ sub_link.title }}</a>
+            <li class="nav-dropdown__item {% if is_mega_menu %}has-mega-menu{% endif %}" data-second-level="true">
+              {%- if link.links.size == 0 -%}
+                <a href="{{ link.url }}" class="nav-dropdown__link link" data-type="menuitem" data-has-dropdown="false">
+                  {{- link.title -}}
+                </a>
+              {%- else -%}
+                {%- if forloop.first -%}
+                  {%- assign first_dropsown = true -%}
+                {%- else -%}
+                  {%- assign first_dropsown = false -%}
+                {%- endif -%}
+                {%- capture index_nested -%}{{ index }}-{% increment nav_dropdown %}{%- endcapture -%}
+                <a
+                  href="{{ link.url }}"
+                  class="nav-dropdown__link link"
+                  data-type="menuitem"
+                  data-has-dropdown="true"
+                  aria-expanded="{% if first_dropsown %}true{% else %}false{% endif %}"
+                  aria-controls="{{ index_nested }}"
+                  aria-haspopup="true"
+                >
+                  {{- link.title -}}
+                  {%- render 'icon', icon: 'arrow-right' -%}
+                </a>
+                {% comment %}
+                  {%- if is_mega_menu -%}
+                    {%- render 'mega-menu', is_floating: is_floating, mega_menu: link, index: index_nested -%}
                   {%- else -%}
-                    {%- capture index_nested_nested -%}{{ index_nested }}-{% increment nav_dropdown_nested %}{%- endcapture -%}
-
-                    <a href="{{ sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index_nested_nested }}" aria-haspopup="true">{{- sub_link.title -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
-
-                    <ul id="{{ index_nested_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list">
+                    <ul id="{{ index_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list">
                       {%- render 'icon', icon: 'nav-triangle-left' -%}
 
-                      {%- for sub_sub_link in sub_link.links -%}
+                      {%- for sub_link in link.links -%}
                         <li class="nav-dropdown__item">
-                          <a href="{{ sub_sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem">{{ sub_sub_link.title }}</a>
+                          {%- if sub_link.links.size == 0 -%}
+                            <a href="{{ sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem">{{ sub_link.title }}</a>
+                          {%- else -%}
+                            {%- capture index_nested_nested -%}{{ index_nested }}-{% increment nav_dropdown_nested %}{%- endcapture -%}
+
+                            <a href="{{ sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index_nested_nested }}" aria-haspopup="true">{{- sub_link.title -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
+
+                            <ul id="{{ index_nested_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list">
+                              {%- render 'icon', icon: 'nav-triangle-left' -%}
+
+                              {%- for sub_sub_link in sub_link.links -%}
+                                <li class="nav-dropdown__item">
+                                  <a href="{{ sub_sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem">{{ sub_sub_link.title }}</a>
+                                </li>
+                              {%- endfor -%}
+                            </ul>
+                          {%- endif -%}
                         </li>
                       {%- endfor -%}
                     </ul>
                   {%- endif -%}
+                {% endcomment %}
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="nav-dropdown__collection-container">
+          {% for link in menu.links %}
+            {% if link.links.size == 0 %}
+            {% else %}
+              {%- capture index_nested -%}{{ index }}-{% increment nav_dropdown_collection %}{%- endcapture -%}
+              <ul
+                id="{{ index_nested }}"
+                class="nav-dropdown__collection-inner"
+                data-type="menu"
+                aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+                role="list"
+              >
+                {% for sub_link in link.links %}
+                  <li class="nav-dropdown__item list--unstyled nav-dropdown__product-item-li">
+                    <a
+                      class="nav-dropdown__link link nav-dropdown__product-item"
+                      href="{{ sub_link.url}}"
+                      aria-label="{{ sub_link.title }}"
+                      title="{{ sub_link.title }}"
+                    >
+                      <img
+                        class="colimage lazyload"
+                        loading="lazy"
+                        src=" {{ sub_link.title | handle |  prepend: 'menu-'| append:'.png' | file_img_url: '160x' }}"
+                        alt="{{ sub_link.title }}"
+                        width="80"
+                        height="80"
+                      >
+                      <span>{{ sub_link.title }}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+                <li class="nav-dropdown__item nav-dropdown__item-more list--unstyled">
+                  <a
+                    class="nav-dropdown__link link nav-dropdown__product-item"
+                    href="{{ link.url}}"
+                    aria-label="{{ link.title }}"
+                    title="{{ link.title }}"
+                  >
+                    {{ 'header.navigation.view_all' | t }}
+                  </a>
                 </li>
-              {%- endfor -%}
-            </ul>
-          {%- endif -%}
-        {%- endif -%}
-      </li>
-    {%- endfor -%}
-  </ul>
+              </ul>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
 {%- endif -%}
