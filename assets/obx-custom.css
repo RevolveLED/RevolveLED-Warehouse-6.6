@@ -18,7 +18,7 @@
     font-weight: 700;
 }
 .obx-container p > a{
-  color : #00487f;
+  color : var(--color-blue);
   font-weight: 600;
 }
 .obx-container p > a:hover{
@@ -105,7 +105,7 @@
     list-style-type: square;
 }
 .obx-container li::marker {
-    color: #00487F;
+    color: var(--color-blue);
     font-size: 1.2rem;
 }
 .obx-container .obx-faq .section-heading {
@@ -123,7 +123,7 @@
     text-decoration: underline;
 }
 .obx-container .obx-faq-contact strong {
-    color:#00487F;
+    color:var(--color-blue);
 }
 .obx-container .content-wheel .section-heading {
     margin-bottom: 50px;
@@ -185,12 +185,12 @@
 
 .obx-container .subheading-blue {
     font-size: 20px;
-    color: #00487F;
+    color: var(--color-blue);
     font-weight: 600;
     margin-bottom: 20px;
 }
 .obx-container .subheading-blue.bold {
-    color: #00487F;
+    color: var(--color-blue);
     font-weight: 700;
     text-transform: capitalize;
     margin-bottom: 20px;
@@ -438,7 +438,7 @@ background-color: #ccc;
     align-items: center;
     margin: 0 0 18px;
 
-    font: 700 16px/35px Avenir Next,sans-serif;
+    font: 700 16px/35px ;
     transition: 0.3s all;
     color: #171717;
 }
@@ -458,12 +458,12 @@ background-color: #ccc;
     width: 8px;
 }
 #seo-blog-article .return-link:hover{
-    color: #00487f;
+    color: var(--color-blue);
 }
 #seo-blog-article .article-breadcrumbs{
     display: block;
     margin: 0 0 18px;
-    font: 400 16px/35px Avenir Next,sans-serif;
+    font: 400 16px/35px ;
     color: #171717;
 }
 #seo-blog-article h1{
@@ -480,14 +480,14 @@ background-color: #ccc;
 #seo-blog-article .page__meta .page__meta-item,
 #seo-blog-article .article-item__meta-item-last,
 #seo-blog-article .article-item__meta-item{
-    font: 400 16px/35px Avenir Next,sans-serif;
+    font: 400 16px/35px ;
 }
 #seo-blog-article .article-breadcrumbs .crumb-separator{
     margin: 0 5px 0 10px;
     display: inline-block;
 }
 #seo-blog-article .page__meta-item:not(:last-child)::after{
-    background: #00487F;
+    background: var(--color-blue);
     margin-bottom: 2px;
 }
 #seo-blog-article .social-media__item-list li{
@@ -514,7 +514,7 @@ background-color: #ccc;
     display: block;
     padding: 0 10px;
     background-color: #F1F8FE;
-    font: 500 16px/35px Avenir Next,sans-serif;
+    font: 500 16px/35px ;
     text-transform: capitalize;
     color: #1E1E1E;
     transition: 0.3s all;
@@ -527,12 +527,12 @@ background-color: #ccc;
 }
 #seo-blog-article .article__navigation svg,
 #seo-blog-article .article__navigation svg *{
-    color: #00487f;
+    color: var(--color-blue);
 }
 #seo-blog-article .article__navigation a{
     display: flex;
     align-items: center;
-    font: 700 16px/35px Avenir Next,sans-serif;
+    font: 700 16px/35px ;
     text-transform: capitalize;
 }
 #seo-blog-article .blog-sidebar__social-list{
@@ -542,19 +542,19 @@ background-color: #ccc;
 
 .obx.article-template h2,
 .obx.article-template .h2{
-    font: 700 26px/39px Avenir Next,sans-serif;
+    font: 700 26px/39px ;
     color: #171717;
     margin: 60px 0 20px;
 }   
 .obx.article-template h3,
 .obx.article-template .h3{
-    font: 700 20px/31px Avenir Next,sans-serif;
+    font: 700 20px/31px ;
     color: #171717;
     margin: 40px 0 20px;
 }
 .obx.article-template p,
 .obx.article-template li{
-    font: 400 17px/32px Avenir Next,sans-serif;
+    font: 400 17px/32px ;
     color: #1E1E1E;
     margin: 0 0 30px;
 }
@@ -583,7 +583,7 @@ background-color: #ccc;
 
     text-align: center;
     text-decoration: none !important;
-    font: 700 16px/35px Avenir Next,sans-serif; 
+    font: 700 16px/35px ; 
     transition: 0.3s all;
 }
 .obx.article-template .obx-btn.btn-blue{
@@ -635,9 +635,9 @@ background-color: #ccc;
     text-decoration: underline;
 }
 .obx.article-template .toc .toc-head{
-    font: 700 21px/35px Avenir Next,sans-serif; 
+    font: 700 21px/35px ; 
     letter-spacing: 0.4px;
-    color: #00487F;
+    color: var(--color-blue);
     text-transform: uppercase;
     margin: 0 0 20px;
     padding-bottom: 20px;
@@ -709,7 +709,7 @@ background-color: #ccc;
     width: 100%;
 }
 .obx.article-template .seo-featured-product .prod-title{
-    font: 600 20px/32px Avenir Next,sans-serif;
+    font: 600 20px/32px ;
     color: #1E1E1E;
     margin: 0 0 5px;
 }
@@ -719,12 +719,12 @@ background-color: #ccc;
 .obx.article-template .img-caption{
     padding: 20px 0;
     border-bottom: 1px solid #D0D8E0;
-    font: 400 15px/30px Avenir Next,sans-serif;
+    font: 400 15px/30px ;
 }
 .obx.article-template .contained-head{
-    font: 700 17px/32px Avenir Next,sans-serif;
+    font: 700 17px/32px ;
     text-transform: uppercase;
-    color: #00487F;
+    color: var(--color-blue);
     margin: 0;
 }
 .obx.article-template section.faq-section{
@@ -744,7 +744,7 @@ background-color: #ccc;
 .obx.article-template .faq-container .faq h3.accordion-head{
     position: relative;
     margin: 0;
-    font: 400 18px/32px Avenir Next,sans-serif;
+    font: 400 18px/32px ;
     color: #1E1E1E;
     cursor: pointer;
 }
@@ -790,13 +790,13 @@ background-color: #ccc;
     margin: 0 0 15px;
 }
 .obx.article-template .related-articles .article-title{
-    font: 700 22px/32px Avenir Next,sans-serif;
+    font: 700 22px/32px ;
     text-transform: uppercase;
     color: #171717;
     margin: 0 0 12px;
 }
 .obx.article-template .related-articles .article-excerpt{
-    font: 400 17px/32px Avenir Next,sans-serif;
+    font: 400 17px/32px ;
     color: #1E1E1E;
     margin: 0;
 }

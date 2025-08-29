@@ -12,19 +12,33 @@
 {%- assign navigation_mobile_menu_handle = section.settings.navigation_mobile_menu | default: navigation_menu_handle -%}
 {%- assign navigation_mobile_menu = linklists[navigation_mobile_menu_handle] -%}
 
-<section data-section-id="{{ section.id }}" data-section-type="header" data-section-settings="{{ section_settings | escape_once }}">
-  <header class="header header--{{ section.settings.desktop_navigation_layout }} {% unless section.settings.show_condensed_search %}header--search-expanded{% endunless %}" role="banner">
+<section
+  data-section-id="{{ section.id }}"
+  data-section-type="header"
+  data-section-settings="{{ section_settings | escape_once }}"
+>
+  <header
+    class="header header--{{ section.settings.desktop_navigation_layout }} {% unless section.settings.show_condensed_search %}header--search-expanded{% endunless %}"
+    role="banner"
+  >
     <div class="container">
       <div class="header__inner">
         {%- comment -%}
-        --------------------------------------------------------------------------------------
-        MOBILE NAV
-        --------------------------------------------------------------------------------------
+          --------------------------------------------------------------------------------------
+          MOBILE NAV
+          --------------------------------------------------------------------------------------
         {%- endcomment -%}
 
         {%- if navigation_menu.links.size > 0 -%}
           <nav class="header__mobile-nav hidden-lap-and-up">
-            <button class="header__mobile-nav-toggle icon-state touch-area" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
+            <button
+              class="header__mobile-nav-toggle icon-state touch-area"
+              data-action="toggle-menu"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="mobile-menu"
+              aria-label="{{ 'header.navigation.open_menu' | t }}"
+            >
               <span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
               <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
             </button>
@@ -41,8 +55,17 @@
 
         {%- if section.settings.desktop_navigation_layout == 'condensed' and navigation_menu.links.size > 0 -%}
           <nav class="header__desktop-nav hidden-pocket">
-            <button class="header__desktop-nav-toggle" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'header.navigation.open_menu' | t }}">
-              <span>{%- render 'icon', icon: 'hamburger' -%} <span class="header__desktop-nav-text">{{- 'header.navigation.menu' | t -}}</span></span>
+            <button
+              class="header__desktop-nav-toggle"
+              data-action="toggle-menu"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-label="{{ 'header.navigation.open_menu' | t }}"
+            >
+              <span>
+                {%- render 'icon', icon: 'hamburger' -%}
+                <span class="header__desktop-nav-text">{{- 'header.navigation.menu' | t -}}</span></span
+              >
             </button>
 
             {%- render 'desktop-menu', menu: navigation_menu, index: 'desktop-menu-0' -%}
@@ -50,9 +73,9 @@
         {%- endif -%}
 
         {%- comment -%}
-        --------------------------------------------------------------------------------------
-        LOGO COMPONENT
-        --------------------------------------------------------------------------------------
+          --------------------------------------------------------------------------------------
+          LOGO COMPONENT
+          --------------------------------------------------------------------------------------
         {%- endcomment -%}
 
         {%- capture header_logo -%}
@@ -79,9 +102,9 @@
         {%- endif -%}
 
         {%- comment -%}
-        --------------------------------------------------------------------------------------
-        SEARCH COMPONENT
-        --------------------------------------------------------------------------------------
+          --------------------------------------------------------------------------------------
+          SEARCH COMPONENT
+          --------------------------------------------------------------------------------------
         {%- endcomment -%}
 
         <div class="header__search-bar-wrapper {% unless section.settings.show_condensed_search %}is-visible{% endunless %}">
@@ -93,7 +116,15 @@
                 <input type="hidden" name="type" value="product">
 
                 <div class="search-bar__input-wrapper">
-                  <input class="search-bar__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'header.search.input_placeholder' | t }}" placeholder="{{ 'header.search.input_placeholder' | t }}">
+                  <input
+                    class="search-bar__input"
+                    type="text"
+                    name="q"
+                    autocomplete="off"
+                    autocorrect="off"
+                    aria-label="{{ 'header.search.input_placeholder' | t }}"
+                    placeholder="{{ 'header.search.input_placeholder' | t }}"
+                  >
                   <button type="button" class="search-bar__input-clear hidden-lap-and-up" data-action="clear-input">
                     <span class="visually-hidden">{{ 'header.search.clear' | t }}</span>
                     {% render 'icon', icon: 'close' %}
@@ -113,7 +144,8 @@
                 {%- if section.settings.show_search_filter and has_at_least_one_type -%}
                   <div class="search-bar__filter">
                     <label for="search-product-type" class="search-bar__filter-label">
-                      <span class="search-bar__filter-active">{{ 'header.search.all_categories' | t }}</span> {%- render 'icon', icon: 'arrow-bottom' -%}
+                      <span class="search-bar__filter-active">{{ 'header.search.all_categories' | t }}</span>
+                      {%- render 'icon', icon: 'arrow-bottom' -%}
                     </label>
 
                     <select id="search-product-type">
@@ -185,9 +217,9 @@
         </div>
 
         {%- comment -%}
-        --------------------------------------------------------------------------------------
-        HEADER ACTIONS
-        --------------------------------------------------------------------------------------
+          --------------------------------------------------------------------------------------
+          HEADER ACTIONS
+          --------------------------------------------------------------------------------------
         {%- endcomment -%}
 
         {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
@@ -206,8 +238,14 @@
                 <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
 
                 <div class="header__action-item-content">
-                  <button class="header__action-item-link" data-action="toggle-popover" aria-controls="desktop-locale-selector" aria-expanded="false">
-                    <span class="locale-selector__value">{{ localization.language.endonym_name | capitalize }}</span> {% render 'icon', icon: 'arrow-bottom' %}
+                  <button
+                    class="header__action-item-link"
+                    data-action="toggle-popover"
+                    aria-controls="desktop-locale-selector"
+                    aria-expanded="false"
+                  >
+                    <span class="locale-selector__value">{{ localization.language.endonym_name | capitalize }}</span>
+                    {% render 'icon', icon: 'arrow-bottom' %}
                   </button>
 
                   <div id="desktop-locale-selector" class="popover popover--locale" aria-hidden="true">
@@ -217,7 +255,15 @@
                       <ul class="popover__linklist" role="list">
                         {%- for language in localization.available_languages -%}
                           <li class="popover__linklist-item">
-                            <button type="submit" name="locale_code" class="popover__link-item" value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                            <button
+                              type="submit"
+                              name="locale_code"
+                              class="popover__link-item"
+                              value="{{ language.iso_code }}"
+                              {% if language.iso_code == localization.language.iso_code %}
+                                aria-current="true"
+                              {% endif %}
+                            >
                               {{- language.endonym_name | capitalize -}}
                             </button>
                           </li>
@@ -237,8 +283,20 @@
                 <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
 
                 <div class="header__action-item-content">
-                  <button class="header__action-item-link" data-action="toggle-popover" aria-controls="desktop-currency-selector" aria-expanded="false">
-                    <span class="currency-selector__value">{{- localization.country.name }} ({{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%})</span> {% render 'icon', icon: 'arrow-bottom' %}
+                  <button
+                    class="header__action-item-link"
+                    data-action="toggle-popover"
+                    aria-controls="desktop-currency-selector"
+                    aria-expanded="false"
+                  >
+                    <span class="currency-selector__value">
+                      {{- localization.country.name }} ({{ localization.country.currency.iso_code }}
+                      {% if localization.country.currency.symbol -%}
+                        {{- localization.country.currency.symbol }}
+                      {%- endif -%}
+                      )</span
+                    >
+                    {% render 'icon', icon: 'arrow-bottom' %}
                   </button>
 
                   <div id="desktop-currency-selector" class="popover popover--currency" aria-hidden="true">
@@ -248,8 +306,18 @@
                       <ul class="popover__linklist" role="list">
                         {%- for country in localization.available_countries -%}
                           <li class="popover__linklist-item">
-                            <button type="submit" name="country_code" class="popover__link-item" value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}>
-                              {{- country.name }} ({{ country.currency.iso_code }} {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%})
+                            <button
+                              type="submit"
+                              name="country_code"
+                              class="popover__link-item"
+                              value="{{ country.iso_code }}"
+                              {% if country.iso_code == localization.country.iso_code %}
+                                aria-current="true"
+                              {% endif %}
+                            >
+                              {{- country.name }} ({{ country.currency.iso_code }}
+                              {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%}
+                              )
                             </button>
                           </li>
                         {%- endfor -%}
@@ -263,32 +331,64 @@
 
           {%- if section.settings.show_condensed_search -%}
             <div class="header__action-item hidden-tablet-and-up">
-              <a class="header__action-item-link" href="{{ routes.search_url }}" data-action="toggle-search" aria-expanded="false" aria-label="{{ 'header.search.open_search' | t }}">{% render 'icon', icon: 'search' %}</a>
+              <a
+                class="header__action-item-link"
+                href="{{ routes.search_url }}"
+                data-action="toggle-search"
+                aria-expanded="false"
+                aria-label="{{ 'header.search.open_search' | t }}"
+              >
+                {%- render 'icon', icon: 'search' -%}
+              </a>
             </div>
           {%- endif -%}
 
           {%- if shop.customer_accounts_enabled -%}
-            <div class="header__action-item header__action-item--account">
+            <a
+              href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+              class="header__action-item header__action-item--account{% if customer %} header__acount--logged-in{% endif %}"
+            >
+              {% render 'icon', icon: 'account' %}
               {%- if customer -%}
-                <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.welcome' | t: first_name: customer.first_name | truncate: 20 }}</span>
+                <span class="header__action-item-title hidden-pocket hidden-lap">
+                  {% comment %} {{- 'header.general.welcome' | t: first_name: customer.first_name | truncate: 20 -}} {% endcomment %}
+                  {{ 'customer.general.account' | t }}
+                </span>
               {%- else -%}
                 <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.login' | t }}</span>
               {%- endif -%}
+              {% comment %}
+                {%- if customer -%}
+                  <div class="header__action-item-content">
+                    <a
+                      href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+                      class="header__action-item-link header__account-icon icon-state hidden-desk"
+                      aria-label="{{ 'header.general.account' | t }}"
+                    >
+                      <span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
+                    </a>
 
-              <div class="header__action-item-content">
-                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link header__account-icon icon-state hidden-desk" aria-label="{{ 'header.general.account' | t }}">
-                  <span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
-                </a>
-
-                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link hidden-pocket hidden-lap">
-                  {{- 'header.general.account' | t -}}
-                </a>
-              </div>
-            </div>
+                    <a
+                      href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+                      class="header__action-item-link hidden-pocket hidden-lap"
+                    >
+                      {{- 'header.general.account' | t -}}
+                    </a>
+                  </div>
+                {%- endif -%}
+              {% endcomment %}
+            </a>
           {%- endif -%}
 
           <div class="header__action-item header__action-item--cart">
-            <a class="header__action-item-link header__cart-toggle" href="{{ routes.cart_url }}" {% if settings.cart_type != 'page' and template != 'cart' %}aria-controls="mini-cart" aria-expanded="false" data-action="toggle-mini-cart"{% endif %} data-no-instant>
+            <a
+              class="header__action-item-link header__cart-toggle"
+              href="{{ routes.cart_url }}"
+              {% if settings.cart_type != 'page' and template != 'cart' %}
+                aria-controls="mini-cart" aria-expanded="false" data-action="toggle-mini-cart"
+              {% endif %}
+              data-no-instant
+            >
               <div class="header__action-item-content">
                 <div class="header__cart-icon icon-state" aria-expanded="false">
                   <span class="icon-state__primary">
@@ -307,6 +407,40 @@
               {%- render 'mini-cart' -%}
             {%- endif -%}
           </div>
+          <!-- Shopper Approved Seal Code - sections/header.liquid -->
+          <div class="header__action-item header__action-item--sa-seal">
+            <div id="sa-seal-header">
+              <!--
+                <a href="https://www.shopperapproved.com/reviews/revolveled.com/" class="shopperlink"><img src="https://www.shopperapproved.com/newseals/33795/white-mini-icon.gif" style="border: 0; height: 44px;" alt="Customer Reviews" oncontextmenu="var d = new Date(); alert('Copying Prohibited by Law - This image and all included logos are copyrighted by Shopper Approved \251 '+d.getFullYear()+'.'); return false;" /></a><script type="text/javascript">(function() { var js = window.document.createElement("script"); js.src = "https://www.shopperapproved.com/seals/certificate.js"; js.type = "text/javascript"; document.getElementsByTagName("head")[0].appendChild(js); })();</script>
+              -->
+              <a
+                href="https://www.shopperapproved.com/reviews/revolveled.com"
+                class="shopperlink new-sa-seals placement-957"
+                ><img
+                  src="//www.shopperapproved.com/seal/33795/957-sa-seal.gif"
+                  style="border-radius: 4px;"
+                  alt="Customer Reviews"
+                  width="112"
+                  height="44"
+                  oncontextmenu="var d = new Date(); alert('Copying Prohibited by Law - This image and all included logos are copyrighted by Shopper Approved \251 '+d.getFullYear()+'.'); return false;"
+              ></a>
+              <script type="text/javascript">
+                (function () {
+                  var js = window.document.createElement('script');
+                  js.innerHTML =
+                    'function openshopperapproved(o){ var e="Microsoft Internet Explorer"!=navigator.appName?"yes":"no",n=screen.availHeight-90,r=940;return window.innerWidth<1400&&(r=620),window.open(this.href,"shopperapproved","location="+e+",scrollbars=yes,width="+r+",height="+n+",menubar=no,toolbar=no"),o.stopPropagation&&o.stopPropagation(),!1}!function(){for(var o=document.getElementsByClassName("shopperlink"),e=0,n=o.length;e<n;e++)o[e].onclick=openshopperapproved}();';
+                  js.type = 'text/javascript';
+                  document.getElementsByTagName('head')[0].appendChild(js);
+                  var link = document.createElement('link');
+                  link.rel = 'stylesheet';
+                  link.type = 'text/css';
+                  link.href = '//www.shopperapproved.com/seal/957.css';
+                  document.getElementsByTagName('head')[0].appendChild(link);
+                })();
+              </script>
+            </div>
+          </div>
+          <!-- END Shopper Approved Seal Code - sections/header.liquid -->
         </div>
       </div>
     </div>
@@ -317,20 +451,41 @@
       <div class="nav-bar__inner">
         <div class="container">
           <ul class="nav-bar__linklist list--unstyled" data-type="menu" role="list">
+            {%- assign special_menus = section.settings.special_menu | split: ',' -%}
             {%- for link in navigation_menu.links -%}
-              <li class="nav-bar__item">
+              {% liquid
+                assign downcase_title = link.title | downcase | strip
+                assign is_spec_level_1_menu = false
+
+                for special_menu in special_menus
+                  assign special_menu_setting_downcase = special_menu | downcase | strip
+                  if special_menu_setting_downcase == downcase_title
+                    assign is_spec_level_1_menu = true
+                    break
+                  endif
+                endfor
+              %}
+              <li class="nav-bar__item" data-first-level="true" data-special="{{ is_spec_level_1_menu }}">
                 {%- if link.links.size == 0 -%}
                   <a href="{{ link.url }}" class="nav-bar__link link" data-type="menuitem">{{ link.title }}</a>
                 {%- else -%}
                   {%- capture index -%}desktop-menu-0-{{ forloop.index }}{%- endcapture -%}
 
-                  <a href="{{ link.url }}" class="nav-bar__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index }}" aria-haspopup="true">
+                  <a
+                    href="{{ link.url }}"
+                    class="nav-bar__link link"
+                    data-type="menuitem"
+                    data-first-level="true"
+                    aria-expanded="false"
+                    aria-controls="{{ index }}"
+                    aria-haspopup="true"
+                  >
                     {{- link.title -}}
                     {%- render 'icon', icon: 'arrow-bottom' -%}
                     {%- render 'icon', icon: 'nav-triangle' -%}
                   </a>
 
-                  {%- render 'desktop-menu', menu: link, index: index -%}
+                  {%- render 'desktop-menu', menu: link, index: index, is_spec_level_1_menu: is_spec_level_1_menu -%}
                 {%- endif -%}
               </li>
             {%- endfor -%}
@@ -364,9 +519,14 @@
       max-width: {{ section.settings.mobile_logo_max_width }}px !important;
     }
 
-    @media screen and (min-width: 641px) {
+    @media screen and (min-width: 1101px) {
       .header__logo-image {
         max-width: {{ section.settings.logo_max_width }}px !important;
+      }
+    }
+    @media screen and (min-width: 750px) {
+      .header__logo-image {
+        max-width: {{ section.settings.logo_max_width | times: 0.6 }}px !important;
       }
     }
   {%- endif -%}
@@ -392,9 +552,87 @@
 </style>
 
 <script>
-  document.documentElement.style.setProperty('--header-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
+  document.documentElement.style.setProperty(
+    '--header-height',
+    document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px'
+  );
 </script>
 
+{% comment %}
+  原来的block
+   {
+        "type": "mega_menu",
+        "name": "Mega menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "menu_item",
+            "label": "Menu item",
+            "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+          },
+          {
+            "type": "header",
+            "content": "Image 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image",
+            "info": "600 x 400px .jpg recommended"
+          },
+          {
+            "type": "text",
+            "id": "image_1_heading",
+            "label": "Heading",
+            "default": "Your image",
+            "visible_if": "{{ block.settings.image_1 != blank }}"
+          },
+          {
+            "type": "text",
+            "id": "image_1_text",
+            "label": "Text",
+            "default": "Tell your story",
+            "visible_if": "{{ block.settings.image_1 != blank }}"
+          },
+          {
+            "type": "url",
+            "id": "image_1_link",
+            "label": "Link",
+            "visible_if": "{{ block.settings.image_1 != blank }}"
+          },
+          {
+            "type": "header",
+            "content": "Image 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image",
+            "info": "600 x 400px .jpg recommended"
+          },
+          {
+            "type": "text",
+            "id": "image_2_heading",
+            "label": "Heading",
+            "default": "Your image",
+            "visible_if": "{{ block.settings.image_2 != blank }}"
+          },
+          {
+            "type": "text",
+            "id": "image_2_text",
+            "label": "Text",
+            "default": "Tell your story",
+            "visible_if": "{{ block.settings.image_2 != blank }}"
+          },
+          {
+            "type": "url",
+            "id": "image_2_link",
+            "label": "Link",
+            "visible_if": "{{ block.settings.image_2 != blank }}"
+          }
+        ]
+      },
+{% endcomment %}
 {% schema %}
 {
   "name": "Header",
@@ -475,6 +713,11 @@
       "id": "navigation_mobile_menu",
       "label": "Mobile menu",
       "info": "If none is set, the desktop menu is used."
+    },
+    {
+      "type": "textarea",
+      "id": "special_menu",
+      "label": "Special level 1 menu"
     },
     {
       "type": "select",
@@ -561,74 +804,23 @@
   ],
   "blocks": [
     {
-      "type": "mega_menu",
-      "name": "Mega menu",
+      "type": "spec_menu",
+      "name": "Spec menu",
       "settings": [
         {
           "type": "text",
-          "id": "menu_item",
-          "label": "Menu item",
-          "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
-        },
-        {
-          "type": "header",
-          "content": "Image 1"
+          "id": "special_menu",
+          "label": "Special menu"
         },
         {
           "type": "image_picker",
-          "id": "image_1",
-          "label": "Image",
-          "info": "600 x 400px .jpg recommended"
+          "id": "image",
+          "label": "Image"
         },
         {
           "type": "text",
-          "id": "image_1_heading",
-          "label": "Heading",
-          "default": "Your image",
-          "visible_if": "{{ block.settings.image_1 != blank }}"
-        },
-        {
-          "type": "text",
-          "id": "image_1_text",
-          "label": "Text",
-          "default": "Tell your story",
-          "visible_if": "{{ block.settings.image_1 != blank }}"
-        },
-        {
-          "type": "url",
-          "id": "image_1_link",
-          "label": "Link",
-          "visible_if": "{{ block.settings.image_1 != blank }}"
-        },
-        {
-          "type": "header",
-          "content": "Image 2"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image",
-          "info": "600 x 400px .jpg recommended"
-        },
-        {
-          "type": "text",
-          "id": "image_2_heading",
-          "label": "Heading",
-          "default": "Your image",
-          "visible_if": "{{ block.settings.image_2 != blank }}"
-        },
-        {
-          "type": "text",
-          "id": "image_2_text",
-          "label": "Text",
-          "default": "Tell your story",
-          "visible_if": "{{ block.settings.image_2 != blank }}"
-        },
-        {
-          "type": "url",
-          "id": "image_2_link",
-          "label": "Link",
-          "visible_if": "{{ block.settings.image_2 != blank }}"
+          "id": "content",
+          "label": "Content"
         }
       ]
     }

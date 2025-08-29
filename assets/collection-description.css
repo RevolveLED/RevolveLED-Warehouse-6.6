@@ -38,7 +38,7 @@
 }
 
 .collection-description .right-content {
-  font-family: "Avenir Next";
+  /* font-family: "Avenir Next"; */
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -61,15 +61,15 @@
 }
 
 .collection-description .right-content .highlight {
-  color: #00487F;
+  color: var(--color-blue);
 }
 
 .collection-description .container .highlight {
-  color: #00487F;
+  color: var(--color-blue);
 }
 
 .collection-description .view-more {
-  background-color: #00487F;
+  background-color: var(--color-blue);
   padding: 15px 12px;
   color: white;
   font-size: 14px;

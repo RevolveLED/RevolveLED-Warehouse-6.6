@@ -148,7 +148,7 @@
           {%- render 'custom-category-quick-ship' product:product -%}
           <a href="{{ filtered_variant.url | default: product.url }}" class="product-item__title text--strong link">{{ product.title }}</a>
           {% comment %} <a href="{{ filtered_variant.url | default: product.url | within: collection }}" class="product-item__title text--strong link">{{ product.title }}</a> {% endcomment %}
-          <div class="variant-sku"><strong>SKU: </strong>{{ product.selected_or_first_available_variant.sku }}<span class="divider">|</span><strong>SEARCH CODE: </strong>{{ product.metafields.global.search_code.value }}</div>
+          <div class="variant-sku"><strong>SKU: </strong>{{ product.selected_or_first_available_variant.sku }}<span class="divider">|</span>{% comment %}<strong>SEARCH CODE: </strong>{% endcomment %}{{ product.metafields.global.search_code.value }}</div>
 
           <!-- Shopper Approved Category Code - snippets/product-item.liquid -->
           <div class="star_container {{ product.id }}"></div>

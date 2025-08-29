@@ -35,11 +35,11 @@ var __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "acce
 // node_modules/fastdom/fastdom.js
 var require_fastdom = __commonJS({
   "node_modules/fastdom/fastdom.js"(exports, module) {
-    !function(win) {
+    !function (win) {
       "use strict";
-      var debug = 0 ? console.log.bind(console, "[fastdom]") : function() {
+      var debug = 0 ? console.log.bind(console, "[fastdom]") : function () {
       };
-      var raf = win.requestAnimationFrame || win.webkitRequestAnimationFrame || win.mozRequestAnimationFrame || win.msRequestAnimationFrame || function(cb) {
+      var raf = win.requestAnimationFrame || win.webkitRequestAnimationFrame || win.mozRequestAnimationFrame || win.msRequestAnimationFrame || function (cb) {
         return setTimeout(cb, 16);
       };
       function FastDom() {
@@ -59,7 +59,7 @@ var require_fastdom = __commonJS({
          *
          * @param {Array} tasks
          */
-        runTasks: function(tasks) {
+        runTasks: function (tasks) {
           debug("run tasks");
           var task;
           while (task = tasks.shift()) task();
@@ -72,7 +72,7 @@ var require_fastdom = __commonJS({
          * @param  {Object} ctx the context to be bound to `fn` (optional).
          * @public
          */
-        measure: function(fn, ctx) {
+        measure: function (fn, ctx) {
           debug("measure");
           var task = !ctx ? fn : fn.bind(ctx);
           this.reads.push(task);
@@ -88,7 +88,7 @@ var require_fastdom = __commonJS({
          * @param  {Object} ctx the context to be bound to `fn` (optional).
          * @public
          */
-        mutate: function(fn, ctx) {
+        mutate: function (fn, ctx) {
           debug("mutate");
           var task = !ctx ? fn : fn.bind(ctx);
           this.writes.push(task);
@@ -102,7 +102,7 @@ var require_fastdom = __commonJS({
          * @return {Boolean} success
          * @public
          */
-        clear: function(task) {
+        clear: function (task) {
           debug("clear", task);
           return remove(this.reads, task) || remove(this.writes, task);
         },
@@ -140,7 +140,7 @@ var require_fastdom = __commonJS({
          * @param  {Object} props  properties to mixin
          * @return {FastDom}
          */
-        extend: function(props) {
+        extend: function (props) {
           debug("extend", props);
           if (typeof props != "object") throw new Error("expected object");
           var child = Object.create(this);
@@ -192,7 +192,7 @@ var require_fastdom = __commonJS({
         }
       }
       var exports2 = win.fastdom = win.fastdom || new FastDom();
-      if (typeof define == "function") define(function() {
+      if (typeof define == "function") define(function () {
         return exports2;
       });
       else if (typeof module == "object") module.exports = exports2;
@@ -203,7 +203,7 @@ var require_fastdom = __commonJS({
 // node_modules/ev-emitter/ev-emitter.js
 var require_ev_emitter = __commonJS({
   "node_modules/ev-emitter/ev-emitter.js"(exports, module) {
-    (function(global, factory) {
+    (function (global, factory) {
       if (typeof define == "function" && define.amd) {
         define(factory);
       } else if (typeof module == "object" && module.exports) {
@@ -211,12 +211,12 @@ var require_ev_emitter = __commonJS({
       } else {
         global.EvEmitter = factory();
       }
-    })(typeof window != "undefined" ? window : exports, function() {
+    })(typeof window != "undefined" ? window : exports, function () {
       "use strict";
       function EvEmitter() {
       }
       var proto = EvEmitter.prototype;
-      proto.on = function(eventName, listener) {
+      proto.on = function (eventName, listener) {
         if (!eventName || !listener) {
           return;
         }
@@ -227,7 +227,7 @@ var require_ev_emitter = __commonJS({
         }
         return this;
       };
-      proto.once = function(eventName, listener) {
+      proto.once = function (eventName, listener) {
         if (!eventName || !listener) {
           return;
         }
@@ -237,7 +237,7 @@ var require_ev_emitter = __commonJS({
         onceListeners[listener] = true;
         return this;
       };
-      proto.off = function(eventName, listener) {
+      proto.off = function (eventName, listener) {
         var listeners = this._events && this._events[eventName];
         if (!listeners || !listeners.length) {
           return;
@@ -248,7 +248,7 @@ var require_ev_emitter = __commonJS({
         }
         return this;
       };
-      proto.emitEvent = function(eventName, args) {
+      proto.emitEvent = function (eventName, args) {
         var listeners = this._events && this._events[eventName];
         if (!listeners || !listeners.length) {
           return;
@@ -267,7 +267,7 @@ var require_ev_emitter = __commonJS({
         }
         return this;
       };
-      proto.allOff = function() {
+      proto.allOff = function () {
         delete this._events;
         delete this._onceEvents;
       };
@@ -279,7 +279,7 @@ var require_ev_emitter = __commonJS({
 // node_modules/get-size/get-size.js
 var require_get_size = __commonJS({
   "node_modules/get-size/get-size.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define(factory);
       } else if (typeof module == "object" && module.exports) {
@@ -296,7 +296,7 @@ var require_get_size = __commonJS({
       }
       function noop() {
       }
-      var logError = typeof console == "undefined" ? noop : function(message) {
+      var logError = typeof console == "undefined" ? noop : function (message) {
         console.error(message);
       };
       var measurements = [
@@ -388,12 +388,12 @@ var require_get_size = __commonJS({
         var styleWidth = getStyleSize(style.width);
         if (styleWidth !== false) {
           size.width = styleWidth + // add padding and border unless it's already including it
-          (isBorderBoxSizeOuter ? 0 : paddingWidth + borderWidth);
+            (isBorderBoxSizeOuter ? 0 : paddingWidth + borderWidth);
         }
         var styleHeight = getStyleSize(style.height);
         if (styleHeight !== false) {
           size.height = styleHeight + // add padding and border unless it's already including it
-          (isBorderBoxSizeOuter ? 0 : paddingHeight + borderHeight);
+            (isBorderBoxSizeOuter ? 0 : paddingHeight + borderHeight);
         }
         size.innerWidth = size.width - (paddingWidth + borderWidth);
         size.innerHeight = size.height - (paddingHeight + borderHeight);
@@ -409,7 +409,7 @@ var require_get_size = __commonJS({
 // node_modules/desandro-matches-selector/matches-selector.js
 var require_matches_selector = __commonJS({
   "node_modules/desandro-matches-selector/matches-selector.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       "use strict";
       if (typeof define == "function" && define.amd) {
         define(factory);
@@ -420,7 +420,7 @@ var require_matches_selector = __commonJS({
       }
     })(window, function factory() {
       "use strict";
-      var matchesMethod = function() {
+      var matchesMethod = function () {
         var ElemProto = window.Element.prototype;
         if (ElemProto.matches) {
           return "matches";
@@ -447,11 +447,11 @@ var require_matches_selector = __commonJS({
 // node_modules/fizzy-ui-utils/utils.js
 var require_utils = __commonJS({
   "node_modules/fizzy-ui-utils/utils.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "desandro-matches-selector/matches-selector"
-        ], function(matchesSelector) {
+        ], function (matchesSelector) {
           return factory(window2, matchesSelector);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -468,17 +468,17 @@ var require_utils = __commonJS({
     })(window, function factory(window2, matchesSelector) {
       "use strict";
       var utils = {};
-      utils.extend = function(a, b) {
+      utils.extend = function (a, b) {
         for (var prop in b) {
           a[prop] = b[prop];
         }
         return a;
       };
-      utils.modulo = function(num, div) {
+      utils.modulo = function (num, div) {
         return (num % div + div) % div;
       };
       var arraySlice = Array.prototype.slice;
-      utils.makeArray = function(obj) {
+      utils.makeArray = function (obj) {
         if (Array.isArray(obj)) {
           return obj;
         }
@@ -491,13 +491,13 @@ var require_utils = __commonJS({
         }
         return [obj];
       };
-      utils.removeFrom = function(ary, obj) {
+      utils.removeFrom = function (ary, obj) {
         var index = ary.indexOf(obj);
         if (index != -1) {
           ary.splice(index, 1);
         }
       };
-      utils.getParent = function(elem, selector) {
+      utils.getParent = function (elem, selector) {
         while (elem.parentNode && elem != document.body) {
           elem = elem.parentNode;
           if (matchesSelector(elem, selector)) {
@@ -505,22 +505,22 @@ var require_utils = __commonJS({
           }
         }
       };
-      utils.getQueryElement = function(elem) {
+      utils.getQueryElement = function (elem) {
         if (typeof elem == "string") {
           return document.querySelector(elem);
         }
         return elem;
       };
-      utils.handleEvent = function(event2) {
+      utils.handleEvent = function (event2) {
         var method = "on" + event2.type;
         if (this[method]) {
           this[method](event2);
         }
       };
-      utils.filterFindElements = function(elems, selector) {
+      utils.filterFindElements = function (elems, selector) {
         elems = utils.makeArray(elems);
         var ffElems = [];
-        elems.forEach(function(elem) {
+        elems.forEach(function (elem) {
           if (!(elem instanceof HTMLElement)) {
             return;
           }
@@ -538,22 +538,22 @@ var require_utils = __commonJS({
         });
         return ffElems;
       };
-      utils.debounceMethod = function(_class, methodName, threshold) {
+      utils.debounceMethod = function (_class, methodName, threshold) {
         threshold = threshold || 100;
         var method = _class.prototype[methodName];
         var timeoutName = methodName + "Timeout";
-        _class.prototype[methodName] = function() {
+        _class.prototype[methodName] = function () {
           var timeout = this[timeoutName];
           clearTimeout(timeout);
           var args = arguments;
           var _this = this;
-          this[timeoutName] = setTimeout(function() {
+          this[timeoutName] = setTimeout(function () {
             method.apply(_this, args);
             delete _this[timeoutName];
           }, threshold);
         };
       };
-      utils.docReady = function(callback) {
+      utils.docReady = function (callback) {
         var readyState = document.readyState;
         if (readyState == "complete" || readyState == "interactive") {
           setTimeout(callback);
@@ -561,14 +561,14 @@ var require_utils = __commonJS({
           document.addEventListener("DOMContentLoaded", callback);
         }
       };
-      utils.toDashed = function(str) {
-        return str.replace(/(.)([A-Z])/g, function(match, $1, $2) {
+      utils.toDashed = function (str) {
+        return str.replace(/(.)([A-Z])/g, function (match, $1, $2) {
           return $1 + "-" + $2;
         }).toLowerCase();
       };
       var console2 = window2.console;
-      utils.htmlInit = function(WidgetClass, namespace) {
-        utils.docReady(function() {
+      utils.htmlInit = function (WidgetClass, namespace) {
+        utils.docReady(function () {
           var dashedNamespace = utils.toDashed(namespace);
           var dataAttr = "data-" + dashedNamespace;
           var dataAttrElems = document.querySelectorAll("[" + dataAttr + "]");
@@ -576,7 +576,7 @@ var require_utils = __commonJS({
           var elems = utils.makeArray(dataAttrElems).concat(utils.makeArray(jsDashElems));
           var dataOptionsAttr = dataAttr + "-options";
           var jQuery = window2.jQuery;
-          elems.forEach(function(elem) {
+          elems.forEach(function (elem) {
             var attr = elem.getAttribute(dataAttr) || elem.getAttribute(dataOptionsAttr);
             var options;
             try {
@@ -602,11 +602,11 @@ var require_utils = __commonJS({
 // node_modules/flickity/js/cell.js
 var require_cell = __commonJS({
   "node_modules/flickity/js/cell.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "get-size/get-size"
-        ], function(getSize) {
+        ], function (getSize) {
           return factory(window2, getSize);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -629,48 +629,48 @@ var require_cell = __commonJS({
         this.create();
       }
       var proto = Cell.prototype;
-      proto.create = function() {
+      proto.create = function () {
         this.element.style.position = "absolute";
         this.element.setAttribute("aria-hidden", "true");
         this.x = 0;
         this.shift = 0;
       };
-      proto.destroy = function() {
+      proto.destroy = function () {
         this.unselect();
         this.element.style.position = "";
         var side = this.parent.originSide;
         this.element.style[side] = "";
         this.element.removeAttribute("aria-hidden");
       };
-      proto.getSize = function() {
+      proto.getSize = function () {
         this.size = getSize(this.element);
       };
-      proto.setPosition = function(x) {
+      proto.setPosition = function (x) {
         this.x = x;
         this.updateTarget();
         this.renderPosition(x);
       };
-      proto.updateTarget = proto.setDefaultTarget = function() {
+      proto.updateTarget = proto.setDefaultTarget = function () {
         var marginProperty = this.parent.originSide == "left" ? "marginLeft" : "marginRight";
         this.target = this.x + this.size[marginProperty] + this.size.width * this.parent.cellAlign;
       };
-      proto.renderPosition = function(x) {
+      proto.renderPosition = function (x) {
         var side = this.parent.originSide;
         this.element.style[side] = this.parent.getPositionValue(x);
       };
-      proto.select = function() {
+      proto.select = function () {
         this.element.classList.add("is-selected");
         this.element.removeAttribute("aria-hidden");
       };
-      proto.unselect = function() {
+      proto.unselect = function () {
         this.element.classList.remove("is-selected");
         this.element.setAttribute("aria-hidden", "true");
       };
-      proto.wrapShift = function(shift) {
+      proto.wrapShift = function (shift) {
         this.shift = shift;
         this.renderPosition(this.x + this.parent.slideableWidth * shift);
       };
-      proto.remove = function() {
+      proto.remove = function () {
         this.element.parentNode.removeChild(this.element);
       };
       return Cell;
@@ -681,7 +681,7 @@ var require_cell = __commonJS({
 // node_modules/flickity/js/slide.js
 var require_slide = __commonJS({
   "node_modules/flickity/js/slide.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define(factory);
       } else if (typeof module == "object" && module.exports) {
@@ -700,7 +700,7 @@ var require_slide = __commonJS({
         this.height = 0;
       }
       var proto = Slide.prototype;
-      proto.addCell = function(cell) {
+      proto.addCell = function (cell) {
         this.cells.push(cell);
         this.outerWidth += cell.size.outerWidth;
         this.height = Math.max(cell.size.outerHeight, this.height);
@@ -710,28 +710,28 @@ var require_slide = __commonJS({
           this.firstMargin = cell.size[beginMargin];
         }
       };
-      proto.updateTarget = function() {
+      proto.updateTarget = function () {
         var endMargin = this.isOriginLeft ? "marginRight" : "marginLeft";
         var lastCell = this.getLastCell();
         var lastMargin = lastCell ? lastCell.size[endMargin] : 0;
         var slideWidth = this.outerWidth - (this.firstMargin + lastMargin);
         this.target = this.x + this.firstMargin + slideWidth * this.parent.cellAlign;
       };
-      proto.getLastCell = function() {
+      proto.getLastCell = function () {
         return this.cells[this.cells.length - 1];
       };
-      proto.select = function() {
-        this.cells.forEach(function(cell) {
+      proto.select = function () {
+        this.cells.forEach(function (cell) {
           cell.select();
         });
       };
-      proto.unselect = function() {
-        this.cells.forEach(function(cell) {
+      proto.unselect = function () {
+        this.cells.forEach(function (cell) {
           cell.unselect();
         });
       };
-      proto.getCellElements = function() {
-        return this.cells.map(function(cell) {
+      proto.getCellElements = function () {
+        return this.cells.map(function (cell) {
           return cell.element;
         });
       };
@@ -743,11 +743,11 @@ var require_slide = __commonJS({
 // node_modules/flickity/js/animate.js
 var require_animate = __commonJS({
   "node_modules/flickity/js/animate.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "fizzy-ui-utils/utils"
-        ], function(utils) {
+        ], function (utils) {
           return factory(window2, utils);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -765,7 +765,7 @@ var require_animate = __commonJS({
     })(window, function factory(window2, utils) {
       "use strict";
       var proto = {};
-      proto.startAnimation = function() {
+      proto.startAnimation = function () {
         if (this.isAnimating) {
           return;
         }
@@ -773,7 +773,7 @@ var require_animate = __commonJS({
         this.restingFrames = 0;
         this.animate();
       };
-      proto.animate = function() {
+      proto.animate = function () {
         this.applyDragForce();
         this.applySelectedAttraction();
         var previousX = this.x;
@@ -787,7 +787,7 @@ var require_animate = __commonJS({
           });
         }
       };
-      proto.positionSlider = function() {
+      proto.positionSlider = function () {
         var x = this.x;
         if (this.options.wrapAround && this.cells.length > 1) {
           x = utils.modulo(x, this.slideableWidth);
@@ -797,13 +797,13 @@ var require_animate = __commonJS({
         this.setTranslateX(x, this.isAnimating);
         this.dispatchScrollEvent();
       };
-      proto.setTranslateX = function(x, is3d) {
+      proto.setTranslateX = function (x, is3d) {
         x += this.cursorPosition;
         x = this.options.rightToLeft ? -x : x;
         var translateX = this.getPositionValue(x);
         this.slider.style.transform = is3d ? "translate3d(" + translateX + ",0,0)" : "translateX(" + translateX + ")";
       };
-      proto.dispatchScrollEvent = function() {
+      proto.dispatchScrollEvent = function () {
         var firstSlide = this.slides[0];
         if (!firstSlide) {
           return;
@@ -812,7 +812,7 @@ var require_animate = __commonJS({
         var progress = positionX / this.slidesWidth;
         this.dispatchEvent("scroll", null, [progress, positionX]);
       };
-      proto.positionSliderAtSelected = function() {
+      proto.positionSliderAtSelected = function () {
         if (!this.cells.length) {
           return;
         }
@@ -820,14 +820,14 @@ var require_animate = __commonJS({
         this.velocity = 0;
         this.positionSlider();
       };
-      proto.getPositionValue = function(position) {
+      proto.getPositionValue = function (position) {
         if (this.options.percentPosition) {
           return Math.round(position / this.size.innerWidth * 1e4) * 0.01 + "%";
         } else {
           return Math.round(position) + "px";
         }
       };
-      proto.settle = function(previousX) {
+      proto.settle = function (previousX) {
         var isResting = !this.isPointerDown && Math.round(this.x * 100) == Math.round(previousX * 100);
         if (isResting) {
           this.restingFrames++;
@@ -839,13 +839,13 @@ var require_animate = __commonJS({
           this.dispatchEvent("settle", null, [this.selectedIndex]);
         }
       };
-      proto.shiftWrapCells = function(x) {
+      proto.shiftWrapCells = function (x) {
         var beforeGap = this.cursorPosition + x;
         this._shiftCells(this.beforeShiftCells, beforeGap, -1);
         var afterGap = this.size.innerWidth - (x + this.slideableWidth + this.cursorPosition);
         this._shiftCells(this.afterShiftCells, afterGap, 1);
       };
-      proto._shiftCells = function(cells, gap, shift) {
+      proto._shiftCells = function (cells, gap, shift) {
         for (var i = 0; i < cells.length; i++) {
           var cell = cells[i];
           var cellShift = gap > 0 ? shift : 0;
@@ -853,7 +853,7 @@ var require_animate = __commonJS({
           gap -= cell.size.outerWidth;
         }
       };
-      proto._unshiftCells = function(cells) {
+      proto._unshiftCells = function (cells) {
         if (!cells || !cells.length) {
           return;
         }
@@ -861,20 +861,20 @@ var require_animate = __commonJS({
           cells[i].wrapShift(0);
         }
       };
-      proto.integratePhysics = function() {
+      proto.integratePhysics = function () {
         this.x += this.velocity;
         this.velocity *= this.getFrictionFactor();
       };
-      proto.applyForce = function(force) {
+      proto.applyForce = function (force) {
         this.velocity += force;
       };
-      proto.getFrictionFactor = function() {
+      proto.getFrictionFactor = function () {
         return 1 - this.options[this.isFreeScrolling ? "freeScrollFriction" : "friction"];
       };
-      proto.getRestingPosition = function() {
+      proto.getRestingPosition = function () {
         return this.x + this.velocity / (1 - this.getFrictionFactor());
       };
-      proto.applyDragForce = function() {
+      proto.applyDragForce = function () {
         if (!this.isDraggable || !this.isPointerDown) {
           return;
         }
@@ -882,7 +882,7 @@ var require_animate = __commonJS({
         var dragForce = dragVelocity - this.velocity;
         this.applyForce(dragForce);
       };
-      proto.applySelectedAttraction = function() {
+      proto.applySelectedAttraction = function () {
         var dragDown = this.isDraggable && this.isPointerDown;
         if (dragDown || this.isFreeScrolling || !this.slides.length) {
           return;
@@ -899,7 +899,7 @@ var require_animate = __commonJS({
 // node_modules/flickity/js/flickity.js
 var require_flickity = __commonJS({
   "node_modules/flickity/js/flickity.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "ev-emitter/ev-emitter",
@@ -908,7 +908,7 @@ var require_flickity = __commonJS({
           "./cell",
           "./slide",
           "./animate"
-        ], function(EvEmitter, getSize, utils, Cell, Slide, animatePrototype) {
+        ], function (EvEmitter, getSize, utils, Cell, Slide, animatePrototype) {
           return factory(window2, EvEmitter, getSize, utils, Cell, Slide, animatePrototype);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -989,7 +989,7 @@ var require_flickity = __commonJS({
       Flickity10.createMethods = [];
       var proto = Flickity10.prototype;
       utils.extend(proto, EvEmitter.prototype);
-      proto._create = function() {
+      proto._create = function () {
         var id = this.guid = ++GUID;
         this.element.flickityGUID = id;
         instances[id] = this;
@@ -1008,7 +1008,7 @@ var require_flickity = __commonJS({
           var listener = this.options.on[eventName];
           this.on(eventName, listener);
         }
-        Flickity10.createMethods.forEach(function(method) {
+        Flickity10.createMethods.forEach(function (method) {
           this[method]();
         }, this);
         if (this.options.watchCSS) {
@@ -1017,10 +1017,10 @@ var require_flickity = __commonJS({
           this.activate();
         }
       };
-      proto.option = function(opts) {
+      proto.option = function (opts) {
         utils.extend(this.options, opts);
       };
-      proto.activate = function() {
+      proto.activate = function () {
         if (this.isActive) {
           return;
         }
@@ -1044,39 +1044,39 @@ var require_flickity = __commonJS({
         this.isInitActivated = true;
         this.dispatchEvent("ready");
       };
-      proto._createSlider = function() {
+      proto._createSlider = function () {
         var slider = document.createElement("div");
         slider.className = "flickity-slider";
         slider.style[this.originSide] = 0;
         this.slider = slider;
       };
-      proto._filterFindCellElements = function(elems) {
+      proto._filterFindCellElements = function (elems) {
         return utils.filterFindElements(elems, this.options.cellSelector);
       };
-      proto.reloadCells = function() {
+      proto.reloadCells = function () {
         this.cells = this._makeCells(this.slider.children);
         this.positionCells();
         this._getWrapShiftCells();
         this.setGallerySize();
       };
-      proto._makeCells = function(elems) {
+      proto._makeCells = function (elems) {
         var cellElems = this._filterFindCellElements(elems);
-        var cells = cellElems.map(function(cellElem) {
+        var cells = cellElems.map(function (cellElem) {
           return new Cell(cellElem, this);
         }, this);
         return cells;
       };
-      proto.getLastCell = function() {
+      proto.getLastCell = function () {
         return this.cells[this.cells.length - 1];
       };
-      proto.getLastSlide = function() {
+      proto.getLastSlide = function () {
         return this.slides[this.slides.length - 1];
       };
-      proto.positionCells = function() {
+      proto.positionCells = function () {
         this._sizeCells(this.cells);
         this._positionCells(0);
       };
-      proto._positionCells = function(index) {
+      proto._positionCells = function (index) {
         index = index || 0;
         this.maxCellHeight = index ? this.maxCellHeight || 0 : 0;
         var cellX = 0;
@@ -1096,12 +1096,12 @@ var require_flickity = __commonJS({
         this._containSlides();
         this.slidesWidth = len ? this.getLastSlide().target - this.slides[0].target : 0;
       };
-      proto._sizeCells = function(cells) {
-        cells.forEach(function(cell) {
+      proto._sizeCells = function (cells) {
+        cells.forEach(function (cell) {
           cell.getSize();
         });
       };
-      proto.updateSlides = function() {
+      proto.updateSlides = function () {
         this.slides = [];
         if (!this.cells.length) {
           return;
@@ -1111,7 +1111,7 @@ var require_flickity = __commonJS({
         var isOriginLeft = this.originSide == "left";
         var nextMargin = isOriginLeft ? "marginRight" : "marginLeft";
         var canCellFit = this._getCanCellFit();
-        this.cells.forEach(function(cell, i) {
+        this.cells.forEach(function (cell, i) {
           if (!slide.cells.length) {
             slide.addCell(cell);
             return;
@@ -1129,29 +1129,29 @@ var require_flickity = __commonJS({
         slide.updateTarget();
         this.updateSelectedSlide();
       };
-      proto._getCanCellFit = function() {
+      proto._getCanCellFit = function () {
         var groupCells = this.options.groupCells;
         if (!groupCells) {
-          return function() {
+          return function () {
             return false;
           };
         } else if (typeof groupCells == "number") {
           var number = parseInt(groupCells, 10);
-          return function(i) {
+          return function (i) {
             return i % number !== 0;
           };
         }
         var percentMatch = typeof groupCells == "string" && groupCells.match(/^(\d+)%$/);
         var percent = percentMatch ? parseInt(percentMatch[1], 10) / 100 : 1;
-        return function(i, slideWidth) {
+        return function (i, slideWidth) {
           return slideWidth <= (this.size.innerWidth + 1) * percent;
         };
       };
-      proto._init = proto.reposition = function() {
+      proto._init = proto.reposition = function () {
         this.positionCells();
         this.positionSliderAtSelected();
       };
-      proto.getSize = function() {
+      proto.getSize = function () {
         this.size = getSize(this.element);
         this.setCellAlign();
         this.cursorPosition = this.size.innerWidth * this.cellAlign;
@@ -1171,17 +1171,17 @@ var require_flickity = __commonJS({
           left: 1
         }
       };
-      proto.setCellAlign = function() {
+      proto.setCellAlign = function () {
         var shorthand = cellAlignShorthands[this.options.cellAlign];
         this.cellAlign = shorthand ? shorthand[this.originSide] : this.options.cellAlign;
       };
-      proto.setGallerySize = function() {
+      proto.setGallerySize = function () {
         if (this.options.setGallerySize) {
           var height = this.options.adaptiveHeight && this.selectedSlide ? this.selectedSlide.height : this.maxCellHeight;
           this.viewport.style.height = height + "px";
         }
       };
-      proto._getWrapShiftCells = function() {
+      proto._getWrapShiftCells = function () {
         if (!this.options.wrapAround) {
           return;
         }
@@ -1193,7 +1193,7 @@ var require_flickity = __commonJS({
         gapX = this.size.innerWidth - this.cursorPosition;
         this.afterShiftCells = this._getGapCells(gapX, 0, 1);
       };
-      proto._getGapCells = function(gapX, cellIndex, increment) {
+      proto._getGapCells = function (gapX, cellIndex, increment) {
         var cells = [];
         while (gapX > 0) {
           var cell = this.cells[cellIndex];
@@ -1206,7 +1206,7 @@ var require_flickity = __commonJS({
         }
         return cells;
       };
-      proto._containSlides = function() {
+      proto._containSlides = function () {
         if (!this.options.contain || this.options.wrapAround || !this.cells.length) {
           return;
         }
@@ -1217,7 +1217,7 @@ var require_flickity = __commonJS({
         var isContentSmaller = contentWidth < this.size.innerWidth;
         var beginBound = this.cursorPosition + this.cells[0].size[beginMargin];
         var endBound = contentWidth - this.size.innerWidth * (1 - this.cellAlign);
-        this.slides.forEach(function(slide) {
+        this.slides.forEach(function (slide) {
           if (isContentSmaller) {
             slide.target = contentWidth * this.cellAlign;
           } else {
@@ -1226,7 +1226,7 @@ var require_flickity = __commonJS({
           }
         }, this);
       };
-      proto.dispatchEvent = function(type, event2, args) {
+      proto.dispatchEvent = function (type, event2, args) {
         var emitArgs = event2 ? [event2].concat(args) : args;
         this.emitEvent(type, emitArgs);
         if (jQuery && this.$element) {
@@ -1240,7 +1240,7 @@ var require_flickity = __commonJS({
           this.$element.trigger($event, args);
         }
       };
-      proto.select = function(index, isWrap, isInstant) {
+      proto.select = function (index, isWrap, isInstant) {
         if (!this.isActive) {
           return;
         }
@@ -1269,7 +1269,7 @@ var require_flickity = __commonJS({
         }
         this.dispatchEvent("cellSelect");
       };
-      proto._wrapSelect = function(index) {
+      proto._wrapSelect = function (index) {
         var len = this.slides.length;
         var isWrapping = this.options.wrapAround && len > 1;
         if (!isWrapping) {
@@ -1290,13 +1290,13 @@ var require_flickity = __commonJS({
           this.x += this.slideableWidth;
         }
       };
-      proto.previous = function(isWrap, isInstant) {
+      proto.previous = function (isWrap, isInstant) {
         this.select(this.selectedIndex - 1, isWrap, isInstant);
       };
-      proto.next = function(isWrap, isInstant) {
+      proto.next = function (isWrap, isInstant) {
         this.select(this.selectedIndex + 1, isWrap, isInstant);
       };
-      proto.updateSelectedSlide = function() {
+      proto.updateSelectedSlide = function () {
         var slide = this.slides[this.selectedIndex];
         if (!slide) {
           return;
@@ -1309,12 +1309,12 @@ var require_flickity = __commonJS({
         this.selectedCell = slide.cells[0];
         this.selectedElement = this.selectedElements[0];
       };
-      proto.unselectSelectedSlide = function() {
+      proto.unselectSelectedSlide = function () {
         if (this.selectedSlide) {
           this.selectedSlide.unselect();
         }
       };
-      proto.selectInitialIndex = function() {
+      proto.selectInitialIndex = function () {
         var initialIndex = this.options.initialIndex;
         if (this.isInitActivated) {
           this.select(this.selectedIndex, false, true);
@@ -1333,7 +1333,7 @@ var require_flickity = __commonJS({
         }
         this.select(index, false, true);
       };
-      proto.selectCell = function(value, isWrap, isInstant) {
+      proto.selectCell = function (value, isWrap, isInstant) {
         var cell = this.queryCell(value);
         if (!cell) {
           return;
@@ -1341,7 +1341,7 @@ var require_flickity = __commonJS({
         var index = this.getCellSlideIndex(cell);
         this.select(index, isWrap, isInstant);
       };
-      proto.getCellSlideIndex = function(cell) {
+      proto.getCellSlideIndex = function (cell) {
         for (var i = 0; i < this.slides.length; i++) {
           var slide = this.slides[i];
           var index = slide.cells.indexOf(cell);
@@ -1350,7 +1350,7 @@ var require_flickity = __commonJS({
           }
         }
       };
-      proto.getCell = function(elem) {
+      proto.getCell = function (elem) {
         for (var i = 0; i < this.cells.length; i++) {
           var cell = this.cells[i];
           if (cell.element == elem) {
@@ -1358,10 +1358,10 @@ var require_flickity = __commonJS({
           }
         }
       };
-      proto.getCells = function(elems) {
+      proto.getCells = function (elems) {
         elems = utils.makeArray(elems);
         var cells = [];
-        elems.forEach(function(elem) {
+        elems.forEach(function (elem) {
           var cell = this.getCell(elem);
           if (cell) {
             cells.push(cell);
@@ -1369,12 +1369,12 @@ var require_flickity = __commonJS({
         }, this);
         return cells;
       };
-      proto.getCellElements = function() {
-        return this.cells.map(function(cell) {
+      proto.getCellElements = function () {
+        return this.cells.map(function (cell) {
           return cell.element;
         });
       };
-      proto.getParentCell = function(elem) {
+      proto.getParentCell = function (elem) {
         var cell = this.getCell(elem);
         if (cell) {
           return cell;
@@ -1382,7 +1382,7 @@ var require_flickity = __commonJS({
         elem = utils.getParent(elem, ".flickity-slider > *");
         return this.getCell(elem);
       };
-      proto.getAdjacentCellElements = function(adjCount, index) {
+      proto.getAdjacentCellElements = function (adjCount, index) {
         if (!adjCount) {
           return this.selectedSlide.getCellElements();
         }
@@ -1401,7 +1401,7 @@ var require_flickity = __commonJS({
         }
         return cellElems;
       };
-      proto.queryCell = function(selector) {
+      proto.queryCell = function (selector) {
         if (typeof selector == "number") {
           return this.cells[selector];
         }
@@ -1413,21 +1413,21 @@ var require_flickity = __commonJS({
         }
         return this.getCell(selector);
       };
-      proto.uiChange = function() {
+      proto.uiChange = function () {
         this.emitEvent("uiChange");
       };
-      proto.childUIPointerDown = function(event2) {
+      proto.childUIPointerDown = function (event2) {
         if (event2.type != "touchstart") {
           event2.preventDefault();
         }
         this.focus();
       };
-      proto.onresize = function() {
+      proto.onresize = function () {
         this.watchCSS();
         this.resize();
       };
       utils.debounceMethod(Flickity10, "onresize", 150);
-      proto.resize = function() {
+      proto.resize = function () {
         if (!this.isActive) {
           return;
         }
@@ -1442,7 +1442,7 @@ var require_flickity = __commonJS({
         var selectedElement = this.selectedElements && this.selectedElements[0];
         this.selectCell(selectedElement, false, true);
       };
-      proto.watchCSS = function() {
+      proto.watchCSS = function () {
         var watchOption = this.options.watchCSS;
         if (!watchOption) {
           return;
@@ -1454,7 +1454,7 @@ var require_flickity = __commonJS({
           this.deactivate();
         }
       };
-      proto.onkeydown = function(event2) {
+      proto.onkeydown = function (event2) {
         var isNotFocused = document.activeElement && document.activeElement != this.element;
         if (!this.options.accessibility || isNotFocused) {
           return;
@@ -1466,33 +1466,33 @@ var require_flickity = __commonJS({
       };
       Flickity10.keyboardHandlers = {
         // left arrow
-        37: function() {
+        37: function () {
           var leftMethod = this.options.rightToLeft ? "next" : "previous";
           this.uiChange();
           this[leftMethod]();
         },
         // right arrow
-        39: function() {
+        39: function () {
           var rightMethod = this.options.rightToLeft ? "previous" : "next";
           this.uiChange();
           this[rightMethod]();
         }
       };
-      proto.focus = function() {
+      proto.focus = function () {
         var prevScrollY = window2.pageYOffset;
         this.element.focus({ preventScroll: true });
         if (window2.pageYOffset != prevScrollY) {
           window2.scrollTo(window2.pageXOffset, prevScrollY);
         }
       };
-      proto.deactivate = function() {
+      proto.deactivate = function () {
         if (!this.isActive) {
           return;
         }
         this.element.classList.remove("flickity-enabled");
         this.element.classList.remove("flickity-rtl");
         this.unselectSelectedSlide();
-        this.cells.forEach(function(cell) {
+        this.cells.forEach(function (cell) {
           cell.destroy();
         });
         this.element.removeChild(this.viewport);
@@ -1504,7 +1504,7 @@ var require_flickity = __commonJS({
         this.isActive = false;
         this.emitEvent("deactivate");
       };
-      proto.destroy = function() {
+      proto.destroy = function () {
         this.deactivate();
         window2.removeEventListener("resize", this);
         this.allOff();
@@ -1516,7 +1516,7 @@ var require_flickity = __commonJS({
         delete instances[this.guid];
       };
       utils.extend(proto, animatePrototype);
-      Flickity10.data = function(elem) {
+      Flickity10.data = function (elem) {
         elem = utils.getQueryElement(elem);
         var id = elem && elem.flickityGUID;
         return id && instances[id];
@@ -1525,7 +1525,7 @@ var require_flickity = __commonJS({
       if (jQuery && jQuery.bridget) {
         jQuery.bridget("flickity", Flickity10);
       }
-      Flickity10.setJQuery = function(jq) {
+      Flickity10.setJQuery = function (jq) {
         jQuery = jq;
       };
       Flickity10.Cell = Cell;
@@ -1538,11 +1538,11 @@ var require_flickity = __commonJS({
 // node_modules/unipointer/unipointer.js
 var require_unipointer = __commonJS({
   "node_modules/unipointer/unipointer.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "ev-emitter/ev-emitter"
-        ], function(EvEmitter) {
+        ], function (EvEmitter) {
           return factory(window2, EvEmitter);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -1563,13 +1563,13 @@ var require_unipointer = __commonJS({
       function Unipointer() {
       }
       var proto = Unipointer.prototype = Object.create(EvEmitter.prototype);
-      proto.bindStartEvent = function(elem) {
+      proto.bindStartEvent = function (elem) {
         this._bindStartEvent(elem, true);
       };
-      proto.unbindStartEvent = function(elem) {
+      proto.unbindStartEvent = function (elem) {
         this._bindStartEvent(elem, false);
       };
-      proto._bindStartEvent = function(elem, isAdd) {
+      proto._bindStartEvent = function (elem, isAdd) {
         isAdd = isAdd === void 0 ? true : isAdd;
         var bindMethod = isAdd ? "addEventListener" : "removeEventListener";
         var startEvent = "mousedown";
@@ -1580,13 +1580,13 @@ var require_unipointer = __commonJS({
         }
         elem[bindMethod](startEvent, this);
       };
-      proto.handleEvent = function(event2) {
+      proto.handleEvent = function (event2) {
         var method = "on" + event2.type;
         if (this[method]) {
           this[method](event2);
         }
       };
-      proto.getTouch = function(touches) {
+      proto.getTouch = function (touches) {
         for (var i = 0; i < touches.length; i++) {
           var touch = touches[i];
           if (touch.identifier == this.pointerIdentifier) {
@@ -1594,20 +1594,20 @@ var require_unipointer = __commonJS({
           }
         }
       };
-      proto.onmousedown = function(event2) {
+      proto.onmousedown = function (event2) {
         var button = event2.button;
         if (button && (button !== 0 && button !== 1)) {
           return;
         }
         this._pointerDown(event2, event2);
       };
-      proto.ontouchstart = function(event2) {
+      proto.ontouchstart = function (event2) {
         this._pointerDown(event2, event2.changedTouches[0]);
       };
-      proto.onpointerdown = function(event2) {
+      proto.onpointerdown = function (event2) {
         this._pointerDown(event2, event2);
       };
-      proto._pointerDown = function(event2, pointer) {
+      proto._pointerDown = function (event2, pointer) {
         if (event2.button || this.isPointerDown) {
           return;
         }
@@ -1618,7 +1618,7 @@ var require_unipointer = __commonJS({
         ) : pointer.identifier;
         this.pointerDown(event2, pointer);
       };
-      proto.pointerDown = function(event2, pointer) {
+      proto.pointerDown = function (event2, pointer) {
         this._bindPostStartEvents(event2);
         this.emitEvent("pointerDown", [event2, pointer]);
       };
@@ -1627,95 +1627,95 @@ var require_unipointer = __commonJS({
         touchstart: ["touchmove", "touchend", "touchcancel"],
         pointerdown: ["pointermove", "pointerup", "pointercancel"]
       };
-      proto._bindPostStartEvents = function(event2) {
+      proto._bindPostStartEvents = function (event2) {
         if (!event2) {
           return;
         }
         var events = postStartEvents[event2.type];
-        events.forEach(function(eventName) {
+        events.forEach(function (eventName) {
           window2.addEventListener(eventName, this);
         }, this);
         this._boundPointerEvents = events;
       };
-      proto._unbindPostStartEvents = function() {
+      proto._unbindPostStartEvents = function () {
         if (!this._boundPointerEvents) {
           return;
         }
-        this._boundPointerEvents.forEach(function(eventName) {
+        this._boundPointerEvents.forEach(function (eventName) {
           window2.removeEventListener(eventName, this);
         }, this);
         delete this._boundPointerEvents;
       };
-      proto.onmousemove = function(event2) {
+      proto.onmousemove = function (event2) {
         this._pointerMove(event2, event2);
       };
-      proto.onpointermove = function(event2) {
+      proto.onpointermove = function (event2) {
         if (event2.pointerId == this.pointerIdentifier) {
           this._pointerMove(event2, event2);
         }
       };
-      proto.ontouchmove = function(event2) {
+      proto.ontouchmove = function (event2) {
         var touch = this.getTouch(event2.changedTouches);
         if (touch) {
           this._pointerMove(event2, touch);
         }
       };
-      proto._pointerMove = function(event2, pointer) {
+      proto._pointerMove = function (event2, pointer) {
         this.pointerMove(event2, pointer);
       };
-      proto.pointerMove = function(event2, pointer) {
+      proto.pointerMove = function (event2, pointer) {
         this.emitEvent("pointerMove", [event2, pointer]);
       };
-      proto.onmouseup = function(event2) {
+      proto.onmouseup = function (event2) {
         this._pointerUp(event2, event2);
       };
-      proto.onpointerup = function(event2) {
+      proto.onpointerup = function (event2) {
         if (event2.pointerId == this.pointerIdentifier) {
           this._pointerUp(event2, event2);
         }
       };
-      proto.ontouchend = function(event2) {
+      proto.ontouchend = function (event2) {
         var touch = this.getTouch(event2.changedTouches);
         if (touch) {
           this._pointerUp(event2, touch);
         }
       };
-      proto._pointerUp = function(event2, pointer) {
+      proto._pointerUp = function (event2, pointer) {
         this._pointerDone();
         this.pointerUp(event2, pointer);
       };
-      proto.pointerUp = function(event2, pointer) {
+      proto.pointerUp = function (event2, pointer) {
         this.emitEvent("pointerUp", [event2, pointer]);
       };
-      proto._pointerDone = function() {
+      proto._pointerDone = function () {
         this._pointerReset();
         this._unbindPostStartEvents();
         this.pointerDone();
       };
-      proto._pointerReset = function() {
+      proto._pointerReset = function () {
         this.isPointerDown = false;
         delete this.pointerIdentifier;
       };
       proto.pointerDone = noop;
-      proto.onpointercancel = function(event2) {
+      proto.onpointercancel = function (event2) {
         if (event2.pointerId == this.pointerIdentifier) {
           this._pointerCancel(event2, event2);
         }
       };
-      proto.ontouchcancel = function(event2) {
+      proto.ontouchcancel = function (event2) {
         var touch = this.getTouch(event2.changedTouches);
         if (touch) {
           this._pointerCancel(event2, touch);
         }
       };
-      proto._pointerCancel = function(event2, pointer) {
+      proto._pointerCancel = function (event2, pointer) {
         this._pointerDone();
         this.pointerCancel(event2, pointer);
       };
-      proto.pointerCancel = function(event2, pointer) {
+      proto.pointerCancel = function (event2, pointer) {
         this.emitEvent("pointerCancel", [event2, pointer]);
       };
-      Unipointer.getPointerPoint = function(pointer) {
+      Unipointer.getPointerPoint = function (pointer) {
         return {
           x: pointer.pageX,
           y: pointer.pageY
@@ -1729,11 +1729,11 @@ var require_unipointer = __commonJS({
 // node_modules/unidragger/unidragger.js
 var require_unidragger = __commonJS({
   "node_modules/unidragger/unidragger.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "unipointer/unipointer"
-        ], function(Unipointer) {
+        ], function (Unipointer) {
           return factory(window2, Unipointer);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -1752,13 +1752,13 @@ var require_unidragger = __commonJS({
       function Unidragger() {
       }
       var proto = Unidragger.prototype = Object.create(Unipointer.prototype);
-      proto.bindHandles = function() {
+      proto.bindHandles = function () {
         this._bindHandles(true);
       };
-      proto.unbindHandles = function() {
+      proto.unbindHandles = function () {
         this._bindHandles(false);
       };
-      proto._bindHandles = function(isAdd) {
+      proto._bindHandles = function (isAdd) {
         isAdd = isAdd === void 0 ? true : isAdd;
         var bindMethod = isAdd ? "addEventListener" : "removeEventListener";
         var touchAction = isAdd ? this._touchActionValue : "";
@@ -1772,7 +1772,7 @@ var require_unidragger = __commonJS({
         }
       };
       proto._touchActionValue = "none";
-      proto.pointerDown = function(event2, pointer) {
+      proto.pointerDown = function (event2, pointer) {
         var isOkay = this.okayPointerDown(event2);
         if (!isOkay) {
           return;
@@ -1800,7 +1800,7 @@ var require_unidragger = __commonJS({
         image: true,
         file: true
       };
-      proto.okayPointerDown = function(event2) {
+      proto.okayPointerDown = function (event2) {
         var isCursorNode = cursorNodes[event2.target.nodeName];
         var isClickType = clickTypes[event2.target.type];
         var isOkay = !isCursorNode || isClickType;
@@ -1809,19 +1809,19 @@ var require_unidragger = __commonJS({
         }
         return isOkay;
       };
-      proto.pointerDownBlur = function() {
+      proto.pointerDownBlur = function () {
         var focused = document.activeElement;
         var canBlur = focused && focused.blur && focused != document.body;
         if (canBlur) {
           focused.blur();
         }
       };
-      proto.pointerMove = function(event2, pointer) {
+      proto.pointerMove = function (event2, pointer) {
         var moveVector = this._dragPointerMove(event2, pointer);
         this.emitEvent("pointerMove", [event2, pointer, moveVector]);
         this._dragMove(event2, pointer, moveVector);
       };
-      proto._dragPointerMove = function(event2, pointer) {
+      proto._dragPointerMove = function (event2, pointer) {
         var moveVector = {
           x: pointer.pageX - this.pointerDownPointer.pageX,
           y: pointer.pageY - this.pointerDownPointer.pageY
@@ -1831,66 +1831,66 @@ var require_unidragger = __commonJS({
         }
         return moveVector;
       };
-      proto.hasDragStarted = function(moveVector) {
+      proto.hasDragStarted = function (moveVector) {
         return Math.abs(moveVector.x) > 3 || Math.abs(moveVector.y) > 3;
       };
-      proto.pointerUp = function(event2, pointer) {
+      proto.pointerUp = function (event2, pointer) {
         this.emitEvent("pointerUp", [event2, pointer]);
         this._dragPointerUp(event2, pointer);
       };
-      proto._dragPointerUp = function(event2, pointer) {
+      proto._dragPointerUp = function (event2, pointer) {
         if (this.isDragging) {
           this._dragEnd(event2, pointer);
         } else {
           this._staticClick(event2, pointer);
         }
       };
-      proto._dragStart = function(event2, pointer) {
+      proto._dragStart = function (event2, pointer) {
         this.isDragging = true;
         this.isPreventingClicks = true;
         this.dragStart(event2, pointer);
       };
-      proto.dragStart = function(event2, pointer) {
+      proto.dragStart = function (event2, pointer) {
         this.emitEvent("dragStart", [event2, pointer]);
       };
-      proto._dragMove = function(event2, pointer, moveVector) {
+      proto._dragMove = function (event2, pointer, moveVector) {
         if (!this.isDragging) {
           return;
         }
         this.dragMove(event2, pointer, moveVector);
       };
-      proto.dragMove = function(event2, pointer, moveVector) {
+      proto.dragMove = function (event2, pointer, moveVector) {
         event2.preventDefault();
         this.emitEvent("dragMove", [event2, pointer, moveVector]);
       };
-      proto._dragEnd = function(event2, pointer) {
+      proto._dragEnd = function (event2, pointer) {
         this.isDragging = false;
-        setTimeout((function() {
+        setTimeout((function () {
           delete this.isPreventingClicks;
         }).bind(this));
         this.dragEnd(event2, pointer);
       };
-      proto.dragEnd = function(event2, pointer) {
+      proto.dragEnd = function (event2, pointer) {
         this.emitEvent("dragEnd", [event2, pointer]);
       };
-      proto.onclick = function(event2) {
+      proto.onclick = function (event2) {
         if (this.isPreventingClicks) {
           event2.preventDefault();
         }
       };
-      proto._staticClick = function(event2, pointer) {
+      proto._staticClick = function (event2, pointer) {
         if (this.isIgnoringMouseUp && event2.type == "mouseup") {
           return;
         }
         this.staticClick(event2, pointer);
         if (event2.type != "mouseup") {
           this.isIgnoringMouseUp = true;
-          setTimeout((function() {
+          setTimeout((function () {
             delete this.isIgnoringMouseUp;
           }).bind(this), 400);
         }
       };
-      proto.staticClick = function(event2, pointer) {
+      proto.staticClick = function (event2, pointer) {
         this.emitEvent("staticClick", [event2, pointer]);
       };
       Unidragger.getPointerPoint = Unipointer.getPointerPoint;
@@ -1902,13 +1902,13 @@ var require_unidragger = __commonJS({
 // node_modules/flickity/js/drag.js
 var require_drag = __commonJS({
   "node_modules/flickity/js/drag.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "./flickity",
           "unidragger/unidragger",
           "fizzy-ui-utils/utils"
-        ], function(Flickity10, Unidragger, utils) {
+        ], function (Flickity10, Unidragger, utils) {
           return factory(window2, Flickity10, Unidragger, utils);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -1938,27 +1938,27 @@ var require_drag = __commonJS({
       proto._touchActionValue = "pan-y";
       var isTouch = "createTouch" in document;
       var isTouchmoveScrollCanceled = false;
-      proto._createDrag = function() {
+      proto._createDrag = function () {
         this.on("activate", this.onActivateDrag);
         this.on("uiChange", this._uiChangeDrag);
         this.on("deactivate", this.onDeactivateDrag);
         this.on("cellChange", this.updateDraggable);
         if (isTouch && !isTouchmoveScrollCanceled) {
-          window2.addEventListener("touchmove", function() {
+          window2.addEventListener("touchmove", function () {
           });
           isTouchmoveScrollCanceled = true;
         }
       };
-      proto.onActivateDrag = function() {
+      proto.onActivateDrag = function () {
         this.handles = [this.viewport];
         this.bindHandles();
         this.updateDraggable();
       };
-      proto.onDeactivateDrag = function() {
+      proto.onDeactivateDrag = function () {
         this.unbindHandles();
         this.element.classList.remove("is-draggable");
       };
-      proto.updateDraggable = function() {
+      proto.updateDraggable = function () {
         if (this.options.draggable == ">1") {
           this.isDraggable = this.slides.length > 1;
         } else {
@@ -1970,18 +1970,18 @@ var require_drag = __commonJS({
           this.element.classList.remove("is-draggable");
         }
       };
-      proto.bindDrag = function() {
+      proto.bindDrag = function () {
         this.options.draggable = true;
         this.updateDraggable();
       };
-      proto.unbindDrag = function() {
+      proto.unbindDrag = function () {
         this.options.draggable = false;
         this.updateDraggable();
       };
-      proto._uiChangeDrag = function() {
+      proto._uiChangeDrag = function () {
         delete this.isFreeScrolling;
       };
-      proto.pointerDown = function(event2, pointer) {
+      proto.pointerDown = function (event2, pointer) {
         if (!this.isDraggable) {
           this._pointerDownDefault(event2, pointer);
           return;
@@ -2001,7 +2001,7 @@ var require_drag = __commonJS({
         window2.addEventListener("scroll", this);
         this._pointerDownDefault(event2, pointer);
       };
-      proto._pointerDownDefault = function(event2, pointer) {
+      proto._pointerDownDefault = function (event2, pointer) {
         this.pointerDownPointer = {
           pageX: pointer.pageX,
           pageY: pointer.pageY
@@ -2014,13 +2014,13 @@ var require_drag = __commonJS({
         TEXTAREA: true,
         SELECT: true
       };
-      proto.pointerDownFocus = function(event2) {
+      proto.pointerDownFocus = function (event2) {
         var isFocusNode = focusNodes[event2.target.nodeName];
         if (!isFocusNode) {
           this.focus();
         }
       };
-      proto._pointerDownPreventDefault = function(event2) {
+      proto._pointerDownPreventDefault = function (event2) {
         var isTouchStart = event2.type == "touchstart";
         var isTouchPointer = event2.pointerType == "touch";
         var isFocusNode = focusNodes[event2.target.nodeName];
@@ -2028,20 +2028,20 @@ var require_drag = __commonJS({
           event2.preventDefault();
         }
       };
-      proto.hasDragStarted = function(moveVector) {
+      proto.hasDragStarted = function (moveVector) {
         return Math.abs(moveVector.x) > this.options.dragThreshold;
       };
-      proto.pointerUp = function(event2, pointer) {
+      proto.pointerUp = function (event2, pointer) {
         delete this.isTouchScrolling;
         this.viewport.classList.remove("is-pointer-down");
         this.dispatchEvent("pointerUp", event2, [pointer]);
         this._dragPointerUp(event2, pointer);
       };
-      proto.pointerDone = function() {
+      proto.pointerDone = function () {
         window2.removeEventListener("scroll", this);
         delete this.pointerDownScroll;
       };
-      proto.dragStart = function(event2, pointer) {
+      proto.dragStart = function (event2, pointer) {
         if (!this.isDraggable) {
           return;
         }
@@ -2050,12 +2050,12 @@ var require_drag = __commonJS({
         window2.removeEventListener("scroll", this);
         this.dispatchEvent("dragStart", event2, [pointer]);
       };
-      proto.pointerMove = function(event2, pointer) {
+      proto.pointerMove = function (event2, pointer) {
         var moveVector = this._dragPointerMove(event2, pointer);
         this.dispatchEvent("pointerMove", event2, [pointer, moveVector]);
         this._dragMove(event2, pointer, moveVector);
       };
-      proto.dragMove = function(event2, pointer, moveVector) {
+      proto.dragMove = function (event2, pointer, moveVector) {
         if (!this.isDraggable) {
           return;
         }
@@ -2076,7 +2076,7 @@ var require_drag = __commonJS({
         this.dragMoveTime = /* @__PURE__ */ new Date();
         this.dispatchEvent("dragMove", event2, [pointer, moveVector]);
       };
-      proto.dragEnd = function(event2, pointer) {
+      proto.dragEnd = function (event2, pointer) {
         if (!this.isDraggable) {
           return;
         }
@@ -2096,7 +2096,7 @@ var require_drag = __commonJS({
         delete this.isDragSelect;
         this.dispatchEvent("dragEnd", event2, [pointer]);
       };
-      proto.dragEndRestingSelect = function() {
+      proto.dragEndRestingSelect = function () {
         var restingX = this.getRestingPosition();
         var distance = Math.abs(this.getSlideDistance(-restingX, this.selectedIndex));
         var positiveResting = this._getClosestResting(restingX, distance, 1);
@@ -2104,15 +2104,15 @@ var require_drag = __commonJS({
         var index = positiveResting.distance < negativeResting.distance ? positiveResting.index : negativeResting.index;
         return index;
       };
-      proto._getClosestResting = function(restingX, distance, increment) {
+      proto._getClosestResting = function (restingX, distance, increment) {
         var index = this.selectedIndex;
         var minDistance = Infinity;
         var condition = this.options.contain && !this.options.wrapAround ? (
           // if contain, keep going if distance is equal to minDistance
-          function(dist, minDist) {
+          function (dist, minDist) {
             return dist <= minDist;
           }
-        ) : function(dist, minDist) {
+        ) : function (dist, minDist) {
           return dist < minDist;
         };
         while (condition(distance, minDistance)) {
@@ -2130,7 +2130,7 @@ var require_drag = __commonJS({
           index: index - increment
         };
       };
-      proto.getSlideDistance = function(x, index) {
+      proto.getSlideDistance = function (x, index) {
         var len = this.slides.length;
         var isWrapAround = this.options.wrapAround && len > 1;
         var slideIndex = isWrapAround ? utils.modulo(index, len) : index;
@@ -2141,7 +2141,7 @@ var require_drag = __commonJS({
         var wrap = isWrapAround ? this.slideableWidth * Math.floor(index / len) : 0;
         return x - (slide.target + wrap);
       };
-      proto.dragEndBoostSelect = function() {
+      proto.dragEndBoostSelect = function () {
         if (this.previousDragX === void 0 || !this.dragMoveTime || // or if drag was held for 100 ms
         /* @__PURE__ */ new Date() - this.dragMoveTime > 100) {
           return 0;
@@ -2155,13 +2155,13 @@ var require_drag = __commonJS({
         }
         return 0;
       };
-      proto.staticClick = function(event2, pointer) {
+      proto.staticClick = function (event2, pointer) {
         var clickedCell = this.getParentCell(event2.target);
         var cellElem = clickedCell && clickedCell.element;
         var cellIndex = clickedCell && this.cells.indexOf(clickedCell);
         this.dispatchEvent("staticClick", event2, [pointer, cellElem, cellIndex]);
       };
-      proto.onscroll = function() {
+      proto.onscroll = function () {
         var scroll = getScrollPosition();
         var scrollMoveX = this.pointerDownScroll.x - scroll.x;
         var scrollMoveY = this.pointerDownScroll.y - scroll.y;
@@ -2183,13 +2183,13 @@ var require_drag = __commonJS({
 // node_modules/flickity/js/prev-next-button.js
 var require_prev_next_button = __commonJS({
   "node_modules/flickity/js/prev-next-button.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "./flickity",
           "unipointer/unipointer",
           "fizzy-ui-utils/utils"
-        ], function(Flickity10, Unipointer, utils) {
+        ], function (Flickity10, Unipointer, utils) {
           return factory(window2, Flickity10, Unipointer, utils);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -2216,7 +2216,7 @@ var require_prev_next_button = __commonJS({
         this._create();
       }
       PrevNextButton.prototype = Object.create(Unipointer.prototype);
-      PrevNextButton.prototype._create = function() {
+      PrevNextButton.prototype._create = function () {
         this.isEnabled = true;
         this.isPrevious = this.direction == -1;
         var leftDirection = this.parent.options.rightToLeft ? 1 : -1;
@@ -2232,17 +2232,17 @@ var require_prev_next_button = __commonJS({
         this.parent.on("select", this.update.bind(this));
         this.on("pointerDown", this.parent.childUIPointerDown.bind(this.parent));
       };
-      PrevNextButton.prototype.activate = function() {
+      PrevNextButton.prototype.activate = function () {
         this.bindStartEvent(this.element);
         this.element.addEventListener("click", this);
         this.parent.element.appendChild(this.element);
       };
-      PrevNextButton.prototype.deactivate = function() {
+      PrevNextButton.prototype.deactivate = function () {
         this.parent.element.removeChild(this.element);
         this.unbindStartEvent(this.element);
         this.element.removeEventListener("click", this);
       };
-      PrevNextButton.prototype.createSVG = function() {
+      PrevNextButton.prototype.createSVG = function () {
         var svg = document.createElementNS(svgURI, "svg");
         svg.setAttribute("class", "flickity-button-icon");
         svg.setAttribute("viewBox", "0 0 100 100");
@@ -2263,7 +2263,7 @@ var require_prev_next_button = __commonJS({
         return "M " + shape.x0 + ",50 L " + shape.x1 + "," + (shape.y1 + 50) + " L " + shape.x2 + "," + (shape.y2 + 50) + " L " + shape.x3 + ",50  L " + shape.x2 + "," + (50 - shape.y2) + " L " + shape.x1 + "," + (50 - shape.y1) + " Z";
       }
       PrevNextButton.prototype.handleEvent = utils.handleEvent;
-      PrevNextButton.prototype.onclick = function() {
+      PrevNextButton.prototype.onclick = function () {
         if (!this.isEnabled) {
           return;
         }
@@ -2271,21 +2271,21 @@ var require_prev_next_button = __commonJS({
         var method = this.isPrevious ? "previous" : "next";
         this.parent[method]();
       };
-      PrevNextButton.prototype.enable = function() {
+      PrevNextButton.prototype.enable = function () {
         if (this.isEnabled) {
           return;
         }
         this.element.disabled = false;
         this.isEnabled = true;
       };
-      PrevNextButton.prototype.disable = function() {
+      PrevNextButton.prototype.disable = function () {
         if (!this.isEnabled) {
           return;
         }
         this.element.disabled = true;
         this.isEnabled = false;
       };
-      PrevNextButton.prototype.update = function() {
+      PrevNextButton.prototype.update = function () {
         var slides = this.parent.slides;
         if (this.parent.options.wrapAround && slides.length > 1) {
           this.enable();
@@ -2296,7 +2296,7 @@ var require_prev_next_button = __commonJS({
         var method = this.parent.selectedIndex == boundIndex ? "disable" : "enable";
         this[method]();
       };
-      PrevNextButton.prototype.destroy = function() {
+      PrevNextButton.prototype.destroy = function () {
         this.deactivate();
         this.allOff();
       };
@@ -2313,7 +2313,7 @@ var require_prev_next_button = __commonJS({
       });
       Flickity10.createMethods.push("_createPrevNextButtons");
       var proto = Flickity10.prototype;
-      proto._createPrevNextButtons = function() {
+      proto._createPrevNextButtons = function () {
         if (!this.options.prevNextButtons) {
           return;
         }
@@ -2321,12 +2321,12 @@ var require_prev_next_button = __commonJS({
         this.nextButton = new PrevNextButton(1, this);
         this.on("activate", this.activatePrevNextButtons);
       };
-      proto.activatePrevNextButtons = function() {
+      proto.activatePrevNextButtons = function () {
         this.prevButton.activate();
         this.nextButton.activate();
         this.on("deactivate", this.deactivatePrevNextButtons);
       };
-      proto.deactivatePrevNextButtons = function() {
+      proto.deactivatePrevNextButtons = function () {
         this.prevButton.deactivate();
         this.nextButton.deactivate();
         this.off("deactivate", this.deactivatePrevNextButtons);
@@ -2340,13 +2340,13 @@ var require_prev_next_button = __commonJS({
 // node_modules/flickity/js/page-dots.js
 var require_page_dots = __commonJS({
   "node_modules/flickity/js/page-dots.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "./flickity",
           "unipointer/unipointer",
           "fizzy-ui-utils/utils"
-        ], function(Flickity10, Unipointer, utils) {
+        ], function (Flickity10, Unipointer, utils) {
           return factory(window2, Flickity10, Unipointer, utils);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -2371,25 +2371,25 @@ var require_page_dots = __commonJS({
         this._create();
       }
       PageDots.prototype = Object.create(Unipointer.prototype);
-      PageDots.prototype._create = function() {
+      PageDots.prototype._create = function () {
         this.holder = document.createElement("ol");
         this.holder.className = "flickity-page-dots";
         this.dots = [];
         this.handleClick = this.onClick.bind(this);
         this.on("pointerDown", this.parent.childUIPointerDown.bind(this.parent));
       };
-      PageDots.prototype.activate = function() {
+      PageDots.prototype.activate = function () {
         this.setDots();
         this.holder.addEventListener("click", this.handleClick);
         this.bindStartEvent(this.holder);
         this.parent.element.appendChild(this.holder);
       };
-      PageDots.prototype.deactivate = function() {
+      PageDots.prototype.deactivate = function () {
         this.holder.removeEventListener("click", this.handleClick);
         this.unbindStartEvent(this.holder);
         this.parent.element.removeChild(this.holder);
       };
-      PageDots.prototype.setDots = function() {
+      PageDots.prototype.setDots = function () {
         var delta = this.parent.slides.length - this.dots.length;
         if (delta > 0) {
           this.addDots(delta);
@@ -2397,7 +2397,7 @@ var require_page_dots = __commonJS({
           this.removeDots(-delta);
         }
       };
-      PageDots.prototype.addDots = function(count) {
+      PageDots.prototype.addDots = function (count) {
         var fragment = document.createDocumentFragment();
         var newDots = [];
         var length = this.dots.length;
@@ -2412,13 +2412,13 @@ var require_page_dots = __commonJS({
         this.holder.appendChild(fragment);
         this.dots = this.dots.concat(newDots);
       };
-      PageDots.prototype.removeDots = function(count) {
+      PageDots.prototype.removeDots = function (count) {
         var removeDots = this.dots.splice(this.dots.length - count, count);
-        removeDots.forEach(function(dot) {
+        removeDots.forEach(function (dot) {
           this.holder.removeChild(dot);
         }, this);
       };
-      PageDots.prototype.updateSelected = function() {
+      PageDots.prototype.updateSelected = function () {
         if (this.selectedDot) {
           this.selectedDot.className = "dot";
           this.selectedDot.removeAttribute("aria-current");
@@ -2431,16 +2431,16 @@ var require_page_dots = __commonJS({
         this.selectedDot.setAttribute("aria-current", "step");
       };
       PageDots.prototype.onTap = // old method name, backwards-compatible
-      PageDots.prototype.onClick = function(event2) {
-        var target = event2.target;
-        if (target.nodeName != "LI") {
-          return;
-        }
-        this.parent.uiChange();
-        var index = this.dots.indexOf(target);
-        this.parent.select(index);
-      };
-      PageDots.prototype.destroy = function() {
+        PageDots.prototype.onClick = function (event2) {
+          var target = event2.target;
+          if (target.nodeName != "LI") {
+            return;
+          }
+          this.parent.uiChange();
+          var index = this.dots.indexOf(target);
+          this.parent.select(index);
+        };
+      PageDots.prototype.destroy = function () {
         this.deactivate();
         this.allOff();
       };
@@ -2450,7 +2450,7 @@ var require_page_dots = __commonJS({
       });
       Flickity10.createMethods.push("_createPageDots");
       var proto = Flickity10.prototype;
-      proto._createPageDots = function() {
+      proto._createPageDots = function () {
         if (!this.options.pageDots) {
           return;
         }
@@ -2461,16 +2461,16 @@ var require_page_dots = __commonJS({
         this.on("resize", this.updatePageDots);
         this.on("deactivate", this.deactivatePageDots);
       };
-      proto.activatePageDots = function() {
+      proto.activatePageDots = function () {
         this.pageDots.activate();
       };
-      proto.updateSelectedPageDots = function() {
+      proto.updateSelectedPageDots = function () {
         this.pageDots.updateSelected();
       };
-      proto.updatePageDots = function() {
+      proto.updatePageDots = function () {
         this.pageDots.setDots();
       };
-      proto.deactivatePageDots = function() {
+      proto.deactivatePageDots = function () {
         this.pageDots.deactivate();
       };
       Flickity10.PageDots = PageDots;
@@ -2482,13 +2482,13 @@ var require_page_dots = __commonJS({
 // node_modules/flickity/js/player.js
 var require_player = __commonJS({
   "node_modules/flickity/js/player.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "ev-emitter/ev-emitter",
           "fizzy-ui-utils/utils",
           "./flickity"
-        ], function(EvEmitter, utils, Flickity10) {
+        ], function (EvEmitter, utils, Flickity10) {
           return factory(EvEmitter, utils, Flickity10);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -2513,7 +2513,7 @@ var require_player = __commonJS({
         this.onVisibilityPlay = this.visibilityPlay.bind(this);
       }
       Player.prototype = Object.create(EvEmitter.prototype);
-      Player.prototype.play = function() {
+      Player.prototype.play = function () {
         if (this.state == "playing") {
           return;
         }
@@ -2526,7 +2526,7 @@ var require_player = __commonJS({
         document.addEventListener("visibilitychange", this.onVisibilityChange);
         this.tick();
       };
-      Player.prototype.tick = function() {
+      Player.prototype.tick = function () {
         if (this.state != "playing") {
           return;
         }
@@ -2534,35 +2534,35 @@ var require_player = __commonJS({
         time = typeof time == "number" ? time : 3e3;
         var _this = this;
         this.clear();
-        this.timeout = setTimeout(function() {
+        this.timeout = setTimeout(function () {
           _this.parent.next(true);
           _this.tick();
         }, time);
       };
-      Player.prototype.stop = function() {
+      Player.prototype.stop = function () {
         this.state = "stopped";
         this.clear();
         document.removeEventListener("visibilitychange", this.onVisibilityChange);
       };
-      Player.prototype.clear = function() {
+      Player.prototype.clear = function () {
         clearTimeout(this.timeout);
       };
-      Player.prototype.pause = function() {
+      Player.prototype.pause = function () {
         if (this.state == "playing") {
           this.state = "paused";
           this.clear();
         }
       };
-      Player.prototype.unpause = function() {
+      Player.prototype.unpause = function () {
         if (this.state == "paused") {
           this.play();
         }
       };
-      Player.prototype.visibilityChange = function() {
+      Player.prototype.visibilityChange = function () {
         var isPageHidden = document.hidden;
         this[isPageHidden ? "pause" : "unpause"]();
       };
-      Player.prototype.visibilityPlay = function() {
+      Player.prototype.visibilityPlay = function () {
         this.play();
         document.removeEventListener("visibilitychange", this.onVisibilityPlay);
       };
@@ -2571,44 +2571,44 @@ var require_player = __commonJS({
       });
       Flickity10.createMethods.push("_createPlayer");
       var proto = Flickity10.prototype;
-      proto._createPlayer = function() {
+      proto._createPlayer = function () {
         this.player = new Player(this);
         this.on("activate", this.activatePlayer);
         this.on("uiChange", this.stopPlayer);
         this.on("pointerDown", this.stopPlayer);
         this.on("deactivate", this.deactivatePlayer);
       };
-      proto.activatePlayer = function() {
+      proto.activatePlayer = function () {
         if (!this.options.autoPlay) {
           return;
         }
         this.player.play();
         this.element.addEventListener("mouseenter", this);
       };
-      proto.playPlayer = function() {
+      proto.playPlayer = function () {
         this.player.play();
       };
-      proto.stopPlayer = function() {
+      proto.stopPlayer = function () {
         this.player.stop();
       };
-      proto.pausePlayer = function() {
+      proto.pausePlayer = function () {
         this.player.pause();
       };
-      proto.unpausePlayer = function() {
+      proto.unpausePlayer = function () {
         this.player.unpause();
       };
-      proto.deactivatePlayer = function() {
+      proto.deactivatePlayer = function () {
         this.player.stop();
         this.element.removeEventListener("mouseenter", this);
       };
-      proto.onmouseenter = function() {
+      proto.onmouseenter = function () {
         if (!this.options.pauseAutoPlayOnHover) {
           return;
         }
         this.player.pause();
         this.element.addEventListener("mouseleave", this);
       };
-      proto.onmouseleave = function() {
+      proto.onmouseleave = function () {
         this.player.unpause();
         this.element.removeEventListener("mouseleave", this);
       };
@@ -2621,12 +2621,12 @@ var require_player = __commonJS({
 // node_modules/flickity/js/add-remove-cell.js
 var require_add_remove_cell = __commonJS({
   "node_modules/flickity/js/add-remove-cell.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "./flickity",
           "fizzy-ui-utils/utils"
-        ], function(Flickity10, utils) {
+        ], function (Flickity10, utils) {
           return factory(window2, Flickity10, utils);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -2646,13 +2646,13 @@ var require_add_remove_cell = __commonJS({
       "use strict";
       function getCellsFragment(cells) {
         var fragment = document.createDocumentFragment();
-        cells.forEach(function(cell) {
+        cells.forEach(function (cell) {
           fragment.appendChild(cell.element);
         });
         return fragment;
       }
       var proto = Flickity10.prototype;
-      proto.insert = function(elems, index) {
+      proto.insert = function (elems, index) {
         var cells = this._makeCells(elems);
         if (!cells || !cells.length) {
           return;
@@ -2678,19 +2678,19 @@ var require_add_remove_cell = __commonJS({
         this._sizeCells(cells);
         this.cellChange(index, true);
       };
-      proto.append = function(elems) {
+      proto.append = function (elems) {
         this.insert(elems, this.cells.length);
       };
-      proto.prepend = function(elems) {
+      proto.prepend = function (elems) {
         this.insert(elems, 0);
       };
-      proto.remove = function(elems) {
+      proto.remove = function (elems) {
         var cells = this.getCells(elems);
         if (!cells || !cells.length) {
           return;
         }
         var minCellIndex = this.cells.length - 1;
-        cells.forEach(function(cell) {
+        cells.forEach(function (cell) {
           cell.remove();
           var index = this.cells.indexOf(cell);
           minCellIndex = Math.min(index, minCellIndex);
@@ -2698,7 +2698,7 @@ var require_add_remove_cell = __commonJS({
         }, this);
         this.cellChange(minCellIndex, true);
       };
-      proto.cellSizeChange = function(elem) {
+      proto.cellSizeChange = function (elem) {
         var cell = this.getCell(elem);
         if (!cell) {
           return;
@@ -2707,7 +2707,7 @@ var require_add_remove_cell = __commonJS({
         var index = this.cells.indexOf(cell);
         this.cellChange(index);
       };
-      proto.cellChange = function(changedCellIndex, isPositioningSlider) {
+      proto.cellChange = function (changedCellIndex, isPositioningSlider) {
         var prevSelectedElem = this.selectedElement;
         this._positionCells(changedCellIndex);
         this._getWrapShiftCells();
@@ -2731,12 +2731,12 @@ var require_add_remove_cell = __commonJS({
 // node_modules/flickity/js/lazyload.js
 var require_lazyload = __commonJS({
   "node_modules/flickity/js/lazyload.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "./flickity",
           "fizzy-ui-utils/utils"
-        ], function(Flickity10, utils) {
+        ], function (Flickity10, utils) {
           return factory(window2, Flickity10, utils);
         });
       } else if (typeof module == "object" && module.exports) {
@@ -2756,10 +2756,10 @@ var require_lazyload = __commonJS({
       "use strict";
       Flickity10.createMethods.push("_createLazyload");
       var proto = Flickity10.prototype;
-      proto._createLazyload = function() {
+      proto._createLazyload = function () {
         this.on("select", this.lazyLoad);
       };
-      proto.lazyLoad = function() {
+      proto.lazyLoad = function () {
         var lazyLoad = this.options.lazyLoad;
         if (!lazyLoad) {
           return;
@@ -2767,11 +2767,11 @@ var require_lazyload = __commonJS({
         var adjCount = typeof lazyLoad == "number" ? lazyLoad : 0;
         var cellElems = this.getAdjacentCellElements(adjCount);
         var lazyImages = [];
-        cellElems.forEach(function(cellElem) {
+        cellElems.forEach(function (cellElem) {
           var lazyCellImages = getCellLazyImages(cellElem);
           lazyImages = lazyImages.concat(lazyCellImages);
         });
-        lazyImages.forEach(function(img) {
+        lazyImages.forEach(function (img) {
           new LazyLoader(img, this);
         }, this);
       };
@@ -2794,7 +2794,7 @@ var require_lazyload = __commonJS({
         this.load();
       }
       LazyLoader.prototype.handleEvent = utils.handleEvent;
-      LazyLoader.prototype.load = function() {
+      LazyLoader.prototype.load = function () {
         this.img.addEventListener("load", this);
         this.img.addEventListener("error", this);
         var src = this.img.getAttribute("data-flickity-lazyload") || this.img.getAttribute("data-flickity-lazyload-src");
@@ -2807,13 +2807,13 @@ var require_lazyload = __commonJS({
         this.img.removeAttribute("data-flickity-lazyload-src");
         this.img.removeAttribute("data-flickity-lazyload-srcset");
       };
-      LazyLoader.prototype.onload = function(event2) {
+      LazyLoader.prototype.onload = function (event2) {
         this.complete(event2, "flickity-lazyloaded");
       };
-      LazyLoader.prototype.onerror = function(event2) {
+      LazyLoader.prototype.onerror = function (event2) {
         this.complete(event2, "flickity-lazyerror");
       };
-      LazyLoader.prototype.complete = function(event2, className) {
+      LazyLoader.prototype.complete = function (event2, className) {
         this.img.removeEventListener("load", this);
         this.img.removeEventListener("error", this);
         var cell = this.flickity.getParentCell(this.img);
@@ -2831,7 +2831,7 @@ var require_lazyload = __commonJS({
 // node_modules/flickity/js/index.js
 var require_js = __commonJS({
   "node_modules/flickity/js/index.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "./flickity",
@@ -2862,7 +2862,7 @@ var require_js = __commonJS({
 // node_modules/flickity-fade/flickity-fade.js
 var require_flickity_fade = __commonJS({
   "node_modules/flickity-fade/flickity-fade.js"(exports, module) {
-    (function(window2, factory) {
+    (function (window2, factory) {
       if (typeof define == "function" && define.amd) {
         define([
           "flickity/js/index",
@@ -2882,26 +2882,26 @@ var require_flickity_fade = __commonJS({
     })(exports, function factory(Flickity10, utils) {
       var Slide = Flickity10.Slide;
       var slideUpdateTarget = Slide.prototype.updateTarget;
-      Slide.prototype.updateTarget = function() {
+      Slide.prototype.updateTarget = function () {
         slideUpdateTarget.apply(this, arguments);
         if (!this.parent.options.fade) {
           return;
         }
         var slideTargetX = this.target - this.x;
         var firstCellX = this.cells[0].x;
-        this.cells.forEach(function(cell) {
+        this.cells.forEach(function (cell) {
           var targetX = cell.x - firstCellX - slideTargetX;
           cell.renderPosition(targetX);
         });
       };
-      Slide.prototype.setOpacity = function(alpha) {
-        this.cells.forEach(function(cell) {
+      Slide.prototype.setOpacity = function (alpha) {
+        this.cells.forEach(function (cell) {
           cell.element.style.opacity = alpha;
         });
       };
       var proto = Flickity10.prototype;
       Flickity10.createMethods.push("_createFade");
-      proto._createFade = function() {
+      proto._createFade = function () {
         this.fadeIndex = this.selectedIndex;
         this.prevSelectedIndex = this.selectedIndex;
         this.on("select", this.onSelectFade);
@@ -2911,21 +2911,21 @@ var require_flickity_fade = __commonJS({
         this.on("deactivate", this.onDeactivateFade);
       };
       var updateSlides = proto.updateSlides;
-      proto.updateSlides = function() {
+      proto.updateSlides = function () {
         updateSlides.apply(this, arguments);
         if (!this.options.fade) {
           return;
         }
-        this.slides.forEach(function(slide, i) {
+        this.slides.forEach(function (slide, i) {
           var alpha = i == this.selectedIndex ? 1 : 0;
           slide.setOpacity(alpha);
         }, this);
       };
-      proto.onSelectFade = function() {
+      proto.onSelectFade = function () {
         this.fadeIndex = Math.min(this.prevSelectedIndex, this.slides.length - 1);
         this.prevSelectedIndex = this.selectedIndex;
       };
-      proto.onSettleFade = function() {
+      proto.onSettleFade = function () {
         delete this.didDragEnd;
         if (!this.options.fade) {
           return;
@@ -2936,25 +2936,25 @@ var require_flickity_fade = __commonJS({
           this.slides[this.fadeIndex].setOpacity(0);
         }
       };
-      proto.onDragEndFade = function() {
+      proto.onDragEndFade = function () {
         this.didDragEnd = true;
       };
-      proto.onActivateFade = function() {
+      proto.onActivateFade = function () {
         if (this.options.fade) {
           this.element.classList.add("is-fade");
         }
       };
-      proto.onDeactivateFade = function() {
+      proto.onDeactivateFade = function () {
         if (!this.options.fade) {
           return;
         }
         this.element.classList.remove("is-fade");
-        this.slides.forEach(function(slide) {
+        this.slides.forEach(function (slide) {
           slide.setOpacity("");
         });
       };
       var positionSlider = proto.positionSlider;
-      proto.positionSlider = function() {
+      proto.positionSlider = function () {
         if (!this.options.fade) {
           positionSlider.apply(this, arguments);
           return;
@@ -2963,13 +2963,13 @@ var require_flickity_fade = __commonJS({
         this.dispatchScrollEvent();
       };
       var positionSliderAtSelected = proto.positionSliderAtSelected;
-      proto.positionSliderAtSelected = function() {
+      proto.positionSliderAtSelected = function () {
         if (this.options.fade) {
           this.setTranslateX(0);
         }
         positionSliderAtSelected.apply(this, arguments);
       };
-      proto.fadeSlides = function() {
+      proto.fadeSlides = function () {
         if (this.slides.length < 2) {
           return;
         }
@@ -2991,7 +2991,7 @@ var require_flickity_fade = __commonJS({
         }
         this.fadeHideIndex = fadeHideIndex;
       };
-      proto.getFadeIndexes = function() {
+      proto.getFadeIndexes = function () {
         if (!this.isDragging && !this.didDragEnd) {
           return {
             a: this.fadeIndex,
@@ -3004,11 +3004,11 @@ var require_flickity_fade = __commonJS({
           return this.getFadeDragLimitIndexes();
         }
       };
-      proto.getFadeDragWrapIndexes = function() {
-        var distances = this.slides.map(function(slide, i) {
+      proto.getFadeDragWrapIndexes = function () {
+        var distances = this.slides.map(function (slide, i) {
           return this.getSlideDistance(-this.x, i);
         }, this);
-        var absDistances = distances.map(function(distance2) {
+        var absDistances = distances.map(function (distance2) {
           return Math.abs(distance2);
         });
         var minDistance = Math.min.apply(Math, absDistances);
@@ -3021,7 +3021,7 @@ var require_flickity_fade = __commonJS({
           b: utils.modulo(closestIndex + delta, len)
         };
       };
-      proto.getFadeDragLimitIndexes = function() {
+      proto.getFadeDragLimitIndexes = function () {
         var dragIndex = 0;
         for (var i = 0; i < this.slides.length - 1; i++) {
           var slide = this.slides[i];
@@ -3035,7 +3035,7 @@ var require_flickity_fade = __commonJS({
           b: dragIndex + 1
         };
       };
-      proto.wrapDifference = function(a, b) {
+      proto.wrapDifference = function (a, b) {
         var diff = b - a;
         if (!this.options.wrapAround) {
           return diff;
@@ -3051,13 +3051,13 @@ var require_flickity_fade = __commonJS({
         return diff;
       };
       var _getWrapShiftCells = proto._getWrapShiftCells;
-      proto._getWrapShiftCells = function() {
+      proto._getWrapShiftCells = function () {
         if (!this.options.fade) {
           _getWrapShiftCells.apply(this, arguments);
         }
       };
       var shiftWrapCells = proto.shiftWrapCells;
-      proto.shiftWrapCells = function() {
+      proto.shiftWrapCells = function () {
         if (!this.options.fade) {
           shiftWrapCells.apply(this, arguments);
         }
@@ -3070,7 +3070,7 @@ var require_flickity_fade = __commonJS({
 // node_modules/photoswipe/dist/photoswipe.js
 var require_photoswipe = __commonJS({
   "node_modules/photoswipe/dist/photoswipe.js"(exports, module) {
-    (function(root, factory) {
+    (function (root, factory) {
       if (typeof define === "function" && define.amd) {
         define(factory);
       } else if (typeof exports === "object") {
@@ -3078,12 +3078,12 @@ var require_photoswipe = __commonJS({
       } else {
         root.PhotoSwipe = factory();
       }
-    })(exports, function() {
+    })(exports, function () {
       "use strict";
-      var PhotoSwipe2 = function(template, UiClass, items, options) {
+      var PhotoSwipe2 = function (template, UiClass, items, options) {
         var framework = {
           features: null,
-          bind: function(target, type, listener, unbind) {
+          bind: function (target, type, listener, unbind) {
             var methodName = (unbind ? "remove" : "add") + "EventListener";
             type = type.split(" ");
             for (var i = 0; i < type.length; i++) {
@@ -3092,36 +3092,36 @@ var require_photoswipe = __commonJS({
               }
             }
           },
-          isArray: function(obj) {
+          isArray: function (obj) {
             return obj instanceof Array;
           },
-          createEl: function(classes, tag) {
+          createEl: function (classes, tag) {
             var el = document.createElement(tag || "div");
             if (classes) {
               el.className = classes;
             }
             return el;
           },
-          getScrollY: function() {
+          getScrollY: function () {
             var yOffset = window.pageYOffset;
             return yOffset !== void 0 ? yOffset : document.documentElement.scrollTop;
           },
-          unbind: function(target, type, listener) {
+          unbind: function (target, type, listener) {
             framework.bind(target, type, listener, true);
           },
-          removeClass: function(el, className) {
+          removeClass: function (el, className) {
             var reg = new RegExp("(\\s|^)" + className + "(\\s|$)");
             el.className = el.className.replace(reg, " ").replace(/^\s\s*/, "").replace(/\s\s*$/, "");
           },
-          addClass: function(el, className) {
+          addClass: function (el, className) {
             if (!framework.hasClass(el, className)) {
               el.className += (el.className ? " " : "") + className;
             }
           },
-          hasClass: function(el, className) {
+          hasClass: function (el, className) {
             return el.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(el.className);
           },
-          getChildByClass: function(parentEl, childClassName) {
+          getChildByClass: function (parentEl, childClassName) {
             var node = parentEl.firstChild;
             while (node) {
               if (framework.hasClass(node, childClassName)) {
@@ -3130,7 +3130,7 @@ var require_photoswipe = __commonJS({
               node = node.nextSibling;
             }
           },
-          arraySearch: function(array, value, key) {
+          arraySearch: function (array, value, key) {
             var i = array.length;
             while (i--) {
               if (array[i][key] === value) {
@@ -3139,7 +3139,7 @@ var require_photoswipe = __commonJS({
             }
             return -1;
           },
-          extend: function(o1, o2, preventOverwrite) {
+          extend: function (o1, o2, preventOverwrite) {
             for (var prop in o2) {
               if (o2.hasOwnProperty(prop)) {
                 if (preventOverwrite && o1.hasOwnProperty(prop)) {
@@ -3151,38 +3151,38 @@ var require_photoswipe = __commonJS({
           },
           easing: {
             sine: {
-              out: function(k) {
+              out: function (k) {
                 return Math.sin(k * (Math.PI / 2));
               },
-              inOut: function(k) {
+              inOut: function (k) {
                 return -(Math.cos(Math.PI * k) - 1) / 2;
               }
             },
             cubic: {
-              out: function(k) {
+              out: function (k) {
                 return --k * k * k + 1;
               }
             }
             /*
-            			elastic: {
-            				out: function ( k ) {
+                  elastic: {
+                    out: function ( k ) {
             
-            					var s, a = 0.1, p = 0.4;
-            					if ( k === 0 ) return 0;
-            					if ( k === 1 ) return 1;
-            					if ( !a || a < 1 ) { a = 1; s = p / 4; }
-            					else s = p * Math.asin( 1 / a ) / ( 2 * Math.PI );
-            					return ( a * Math.pow( 2, - 10 * k) * Math.sin( ( k - s ) * ( 2 * Math.PI ) / p ) + 1 );
+                      var s, a = 0.1, p = 0.4;
+                      if ( k === 0 ) return 0;
+                      if ( k === 1 ) return 1;
+                      if ( !a || a < 1 ) { a = 1; s = p / 4; }
+                      else s = p * Math.asin( 1 / a ) / ( 2 * Math.PI );
+                      return ( a * Math.pow( 2, - 10 * k) * Math.sin( ( k - s ) * ( 2 * Math.PI ) / p ) + 1 );
             
-            				},
-            			},
-            			back: {
-            				out: function ( k ) {
-            					var s = 1.70158;
-            					return --k * k * ( ( s + 1 ) * k + s ) + 1;
-            				}
-            			}
-            		*/
+                    },
+                  },
+                  back: {
+                    out: function ( k ) {
+                      var s = 1.70158;
+                      return --k * k * ( ( s + 1 ) * k + s ) + 1;
+                    }
+                  }
+                */
           },
           /**
            * 
@@ -3196,7 +3196,7 @@ var require_photoswipe = __commonJS({
            * }
            * 
            */
-          detectFeatures: function() {
+          detectFeatures: function () {
             if (framework.features) {
               return framework.features;
             }
@@ -3250,16 +3250,16 @@ var require_photoswipe = __commonJS({
             }
             if (!features.raf) {
               var lastTime = 0;
-              features.raf = function(fn) {
+              features.raf = function (fn) {
                 var currTime = (/* @__PURE__ */ new Date()).getTime();
                 var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() {
+                var id = window.setTimeout(function () {
                   fn(currTime + timeToCall);
                 }, timeToCall);
                 lastTime = currTime + timeToCall;
                 return id;
               };
-              features.caf = function(id) {
+              features.caf = function (id) {
                 clearTimeout(id);
               };
             }
@@ -3270,9 +3270,9 @@ var require_photoswipe = __commonJS({
         };
         framework.detectFeatures();
         if (framework.features.oldIE) {
-          framework.bind = function(target, type, listener, unbind) {
+          framework.bind = function (target, type, listener, unbind) {
             type = type.split(" ");
-            var methodName = (unbind ? "detach" : "attach") + "Event", evName, _handleEv = function() {
+            var methodName = (unbind ? "detach" : "attach") + "Event", evName, _handleEv = function () {
               listener.handleEvent.call(listener);
             };
             for (var i = 0; i < type.length; i++) {
@@ -3314,10 +3314,10 @@ var require_photoswipe = __commonJS({
           arrowKeys: true,
           mainScrollEndFriction: 0.35,
           panEndFriction: 0.35,
-          isClickableElement: function(el) {
+          isClickableElement: function (el) {
             return el.tagName === "A";
           },
-          getDoubleTapZoom: function(isMouseClick, item) {
+          getDoubleTapZoom: function (isMouseClick, item) {
             if (isMouseClick) {
               return 1;
             } else {
@@ -3331,13 +3331,13 @@ var require_photoswipe = __commonJS({
           // TODO
         };
         framework.extend(_options, options);
-        var _getEmptyPoint = function() {
+        var _getEmptyPoint = function () {
           return { x: 0, y: 0 };
         };
-        var _isOpen, _isDestroying, _closedByScroll, _currentItemIndex, _containerStyle, _containerShiftIndex, _currPanDist = _getEmptyPoint(), _startPanOffset = _getEmptyPoint(), _panOffset = _getEmptyPoint(), _upMoveEvents, _downEvents, _globalEventHandlers, _viewportSize = {}, _currZoomLevel, _startZoomLevel, _translatePrefix, _translateSufix, _updateSizeInterval, _itemsNeedUpdate, _currPositionIndex = 0, _offset = {}, _slideSize = _getEmptyPoint(), _itemHolders, _prevItemIndex, _indexDiff = 0, _dragStartEvent, _dragMoveEvent, _dragEndEvent, _dragCancelEvent, _transformKey, _pointerEventEnabled, _isFixedPosition = true, _likelyTouchDevice, _modules = [], _requestAF, _cancelAF, _initalClassName, _initalWindowScrollY, _oldIE, _currentWindowScrollY, _features, _windowVisibleSize = {}, _renderMaxResolution = false, _orientationChangeTimeout, _registerModule = function(name, module2) {
+        var _isOpen, _isDestroying, _closedByScroll, _currentItemIndex, _containerStyle, _containerShiftIndex, _currPanDist = _getEmptyPoint(), _startPanOffset = _getEmptyPoint(), _panOffset = _getEmptyPoint(), _upMoveEvents, _downEvents, _globalEventHandlers, _viewportSize = {}, _currZoomLevel, _startZoomLevel, _translatePrefix, _translateSufix, _updateSizeInterval, _itemsNeedUpdate, _currPositionIndex = 0, _offset = {}, _slideSize = _getEmptyPoint(), _itemHolders, _prevItemIndex, _indexDiff = 0, _dragStartEvent, _dragMoveEvent, _dragEndEvent, _dragCancelEvent, _transformKey, _pointerEventEnabled, _isFixedPosition = true, _likelyTouchDevice, _modules = [], _requestAF, _cancelAF, _initalClassName, _initalWindowScrollY, _oldIE, _currentWindowScrollY, _features, _windowVisibleSize = {}, _renderMaxResolution = false, _orientationChangeTimeout, _registerModule = function (name, module2) {
           framework.extend(self, module2.publicMethods);
           _modules.push(name);
-        }, _getLoopedId = function(index) {
+        }, _getLoopedId = function (index) {
           var numSlides = _getNumItems();
           if (index > numSlides - 1) {
             return index - numSlides;
@@ -3345,12 +3345,12 @@ var require_photoswipe = __commonJS({
             return numSlides + index;
           }
           return index;
-        }, _listeners = {}, _listen = function(name, fn) {
+        }, _listeners = {}, _listen = function (name, fn) {
           if (!_listeners[name]) {
             _listeners[name] = [];
           }
           return _listeners[name].push(fn);
-        }, _shout = function(name) {
+        }, _shout = function (name) {
           var listeners = _listeners[name];
           if (listeners) {
             var args = Array.prototype.slice.call(arguments);
@@ -3359,17 +3359,17 @@ var require_photoswipe = __commonJS({
               listeners[i].apply(self, args);
             }
           }
-        }, _getCurrentTime = function() {
+        }, _getCurrentTime = function () {
           return (/* @__PURE__ */ new Date()).getTime();
-        }, _applyBgOpacity = function(opacity) {
+        }, _applyBgOpacity = function (opacity) {
           _bgOpacity = opacity;
           self.bg.style.opacity = opacity * _options.bgOpacity;
-        }, _applyZoomTransform = function(styleObj, x, y, zoom, item) {
+        }, _applyZoomTransform = function (styleObj, x, y, zoom, item) {
           if (!_renderMaxResolution || item && item !== self.currItem) {
             zoom = zoom / (item ? item.fitRatio : self.currItem.fitRatio);
           }
           styleObj[_transformKey] = _translatePrefix + x + "px, " + y + "px" + _translateSufix + " scale(" + zoom + ")";
-        }, _applyCurrentZoomPan = function(allowRenderResolution) {
+        }, _applyCurrentZoomPan = function (allowRenderResolution) {
           if (_currZoomElementStyle) {
             if (allowRenderResolution) {
               if (_currZoomLevel > self.currItem.fitRatio) {
@@ -3386,7 +3386,7 @@ var require_photoswipe = __commonJS({
             }
             _applyZoomTransform(_currZoomElementStyle, _panOffset.x, _panOffset.y, _currZoomLevel);
           }
-        }, _applyZoomPanToItem = function(item) {
+        }, _applyZoomPanToItem = function (item) {
           if (item.container) {
             _applyZoomTransform(
               item.container.style,
@@ -3396,9 +3396,9 @@ var require_photoswipe = __commonJS({
               item
             );
           }
-        }, _setTranslateX = function(x, elStyle) {
+        }, _setTranslateX = function (x, elStyle) {
           elStyle[_transformKey] = _translatePrefix + x + "px, 0px" + _translateSufix;
-        }, _moveMainScroll = function(x, dragging) {
+        }, _moveMainScroll = function (x, dragging) {
           if (!_options.loop && dragging) {
             var newSlideIndexOffset = _currentItemIndex + (_slideSize.x * _currPositionIndex - x) / _slideSize.x, delta2 = Math.round(x - _mainScrollPos.x);
             if (newSlideIndexOffset < 0 && delta2 > 0 || newSlideIndexOffset >= _getNumItems() - 1 && delta2 < 0) {
@@ -3407,29 +3407,29 @@ var require_photoswipe = __commonJS({
           }
           _mainScrollPos.x = x;
           _setTranslateX(x, _containerStyle);
-        }, _calculatePanOffset = function(axis, zoomLevel) {
+        }, _calculatePanOffset = function (axis, zoomLevel) {
           var m = _midZoomPoint[axis] - _offset[axis];
           return _startPanOffset[axis] + _currPanDist[axis] + m - m * (zoomLevel / _startZoomLevel);
-        }, _equalizePoints = function(p1, p22) {
+        }, _equalizePoints = function (p1, p22) {
           p1.x = p22.x;
           p1.y = p22.y;
           if (p22.id) {
             p1.id = p22.id;
           }
-        }, _roundPoint = function(p3) {
+        }, _roundPoint = function (p3) {
           p3.x = Math.round(p3.x);
           p3.y = Math.round(p3.y);
-        }, _mouseMoveTimeout = null, _onFirstMouseMove = function() {
+        }, _mouseMoveTimeout = null, _onFirstMouseMove = function () {
           if (_mouseMoveTimeout) {
             framework.unbind(document, "mousemove", _onFirstMouseMove);
             framework.addClass(template, "pswp--has_mouse");
             _options.mouseUsed = true;
             _shout("mouseUsed");
           }
-          _mouseMoveTimeout = setTimeout(function() {
+          _mouseMoveTimeout = setTimeout(function () {
             _mouseMoveTimeout = null;
           }, 100);
-        }, _bindEvents = function() {
+        }, _bindEvents = function () {
           framework.bind(document, "keydown", self);
           if (_features.transform) {
             framework.bind(self.scrollWrap, "click", self);
@@ -3439,7 +3439,7 @@ var require_photoswipe = __commonJS({
           }
           framework.bind(window, "resize scroll orientationchange", self);
           _shout("bindEvents");
-        }, _unbindEvents = function() {
+        }, _unbindEvents = function () {
           framework.unbind(window, "resize scroll orientationchange", self);
           framework.unbind(window, "scroll", _globalEventHandlers.scroll);
           framework.unbind(document, "keydown", self);
@@ -3452,23 +3452,23 @@ var require_photoswipe = __commonJS({
           }
           clearTimeout(_orientationChangeTimeout);
           _shout("unbindEvents");
-        }, _calculatePanBounds = function(zoomLevel, update) {
+        }, _calculatePanBounds = function (zoomLevel, update) {
           var bounds = _calculateItemSize(self.currItem, _viewportSize, zoomLevel);
           if (update) {
             _currPanBounds = bounds;
           }
           return bounds;
-        }, _getMinZoomLevel = function(item) {
+        }, _getMinZoomLevel = function (item) {
           if (!item) {
             item = self.currItem;
           }
           return item.initialZoomLevel;
-        }, _getMaxZoomLevel = function(item) {
+        }, _getMaxZoomLevel = function (item) {
           if (!item) {
             item = self.currItem;
           }
           return item.w > 0 ? _options.maxSpreadZoom : 1;
-        }, _modifyDestPanOffset = function(axis, destPanBounds, destPanOffset, destZoomLevel) {
+        }, _modifyDestPanOffset = function (axis, destPanBounds, destPanOffset, destZoomLevel) {
           if (destZoomLevel === self.currItem.initialZoomLevel) {
             destPanOffset[axis] = self.currItem.initialPosition[axis];
             return true;
@@ -3483,7 +3483,7 @@ var require_photoswipe = __commonJS({
             }
           }
           return false;
-        }, _setupTransforms = function() {
+        }, _setupTransforms = function () {
           if (_transformKey) {
             var allow3dTransform = _features.perspective && !_likelyTouchDevice;
             _translatePrefix = "translate" + (allow3dTransform ? "3d(" : "(");
@@ -3492,17 +3492,17 @@ var require_photoswipe = __commonJS({
           }
           _transformKey = "left";
           framework.addClass(template, "pswp--ie");
-          _setTranslateX = function(x, elStyle) {
+          _setTranslateX = function (x, elStyle) {
             elStyle.left = x + "px";
           };
-          _applyZoomPanToItem = function(item) {
+          _applyZoomPanToItem = function (item) {
             var zoomRatio = item.fitRatio > 1 ? 1 : item.fitRatio, s = item.container.style, w = zoomRatio * item.w, h = zoomRatio * item.h;
             s.width = w + "px";
             s.height = h + "px";
             s.left = item.initialPosition.x + "px";
             s.top = item.initialPosition.y + "px";
           };
-          _applyCurrentZoomPan = function() {
+          _applyCurrentZoomPan = function () {
             if (_currZoomElementStyle) {
               var s = _currZoomElementStyle, item = self.currItem, zoomRatio = item.fitRatio > 1 ? 1 : item.fitRatio, w = zoomRatio * item.w, h = zoomRatio * item.h;
               s.width = w + "px";
@@ -3511,7 +3511,7 @@ var require_photoswipe = __commonJS({
               s.top = _panOffset.y + "px";
             }
           };
-        }, _onKeyDown = function(e) {
+        }, _onKeyDown = function (e) {
           var keydownAction = "";
           if (_options.escKey && e.keyCode === 27) {
             keydownAction = "close";
@@ -3532,7 +3532,7 @@ var require_photoswipe = __commonJS({
               self[keydownAction]();
             }
           }
-        }, _onGlobalClick = function(e) {
+        }, _onGlobalClick = function (e) {
           if (!e) {
             return;
           }
@@ -3540,10 +3540,10 @@ var require_photoswipe = __commonJS({
             e.preventDefault();
             e.stopPropagation();
           }
-        }, _updatePageScrollOffset = function() {
+        }, _updatePageScrollOffset = function () {
           self.setScrollOffset(0, framework.getScrollY());
         };
-        var _animations = {}, _numAnimations = 0, _stopAnimation = function(name) {
+        var _animations = {}, _numAnimations = 0, _stopAnimation = function (name) {
           if (_animations[name]) {
             if (_animations[name].raf) {
               _cancelAF(_animations[name].raf);
@@ -3551,7 +3551,7 @@ var require_photoswipe = __commonJS({
             _numAnimations--;
             delete _animations[name];
           }
-        }, _registerStartAnimation = function(name) {
+        }, _registerStartAnimation = function (name) {
           if (_animations[name]) {
             _stopAnimation(name);
           }
@@ -3559,16 +3559,16 @@ var require_photoswipe = __commonJS({
             _numAnimations++;
             _animations[name] = {};
           }
-        }, _stopAllAnimations = function() {
+        }, _stopAllAnimations = function () {
           for (var prop in _animations) {
             if (_animations.hasOwnProperty(prop)) {
               _stopAnimation(prop);
             }
           }
-        }, _animateProp = function(name, b, endProp, d, easingFn, onUpdate, onComplete) {
+        }, _animateProp = function (name, b, endProp, d, easingFn, onUpdate, onComplete) {
           var startAnimTime = _getCurrentTime(), t;
           _registerStartAnimation(name);
-          var animloop = function() {
+          var animloop = function () {
             if (_animations[name]) {
               t = _getCurrentTime() - startAnimTime;
               if (t >= d) {
@@ -3591,33 +3591,33 @@ var require_photoswipe = __commonJS({
           listen: _listen,
           viewportSize: _viewportSize,
           options: _options,
-          isMainScrollAnimating: function() {
+          isMainScrollAnimating: function () {
             return _mainScrollAnimating;
           },
-          getZoomLevel: function() {
+          getZoomLevel: function () {
             return _currZoomLevel;
           },
-          getCurrentIndex: function() {
+          getCurrentIndex: function () {
             return _currentItemIndex;
           },
-          isDragging: function() {
+          isDragging: function () {
             return _isDragging;
           },
-          isZooming: function() {
+          isZooming: function () {
             return _isZooming;
           },
-          setScrollOffset: function(x, y) {
+          setScrollOffset: function (x, y) {
             _offset.x = x;
             _currentWindowScrollY = _offset.y = y;
             _shout("updateScrollOffset", _offset);
           },
-          applyZoomPan: function(zoomLevel, panX, panY, allowRenderResolution) {
+          applyZoomPan: function (zoomLevel, panX, panY, allowRenderResolution) {
             _panOffset.x = panX;
             _panOffset.y = panY;
             _currZoomLevel = zoomLevel;
             _applyCurrentZoomPan(allowRenderResolution);
           },
-          init: function() {
+          init: function () {
             if (_isOpen || _isDestroying) {
               return;
             }
@@ -3647,9 +3647,9 @@ var require_photoswipe = __commonJS({
               // Fixes: iOS 10.3 resize event
               // does not update scrollWrap.clientWidth instantly after resize
               // https://github.com/dimsemenov/PhotoSwipe/issues/1315
-              orientationchange: function() {
+              orientationchange: function () {
                 clearTimeout(_orientationChangeTimeout);
-                _orientationChangeTimeout = setTimeout(function() {
+                _orientationChangeTimeout = setTimeout(function () {
                   if (_viewportSize.x !== self.scrollWrap.clientWidth) {
                     self.updateSize();
                   }
@@ -3712,7 +3712,7 @@ var require_photoswipe = __commonJS({
             if (!_oldIE) {
               framework.bind(self.scrollWrap, _downEvents, self);
             }
-            _listen("initialZoomInEnd", function() {
+            _listen("initialZoomInEnd", function () {
               self.setContent(_itemHolders[0], _currentItemIndex - 1);
               self.setContent(_itemHolders[2], _currentItemIndex + 1);
               _itemHolders[0].el.style.display = _itemHolders[2].el.style.display = "block";
@@ -3725,7 +3725,7 @@ var require_photoswipe = __commonJS({
             self.updateCurrItem();
             _shout("afterInit");
             if (!_isFixedPosition) {
-              _updateSizeInterval = setInterval(function() {
+              _updateSizeInterval = setInterval(function () {
                 if (!_numAnimations && !_isDragging && !_isZooming && _currZoomLevel === self.currItem.initialZoomLevel) {
                   self.updateSize();
                 }
@@ -3734,7 +3734,7 @@ var require_photoswipe = __commonJS({
             framework.addClass(template, "pswp--visible");
           },
           // Close the gallery, then destroy it
-          close: function() {
+          close: function () {
             if (!_isOpen) {
               return;
             }
@@ -3745,7 +3745,7 @@ var require_photoswipe = __commonJS({
             _showOrHide(self.currItem, null, true, self.destroy);
           },
           // destroys the gallery (unbinds events, cleans up intervals and timeouts to avoid memory leaks)
-          destroy: function() {
+          destroy: function () {
             _shout("destroy");
             if (_showOrHideTimeout) {
               clearTimeout(_showOrHideTimeout);
@@ -3767,7 +3767,7 @@ var require_photoswipe = __commonJS({
            * @param {Number} y     
            * @param {Boolean} force Will ignore bounds if set to true.
            */
-          panTo: function(x, y, force) {
+          panTo: function (x, y, force) {
             if (!force) {
               if (x > _currPanBounds.min.x) {
                 x = _currPanBounds.min.x;
@@ -3784,13 +3784,13 @@ var require_photoswipe = __commonJS({
             _panOffset.y = y;
             _applyCurrentZoomPan();
           },
-          handleEvent: function(e) {
+          handleEvent: function (e) {
             e = e || window.event;
             if (_globalEventHandlers[e.type]) {
               _globalEventHandlers[e.type](e);
             }
           },
-          goTo: function(index) {
+          goTo: function (index) {
             index = _getLoopedId(index);
             var diff = index - _currentItemIndex;
             _indexDiff = diff;
@@ -3802,14 +3802,14 @@ var require_photoswipe = __commonJS({
             _mainScrollAnimating = false;
             self.updateCurrItem();
           },
-          next: function() {
+          next: function () {
             self.goTo(_currentItemIndex + 1);
           },
-          prev: function() {
+          prev: function () {
             self.goTo(_currentItemIndex - 1);
           },
           // update current zoom/pan objects
-          updateCurrZoomItem: function(emulateSetContent) {
+          updateCurrZoomItem: function (emulateSetContent) {
             if (emulateSetContent) {
               _shout("beforeChange", 0);
             }
@@ -3831,7 +3831,7 @@ var require_photoswipe = __commonJS({
               _shout("afterChange");
             }
           },
-          invalidateCurrItems: function() {
+          invalidateCurrItems: function () {
             _itemsNeedUpdate = true;
             for (var i = 0; i < NUM_HOLDERS; i++) {
               if (_itemHolders[i].item) {
@@ -3839,7 +3839,7 @@ var require_photoswipe = __commonJS({
               }
             }
           },
-          updateCurrItem: function(beforeAnimation) {
+          updateCurrItem: function (beforeAnimation) {
             if (_indexDiff === 0) {
               return;
             }
@@ -3882,7 +3882,7 @@ var require_photoswipe = __commonJS({
             _prevItemIndex = _currentItemIndex;
             _shout("afterChange");
           },
-          updateSize: function(force) {
+          updateSize: function (force) {
             if (!_isFixedPosition && _options.modal) {
               var windowScrollY = framework.getScrollY();
               if (_currentWindowScrollY !== windowScrollY) {
@@ -3942,7 +3942,7 @@ var require_photoswipe = __commonJS({
             _shout("resize");
           },
           // Zoom current item to
-          zoomTo: function(destZoomLevel, centerPoint, speed, easingFn, updateFn) {
+          zoomTo: function (destZoomLevel, centerPoint, speed, easingFn, updateFn) {
             if (centerPoint) {
               _startZoomLevel = _currZoomLevel;
               _midZoomPoint.x = Math.abs(centerPoint.x) - _panOffset.x;
@@ -3958,7 +3958,7 @@ var require_photoswipe = __commonJS({
               y: _panOffset.y
             };
             _roundPoint(destPanOffset);
-            var onUpdate = function(now) {
+            var onUpdate = function (now) {
               if (now === 1) {
                 _currZoomLevel = destZoomLevel;
                 _panOffset.x = destPanOffset.x;
@@ -3981,27 +3981,27 @@ var require_photoswipe = __commonJS({
           }
         };
         var MIN_SWIPE_DISTANCE = 30, DIRECTION_CHECK_OFFSET = 10;
-        var _gestureStartTime, _gestureCheckSpeedTime, p = {}, p2 = {}, delta = {}, _currPoint = {}, _startPoint = {}, _currPointers = [], _startMainScrollPos = {}, _releaseAnimData, _posPoints = [], _tempPoint = {}, _isZoomingIn, _verticalDragInitiated, _oldAndroidTouchEndTimeout, _currZoomedItemIndex = 0, _centerPoint = _getEmptyPoint(), _lastReleaseTime = 0, _isDragging, _isMultitouch, _zoomStarted, _moved, _dragAnimFrame, _mainScrollShifted, _currentPoints, _isZooming, _currPointsDistance, _startPointsDistance, _currPanBounds, _mainScrollPos = _getEmptyPoint(), _currZoomElementStyle, _mainScrollAnimating, _midZoomPoint = _getEmptyPoint(), _currCenterPoint = _getEmptyPoint(), _direction, _isFirstMove, _opacityChanged, _bgOpacity, _wasOverInitialZoom, _isEqualPoints = function(p1, p22) {
+        var _gestureStartTime, _gestureCheckSpeedTime, p = {}, p2 = {}, delta = {}, _currPoint = {}, _startPoint = {}, _currPointers = [], _startMainScrollPos = {}, _releaseAnimData, _posPoints = [], _tempPoint = {}, _isZoomingIn, _verticalDragInitiated, _oldAndroidTouchEndTimeout, _currZoomedItemIndex = 0, _centerPoint = _getEmptyPoint(), _lastReleaseTime = 0, _isDragging, _isMultitouch, _zoomStarted, _moved, _dragAnimFrame, _mainScrollShifted, _currentPoints, _isZooming, _currPointsDistance, _startPointsDistance, _currPanBounds, _mainScrollPos = _getEmptyPoint(), _currZoomElementStyle, _mainScrollAnimating, _midZoomPoint = _getEmptyPoint(), _currCenterPoint = _getEmptyPoint(), _direction, _isFirstMove, _opacityChanged, _bgOpacity, _wasOverInitialZoom, _isEqualPoints = function (p1, p22) {
           return p1.x === p22.x && p1.y === p22.y;
-        }, _isNearbyPoints = function(touch0, touch1) {
+        }, _isNearbyPoints = function (touch0, touch1) {
           return Math.abs(touch0.x - touch1.x) < DOUBLE_TAP_RADIUS && Math.abs(touch0.y - touch1.y) < DOUBLE_TAP_RADIUS;
-        }, _calculatePointsDistance = function(p1, p22) {
+        }, _calculatePointsDistance = function (p1, p22) {
           _tempPoint.x = Math.abs(p1.x - p22.x);
           _tempPoint.y = Math.abs(p1.y - p22.y);
           return Math.sqrt(_tempPoint.x * _tempPoint.x + _tempPoint.y * _tempPoint.y);
-        }, _stopDragUpdateLoop = function() {
+        }, _stopDragUpdateLoop = function () {
           if (_dragAnimFrame) {
             _cancelAF(_dragAnimFrame);
             _dragAnimFrame = null;
           }
-        }, _dragUpdateLoop = function() {
+        }, _dragUpdateLoop = function () {
           if (_isDragging) {
             _dragAnimFrame = _requestAF(_dragUpdateLoop);
             _renderMovement();
           }
-        }, _canPan = function() {
+        }, _canPan = function () {
           return !(_options.scaleMode === "fit" && _currZoomLevel === self.currItem.initialZoomLevel);
-        }, _closestElement = function(el, fn) {
+        }, _closestElement = function (el, fn) {
           if (!el || el === document) {
             return false;
           }
@@ -4012,19 +4012,19 @@ var require_photoswipe = __commonJS({
             return el;
           }
           return _closestElement(el.parentNode, fn);
-        }, _preventObj = {}, _preventDefaultEventBehaviour = function(e, isDown) {
+        }, _preventObj = {}, _preventDefaultEventBehaviour = function (e, isDown) {
           _preventObj.prevent = !_closestElement(e.target, _options.isClickableElement);
           _shout("preventDragEvent", e, isDown, _preventObj);
           return _preventObj.prevent;
-        }, _convertTouchToPoint = function(touch, p3) {
+        }, _convertTouchToPoint = function (touch, p3) {
           p3.x = touch.pageX;
           p3.y = touch.pageY;
           p3.id = touch.identifier;
           return p3;
-        }, _findCenterOfPoints = function(p1, p22, pCenter) {
+        }, _findCenterOfPoints = function (p1, p22, pCenter) {
           pCenter.x = (p1.x + p22.x) * 0.5;
           pCenter.y = (p1.y + p22.y) * 0.5;
-        }, _pushPosPoint = function(time, x, y) {
+        }, _pushPosPoint = function (time, x, y) {
           if (time - _gestureCheckSpeedTime > 50) {
             var o = _posPoints.length > 2 ? _posPoints.shift() : {};
             o.x = x;
@@ -4032,10 +4032,10 @@ var require_photoswipe = __commonJS({
             _posPoints.push(o);
             _gestureCheckSpeedTime = time;
           }
-        }, _calculateVerticalDragOpacityRatio = function() {
+        }, _calculateVerticalDragOpacityRatio = function () {
           var yOffset = _panOffset.y - self.currItem.initialPosition.y;
           return 1 - Math.abs(yOffset / (_viewportSize.y / 2));
-        }, _ePoint1 = {}, _ePoint2 = {}, _tempPointsArr = [], _tempCounter, _getTouchPoints = function(e) {
+        }, _ePoint1 = {}, _ePoint2 = {}, _tempPointsArr = [], _tempCounter, _getTouchPoints = function (e) {
           while (_tempPointsArr.length > 0) {
             _tempPointsArr.pop();
           }
@@ -4055,7 +4055,7 @@ var require_photoswipe = __commonJS({
             }
           } else {
             _tempCounter = 0;
-            _currPointers.forEach(function(p3) {
+            _currPointers.forEach(function (p3) {
               if (_tempCounter === 0) {
                 _tempPointsArr[0] = p3;
               } else if (_tempCounter === 1) {
@@ -4065,7 +4065,7 @@ var require_photoswipe = __commonJS({
             });
           }
           return _tempPointsArr;
-        }, _panOrMoveMainScroll = function(axis, delta2) {
+        }, _panOrMoveMainScroll = function (axis, delta2) {
           var panFriction, overDiff = 0, newOffset = _panOffset[axis] + delta2[axis], startOverDiff, dir = delta2[axis] > 0, newMainScrollPosition = _mainScrollPos.x + delta2.x, mainScrollDiff = _mainScrollPos.x - _startMainScrollPos.x, newPanPos, newMainScrollPos;
           if (newOffset > _currPanBounds.min[axis] || newOffset < _currPanBounds.max[axis]) {
             panFriction = _options.panEndFriction;
@@ -4137,7 +4137,7 @@ var require_photoswipe = __commonJS({
               }
             }
           }
-        }, _onDragStart = function(e) {
+        }, _onDragStart = function (e) {
           if (e.type === "mousedown" && e.button > 0) {
             return;
           }
@@ -4195,7 +4195,7 @@ var require_photoswipe = __commonJS({
             _midZoomPoint.y = Math.abs(_currCenterPoint.y) - _panOffset.y;
             _currPointsDistance = _startPointsDistance = _calculatePointsDistance(p, p2);
           }
-        }, _onDragMove = function(e) {
+        }, _onDragMove = function (e) {
           e.preventDefault();
           if (_pointerEventEnabled) {
             var pointerIndex = framework.arraySearch(_currPointers, e.pointerId, "id");
@@ -4221,7 +4221,7 @@ var require_photoswipe = __commonJS({
               _currentPoints = touchesList;
             }
           }
-        }, _renderMovement = function() {
+        }, _renderMovement = function () {
           if (!_currentPoints) {
             return;
           }
@@ -4323,14 +4323,14 @@ var require_photoswipe = __commonJS({
               _applyCurrentZoomPan();
             }
           }
-        }, _onDragRelease = function(e) {
+        }, _onDragRelease = function (e) {
           if (_features.isOldAndroid) {
             if (_oldAndroidTouchEndTimeout && e.type === "mouseup") {
               return;
             }
             if (e.type.indexOf("touch") > -1) {
               clearTimeout(_oldAndroidTouchEndTimeout);
-              _oldAndroidTouchEndTimeout = setTimeout(function() {
+              _oldAndroidTouchEndTimeout = setTimeout(function () {
                 _oldAndroidTouchEndTimeout = 0;
               }, 600);
             }
@@ -4422,7 +4422,7 @@ var require_photoswipe = __commonJS({
               self.close();
             } else {
               var initalPanY = _panOffset.y, initialBgOpacity = _bgOpacity;
-              _animateProp("verticalDrag", 0, 1, 300, framework.easing.cubic.out, function(now) {
+              _animateProp("verticalDrag", 0, 1, 300, framework.easing.cubic.out, function (now) {
                 _panOffset.y = (self.currItem.initialPosition.y - initalPanY) * now + initalPanY;
                 _applyBgOpacity((1 - initialBgOpacity) * now + initialBgOpacity);
                 _applyCurrentZoomPan();
@@ -4448,7 +4448,7 @@ var require_photoswipe = __commonJS({
           if (!_mainScrollShifted && _currZoomLevel > self.currItem.fitRatio) {
             _completePanGesture(_releaseAnimData);
           }
-        }, _initDragReleaseAnimationData = function() {
+        }, _initDragReleaseAnimationData = function () {
           var lastFlickDuration, tempReleasePos;
           var s = {
             lastFlickOffset: {},
@@ -4461,7 +4461,7 @@ var require_photoswipe = __commonJS({
             distanceOffset: {},
             backAnimDestination: {},
             backAnimStarted: {},
-            calculateSwipeSpeed: function(axis) {
+            calculateSwipeSpeed: function (axis) {
               if (_posPoints.length > 1) {
                 lastFlickDuration = _getCurrentTime() - _gestureCheckSpeedTime + 50;
                 tempReleasePos = _posPoints[_posPoints.length - 2][axis];
@@ -4483,7 +4483,7 @@ var require_photoswipe = __commonJS({
               s.slowDownRatioReverse[axis] = 1 - s.slowDownRatio[axis];
               s.speedDecelerationRatio[axis] = 1;
             },
-            calculateOverBoundsAnimOffset: function(axis, speed) {
+            calculateOverBoundsAnimOffset: function (axis, speed) {
               if (!s.backAnimStarted[axis]) {
                 if (_panOffset[axis] > _currPanBounds.min[axis]) {
                   s.backAnimDestination[axis] = _currPanBounds.min[axis];
@@ -4502,7 +4502,7 @@ var require_photoswipe = __commonJS({
                       s.backAnimDestination[axis],
                       speed || 300,
                       framework.easing.sine.out,
-                      function(pos) {
+                      function (pos) {
                         _panOffset[axis] = pos;
                         _applyCurrentZoomPan();
                       }
@@ -4512,7 +4512,7 @@ var require_photoswipe = __commonJS({
               }
             },
             // Reduces the speed by slowDownRatio (per 10ms)
-            calculateAnimOffset: function(axis) {
+            calculateAnimOffset: function (axis) {
               if (!s.backAnimStarted[axis]) {
                 s.speedDecelerationRatio[axis] = s.speedDecelerationRatio[axis] * (s.slowDownRatio[axis] + s.slowDownRatioReverse[axis] - s.slowDownRatioReverse[axis] * s.timeDiff / 10);
                 s.speedDecelerationRatioAbs[axis] = Math.abs(s.lastFlickSpeed[axis] * s.speedDecelerationRatio[axis]);
@@ -4520,7 +4520,7 @@ var require_photoswipe = __commonJS({
                 _panOffset[axis] += s.distanceOffset[axis];
               }
             },
-            panAnimLoop: function() {
+            panAnimLoop: function () {
               if (_animations.zoomPan) {
                 _animations.zoomPan.raf = _requestAF(s.panAnimLoop);
                 s.now = _getCurrentTime();
@@ -4542,7 +4542,7 @@ var require_photoswipe = __commonJS({
             }
           };
           return s;
-        }, _completePanGesture = function(animData) {
+        }, _completePanGesture = function (animData) {
           animData.calculateSwipeSpeed("y");
           _currPanBounds = self.currItem.bounds;
           animData.backAnimDestination = {};
@@ -4556,7 +4556,7 @@ var require_photoswipe = __commonJS({
           _registerStartAnimation("zoomPan");
           animData.lastNow = _getCurrentTime();
           animData.panAnimLoop();
-        }, _finishSwipeMainScrollGesture = function(gestureType, _releaseAnimData2) {
+        }, _finishSwipeMainScrollGesture = function (gestureType, _releaseAnimData2) {
           var itemChanged;
           if (!_mainScrollAnimating) {
             _currZoomedItemIndex = _currentItemIndex;
@@ -4608,7 +4608,7 @@ var require_photoswipe = __commonJS({
             finishAnimDuration,
             framework.easing.cubic.out,
             _moveMainScroll,
-            function() {
+            function () {
               _stopAllAnimations();
               _mainScrollAnimating = false;
               _currZoomedItemIndex = -1;
@@ -4622,9 +4622,9 @@ var require_photoswipe = __commonJS({
             self.updateCurrItem(true);
           }
           return itemChanged;
-        }, _calculateZoomLevel = function(touchesDistance) {
+        }, _calculateZoomLevel = function (touchesDistance) {
           return 1 / _startPointsDistance * touchesDistance * _startZoomLevel;
-        }, _completeZoomGesture = function() {
+        }, _completeZoomGesture = function () {
           var destZoomLevel = _currZoomLevel, minZoomLevel = _getMinZoomLevel(), maxZoomLevel = _getMaxZoomLevel();
           if (_currZoomLevel < minZoomLevel) {
             destZoomLevel = minZoomLevel;
@@ -4637,7 +4637,7 @@ var require_photoswipe = __commonJS({
             return true;
           }
           if (_opacityChanged) {
-            onUpdate = function(now) {
+            onUpdate = function (now) {
               _applyBgOpacity((destOpacity - initialOpacity) * now + initialOpacity);
             };
           }
@@ -4646,8 +4646,8 @@ var require_photoswipe = __commonJS({
         };
         _registerModule("Gestures", {
           publicMethods: {
-            initGestures: function() {
-              var addEventNames = function(pref, down, move, up, cancel) {
+            initGestures: function () {
+              var addEventNames = function (pref, down, move, up, cancel) {
                 _dragStartEvent = pref + down;
                 _dragMoveEvent = pref + move;
                 _dragEndEvent = pref + up;
@@ -4698,7 +4698,7 @@ var require_photoswipe = __commonJS({
             }
           }
         });
-        var _showOrHideTimeout, _showOrHide = function(item, img, out, completeFn) {
+        var _showOrHideTimeout, _showOrHide = function (item, img, out, completeFn) {
           if (_showOrHideTimeout) {
             clearTimeout(_showOrHideTimeout);
           }
@@ -4712,7 +4712,7 @@ var require_photoswipe = __commonJS({
             thumbBounds = _options.getThumbBoundsFn && _options.getThumbBoundsFn(_currentItemIndex);
           }
           var duration = out ? _options.hideAnimationDuration : _options.showAnimationDuration;
-          var onComplete = function() {
+          var onComplete = function () {
             _stopAnimation("initialZoom");
             if (!out) {
               _applyBgOpacity(1);
@@ -4738,7 +4738,7 @@ var require_photoswipe = __commonJS({
             template.style.opacity = out ? 0 : 1;
             _applyBgOpacity(1);
             if (duration) {
-              setTimeout(function() {
+              setTimeout(function () {
                 onComplete();
               }, duration);
             } else {
@@ -4746,7 +4746,7 @@ var require_photoswipe = __commonJS({
             }
             return;
           }
-          var startAnimation = function() {
+          var startAnimation = function () {
             var closeWithRaf = _closedByScroll, fadeEverything = !self.currItem.src || self.currItem.loadError || _options.showHideOpacity;
             if (item.miniImg) {
               item.miniImg.style.webkitBackfaceVisibility = "hidden";
@@ -4766,12 +4766,12 @@ var require_photoswipe = __commonJS({
               if (out) {
                 framework[(closeWithRaf ? "remove" : "add") + "Class"](template, "pswp--animate_opacity");
               } else {
-                setTimeout(function() {
+                setTimeout(function () {
                   framework.addClass(template, "pswp--animate_opacity");
                 }, 30);
               }
             }
-            _showOrHideTimeout = setTimeout(function() {
+            _showOrHideTimeout = setTimeout(function () {
               _shout("initialZoom" + (out ? "Out" : "In"));
               if (!out) {
                 _currZoomLevel = item.initialZoomLevel;
@@ -4788,7 +4788,7 @@ var require_photoswipe = __commonJS({
                 var destZoomLevel = thumbBounds.w / item.w, initialPanOffset = {
                   x: _panOffset.x,
                   y: _panOffset.y
-                }, initialZoomLevel = _currZoomLevel, initalBgOpacity = _bgOpacity, onUpdate = function(now) {
+                }, initialZoomLevel = _currZoomLevel, initalBgOpacity = _bgOpacity, onUpdate = function (now) {
                   if (now === 1) {
                     _currZoomLevel = destZoomLevel;
                     _panOffset.x = thumbBounds.x;
@@ -4822,17 +4822,17 @@ var require_photoswipe = __commonJS({
           forceProgressiveLoading: false,
           // TODO
           preload: [1, 1],
-          getNumItemsFn: function() {
+          getNumItemsFn: function () {
             return _items.length;
           }
         };
-        var _getItemAt, _getNumItems, _initialIsLoop, _getZeroBounds = function() {
+        var _getItemAt, _getNumItems, _initialIsLoop, _getZeroBounds = function () {
           return {
             center: { x: 0, y: 0 },
             max: { x: 0, y: 0 },
             min: { x: 0, y: 0 }
           };
-        }, _calculateSingleItemPanBounds = function(item, realPanElementW, realPanElementH) {
+        }, _calculateSingleItemPanBounds = function (item, realPanElementW, realPanElementH) {
           var bounds = item.bounds;
           bounds.center.x = Math.round((_tempPanAreaSize.x - realPanElementW) / 2);
           bounds.center.y = Math.round((_tempPanAreaSize.y - realPanElementH) / 2) + item.vGap.top;
@@ -4840,7 +4840,7 @@ var require_photoswipe = __commonJS({
           bounds.max.y = realPanElementH > _tempPanAreaSize.y ? Math.round(_tempPanAreaSize.y - realPanElementH) + item.vGap.top : bounds.center.y;
           bounds.min.x = realPanElementW > _tempPanAreaSize.x ? 0 : bounds.center.x;
           bounds.min.y = realPanElementH > _tempPanAreaSize.y ? item.vGap.top : bounds.center.y;
-        }, _calculateItemSize = function(item, viewportSize, zoomLevel) {
+        }, _calculateItemSize = function (item, viewportSize, zoomLevel) {
           if (item.src && !item.loadError) {
             var isInitial = !zoomLevel;
             if (isInitial) {
@@ -4884,7 +4884,7 @@ var require_photoswipe = __commonJS({
             item.initialPosition = item.bounds.center;
             return item.bounds;
           }
-        }, _appendImage = function(index, item, baseDiv, img, preventAnimation, keepPlaceholder) {
+        }, _appendImage = function (index, item, baseDiv, img, preventAnimation, keepPlaceholder) {
           if (item.loadError) {
             return;
           }
@@ -4893,7 +4893,7 @@ var require_photoswipe = __commonJS({
             _setImageSize(item, img, item === self.currItem && _renderMaxResolution);
             baseDiv.appendChild(img);
             if (keepPlaceholder) {
-              setTimeout(function() {
+              setTimeout(function () {
                 if (item && item.loaded && item.placeholder) {
                   item.placeholder.style.display = "none";
                   item.placeholder = null;
@@ -4901,11 +4901,11 @@ var require_photoswipe = __commonJS({
               }, 500);
             }
           }
-        }, _preloadImage = function(item) {
+        }, _preloadImage = function (item) {
           item.loading = true;
           item.loaded = false;
           var img = item.img = framework.createEl("pswp__img", "img");
-          var onComplete = function() {
+          var onComplete = function () {
             item.loading = false;
             item.loaded = true;
             if (item.loadComplete) {
@@ -4917,13 +4917,13 @@ var require_photoswipe = __commonJS({
             img = null;
           };
           img.onload = onComplete;
-          img.onerror = function() {
+          img.onerror = function () {
             item.loadError = true;
             onComplete();
           };
           img.src = item.src;
           return img;
-        }, _checkForError = function(item, cleanUp) {
+        }, _checkForError = function (item, cleanUp) {
           if (item.src && item.loadError && item.container) {
             if (cleanUp) {
               item.container.innerHTML = "";
@@ -4931,7 +4931,7 @@ var require_photoswipe = __commonJS({
             item.container.innerHTML = _options.errorMsg.replace("%url%", item.src);
             return true;
           }
-        }, _setImageSize = function(item, img, maxRes) {
+        }, _setImageSize = function (item, img, maxRes) {
           if (!item.src) {
             return;
           }
@@ -4945,7 +4945,7 @@ var require_photoswipe = __commonJS({
           }
           img.style.width = w + "px";
           img.style.height = h + "px";
-        }, _appendImagesPool = function() {
+        }, _appendImagesPool = function () {
           if (_imagesToAppendPool.length) {
             var poolItem;
             for (var i = 0; i < _imagesToAppendPool.length; i++) {
@@ -4959,7 +4959,7 @@ var require_photoswipe = __commonJS({
         };
         _registerModule("Controller", {
           publicMethods: {
-            lazyLoadItem: function(index) {
+            lazyLoadItem: function (index) {
               index = _getLoopedId(index);
               var item = _getItemAt(index);
               if (!item || (item.loaded || item.loading) && !_itemsNeedUpdate) {
@@ -4971,7 +4971,7 @@ var require_photoswipe = __commonJS({
               }
               _preloadImage(item);
             },
-            initController: function() {
+            initController: function () {
               framework.extend(_options, _controllerDefaultOptions, true);
               self.items = _items = items;
               _getItemAt = self.getItemAt;
@@ -4980,7 +4980,7 @@ var require_photoswipe = __commonJS({
               if (_getNumItems() < 3) {
                 _options.loop = false;
               }
-              _listen("beforeChange", function(diff) {
+              _listen("beforeChange", function (diff) {
                 var p3 = _options.preload, isNext = diff === null ? true : diff >= 0, preloadBefore = Math.min(p3[0], _getNumItems()), preloadAfter = Math.min(p3[1], _getNumItems()), i;
                 for (i = 1; i <= (isNext ? preloadAfter : preloadBefore); i++) {
                   self.lazyLoadItem(_currentItemIndex + i);
@@ -4989,12 +4989,12 @@ var require_photoswipe = __commonJS({
                   self.lazyLoadItem(_currentItemIndex - i);
                 }
               });
-              _listen("initialLayout", function() {
+              _listen("initialLayout", function () {
                 self.currItem.initialLayout = _options.getThumbBoundsFn && _options.getThumbBoundsFn(_currentItemIndex);
               });
               _listen("mainScrollAnimComplete", _appendImagesPool);
               _listen("initialZoomInEnd", _appendImagesPool);
-              _listen("destroy", function() {
+              _listen("destroy", function () {
                 var item;
                 for (var i = 0; i < _items.length; i++) {
                   item = _items[i];
@@ -5017,16 +5017,16 @@ var require_photoswipe = __commonJS({
                 _imagesToAppendPool = null;
               });
             },
-            getItemAt: function(index) {
+            getItemAt: function (index) {
               if (index >= 0) {
                 return _items[index] !== void 0 ? _items[index] : false;
               }
               return false;
             },
-            allowProgressiveImg: function() {
+            allowProgressiveImg: function () {
               return _options.forceProgressiveLoading || !_likelyTouchDevice || _options.mouseUsed || screen.width > 1200;
             },
-            setContent: function(holder, index) {
+            setContent: function (holder, index) {
               if (_options.loop) {
                 index = _getLoopedId(index);
               }
@@ -5053,7 +5053,7 @@ var require_photoswipe = __commonJS({
               _checkForError(item);
               _calculateItemSize(item, _viewportSize);
               if (item.src && !item.loadError && !item.loaded) {
-                item.loadComplete = function(item2) {
+                item.loadComplete = function (item2) {
                   if (!_isOpen) {
                     return;
                   }
@@ -5134,7 +5134,7 @@ var require_photoswipe = __commonJS({
               holder.el.innerHTML = "";
               holder.el.appendChild(baseDiv);
             },
-            cleanSlide: function(item) {
+            cleanSlide: function (item) {
               if (item.img) {
                 item.img.onload = item.img.onerror = null;
               }
@@ -5142,7 +5142,7 @@ var require_photoswipe = __commonJS({
             }
           }
         });
-        var tapTimer, tapReleasePoint = {}, _dispatchTapEvent = function(origEvent, releasePoint, pointerType) {
+        var tapTimer, tapReleasePoint = {}, _dispatchTapEvent = function (origEvent, releasePoint, pointerType) {
           var e = document.createEvent("CustomEvent"), eDetail = {
             origEvent,
             target: origEvent.target,
@@ -5154,21 +5154,21 @@ var require_photoswipe = __commonJS({
         };
         _registerModule("Tap", {
           publicMethods: {
-            initTap: function() {
+            initTap: function () {
               _listen("firstTouchStart", self.onTapStart);
               _listen("touchRelease", self.onTapRelease);
-              _listen("destroy", function() {
+              _listen("destroy", function () {
                 tapReleasePoint = {};
                 tapTimer = null;
               });
             },
-            onTapStart: function(touchList) {
+            onTapStart: function (touchList) {
               if (touchList.length > 1) {
                 clearTimeout(tapTimer);
                 tapTimer = null;
               }
             },
-            onTapRelease: function(e, releasePoint) {
+            onTapRelease: function (e, releasePoint) {
               if (!releasePoint) {
                 return;
               }
@@ -5192,7 +5192,7 @@ var require_photoswipe = __commonJS({
                   return;
                 }
                 _equalizePoints(tapReleasePoint, p0);
-                tapTimer = setTimeout(function() {
+                tapTimer = setTimeout(function () {
                   _dispatchTapEvent(e, releasePoint);
                   tapTimer = null;
                 }, 300);
@@ -5203,31 +5203,31 @@ var require_photoswipe = __commonJS({
         var _wheelDelta;
         _registerModule("DesktopZoom", {
           publicMethods: {
-            initDesktopZoom: function() {
+            initDesktopZoom: function () {
               if (_oldIE) {
                 return;
               }
               if (_likelyTouchDevice) {
-                _listen("mouseUsed", function() {
+                _listen("mouseUsed", function () {
                   self.setupDesktopZoom();
                 });
               } else {
                 self.setupDesktopZoom(true);
               }
             },
-            setupDesktopZoom: function(onInit) {
+            setupDesktopZoom: function (onInit) {
               _wheelDelta = {};
               var events = "wheel mousewheel DOMMouseScroll";
-              _listen("bindEvents", function() {
+              _listen("bindEvents", function () {
                 framework.bind(template, events, self.handleMouseWheel);
               });
-              _listen("unbindEvents", function() {
+              _listen("unbindEvents", function () {
                 if (_wheelDelta) {
                   framework.unbind(template, events, self.handleMouseWheel);
                 }
               });
               self.mouseZoomedIn = false;
-              var hasDraggingClass, updateZoomable = function() {
+              var hasDraggingClass, updateZoomable = function () {
                 if (self.mouseZoomedIn) {
                   framework.removeClass(template, "pswp--zoomed-in");
                   self.mouseZoomedIn = false;
@@ -5238,7 +5238,7 @@ var require_photoswipe = __commonJS({
                   framework.removeClass(template, "pswp--zoom-allowed");
                 }
                 removeDraggingClass();
-              }, removeDraggingClass = function() {
+              }, removeDraggingClass = function () {
                 if (hasDraggingClass) {
                   framework.removeClass(template, "pswp--dragging");
                   hasDraggingClass = false;
@@ -5246,7 +5246,7 @@ var require_photoswipe = __commonJS({
               };
               _listen("resize", updateZoomable);
               _listen("afterChange", updateZoomable);
-              _listen("pointerDown", function() {
+              _listen("pointerDown", function () {
                 if (self.mouseZoomedIn) {
                   hasDraggingClass = true;
                   framework.addClass(template, "pswp--dragging");
@@ -5257,7 +5257,7 @@ var require_photoswipe = __commonJS({
                 updateZoomable();
               }
             },
-            handleMouseWheel: function(e) {
+            handleMouseWheel: function (e) {
               if (_currZoomLevel <= self.currItem.fitRatio) {
                 if (_options.modal) {
                   if (!_options.closeOnScroll || _numAnimations || _isDragging) {
@@ -5300,7 +5300,7 @@ var require_photoswipe = __commonJS({
               }
               self.panTo(newPanX, newPanY);
             },
-            toggleDesktopZoom: function(centerPoint) {
+            toggleDesktopZoom: function (centerPoint) {
               centerPoint = centerPoint || { x: _viewportSize.x / 2 + _offset.x, y: _viewportSize.y / 2 + _offset.y };
               var doubleTapZoomLevel = _options.getDoubleTapZoom(true, self.currItem);
               var zoomOut = _currZoomLevel === doubleTapZoomLevel;
@@ -5314,16 +5314,16 @@ var require_photoswipe = __commonJS({
           history: true,
           galleryUID: 1
         };
-        var _historyUpdateTimeout, _hashChangeTimeout, _hashAnimCheckTimeout, _hashChangedByScript, _hashChangedByHistory, _hashReseted, _initialHash, _historyChanged, _closedFromURL, _urlChangedOnce, _windowLoc, _supportsPushState, _getHash = function() {
+        var _historyUpdateTimeout, _hashChangeTimeout, _hashAnimCheckTimeout, _hashChangedByScript, _hashChangedByHistory, _hashReseted, _initialHash, _historyChanged, _closedFromURL, _urlChangedOnce, _windowLoc, _supportsPushState, _getHash = function () {
           return _windowLoc.hash.substring(1);
-        }, _cleanHistoryTimeouts = function() {
+        }, _cleanHistoryTimeouts = function () {
           if (_historyUpdateTimeout) {
             clearTimeout(_historyUpdateTimeout);
           }
           if (_hashAnimCheckTimeout) {
             clearTimeout(_hashAnimCheckTimeout);
           }
-        }, _parseItemIndexFromURL = function() {
+        }, _parseItemIndexFromURL = function () {
           var hash = _getHash(), params = {};
           if (hash.length < 5) {
             return params;
@@ -5355,7 +5355,7 @@ var require_photoswipe = __commonJS({
             params.pid = 0;
           }
           return params;
-        }, _updateHash = function() {
+        }, _updateHash = function () {
           if (_hashAnimCheckTimeout) {
             clearTimeout(_hashAnimCheckTimeout);
           }
@@ -5392,13 +5392,13 @@ var require_photoswipe = __commonJS({
             }
           }
           _historyChanged = true;
-          _hashChangeTimeout = setTimeout(function() {
+          _hashChangeTimeout = setTimeout(function () {
             _hashChangedByScript = false;
           }, 60);
         };
         _registerModule("History", {
           publicMethods: {
-            initHistory: function() {
+            initHistory: function () {
               framework.extend(_options, _historyDefaultOptions, true);
               if (!_options.history) {
                 return;
@@ -5414,10 +5414,10 @@ var require_photoswipe = __commonJS({
                 _initialHash = _initialHash.split("?gid=")[0];
               }
               _listen("afterChange", self.updateURL);
-              _listen("unbindEvents", function() {
+              _listen("unbindEvents", function () {
                 framework.unbind(window, "hashchange", self.onHashChange);
               });
-              var returnToOriginal = function() {
+              var returnToOriginal = function () {
                 _hashReseted = true;
                 if (!_closedFromURL) {
                   if (_urlChangedOnce) {
@@ -5436,17 +5436,17 @@ var require_photoswipe = __commonJS({
                 }
                 _cleanHistoryTimeouts();
               };
-              _listen("unbindEvents", function() {
+              _listen("unbindEvents", function () {
                 if (_closedByScroll) {
                   returnToOriginal();
                 }
               });
-              _listen("destroy", function() {
+              _listen("destroy", function () {
                 if (!_hashReseted) {
                   returnToOriginal();
                 }
               });
-              _listen("firstUpdate", function() {
+              _listen("firstUpdate", function () {
                 _currentItemIndex = _parseItemIndexFromURL().pid;
               });
               var index = _initialHash.indexOf("pid=");
@@ -5456,13 +5456,13 @@ var require_photoswipe = __commonJS({
                   _initialHash = _initialHash.slice(0, -1);
                 }
               }
-              setTimeout(function() {
+              setTimeout(function () {
                 if (_isOpen) {
                   framework.bind(window, "hashchange", self.onHashChange);
                 }
               }, 40);
             },
-            onHashChange: function() {
+            onHashChange: function () {
               if (_getHash() === _initialHash) {
                 _closedFromURL = true;
                 self.close();
@@ -5474,7 +5474,7 @@ var require_photoswipe = __commonJS({
                 _hashChangedByHistory = false;
               }
             },
-            updateURL: function() {
+            updateURL: function () {
               _cleanHistoryTimeouts();
               if (_hashChangedByHistory) {
                 return;
@@ -5590,7 +5590,7 @@ function Delegate(root) {
   this.handle = Delegate.prototype.handle.bind(this);
   this._removedListeners = [];
 }
-Delegate.prototype.root = function(root) {
+Delegate.prototype.root = function (root) {
   const listenerMap = this.listenerMap;
   let eventType;
   if (this.rootElement) {
@@ -5624,10 +5624,10 @@ Delegate.prototype.root = function(root) {
   }
   return this;
 };
-Delegate.prototype.captureForType = function(eventType) {
+Delegate.prototype.captureForType = function (eventType) {
   return ["blur", "error", "focus", "load", "resize", "scroll"].indexOf(eventType) !== -1;
 };
-Delegate.prototype.on = function(eventType, selector, handler, useCapture) {
+Delegate.prototype.on = function (eventType, selector, handler, useCapture) {
   let root;
   let listenerMap;
   let matcher;
@@ -5675,7 +5675,7 @@ Delegate.prototype.on = function(eventType, selector, handler, useCapture) {
   });
   return this;
 };
-Delegate.prototype.off = function(eventType, selector, handler, useCapture) {
+Delegate.prototype.off = function (eventType, selector, handler, useCapture) {
   let i;
   let listener;
   let listenerMap;
@@ -5719,7 +5719,7 @@ Delegate.prototype.off = function(eventType, selector, handler, useCapture) {
   }
   return this;
 };
-Delegate.prototype.handle = function(event2) {
+Delegate.prototype.handle = function (event2) {
   let i;
   let l;
   const type = event2.type;
@@ -5796,7 +5796,7 @@ Delegate.prototype.handle = function(event2) {
   }
   return ret;
 };
-Delegate.prototype.fire = function(event2, target, listener) {
+Delegate.prototype.fire = function (event2, target, listener) {
   return listener.handler.call(target, event2, target);
 };
 function matchesTag(tagName, element) {
@@ -5816,7 +5816,7 @@ function matchesRoot(selector, element) {
 function matchesId(id, element) {
   return id === element.id;
 }
-Delegate.prototype.destroy = function() {
+Delegate.prototype.destroy = function () {
   this.off();
   this.root();
 };
@@ -6019,6 +6019,7 @@ var DesktopNavigation = class {
     this.delegateRoot.off();
   }
   onBlockSelect(event2) {
+    console.log("onBlockSelect");
     if (!this.useInlineNavigation) {
       this._openNavigation();
     }
@@ -6028,6 +6029,7 @@ var DesktopNavigation = class {
     this._activateDropdown(event2, event2.target.previousElementSibling);
   }
   onBlockDeselect(event2) {
+    console.log("onBlockDeselect");
     if (!this.useInlineNavigation) {
       this._closeNavigation();
     }
@@ -6038,11 +6040,14 @@ var DesktopNavigation = class {
     this.delegateRoot.on("click", this._onClick.bind(this));
     this.delegateElement.on("click", '[data-action="toggle-menu"]', this._toggleNavigation.bind(this));
     if (this.openTrigger === "hover") {
-      this.delegateElement.on("focusin", '[data-type="menuitem"][aria-haspopup]', this._activateDropdown.bind(this));
-      this.delegateElement.on("mouseover", '[data-type="menuitem"][aria-haspopup]', this._activateDropdown.bind(this));
-      this.delegateElement.on("mouseover", '[data-type="menu"][aria-hidden="false"]', this._blockDropdownDeactivation.bind(this));
-      this.delegateElement.on("focusout", ".is-dropdown-open", this._deactivateDropdown.bind(this));
-      this.delegateElement.on("mouseout", ".is-dropdown-open", this._deactivateDropdown.bind(this));
+      this.delegateElement.on("focusin", '[data-type="menuitem"][aria-haspopup]:not([data-has-dropdown="true"]', this._activateDropdown.bind(this));
+      this.delegateElement.on("mouseover", '[data-type="menuitem"][aria-haspopup]:not([data-has-dropdown="true"]', this._activateDropdown.bind(this));
+      this.delegateElement.on("mouseover", '[data-type="menuitem"][aria-haspopup][data-has-dropdown="true"]', this.activeOtherMenu.bind(this));
+      // this.delegateElement.on("mouseover", '[data-type="menu"][aria-hidden="false"]', this._blockDropdownDeactivation.bind(this));
+      this.delegateElement.on("focusout", '.is-dropdown-open[data-first-level="true"]', this._deactivateDropdown.bind(this));
+      this.delegateElement.on("mouseout", '.is-dropdown-open[data-first-level="true"]', this._deactivateDropdown.bind(this));
+      this.delegateElement.on("focusout", '.is-dropdown-open[data-second-level="true"]', this.deactiveOtherMenu.bind(this));
+      this.delegateElement.on("mouseout", '.is-dropdown-open[data-second-level="true"]', this.deactiveOtherMenu.bind(this));
     } else {
       this.delegateElement.on("click", '[data-type="menuitem"][aria-haspopup]', this._toggleDropdown.bind(this));
     }
@@ -6100,111 +6105,129 @@ var DesktopNavigation = class {
       this._openNavigation();
     }
   }
-  /**
-   * Toggle a dropdown
-   */
   _toggleDropdown(event2, target) {
-    if (target.getAttribute("aria-expanded") === "false") {
-      event2.preventDefault();
-    }
-    if (target.getAttribute("aria-expanded") === "true") {
-      if (target.getAttribute("href") === "#") {
+    const isFirstLevel = target.dataset.firstLevel === "true";
+    const hasDropdown = target.dataset.hasDropdown === "true";
+
+    if (isFirstLevel) {
+      if (target.getAttribute("aria-expanded") === "false") {
+        event2.preventDefault();
+        this._activateDropdown(event2, target);
+      } else if (target.getAttribute("aria-expanded") === "true" && target.getAttribute("href") === "#") {
         event2.preventDefault();
         this._deactivateDropdown(event2, target.closest(".is-dropdown-open"));
       }
-    } else {
-      this._activateDropdown(event2, target);
+    } else if (hasDropdown) {
+      if (target.getAttribute("aria-expanded") === "false") {
+        this.activeOtherMenu(event2, target);
+      } else {
+        this.deactiveOtherMenu(event2, target);
+      }
     }
   }
-  /**
-   * Open a dropdown menu
-   */
+
   _activateDropdown(event2, target) {
     if (this.openTrigger === "click") {
-      let cloneOpenItems = this.openItems.slice(0);
-      cloneOpenItems.forEach((item) => {
-        if (!item.contains(target)) {
-          this._deactivateDropdown(event2, item);
-        }
+      this.openItems.slice().forEach(item => {
+        if (!item.contains(target)) this._deactivateDropdown(event2, item);
       });
     }
-    let menuToOpen = Dom.getSiblings(target, "[aria-hidden]")[0];
-    let callback = () => {
+
+    const menuId = target.getAttribute("aria-controls");
+    const menuToOpen = document.getElementById(menuId);
+
+    const callback = () => {
       target.setAttribute("aria-expanded", "true");
       target.parentNode.classList.add("is-dropdown-open");
       menuToOpen.setAttribute("aria-hidden", "false");
+
       if (this.openTrigger === "hover" && this.dropdownDeactivationTimeouts[menuToOpen.id]) {
         clearTimeout(this.dropdownDeactivationTimeouts[menuToOpen.id]);
         delete this.dropdownDeactivationTimeouts[menuToOpen.id];
       }
+
       if (this.useInlineNavigation) {
         let windowWidth = window.innerWidth, shouldOpenLeft = false;
-        menuToOpen.querySelectorAll(".nav-dropdown").forEach((subSubMenu) => {
-          if (subSubMenu.getBoundingClientRect().right > windowWidth) {
-            shouldOpenLeft = true;
-          }
+        menuToOpen.querySelectorAll(".nav-dropdown").forEach(subSubMenu => {
+          if (subSubMenu.getBoundingClientRect().right > windowWidth) shouldOpenLeft = true;
         });
-        if (shouldOpenLeft) {
-          menuToOpen.classList.add("nav-dropdown--inverse");
-        }
+        if (shouldOpenLeft) menuToOpen.classList.add("nav-dropdown--inverse");
       }
+
       target.closest('[data-type="menu"]').classList.add("nav-dropdown--glued");
-      if (menuToOpen.classList.contains("mega-menu")) {
-        this._setupMegaMenu(menuToOpen);
-      }
-      if (this.openTrigger === "click") {
-        this.openItems.push(target.parentNode);
-      }
+      if (menuToOpen.classList.contains("mega-menu")) this._setupMegaMenu(menuToOpen);
+      if (this.openTrigger === "click") this.openItems.push(target.parentNode);
     };
-    if (this.openTrigger === "click") {
-      callback();
-    } else {
-      for (let toDeactivate in this.dropdownActivationTimeouts) {
-        if (this.dropdownActivationTimeouts.hasOwnProperty(toDeactivate)) {
-          clearTimeout(this.dropdownActivationTimeouts[toDeactivate]);
-          delete this.dropdownActivationTimeouts[toDeactivate];
-        }
-      }
+
+    if (this.openTrigger === "click") callback();
+    else {
+      Object.keys(this.dropdownActivationTimeouts).forEach(key => {
+        clearTimeout(this.dropdownActivationTimeouts[key]);
+        delete this.dropdownActivationTimeouts[key];
+      });
       callback();
     }
   }
-  /**
-   * Close a dropdown menu
-   */
+
   _deactivateDropdown(event2, target) {
-    if (this.openTrigger === "hover" && target.contains(event2.relatedTarget)) {
-      return;
+    const containerEl = target?.closest?.('.nav-dropdown__item') || target;
+    if (!containerEl) return;
+
+    const triggerEl = containerEl.matches('[data-type="menuitem"]') ? containerEl : containerEl.querySelector('[data-type="menuitem"]');
+    if (!triggerEl) return;
+
+    const menuId = triggerEl.getAttribute('aria-controls');
+    const menuToClose = menuId ? document.getElementById(menuId) : null;
+
+    const related = event2?.relatedTarget || null;
+    if (this.openTrigger === 'hover' && related) {
+      const isHoverInside = containerEl.contains(related) || (menuToClose && menuToClose.contains(related));
+      const isSecondLevel = triggerEl.dataset.hasDropdown !== undefined;
+      const hasDropdown = triggerEl.dataset.hasDropdown === 'true';
+      if (isHoverInside || (isSecondLevel && !hasDropdown)) return;
     }
-    let menuToClose = target.querySelector("[aria-hidden]");
-    let callback = () => {
-      target.classList.remove("is-dropdown-open");
-      target.querySelector('[data-type="menuitem"]').setAttribute("aria-expanded", "false");
-      let menuToClose2 = target.querySelector("[aria-hidden]");
-      menuToClose2.setAttribute("aria-hidden", "true");
-      target.closest('[data-type="menu"]').classList.remove("nav-dropdown--glued");
-      if (this.openTrigger === "click") {
-        target.querySelectorAll(".is-dropdown-open").forEach((item) => {
-          this._deactivateDropdown(event2, item);
-          let index2 = this.openItems.indexOf(item);
-          if (index2 > -1) {
-            this.openItems.splice(index2, 1);
-          }
-        });
-        let index = this.openItems.indexOf(target);
-        if (index > -1) {
-          this.openItems.splice(index, 1);
-        }
-      }
-    };
-    if (this.openTrigger === "click") {
-      callback();
-    } else {
-      this.dropdownDeactivationTimeouts[menuToClose.id] = setTimeout(() => {
-        callback();
-        delete this.dropdownDeactivationTimeouts[menuToClose.id];
-      }, this.DROPDOWN_TIMEOUT);
+
+    containerEl.classList.remove('is-dropdown-open');
+    triggerEl.setAttribute('aria-expanded', 'false');
+    if (menuToClose) menuToClose.setAttribute('aria-hidden', 'true');
+
+    if (this.openTrigger === 'click') {
+      containerEl.querySelectorAll('.is-dropdown-open').forEach(item => {
+        this._deactivateDropdown(event2, item);
+        const idxChild = this.openItems.indexOf(item);
+        if (idxChild > -1) this.openItems.splice(idxChild, 1);
+      });
+      const idx = this.openItems.indexOf(containerEl);
+      if (idx > -1) this.openItems.splice(idx, 1);
     }
   }
+
+  activeOtherMenu(event2, target) {
+    const menuId = target.getAttribute("aria-controls");
+    const menu = document.getElementById(menuId) || document.querySelector(`[data-type="menu"][id="${menuId}"]`);
+    const firstLevelItem = target.closest('[data-first-level="true"]');
+
+    const activeItems = Array.from(firstLevelItem.querySelectorAll(
+      '[data-type="menuitem"][data-has-dropdown="true"][aria-expanded="true"]'
+    ));
+    activeItems.forEach(item => { if (item !== target) this.deactiveOtherMenu(event2, item); });
+
+    target.setAttribute("aria-expanded", "true");
+    target.parentNode.classList.add("is-dropdown-open");
+    if (menu) menu.setAttribute("aria-hidden", "false");
+  }
+
+  deactiveOtherMenu(event2, target) {
+    if (target.dataset.hasDropdown !== "true") return;
+
+    const menuId = target.getAttribute("aria-controls");
+    const menu = document.getElementById(menuId) || document.querySelector(`[data-type="menu"][id="${menuId}"]`);
+
+    target.setAttribute("aria-expanded", "false");
+    target.parentNode.classList.remove("is-dropdown-open");
+    if (menu) menu.setAttribute("aria-hidden", "true");
+  }
+
   /**
    * This method allows to block the dropdown deactivation if the mouse is back on the element. This may happen for
    * instance when the customer does a kind of diagonal movement to the menu. While the mouse may leave the opening
@@ -6577,7 +6600,7 @@ var Cart = class {
           messageElement.innerHTML = `<div class="alert alert--error"><p class="container">${content["description"]}</p></div>`;
           document.querySelector(".header")?.append(messageElement);
           Animation.slideDown(messageElement);
-          setTimeout(function() {
+          setTimeout(function () {
             Animation.slideUp(messageElement, () => {
               messageElement.remove();
             });
@@ -6731,6 +6754,7 @@ var MobileNavigation = class {
   _attachListeners() {
     this._calculatMaxHeightListener = this._calculateMaxHeight.bind(this);
     this.delegateElement.on("click", '[data-action="toggle-menu"]', this._toggleMenu.bind(this));
+    this.delegateElement.on("click", '[data-action="toggle-panel"]', this._togglePanel.bind(this));
     this.delegateElement.on("click", '[data-action="open-panel"]', this._openPanel.bind(this));
     this.delegateElement.on("click", '[data-action="close-panel"]', this._closePanel.bind(this));
     this.delegateRoot.on("click", this._onWindowClick.bind(this));
@@ -6751,6 +6775,21 @@ var MobileNavigation = class {
       document.body.classList.add("no-mobile-scroll");
     }
   }
+  _togglePanel(event2, target) {
+    const targetEl = this.element.querySelector(
+      `#${target.getAttribute("aria-controls")}`
+    );
+    const isExpanded = target.getAttribute("aria-expanded") === "true";
+    target.setAttribute("aria-expanded", !isExpanded);
+    $(targetEl).slideToggle(() => {
+      if ($(targetEl).is(":visible")) {
+        targetEl.classList.add("is-open");
+      } else {
+        targetEl.classList.remove("is-open");
+      }
+    });
+  }
+
   _openPanel(event2, target) {
     target.setAttribute("aria-expanded", "true");
     this.element.querySelector(`#${target.getAttribute("aria-controls")}`).classList.add("is-open");
@@ -7168,17 +7207,17 @@ _VariantPicker_instances = new WeakSet();
 /**
  * Get the option values for the active combination
  */
-getActiveOptionValues_fn = function() {
+getActiveOptionValues_fn = function () {
   return Array.from(__privateGet(this, _form).elements).filter((item) => item.matches('input[data-option-position]:checked, input[data-option-position][type="hidden"], select[data-option-position]')).sort((a, b) => parseInt(a.getAttribute("data-option-position")) - parseInt(b.getAttribute("data-option-position"))).map((input) => input.value);
 };
 /**
  * Get the option values for a given input
  */
-getOptionValuesFromOption_fn = function(input) {
+getOptionValuesFromOption_fn = function (input) {
   const optionValues = [input, ...Array.from(__privateGet(this, _form).elements).filter((item) => item.matches(`input[data-option-position]:not([name="${input.name}"]):checked, input[data-option-position]:not([name="${input.name}"])[type="hidden"], select[data-option-position]`))].sort((a, b) => parseInt(a.getAttribute("data-option-position")) - parseInt(b.getAttribute("data-option-position"))).map((input2) => input2.value);
   return optionValues;
 };
-onOptionChanged_fn = async function(event2) {
+onOptionChanged_fn = async function (event2) {
   if (!event2.target.name.includes("option")) {
     return;
   }
@@ -7193,14 +7232,14 @@ onOptionChanged_fn = async function(event2) {
 /**
  * To improve the user experience, we preload a variant whenever the user hovers over a specific option
  */
-onOptionPreload_fn = function(event2, target) {
+onOptionPreload_fn = function (event2, target) {
   __privateMethod(this, _VariantPicker_instances, renderForCombination_fn).call(this, __privateMethod(this, _VariantPicker_instances, getOptionValuesFromOption_fn).call(this, target.control));
 };
 /**
  * When the variant picker is intersecting the viewport, we preload the options to improve the user experience
  * so that switching variants is nearly instant
  */
-onIntersection_fn = function(entries) {
+onIntersection_fn = function (entries) {
   const prerenderOptions = () => {
     Array.from(__privateGet(this, _form).elements).filter((item) => item.matches('input[data-option-position]:not(:checked), input[data-option-position][type="hidden"]')).forEach((input) => {
       __privateMethod(this, _VariantPicker_instances, renderForCombination_fn).call(this, __privateMethod(this, _VariantPicker_instances, getOptionValuesFromOption_fn).call(this, input));
@@ -7214,7 +7253,7 @@ onIntersection_fn = function(entries) {
     }
   }
 };
-renderForCombination_fn = async function(optionValues) {
+renderForCombination_fn = async function (optionValues) {
   const optionValuesAsString = optionValues.join(",");
   const hashKey = __privateMethod(this, _VariantPicker_instances, createHashKeyForHtml_fn).call(this, optionValuesAsString);
   let productUrl = `${Shopify.routes.root}products/${this.productHandle}`;
@@ -7237,7 +7276,7 @@ renderForCombination_fn = async function(optionValues) {
   }
   return __privateGet(_VariantPicker, _preloadedHtml).get(hashKey).htmlPromise;
 };
-createHashKeyForHtml_fn = function(optionValuesAsString) {
+createHashKeyForHtml_fn = function (optionValuesAsString) {
   return `${optionValuesAsString}-${this.getAttribute("section-id")}`;
 };
 __privateAdd(_VariantPicker, _preloadedHtml, /* @__PURE__ */ new Map());
@@ -7443,9 +7482,9 @@ var import_photoswipe = __toESM(require_photoswipe());
 // node_modules/drift-zoom/es/util/dom.js
 function _typeof(obj) {
   "@babel/helpers - typeof";
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj2) {
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj2) {
     return typeof obj2;
-  } : function(obj2) {
+  } : function (obj2) {
     return obj2 && "function" == typeof Symbol && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
   }, _typeof(obj);
 }
@@ -7454,12 +7493,12 @@ function isDOMElement(obj) {
   return HAS_DOM_2 ? obj instanceof HTMLElement : obj && _typeof(obj) === "object" && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === "string";
 }
 function addClasses(el, classNames) {
-  classNames.forEach(function(className) {
+  classNames.forEach(function (className) {
     el.classList.add(className);
   });
 }
 function removeClasses(el, classNames) {
-  classNames.forEach(function(className) {
+  classNames.forEach(function (className) {
     el.classList.remove(className);
   });
 }
@@ -7504,7 +7543,7 @@ function _createClass(Constructor, protoProps, staticProps) {
   Object.defineProperty(Constructor, "prototype", { writable: false });
   return Constructor;
 }
-var BoundingBox = /* @__PURE__ */ function() {
+var BoundingBox = /* @__PURE__ */ function () {
   function BoundingBox2(options) {
     _classCallCheck(this, BoundingBox2);
     this.isShowing = false;
@@ -7597,7 +7636,7 @@ function _createClass2(Constructor, protoProps, staticProps) {
   Object.defineProperty(Constructor, "prototype", { writable: false });
   return Constructor;
 }
-var Trigger = /* @__PURE__ */ function() {
+var Trigger = /* @__PURE__ */ function () {
   function Trigger2() {
     var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
     _classCallCheck2(this, Trigger2);
@@ -7797,7 +7836,7 @@ function _createClass3(Constructor, protoProps, staticProps) {
   Object.defineProperty(Constructor, "prototype", { writable: false });
   return Constructor;
 }
-var ZoomPane = /* @__PURE__ */ function() {
+var ZoomPane = /* @__PURE__ */ function () {
   function ZoomPane2() {
     var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
     _classCallCheck3(this, ZoomPane2);
@@ -8037,7 +8076,7 @@ function _createClass4(Constructor, protoProps, staticProps) {
   Object.defineProperty(Constructor, "prototype", { writable: false });
   return Constructor;
 }
-var Drift = /* @__PURE__ */ function() {
+var Drift = /* @__PURE__ */ function () {
   function Drift2(triggerEl) {
     var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
     _classCallCheck4(this, Drift2);
@@ -8387,7 +8426,7 @@ var ProductGallery = class {
       allowPanToNext: false
     });
     let originalUpdateSize = this.photoSwipeInstance.updateSize, lastWidth = null;
-    this.photoSwipeInstance.updateSize = function() {
+    this.photoSwipeInstance.updateSize = function () {
       if (lastWidth === null || lastWidth !== window.innerWidth) {
         originalUpdateSize(this, arguments);
       }
@@ -8580,7 +8619,7 @@ var Form = class _Form {
   static extend() {
     let extended = {};
     let i = 0;
-    let merge = function(obj) {
+    let merge = function (obj) {
       for (let prop in obj) {
         if (obj.hasOwnProperty(prop)) {
           if (Object.prototype.toString.call(obj[prop]) === "[object Object]") {
@@ -8704,7 +8743,7 @@ var ShippingEstimator = class {
     } else {
       resultsElement.innerHTML = `<p>${window.languages.shippingEstimatorErrors}</p>`;
       let errorHtml = "";
-      Object.keys(results).forEach(function(key) {
+      Object.keys(results).forEach(function (key) {
         errorHtml += `<li class="alert__list-item">${key} ${results[key]}</li>`;
       });
       resultsElement.innerHTML += `<ul>${errorHtml}</ul>`;
@@ -8907,7 +8946,7 @@ var BlogSidebarSection = class {
     let blocks = this.element.querySelectorAll(".blog-sidebar__item");
     if (blocks.length === 0) {
       document.querySelector(".blog-container").classList.add("blog-container--without-sidebar");
-      document.querySelectorAll(".shopify-section__blog-posts .block-list__item").forEach(function(item) {
+      document.querySelectorAll(".shopify-section__blog-posts .block-list__item").forEach(function (item) {
         if (item.classList.contains("1/2--lap-and-up")) {
           item.classList.remove("1/2--lap-and-up");
           item.classList.add("1/3--lap-and-up");
@@ -8915,7 +8954,7 @@ var BlogSidebarSection = class {
       });
     } else {
       document.querySelector(".blog-container").classList.remove("blog-container--without-sidebar");
-      document.querySelectorAll(".shopify-section__blog-posts .block-list__item").forEach(function(item) {
+      document.querySelectorAll(".shopify-section__blog-posts .block-list__item").forEach(function (item) {
         if (item.classList.contains("1/3--lap-and-up")) {
           item.classList.remove("1/3--lap-and-up");
           item.classList.add("1/2--lap-and-up");
@@ -10616,7 +10655,7 @@ function mousedownShortcutListener(event2) {
   if (!anchorElement) {
     return;
   }
-  anchorElement.addEventListener("click", function(event3) {
+  anchorElement.addEventListener("click", function (event3) {
     if (event3.detail == 1337) {
       return;
     }
@@ -10851,7 +10890,7 @@ var ProductRerender = class extends HTMLElement {
 };
 _abortController = new WeakMap();
 _ProductRerender_instances = new WeakSet();
-onRerender_fn = function(event2) {
+onRerender_fn = function (event2) {
   const matchingElement = Dom.deepQuerySelector(event2.detail.htmlFragment, `#${this.id}`);
   if (!matchingElement) {
     return;
@@ -10926,7 +10965,7 @@ var BuyButton = class extends HTMLElement {
 };
 _onClickListener = new WeakMap();
 _BuyButton_instances = new WeakSet();
-addToCart_fn = function(event2) {
+addToCart_fn = function (event2) {
   event2.preventDefault();
   event2.stopPropagation();
   event2.target.setAttribute("disabled", "disabled");
@@ -10980,14 +11019,14 @@ addToCart_fn = function(event2) {
   });
   event2.preventDefault();
 };
-showAlert_fn = function(message, type, afterElement) {
+showAlert_fn = function (message, type, afterElement) {
   let cssModifier = afterElement.closest("[data-section-type]").getAttribute("data-section-type");
   let messageElement = document.createElement("div");
   messageElement.className = `cart__status-message cart__status-message--${cssModifier}`;
   messageElement.innerHTML = `<div class="alert ${type === "success" ? "alert--success" : "alert--error"}"><p ${cssModifier === "header" ? 'class="container"' : ""}>${message}</p></div>`;
   afterElement.append(messageElement);
   Animation.slideDown(messageElement);
-  setTimeout(function() {
+  setTimeout(function () {
     Animation.slideUp(messageElement, () => {
       messageElement.remove();
     });
@@ -10998,10 +11037,10 @@ if (!window.customElements.get("buy-button")) {
 }
 
 // js/theme.js
-(function() {
+(function () {
   const bootTheme = () => {
     if (window.NodeList && !NodeList.prototype.forEach) {
-      NodeList.prototype.forEach = function(callback, thisArg) {
+      NodeList.prototype.forEach = function (callback, thisArg) {
         thisArg = thisArg || window;
         for (var i = 0; i < this.length; i++) {
           callback.call(thisArg, this[i], i, this);
@@ -11036,7 +11075,7 @@ if (!window.customElements.get("buy-button")) {
     sections.register("slideshow", SlideshowSection);
     sections.register("text-with-icons", TextWithIconsSection);
     sections.register("video", VideoSection);
-    (function() {
+    (function () {
       document.querySelectorAll(".rte table").forEach((table) => {
         table.outerHTML = '<div class="table-wrapper">' + table.outerHTML + "</div>";
       });
@@ -11047,9 +11086,9 @@ if (!window.customElements.get("buy-button")) {
         }
       });
     })();
-    (function() {
+    (function () {
       let touchingCarousel = false, touchStartCoords;
-      document.body.addEventListener("touchstart", function(e) {
+      document.body.addEventListener("touchstart", function (e) {
         let flickitySliderElement = e.target.closest(".flickity-slider");
         if (flickitySliderElement) {
           let flickity = import_flickity6.default.data(flickitySliderElement.closest(".flickity-enabled"));
@@ -11068,7 +11107,7 @@ if (!window.customElements.get("buy-button")) {
           y: e.touches[0].pageY
         };
       });
-      document.body.addEventListener("touchmove", function(e) {
+      document.body.addEventListener("touchmove", function (e) {
         if (!(touchingCarousel && e.cancelable)) {
           return;
         }
@@ -11080,7 +11119,7 @@ if (!window.customElements.get("buy-button")) {
           e.preventDefault();
       }, { passive: false });
     })();
-    (function() {
+    (function () {
       let documentDelegate = new main_default(document.body);
       documentDelegate.on("click", ".expandable-content__toggle", (item, expandableButton) => {
         let parentSection = expandableButton.closest(".expandable-content");
@@ -11107,7 +11146,7 @@ if (!window.customElements.get("buy-button")) {
         }
       });
       let processCollapsibles = () => {
-        document.querySelectorAll(".expandable-content[aria-expanded]").forEach(function(item) {
+        document.querySelectorAll(".expandable-content[aria-expanded]").forEach(function (item) {
           if (item.scrollHeight > item.clientHeight) {
             item.classList.add("expandable-content--expandable");
           } else {
@@ -11115,12 +11154,12 @@ if (!window.customElements.get("buy-button")) {
           }
         });
       };
-      document.addEventListener("shopify:section:load", function(event2) {
+      document.addEventListener("shopify:section:load", function (event2) {
         processCollapsibles();
       });
       processCollapsibles();
     })();
-    (function() {
+    (function () {
       if (Responsive.getCurrentBreakpoint() === "phone") {
         let autoFocusedElements = document.querySelectorAll("input[autofocus]");
         for (let i = 0; i < autoFocusedElements.length; i++) {
@@ -11129,7 +11168,7 @@ if (!window.customElements.get("buy-button")) {
         }
       }
     })();
-    (function() {
+    (function () {
       let documentDelegate = new main_default(document.body);
       documentDelegate.on("click", '[href^="#"], [data-href]', (event2, target) => {
         const selector = target.hasAttribute("href") ? target.getAttribute("href") : target.getAttribute("data-href");
@@ -11152,7 +11191,7 @@ if (!window.customElements.get("buy-button")) {
         event2.preventDefault();
       });
     })();
-    (function() {
+    (function () {
       function handleFirstTab(event2) {
         if (event2.key === "Tab") {
           document.body.classList.add("is-tabbing");
@@ -11161,7 +11200,7 @@ if (!window.customElements.get("buy-button")) {
       }
       window.addEventListener("keydown", handleFirstTab);
     })();
-    (function() {
+    (function () {
       let documentDelegate = new main_default(document.body);
       documentDelegate.on("keyup", "input, textarea", (event2, target) => {
         target.classList.toggle("is-filled", target.value !== "");
@@ -11170,7 +11209,7 @@ if (!window.customElements.get("buy-button")) {
         target.parentNode.classList.toggle("is-filled", target.value !== "");
       });
     })();
-    (function() {
+    (function () {
       let links = document.links;
       import_fastdom5.default.mutate(() => {
         for (let i = 0, linksLength = links.length; i < linksLength; i++) {
