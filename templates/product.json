@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -66,11 +75,68 @@
         "title": "Recently viewed",
         "show_quick_buy": false
       }
+    },
+    "featured_product_EexzfE": {
+      "type": "featured-product",
+      "blocks": {
+        "product_meta_TWnAyB": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": true,
+            "show_sku": false,
+            "show_reviews_badge": false,
+            "show_share_buttons": true
+          }
+        },
+        "featured_description_XekcBh": {
+          "type": "featured_description",
+          "settings": {}
+        },
+        "variant_selector_bp8RrW": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "swatch",
+            "variant_image_options": "",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 0,
+            "progress_bar_max_value": 50
+          }
+        },
+        "buy_buttons_89JwEQ": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "product_meta_TWnAyB",
+        "featured_description_XekcBh",
+        "variant_selector_bp8RrW",
+        "buy_buttons_89JwEQ"
+      ],
+      "name": "Featured product",
+      "settings": {
+        "product": "konlite-led-wall-pack-light-22-0106",
+        "title": "Featured product",
+        "link_title": "View details",
+        "link_url": "",
+        "image_size": "small",
+        "enable_image_zoom": true,
+        "enable_video_looping": false,
+        "zoom_effect": "outside",
+        "carousel_effect": "fade"
+      }
     }
   },
   "order": [
     "main",
     "product-recommendations",
-    "recently-viewed-products"
+    "recently-viewed-products",
+    "featured_product_EexzfE"
   ]
 }
