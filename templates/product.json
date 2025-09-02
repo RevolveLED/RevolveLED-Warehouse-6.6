@@ -62,20 +62,6 @@
         "carousel_effect": "slide"
       }
     },
-    "product-recommendations": {
-      "type": "product-recommendations",
-      "settings": {
-        "heading": "You may also like",
-        "show_quick_buy": false
-      }
-    },
-    "recently-viewed-products": {
-      "type": "recently-viewed-products",
-      "settings": {
-        "title": "Recently viewed",
-        "show_quick_buy": false
-      }
-    },
     "featured_product_EexzfE": {
       "type": "featured-product",
       "blocks": {
@@ -131,12 +117,26 @@
         "zoom_effect": "outside",
         "carousel_effect": "fade"
       }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "show_quick_buy": false
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
     }
   },
   "order": [
     "main",
+    "featured_product_EexzfE",
     "product-recommendations",
-    "recently-viewed-products",
-    "featured_product_EexzfE"
+    "recently-viewed-products"
   ]
 }
