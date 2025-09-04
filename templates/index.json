@@ -117,6 +117,10 @@
         "block_gJz4gR",
         "block_hQNTzz"
       ],
+      "custom_css": [
+        ".index-section {margin-top: 40px;}",
+        "@media (max-width:749px){.index-section{margin-top:24px; }}"
+      ],
       "name": "Featured collections grid",
       "settings": {
         "title": "Featured products",
@@ -344,7 +348,7 @@
     "image_group_with_text_CFb6ik": {
       "type": "image-group-with-text",
       "custom_css": [
-        ".image-group-with-text-section__content-container{gap:16px;}"
+        ".image-group-with-text-section__content-container {gap: 16px;}"
       ],
       "name": "Image group & text",
       "settings": {
