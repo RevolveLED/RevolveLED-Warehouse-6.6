@@ -1,0 +1,104 @@
+.newsletter-with-background-section__container {
+    position: relative;
+}
+
+.newsletter-with-background-section__content-container {
+    position: absolute;
+    /* height: 49.333333%; */
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.newsletter-with-background-section__content-wrapper {
+    width: 51.5%;
+    background-color: var(--color-background);
+    padding: 64px 104px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #fff;
+}
+
+.newsletter-with-background-section__content-wrapper>* {
+    margin: 0;
+}
+
+.newsletter-with-background-section__content-wrapper .heading {
+    font-size: 32px;
+    line-height: 1.25;
+    color: inherit;
+}
+
+.newsletter-with-background-section__content-wrapper .rte p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.newsletter-with-background-section__content-wrapper .form__floating-label {
+    color: rgba(0, 72, 127, 0.50);
+    font-size: 15px;
+}
+
+.newsletter-with-background-section__content-wrapper .form__submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: unset;
+    color: var(--color-blue);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    padding: 0 16px;
+}
+
+.newsletter-with-background-section__content-wrapper .form__field {
+    padding-right: 50px;
+}
+
+@media (max-width:1400px) {
+    .newsletter-with-background-section__content-wrapper {
+        padding: 32px 40px;
+    }
+
+    .newsletter-with-background-section__content-wrapper .heading {
+        font-size: 28px;
+    }
+}
+
+@media (max-width:1000px) {
+    .newsletter-with-background-section__content-wrapper {
+        padding: 16px 40px;
+    }
+}
+
+@media (max-width:749px) {
+    .newsletter-with-background-section__content-wrapper {
+        padding: 48px 16px;
+        width: 100%;
+    }
+
+    .newsletter-with-background-section__content-wrapper .heading {
+        font-size: 26px;
+    }
+
+    .newsletter-with-background-section__content-wrapper .rte p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .newsletter-with-background-section__content-wrapper .form__field {
+        height: 40px;
+    }
+
+    .newsletter-with-background-section__content-wrapper .form__floating-label {
+        line-height: 40px;
+        font-size: 14px;
+    }
+}

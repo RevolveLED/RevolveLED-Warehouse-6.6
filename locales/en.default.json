@@ -58,7 +58,8 @@
     },
     "form": {
       "max_characters": "{{ max_chars }} characters max"
-    }
+    },
+    "request_for_quote":"Request For Quote",
   },
   "header": {
     "general": {
@@ -160,7 +161,7 @@
     },
     "newsletter": {
       "success": "You have been registered to our newsletter!",
-      "input": "Your email",
+      "input": "Your Email",
       "submit": "Subscribe"
     }
   },
@@ -417,7 +418,8 @@
         "zero": "No reviews",
         "one": "{{ count }} review",
         "other": "{{ count }} reviews"
-      }
+      },
+      "search_code": "SEARCH CODE:"
     },
     "volume_pricing": {
       "title": "Volume pricing",

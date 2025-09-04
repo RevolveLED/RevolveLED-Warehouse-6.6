@@ -1,49 +1,126 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "slideshow": {
       "type": "slideshow",
       "blocks": {
-        "slide-1": {
-          "type": "image",
-          "settings": {
-            "show_overlay": false,
-            "overlay_opacity": 30,
-            "text_color": "#ffffff",
-            "title": "Slide title",
-            "content": "Tell your story",
-            "content_position": "middle_center",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "button_text": "Button",
-            "link": ""
-          }
-        },
         "slide-2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Architectural_Linear_Light-PC.jpg",
+            "mobile_image": "shopify://shop_images/Architectural_Linear_Light-MP.png",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
-            "title": "Slide title",
-            "content": "Tell your story",
+            "title": "",
+            "content": "",
             "content_position": "middle_center",
-            "button_background": "#ffffff",
+            "button_background": "#c8ee07",
             "button_text_color": "#000000",
-            "button_text": "Button",
-            "link": ""
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/collections/led-architectural-suspended-lights",
+            "button_hide_pc": true
+          }
+        },
+        "image_4kCYBD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Stadium_Lights-PC.png",
+            "mobile_image": "shopify://shop_images/Stadium_Lights-MP.png",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/collections/led-stadium-lights",
+            "button_hide_pc": true
+          }
+        },
+        "slide-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/NAVI_LED_Flood_Light-PC.jpg",
+            "mobile_image": "shopify://shop_images/NAVI_LED_Flood_Light-MP.png",
+            "show_overlay": false,
+            "overlay_opacity": 68,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/collections/led-flood-lights",
+            "button_hide_pc": true
           }
         }
       },
       "block_order": [
-        "slide-1",
-        "slide-2"
+        "slide-2",
+        "image_4kCYBD",
+        "slide-1"
       ],
       "settings": {
-        "edge_to_edge": false,
+        "edge_to_edge": true,
         "section_size": "preserve_ratio",
         "carousel_effect": "slide",
-        "autoplay": true,
+        "show_button": true,
+        "autoplay": false,
         "cycle_speed": 5
+      }
+    },
+    "featured_collections_grid_3eYbHR": {
+      "type": "featured-collections-grid",
+      "blocks": {
+        "block_bGJ8gY": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/featured-collections-image_2.webp",
+            "overlay_image": "shopify://shop_images/featured-collections-hover-image_1.webp",
+            "collection": "led-stadium-lights",
+            "title": "LED Stadium Lights"
+          }
+        },
+        "block_gJz4gR": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/featured-collections-image_3.webp",
+            "overlay_image": "shopify://shop_images/featured-collections-hover-image_2.webp",
+            "collection": "led-area-and-site-lights",
+            "title": "LED Area Lights"
+          }
+        },
+        "block_hQNTzz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/featured-collections-image_1.webp",
+            "overlay_image": "shopify://shop_images/featured-collections-hover-image_3.webp",
+            "collection": "wall-pack-lights",
+            "title": "LED Wall Pack Lights"
+          }
+        }
+      },
+      "block_order": [
+        "block_bGJ8gY",
+        "block_gJz4gR",
+        "block_hQNTzz"
+      ],
+      "name": "Featured collections grid",
+      "settings": {
+        "title": "Featured products",
+        "block_button_label": "Shop Now"
       }
     },
     "promotion_list_H9Gak8": {
@@ -52,70 +129,144 @@
         "item_MCPcJk": {
           "type": "item",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Collection-highbays-lighting.png",
+            "image": "shopify://shop_images/Collection-highbays-lighting.png",
             "stretch_image": true,
-            "show_overlay": true,
-            "overlay_opacity": 66,
+            "show_overlay": false,
+            "overlay_opacity": 0,
             "background": "#ffffff",
             "text_color": "#ffffff",
-            "title": "Your heading",
+            "title": "LED High Bay Lights",
             "content": "",
             "content_position": "bottom_center",
             "button_background": "#ffffff",
             "button_text_color": "#6f42ef",
             "button_text": "",
-            "button_link": ""
+            "button_link": "shopify://collections/high-bay-ceiling-lights"
           }
         },
         "item_hpHaeF": {
           "type": "item",
           "settings": {
-            "stretch_image": false,
+            "image": "shopify://shop_images/Area-site-lighting-fixture-collection.png",
+            "stretch_image": true,
             "show_overlay": false,
             "overlay_opacity": 50,
-            "background": "#fc2a68",
+            "background": "#ffffff",
             "text_color": "#ffffff",
-            "title": "Your heading",
-            "content": "<p>Tell more about your product, collection...<\/p>",
-            "content_position": "top_left",
+            "title": "LED Area/Street Lights",
+            "content": "",
+            "content_position": "bottom_center",
             "button_background": "#ffffff",
             "button_text_color": "#fc2a68",
-            "button_text": "Learn more",
-            "button_link": ""
+            "button_text": "",
+            "button_link": "shopify://collections/led-area-and-site-lights"
           }
         },
-        "item_U7Njxt": {
+        "item_pgwbbf": {
           "type": "item",
           "settings": {
-            "stretch_image": false,
+            "image": "shopify://shop_images/Collection-flood-lights_c3c23c42-3bfc-442d-9a5f-bd1608d20ef8.png",
+            "stretch_image": true,
             "show_overlay": false,
             "overlay_opacity": 50,
-            "background": "#26c1ce",
+            "background": "#ffffff",
             "text_color": "#ffffff",
-            "title": "Your heading",
-            "content": "<p>Tell more about your product, collection...<\/p>",
-            "content_position": "top_left",
+            "title": "LED Flood Lights",
+            "content": "",
+            "content_position": "bottom_center",
             "button_background": "#ffffff",
-            "button_text_color": "#26c1ce",
-            "button_text": "Learn more",
-            "button_link": ""
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": "shopify://collections/best-led-flood-lights"
+          }
+        },
+        "item_FLaNVB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/LED-WALL-PACK-OUT-DOOR.jpg",
+            "stretch_image": true,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#ffffff",
+            "text_color": "#ffffff",
+            "title": "LED Wall Packs",
+            "content": "",
+            "content_position": "bottom_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": "shopify://collections/wall-pack-lights"
+          }
+        },
+        "item_mFfPLF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Collection-canopy.png",
+            "stretch_image": true,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#ffffff",
+            "text_color": "#ffffff",
+            "title": "LED Canopy Lights",
+            "content": "",
+            "content_position": "bottom_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": "shopify://collections/canopy-lights"
+          }
+        },
+        "item_9qqANm": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Collection-panel-lighting.png",
+            "stretch_image": true,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#ffffff",
+            "text_color": "#ffffff",
+            "title": "LED Panel Lights",
+            "content": "",
+            "content_position": "bottom_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": "shopify://collections/panel-lights"
           }
         }
       },
       "block_order": [
         "item_MCPcJk",
         "item_hpHaeF",
-        "item_U7Njxt"
+        "item_pgwbbf",
+        "item_FLaNVB",
+        "item_mFfPLF",
+        "item_9qqANm"
       ],
       "name": "Promotion blocks",
       "settings": {
+        "class": "index-promotion-blocks index-section",
+        "title": "Commercial & Industrial LED Lighting",
         "expand_items": false,
         "section_size": "medium",
-        "stack_mobile": false
+        "stack_mobile": true
+      }
+    },
+    "newsletter_with_background_qyD3pU": {
+      "type": "newsletter-with-background",
+      "name": "Newsletter & background",
+      "settings": {
+        "background_image": "shopify://shop_images/newsletter-bg.webp",
+        "background_image_mobile": "shopify://shop_images/newsletter-bg-mb.webp",
+        "title": "Subscribe And Save!",
+        "content": "<p>Get exclusive subscriber discounts and promotions directly to your inbox ! 100% free, Unsubscribe any time!</p>",
+        "background": "#003a66",
+        "text": "#ffffff"
       }
     },
     "featured-collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "alta-led-high-bay-light",
         "title": "Deal Zone",
@@ -125,6 +276,17 @@
         "show_quick_buy": true,
         "link_title": "View all",
         "link_url": ""
+      }
+    },
+    "featured_products_swiper_WXyxpy": {
+      "type": "featured-products-swiper",
+      "name": "Featured products swiper",
+      "settings": {
+        "title": "<p class=\"icon-header-show\">Deal<svg width=\"21\" height=\"28\" viewbox=\"0 0 21 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M17.8182 0H5.72727L0 15.8261H8.27273L5.72727 28L21 9.73913H12.0909L17.8182 0Z\" fill=\"#00487F\"></path>\n</svg>Zone</p>",
+        "show_button": true,
+        "link_title": "View All",
+        "collection": "alta-led-high-bay-light",
+        "image_lazy": true
       }
     },
     "collection-list": {
@@ -184,7 +346,7 @@
       "settings": {
         "title": "Our collections",
         "link_title": "View all",
-        "link": "shopify:\/\/collections",
+        "link": "shopify://collections",
         "round_images": true,
         "show_collection_title": true
       }
@@ -193,7 +355,7 @@
       "type": "newsletter",
       "settings": {
         "title": "Newsletter",
-        "content": "<p>A short sentence describing what someone will receive by subscribing<\/p>",
+        "content": "<p>A short sentence describing what someone will receive by subscribing</p>",
         "background": "#1e2d7d",
         "text": "#ffffff"
       }
@@ -242,7 +404,7 @@
         "buy-buttons"
       ],
       "settings": {
-        "product": "",
+        "product": "2x4-led-backlit-flat-panel-light-11-0116",
         "title": "Featured product",
         "link_title": "View details",
         "link_url": "",
@@ -270,8 +432,11 @@
   },
   "order": [
     "slideshow",
+    "featured_collections_grid_3eYbHR",
     "promotion_list_H9Gak8",
+    "newsletter_with_background_qyD3pU",
     "featured-collection",
+    "featured_products_swiper_WXyxpy",
     "collection-list",
     "newsletter",
     "featured-product",

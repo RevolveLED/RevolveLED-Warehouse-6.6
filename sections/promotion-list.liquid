@@ -1,5 +1,14 @@
-<section class="section" data-section-id="{{ section.id }}" data-section-type="promo-block">
+<section
+  class="section {{ section.settings.class }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="promo-block"
+>
   <div class="container">
+    {%- if section.settings.title != blank -%}
+      <header class="section__header index-section__header">
+        <h2 class="section__title heading h3 index-section__title">{{ section.settings.title | escape }}</h2>
+      </header>
+    {%- endif -%}
     {%- capture block_list -%}
       <div class="block-list">
         {%- for block in section.blocks -%}
@@ -95,6 +104,20 @@
 {
   "name": "Promotion blocks",
   "settings": [
+    {
+      "type": "text",
+      "id": "class",
+      "label": "Class name"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
     {
       "type": "checkbox",
       "id": "expand_items",

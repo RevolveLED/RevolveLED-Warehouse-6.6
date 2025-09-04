@@ -1,0 +1,151 @@
+{{ 'newsletter-with-background-section.css' | asset_url | stylesheet_tag }}
+<section
+  class="section newsletter-with-background-section index-section section--text-centered"
+  data-section-id="{{ section.id }}"
+  data-section-type="newsletter"
+  style="--color-background: {{ section.settings.background | color_modify: 'alpha', 0.8 }}"
+>
+  <div
+    class="newsletter-with-background-section__container{% comment %} container container--giga-narrow {% endcomment %}"
+  >
+    {%- if section.settings.background_image != blank -%}
+      <div class="section__background-image-wrapper">
+        <picture>
+          {%- if section.settings.background_image_mobile != blank -%}
+            <source
+              media="(max-width: 749px)"
+              srcset="{{ section.settings.background_image_mobile | image_url: width: 750 }}"
+            >
+          {%- endif -%}
+          <img
+            class="section__background-image"
+            src="{{ section.settings.background_image | image_url: width: section.settings.background_image.width }}"
+            alt="{{ section.settings.background_image.alt | escape }}"
+            width="{{ section.settings.background_image.width }}"
+            height="{{ section.settings.background_image.height }}"
+            loading="lazy"
+          >
+        </picture>
+      </div>
+    {%- endif -%}
+    <div class="newsletter-with-background-section__content-container container">
+      <div class="newsletter-with-background-section__content-wrapper">
+        {%- if section.settings.title != blank -%}
+          <h2 class="heading h3">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.content != blank -%}
+          <div class="rte">
+            {{ section.settings.content }}
+          </div>
+        {%- endif -%}
+
+        {%- assign newsletter_id = 'newsletter-' | append: section.id -%}
+
+        <div class="newsletter newsletter--compact">
+          {%- form 'customer', id: newsletter_id, class: 'form newsletter__form' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="alert alert--success">{{ 'home_page.newsletter.success' | t }}</p>
+            {%- else -%}
+              {%- if form.errors -%}
+                <p class="alert alert--error">{{ form.errors.messages.email }}</p>
+              {%- endif -%}
+
+              <input type="hidden" name="contact[tags]" value="newsletter">
+
+              <div class="form__input-row">
+                <div class="form__input-wrapper form__input-wrapper--labelled">
+                  <input
+                    type="email"
+                    id="newsletter[{{ section.id }}][contact][email]"
+                    name="contact[email]"
+                    class="form__field {% if section.settings.background != settings.background %}form__field--borderless{% endif %} form__field--text"
+                    required
+                  >
+                  <label for="newsletter[{{ section.id }}][contact][email]" class="form__floating-label">
+                    {{- 'home_page.newsletter.input' | t -}}
+                  </label>
+
+                  <button type="submit" class="form__submit button button--primary">
+                    {% comment %} {{ 'home_page.newsletter.submit' | t }} {% endcomment %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g filter="url(#filter0_d_82351_3610)">
+                      <path d="M12.0622 21.2632C12.6612 21.235 13.1614 20.8747 13.3804 20.3152L13.3798 20.3145L18.6595 6.75283C18.8619 6.23314 18.7695 5.67318 18.4095 5.24411C18.0491 4.81479 17.515 4.62752 16.9671 4.73598L2.69408 7.57974C2.43605 7.63084 2.20781 7.74299 2.02296 7.89811C1.78275 8.09968 1.60704 8.38054 1.53146 8.71464L1.53221 8.71401C1.4081 9.26662 1.59028 9.81444 2.01332 10.1792L2.10071 10.2499L6.57195 13.5822L12.8546 8.35637C13.3665 7.93115 14.1286 7.99798 14.5565 8.51289C14.9812 9.02412 14.9137 9.78375 14.4037 10.2117L14.4 10.2148L8.1308 15.4293L10.6497 20.4382C10.9221 20.9785 11.4591 21.2924 12.0615 21.2639L12.0622 21.2632Z" stroke="currentColor"/>
+                      </g>
+                      <defs>
+                      <filter id="filter0_d_82351_3610" x="-0.5" y="0" width="25" height="25.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                      <feMorphology radius="0.5" operator="erode" in="SourceAlpha" result="effect1_dropShadow_82351_3610"/>
+                      <feOffset dy="1"/>
+                      <feGaussianBlur stdDeviation="0.5"/>
+                      <feComposite in2="hardAlpha" operator="out"/>
+                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0"/>
+                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_82351_3610"/>
+                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_82351_3610" result="shape"/>
+                      </filter>
+                      </defs>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter & background",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Customers who subscribe will have their email address added to the \"accepts marketing\" [customer list](/admin/customers?query=&accepts_marketing=1)."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background image (mobile)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>A short sentence describing what someone will receive by subscribing</p>"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#1e2d7d"
+    },
+    {
+      "type": "color",
+      "id": "text",
+      "label": "Text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Promotional",
+      "name": "Newsletter & background",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
