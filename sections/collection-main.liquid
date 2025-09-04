@@ -440,23 +440,25 @@
   });
 </script>
 
-{% comment %} <script>
-  $('.filter-item-title').click(function () {
-    if ($(this).next('.filter-item-list').is(':hidden')) {
-      $(this).attr('aria-expanded', 'true');
-    } else {
-      $(this).attr('aria-expanded', 'false');
-    }
-    $(this).next('.filter-item-list').slideToggle();
-  });
-
-  if ($(window).width() < 1015) {
-    $('.filterboxxtop').click(function () {
-      $(this).next('.filterboxx').slideToggle();
-      $('.filterboxxtop .tag-toggle').text($('.filterboxxtop .tag-toggle').text() == '+' ? '—' : '+');
+{% comment %}
+  <script>
+    $('.filter-item-title').click(function () {
+      if ($(this).next('.filter-item-list').is(':hidden')) {
+        $(this).attr('aria-expanded', 'true');
+      } else {
+        $(this).attr('aria-expanded', 'false');
+      }
+      $(this).next('.filter-item-list').slideToggle();
     });
-  }
-</script> {% endcomment %}
+
+    if ($(window).width() < 1015) {
+      $('.filterboxxtop').click(function () {
+        $(this).next('.filterboxx').slideToggle();
+        $('.filterboxxtop .tag-toggle').text($('.filterboxxtop .tag-toggle').text() == '+' ? '—' : '+');
+      });
+    }
+  </script>
+{% endcomment %}
 
 <script>
   function init_leftbar_filter() {
@@ -672,21 +674,6 @@
       "type": "image_picker",
       "id": "QuickShip",
       "label": "Quick Ship"
-    },
-    {
-      "type": "image_picker",
-      "id": "new",
-      "label": "Product New Tag"
-    },
-    {
-      "type": "image_picker",
-      "id": "latest",
-      "label": "Product Latest Model Tag"
-    },
-    {
-      "type": "image_picker",
-      "id": "priceDropped",
-      "label": "Product Price Dropped Tag"
     }
   ],
   "blocks": [],

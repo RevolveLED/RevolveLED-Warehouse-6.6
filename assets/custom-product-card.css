@@ -1,0 +1,134 @@
+.custom-product-card-actions .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.custom-product-card {
+    --gap: 16px;
+    box-shadow: 0 0 1px 0 rgba(20, 20, 20, 0.12), 0 1px 8px 0 rgba(20, 20, 20, 0.08);
+    padding: var(--gap);
+    position: relative;
+    margin: 3px;
+}
+
+.custom-product-card-wrapper {
+    gap: var(--gap);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.custom-product-card-image {
+    width: 160px;
+}
+
+.custom-product-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    flex: 1;
+    /* justify-content: space-between; */
+}
+
+.custom-product-card-title {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap) / 2);
+}
+
+.custom-product-card-product__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--gap) / 2);
+    line-height: 1;
+    font-size: 13px;
+    color: #1D2129;
+}
+
+.custom-product-card-product__info .icon-divider {
+    width: 1px;
+    height: 1em;
+    background-color: #000;
+    display: block;
+}
+
+.custom-product-card-product__title {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 4.8em;
+}
+
+.custom-product-card .add-to-card-btn,
+.custom-product-card .rfq-btn {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    width: 100%;
+    gap: 8px;
+    /* padding: 12px 0; */
+    height: 40px;
+    line-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.custom-product-card .add-to-card-btn {
+    background-color: var(--color-blue-medium-light);
+    color: #fff;
+}
+
+.custom-product-card .add-to-card-btn:hover {
+    background-color: #33b1f4;
+}
+
+.custom-product-card .rfq-btn {
+    border: solid 1px var(--color-blue-medium-light);
+    color: var(--color-blue-medium-light);
+}
+
+.product-new-tag {
+    position: absolute;
+    top: 0;
+    left: 24px;
+    pointer-events: none;
+}
+
+.custom-product-card-price {
+    display: flex;
+    gap: calc(var(--gap) / 2);
+    line-height: 1;
+    align-items: center;
+}
+
+.custom-product-card-price .price--highlight {
+    margin-right: 0;
+}
+
+.custom-product-card-price .price--compare {
+    color: #4E5969;
+    font-size: 16px;
+    text-decoration: line-through;
+}
+
+.custom-product-card-price .price--highlight,
+.custom-product-card-price .price:not(.price--highlight):not(.price--compare) {
+    color: #F00;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.custom-product-card-actions {
+    margin-top: auto;
+}

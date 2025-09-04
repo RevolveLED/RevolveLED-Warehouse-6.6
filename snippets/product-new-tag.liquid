@@ -1,0 +1,32 @@
+{% comment %} tag {% endcomment %}
+<div class="product-new-tag item-tag">
+  {% assign new_flag = product.metafields.global.new.value | downcase %}
+  {% assign last_flag = product.metafields.global.latest.value | downcase %}
+  {% assign pricedrop_flag = product.metafields.global.priceDropped.value | downcase %}
+  {% if new_flag == 'yes' %}
+    <img
+      class="lazyload"
+      src="{{ settings["new"] | img_url: '10px' }}"
+      data-src="{{  settings["new"] | img_url: 'master' }}"
+      width="{{  settings["new"].width }}"
+      height="{{  settings["new"].height }}"
+    >
+  {% elsif last_flag == 'yes' %}
+    <img
+      class="lazyload"
+      src="{{ settings["latest"] | img_url: '10px' }}"
+      data-src="{{  settings["latest"] | img_url: 'master' }}"
+      width="{{  settings["latest"].width }}"
+      height="{{  settings["latest"].height }}"
+    >
+  {% elsif pricedrop_flag == 'yes' %}
+    <img
+      class="lazyload"
+      src="{{ settings["priceDropped"] | img_url: '10px' }}"
+      data-src="{{  settings["priceDropped"] | img_url: 'master' }}"
+      width="{{  settings["priceDropped"].width }}"
+      height="{{  settings["priceDropped"].height }}"
+    >
+  {% endif %}
+</div>
+{% comment %} tag {% endcomment %}

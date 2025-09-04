@@ -543,5 +543,29 @@
         "info": "96 x 96px .png recommended"
       }
     ]
+  },
+  {
+    "name": "Product card",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Tag image"
+      },
+      {
+        "type": "image_picker",
+        "id": "new",
+        "label": "Product New Tag"
+      },
+      {
+        "type": "image_picker",
+        "id": "latest",
+        "label": "Product Latest Model Tag"
+      },
+      {
+        "type": "image_picker",
+        "id": "priceDropped",
+        "label": "Product Price Dropped Tag"
+      }
+    ]
   }
 ]
