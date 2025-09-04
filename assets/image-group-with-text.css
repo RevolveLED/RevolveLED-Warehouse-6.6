@@ -92,4 +92,8 @@
         font-size: 14px;
         line-height: 1.71;
     }
+
+    .image-group-with-text-section__content__link {
+        width: 100%;
+    }
 }

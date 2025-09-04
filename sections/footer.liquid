@@ -6,9 +6,33 @@
         <div class="footer__block-list">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
+              {%- when 'logo' -%}
+                {% if block.settings.logo_image != blank or block.settings.address != blank %}
+                  <div
+                    class="footer__block-item footer__block-item--logo"
+                    {{ block.shopify_attributes }}
+                  >
+                    {% if block.settings.logo_image != blank %}
+                      {{
+                        block.settings.logo_image
+                        | image_url: width: block.settings.logo_image.width
+                        | image_tag: loading: 'lazy', class: 'footer__logo-image', width: 200
+                      }}
+                    {% endif %}
+                    {% if block.settings.address != blank %}
+                      <p class="footer__block-item__address">{{ block.settings.address }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
               {%- when 'text' -%}
                 <div class="footer__block-item footer__block-item--text" {{ block.shopify_attributes }}>
-                  <button class="footer__title heading h6" disabled aria-expanded="false" aria-controls="block-{{ block.id }}" data-action="toggle-collapsible">
+                  <button
+                    class="footer__title heading h6"
+                    disabled
+                    aria-expanded="false"
+                    aria-controls="block-{{ block.id }}"
+                    data-action="toggle-collapsible"
+                  >
                     <span>{{ block.settings.title | escape }}</span>
                     <span class="plus-button"></span>
                   </button>
@@ -27,7 +51,13 @@
 
                 {%- unless menu.empty? -%}
                   <div class="footer__block-item footer__block-item--links" {{ block.shopify_attributes }}>
-                    <button class="footer__title heading h6" disabled aria-expanded="false" aria-controls="block-{{ block.id }}" data-action="toggle-collapsible">
+                    <button
+                      class="footer__title heading h6"
+                      disabled
+                      aria-expanded="false"
+                      aria-controls="block-{{ block.id }}"
+                      data-action="toggle-collapsible"
+                    >
                       <span>{{ menu.title }}</span>
                       <span class="plus-button"></span>
                     </button>
@@ -48,32 +78,53 @@
 
               {%- when 'newsletter' -%}
                 <div class="footer__block-item footer__block-item--newsletter" {{ block.shopify_attributes }}>
-                  <p class="footer__title heading h6">{{ block.settings.title | escape }}</p>
-
                   <div class="footer__newsletter-wrapper">
-                    {%- if block.settings.subheading != blank -%}
-                      <div class="footer__newsletter-text rte">{{ block.settings.subheading }}</div>
-                    {%- endif -%}
+                    <p class="footer__title heading h6">{{ block.settings.title | escape }}</p>
 
-                    {%- form 'customer', id: 'footer-newsletter', class: 'footer__newsletter-form' -%}
-                      {%- if form.posted_successfully? -%}
-                        <p class="alert alert--success alert--center">{{ 'footer.newsletter.success' | t }}</p>
-                      {%- else -%}
-                        {%- if form.errors -%}
-                          <p class="alert alert--error alert--center">{{ form.errors.messages['email'] }}</p>
-                        {%- endif -%}
-
-                        <input type="hidden" name="contact[tags]" value="newsletter">
-
-                        <div class="form__input-wrapper form__input-wrapper--labelled">
-                          <input type="email" id="footer[{{ section.id }}][contact][email]" name="contact[email]" class="form__field form__field--text" required="">
-                          <label for="footer[{{ section.id }}][contact][email]" class="form__floating-label">{{ 'footer.newsletter.input' | t }}</label>
-                        </div>
-
-                        <button type="submit" class="form__submit form__submit--tight button button--primary">{{ 'footer.newsletter.submit' | t }}</button>
+                    <div class="footer__newsletter-wrapper">
+                      {%- if block.settings.subheading != blank -%}
+                        <div class="footer__newsletter-text rte">{{ block.settings.subheading }}</div>
                       {%- endif -%}
-                    {%- endform -%}
+
+                      {%- form 'customer', id: 'footer-newsletter', class: 'footer__newsletter-form' -%}
+                        {%- if form.posted_successfully? -%}
+                          <p class="alert alert--success alert--center">{{ 'footer.newsletter.success' | t }}</p>
+                        {%- else -%}
+                          {%- if form.errors -%}
+                            <p class="alert alert--error alert--center">{{ form.errors.messages.email }}</p>
+                          {%- endif -%}
+
+                          <input type="hidden" name="contact[tags]" value="newsletter">
+
+                          <div class="form__input-wrapper form__input-wrapper--labelled">
+                            <input
+                              type="email"
+                              id="footer[{{ section.id }}][contact][email]"
+                              name="contact[email]"
+                              class="form__field form__field--text"
+                              required=""
+                            >
+                            <label for="footer[{{ section.id }}][contact][email]" class="form__floating-label">
+                              {{- 'footer.newsletter.input' | t -}}
+                            </label>
+                          </div>
+
+                          <button type="submit" class="form__submit form__submit--tight button button--primary">
+                            {{ 'footer.newsletter.submit' | t }}
+                          </button>
+                        {%- endif -%}
+                      {%- endform -%}
+                    </div>
                   </div>
+                  {%- if section.settings.show_social_media -%}
+                    {%- capture social_media -%}{% render 'social-media', show_social_media_name: false %}{%- endcapture -%}
+                  {%- endif -%}
+                  {%- if section.settings.show_social_media -%}
+                    <div class="footer__social-media-container">
+                      <p class="footer__title heading h6">{{ 'footer.general.follow_us' | t }}</p>
+                      {{ social_media }}
+                    </div>
+                  {%- endif -%}
                 </div>
             {%- endcase -%}
           {%- endfor -%}
@@ -89,8 +140,8 @@
           {%- assign locale_selector = true -%}
         {%- endif -%}
 
-        <div class="footer__aside-item footer__aside-item--localization {% if country_selector == false and locale_selector == false %}hidden-pocket{% endif %}">
-          {%- if locale_selector or country_selector -%}
+        {%- if locale_selector or country_selector -%}
+          <div class="footer__aside-item footer__aside-item--localization {% if country_selector == false and locale_selector == false %}hidden-pocket{% endif %}">
             {%- form 'localization', id: 'localization_form_footer', class: 'footer__localization-form' -%}
               {%- if locale_selector -%}
                 <div class="footer__localization-form-item">
@@ -98,24 +149,52 @@
                   <span class="visually-hidden">{{ 'footer.general.language' | t }}</span>
 
                   <div class="value-picker-wrapper">
-                    <button type="button" class="select-button select-button--mini" aria-haspopup="true" aria-expanded="false" aria-controls="footer-locale-picker" data-action="open-value-picker">
+                    <button
+                      type="button"
+                      class="select-button select-button--mini"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      aria-controls="footer-locale-picker"
+                      data-action="open-value-picker"
+                    >
                       {{- localization.language.endonym_name | capitalize -}}
                       {%- render 'icon', icon: 'arrow-bottom' -%}
                     </button>
 
-                    <div id="footer-locale-picker" class="value-picker value-picker--small" data-picker-position="top" aria-hidden="true">
+                    <div
+                      id="footer-locale-picker"
+                      class="value-picker value-picker--small"
+                      data-picker-position="top"
+                      aria-hidden="true"
+                    >
                       {% render 'icon', icon: 'nav-triangle-borderless' %}
 
                       <div class="value-picker__inner">
                         <header class="value-picker__header">
                           <span class="value-picker__title text--strong">{{ 'footer.general.language' | t }}</span>
-                          <button type="button" class="value-picker__close" data-action="close-value-picker" aria-controls="footer-locale-picker" aria-label="{{ 'general.accessibility.close' | t }}">{% render 'icon', icon: 'close' %}</button>
+                          <button
+                            type="button"
+                            class="value-picker__close"
+                            data-action="close-value-picker"
+                            aria-controls="footer-locale-picker"
+                            aria-label="{{ 'general.accessibility.close' | t }}"
+                          >
+                            {% render 'icon', icon: 'close' %}
+                          </button>
                         </header>
 
                         <ul class="value-picker__choice-list" role="list">
                           {%- for language in localization.available_languages -%}
                             <li class="value-picker__choice-list-item">
-                              <button type="submit" name="locale_code" class="value-picker__choice-item" value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                              <button
+                                type="submit"
+                                name="locale_code"
+                                class="value-picker__choice-item"
+                                value="{{ language.iso_code }}"
+                                {% if language.iso_code == localization.language.iso_code %}
+                                  aria-current="true"
+                                {% endif %}
+                              >
                                 {{- language.endonym_name | capitalize -}}
                               </button>
                             </li>
@@ -133,25 +212,59 @@
                   <span class="visually-hidden">{{ 'footer.general.country' | t }}</span>
 
                   <div class="value-picker-wrapper">
-                    <button type="button" class="select-button select-button--mini" aria-haspopup="true" aria-expanded="false" aria-controls="footer-currency-picker" data-action="open-value-picker">
-                      {{- localization.country.name }} ({{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%})
+                    <button
+                      type="button"
+                      class="select-button select-button--mini"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      aria-controls="footer-currency-picker"
+                      data-action="open-value-picker"
+                    >
+                      {{- localization.country.name }} ({{ localization.country.currency.iso_code }}
+                      {% if localization.country.currency.symbol -%}
+                        {{- localization.country.currency.symbol }}
+                      {%- endif -%}
+                      )
                       {%- render 'icon', icon: 'arrow-bottom' -%}
                     </button>
 
-                    <div id="footer-currency-picker" class="value-picker value-picker--align-left value-picker--auto value-picker--small" data-picker-position="top" aria-hidden="true">
+                    <div
+                      id="footer-currency-picker"
+                      class="value-picker value-picker--align-left value-picker--auto value-picker--small"
+                      data-picker-position="top"
+                      aria-hidden="true"
+                    >
                       {% render 'icon', icon: 'nav-triangle-borderless' %}
 
                       <div class="value-picker__inner value-picker__inner--restrict">
                         <header class="value-picker__header">
                           <span class="value-picker__title text--strong">{{ 'footer.general.country' | t }}</span>
-                          <button type="button" class="value-picker__close" data-action="close-value-picker" aria-controls="footer-currency-picker" aria-label="{{ 'general.accessibility.close' | t }}">{% render 'icon', icon: 'close' %}</button>
+                          <button
+                            type="button"
+                            class="value-picker__close"
+                            data-action="close-value-picker"
+                            aria-controls="footer-currency-picker"
+                            aria-label="{{ 'general.accessibility.close' | t }}"
+                          >
+                            {% render 'icon', icon: 'close' %}
+                          </button>
                         </header>
 
                         <ul class="value-picker__choice-list" role="list">
                           {%- for country in localization.available_countries -%}
                             <li class="value-picker__choice-list-item">
-                              <button type="submit" name="country_code" class="value-picker__choice-item" value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}>
-                                {{- country.name }} ({{ country.currency.iso_code }} {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%})
+                              <button
+                                type="submit"
+                                name="country_code"
+                                class="value-picker__choice-item"
+                                value="{{ country.iso_code }}"
+                                {% if country.iso_code == localization.country.iso_code %}
+                                  aria-current="true"
+                                {% endif %}
+                              >
+                                {{- country.name }} ({{ country.currency.iso_code }}
+                                {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%}
+                                )
                               </button>
                             </li>
                           {%- endfor -%}
@@ -162,33 +275,37 @@
                 </div>
               {%- endif -%}
             {%- endform -%}
-          {%- endif -%}
 
-          {%- capture copyright_info -%}© {{ 'now' | date: '%Y' }} {{ shop.name }}<br>{{ powered_by_link }}{%- endcapture -%}
-          <p class="hidden-pocket">{{ copyright_info }}</p>
-        </div>
-
-        {%- if section.settings.show_social_media -%}
-          {%- capture social_media -%}{% render 'social-media', show_social_media_name: false %}{%- endcapture -%}
-        {%- endif -%}
-
-        {%- if social_media != blank or shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-          <div class="footer__aside-item footer__aside-item--social">
-            <p class="footer__aside-title">{{ 'footer.general.follow_us' | t }}</p>
-
-            {{- social_media -}}
-
-            {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-              <div class="footer__follow-on-shop">
-                {{- shop | login_button: action: 'follow' -}}
-              </div>
-            {%- endif -%}
+            {% comment %} <p class="hidden-pocket">{{ copyright_info }}</p> {% endcomment %}
           </div>
         {%- endif -%}
+        {%- capture copyright_info -%}© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.{% comment %}  {{ powered_by_link }}{% endcomment %}{%- endcapture -%}
+
+        {% comment %}
+          {%- if section.settings.show_social_media -%}
+            {%- capture social_media -%}{% render 'social-media', show_social_media_name: false %}{%- endcapture -%}
+          {%- endif -%}
+        {% endcomment %}
+
+        {% comment %}
+          {%- if social_media != blank or shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+            <div class="footer__aside-item footer__aside-item--social">
+              <p class="footer__aside-title">{{ 'footer.general.follow_us' | t }}</p>
+
+              {{- social_media -}}
+
+              {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+                <div class="footer__follow-on-shop">
+                  {{- shop | login_button: action: 'follow' -}}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {% endcomment %}
 
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
           <div class="footer__aside-item footer__aside-item--payment">
-            <p class="footer__aside-title">{{ 'footer.general.we_accept' | t }}</p>
+            {% comment %} <p class="footer__aside-title">{{ 'footer.general.we_accept' | t }}</p> {% endcomment %}
 
             <div class="payment-list">
               {% for type in shop.enabled_payment_types %}
@@ -198,14 +315,13 @@
           </div>
         {%- endif -%}
 
-        <div class="footer__aside-item footer__aside-item--copyright hidden-lap-and-up">
+        <div class="footer__aside-item footer__aside-item--copyright{% comment %} hidden-lap-and-up{% endcomment %}">
           <p>{{ copyright_info }}</p>
         </div>
       </aside>
     </div>
   </div>
 </footer>
-
 
 {% schema %}
 {
@@ -255,6 +371,22 @@
     }
   ],
   "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "address",
+          "label": "Address"
+        }
+      ]
+    },
     {
       "type": "text",
       "name": "Text",

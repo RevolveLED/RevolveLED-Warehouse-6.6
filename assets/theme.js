@@ -9551,7 +9551,7 @@ var FooterSection = class {
    * On mobile, some block items are collapsed, so we must slightly edit their HTML
    */
   _setupCollapsibles() {
-    let collapsibleToggles = this.element.querySelectorAll('[data-action="toggle-collapsible"]'), isPhone = Responsive.matchesBreakpoint("phone");
+    let collapsibleToggles = this.element.querySelectorAll('[data-action="toggle-collapsible"]'), isPhone = this._customIsPhone();
     collapsibleToggles.forEach((collapsibleToggle) => {
       if (isPhone) {
         collapsibleToggle.removeAttribute("disabled");
@@ -9560,6 +9560,11 @@ var FooterSection = class {
         document.getElementById(collapsibleToggle.getAttribute("aria-controls")).style.height = "";
       }
     });
+  }
+
+  _customIsPhone() {
+    console.log("Viewport ≤ 1000px ?", window.matchMedia("(max-width: 1000px)").matches);
+    return window.matchMedia("(max-width: 1000px)").matches;
   }
 };
 
