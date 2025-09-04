@@ -289,6 +289,17 @@
         "image_lazy": true
       }
     },
+    "blog_posts_swiper_7PGhMT": {
+      "type": "blog-posts-swiper",
+      "name": "Blog posts swiper",
+      "settings": {
+        "title": "Comemercial LED Lighting Shop Talk",
+        "show_button": true,
+        "link_title": "View All",
+        "blog": "shop-talk",
+        "image_lazy": true
+      }
+    },
     "collection-list": {
       "type": "collection-list",
       "blocks": {
@@ -343,6 +354,7 @@
         "collection-5",
         "collection-6"
       ],
+      "disabled": true,
       "settings": {
         "title": "Our collections",
         "link_title": "View all",
@@ -353,6 +365,7 @@
     },
     "newsletter": {
       "type": "newsletter",
+      "disabled": true,
       "settings": {
         "title": "Newsletter",
         "content": "<p>A short sentence describing what someone will receive by subscribing</p>",
@@ -403,6 +416,7 @@
         "variant-selector",
         "buy-buttons"
       ],
+      "disabled": true,
       "settings": {
         "product": "2x4-led-backlit-flat-panel-light-11-0116",
         "title": "Featured product",
@@ -437,6 +451,7 @@
     "newsletter_with_background_qyD3pU",
     "featured-collection",
     "featured_products_swiper_WXyxpy",
+    "blog_posts_swiper_7PGhMT",
     "collection-list",
     "newsletter",
     "featured-product",

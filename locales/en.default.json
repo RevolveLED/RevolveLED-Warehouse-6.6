@@ -59,7 +59,7 @@
     "form": {
       "max_characters": "{{ max_chars }} characters max"
     },
-    "request_for_quote":"Request For Quote",
+    "request_for_quote": "Request For Quote",
   },
   "header": {
     "general": {
@@ -498,6 +498,8 @@
     },
     "article": {
       "tags": "Tags:",
+      "author": "Author:{{author}}",
+      "default_author": "RevolveLED Team",
       "written_by": "{{author}}",
       "share": "Share",
       "previous_article": "Previous article",
