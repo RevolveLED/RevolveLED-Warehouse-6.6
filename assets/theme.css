@@ -13070,6 +13070,10 @@ product-rerender {
     margin-bottom: 16px;
   }
 
+  .custom-swiper-pagination.swiper-pagination {
+    margin-top: 16px;
+  }
+
   .index-section__header-button_inversion {
     display: flex;
     flex-direction: column;

@@ -10500,6 +10500,36 @@ var FeaturedProductsSwiper = class {
   }
 }
 
+var BlogPostsSwiper = class {
+  constructor(element) {
+    this.element = element;
+    this.domDelegate = new main_default(this.element);
+    this.delegateRoot = new main_default(document.documentElement);
+    this.options = JSON.parse(this.element.getAttribute("data-section-settings"));
+    this.swiper = this.element.querySelector('.swiper');
+    this.initSwiper();
+  }
+
+  initSwiper() {
+    const prevButton = this.element.querySelector('.swiper-button-prev');
+    const nextButton = this.element.querySelector('.swiper-button-next');
+    const pagination = this.element.querySelector('.swiper-pagination');
+    const swiper = new Swiper(this.swiper, {
+      slidesPerView: 'auto',
+      // slidesPerGroup: this.options["slidesPerGroup"],
+      // loop: true,
+      pagination: {
+        el: pagination,
+        clickable: true,
+      },
+      // navigation: {
+      //   nextEl: nextButton,
+      //   prevEl: prevButton,
+      // }
+    })
+  }
+}
+
 // js/sections/TextWithIconsSection.js
 var import_flickity5 = __toESM(require_js());
 var TextWithIconsSection = class {
@@ -11123,6 +11153,7 @@ if (!window.customElements.get("buy-button")) {
     sections.register("header", HeaderSection);
     sections.register("login", LoginSection);
     sections.register("map", MapSection);
+    sections.register("blog-posts-swiper",BlogPostsSwiper);
     sections.register("featured-products-swiper", FeaturedProductsSwiper);
     sections.register("minimal-header", MinimalHeaderSection);
     sections.register("popups", PopupsSection);

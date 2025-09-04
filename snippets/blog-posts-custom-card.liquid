@@ -1,0 +1,25 @@
+<div class="custom-article-card{% if swiper %} swiper-slide{% endif %}">
+  <div class="custom-article-card-wrapper">
+    <a class="custom-article-card-image" href="{{ article.url }}">
+      {{
+        article.image
+        | image_url: width: article.image.width
+        | image_tag: loading: loading_type, class: 'custom-article-card-img'
+      }}
+    </a>
+    <div class="custom-article-card-content">
+      <div class="custom-article-card-title">
+        <a class="custom-article-card-article__title" href="{{ article.url }}">{{ article.title }}</a>
+      </div>
+      <div class="custom-article-card-meta">
+        <span class="custom-article-card-article__author">
+          {%- assign default_author = 'blog.article.default_author' | t -%}
+          {{ 'blog.article.author' | t: author: article.author | default: default_author }}
+        </span>
+        <time class="custom-article-card-article__date" datetime="{{ article.published_at | date: '%Y-%m-%d'}}">
+          {{ article.published_at | date: format: 'date' }}
+        </time>
+      </div>
+    </div>
+  </div>
+</div>
