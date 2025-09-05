@@ -1,0 +1,6 @@
+.shopify/
+.vite/
+config.yml
+node_modules/
+temp/
+shopify.theme.toml

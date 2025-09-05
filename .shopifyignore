@@ -1,0 +1,10 @@
+src/
+.vite/
+temp/
+node_modules/
+./config.yml
+./global.d.ts
+./jsconfig.json
+./package-lock.json
+./package.json
+./vite.config.ts

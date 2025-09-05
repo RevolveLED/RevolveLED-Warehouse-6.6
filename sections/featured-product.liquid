@@ -1,3 +1,5 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+
 {%- assign product = all_products[section.settings.product] -%}
 
 {%- assign variant_selector_block = section.blocks | where: 'type', 'variant_selector' | first -%}
@@ -28,13 +30,15 @@
     {%- endif -%}
   </div>
 
-  <div class="container container--flush">
+  <div class="container">
     {%- capture product_form_id -%}product-form-featured-product-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 
     <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
-      <div class="featured-product">
+      <div class="featured-product product-information__grid">
         {%- if product != blank -%}
-          {%- render 'product-gallery', product: product, product_form_id: product_form_id -%}
+          <div class="product-gallery-wrapper">
+            {%- render 'product-gallery', product: product, product_form_id: product_form_id -%}
+          </div>
           {%- render 'product-info', product: product, product_form_id: product_form_id -%}
         {%- else -%}
           {% comment %}

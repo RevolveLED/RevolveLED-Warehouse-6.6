@@ -1,0 +1,146 @@
+<div class="section-product-tab-content">
+  <div class="container">
+    <product-detail-tab-bar class="product-detail-tab-bar">
+      <div data-scroll-container class="product-detail-tab-bar__scroll">
+        <button type="button" tabindex="0" data-tab-item data-tab-for="#details" open>
+          <span>Product Details</span>
+        </button>
+        <button type="button" tabindex="0" data-tab-item data-tab-for="#downloads">
+          <span>Downloads</span>
+        </button>
+        <button type="button" tabindex="0" data-tab-item data-tab-for="#reviews">
+          <span>Reviews</span>
+        </button>
+        <button type="button" tabindex="0" data-tab-item data-tab-for="#questions">
+          <span>Q&A</span>
+        </button>
+      </div>
+    </product-detail-tab-bar>
+
+    {% comment %} Product Details {% endcomment %}
+    <div id="details" open class="product-tab-content__container product-tab-content__container--details">
+      <!-- Product Description -->
+      {%- if product.description != blank -%}
+        <section class="product-description rte">
+          <div class="product-description__inner">
+            {%- assign replace_overview = '<span class="product-details-title">Product Overview</span></strong>' -%}
+            {%- assign replace_applications = '<span class="product-details-title">Applications</span></strong>' -%}
+            {{
+              product.description
+              | replace: 'Product Overview</strong>', replace_overview
+              | replace: 'Applications</strong>', replace_applications
+              | remove: 'data-section-type="product"'
+            }}
+          </div>
+          <product-detail-show-more>
+            <button>Show More</button>
+          </product-detail-show-more>
+        </section>
+      {%- endif -%}
+
+      <!-- Color temperature -->
+      <section class="product-color-temperature">
+        {%- render 'product-color-temperature', product: product -%}
+      </section>
+
+      <!-- Certification icons -->
+      <section class="product-certification">
+        {%- render 'product-certification-icons', product: product -%}
+      </section>
+
+      <!-- What's in the box -->
+      <section class="product-whats-in-box">
+        {%- if product.metafields.custom_metafield.what_inbox.value != blank -%}
+          <strong class="product-details-title">{{ 'product.general.what_inbox' | t }}</strong>
+          <div>{{ product.metafields.custom_metafield.what_inbox }}</div>
+        {% endif %}
+        {%- if product.metafields.global.what_inbox.value != blank -%}
+          <strong class="product-details-title">{{ 'product.general.what_inbox' | t }}</strong>
+          <div>{{ product.metafields.global.what_inbox }}</div>
+        {%- endif -%}
+      </section>
+
+      <!-- Specifications -->
+      <section class="product-specifications">
+        {%- if product.metafields.global.specifications != blank
+          and product.metafields.global.specifications != 'No'
+        -%}
+          {{-
+            product.metafields.global.specifications
+            | replace: 'Specifications', '<span class="product-details-title">Specifications</span>'
+            | replace: '&nbsp;', ' '
+          -}}
+        {%- endif -%}
+        {%- if product.metafields.global.specifications2 != blank -%}
+          <!-- Begin Motion Sensor Specifications -->
+          {{-
+            product.metafields.global.specifications2
+            | replace: 'Specifications', '<span class="product-details-title">Specifications</span>'
+            | replace: '&nbsp;', ' '
+          -}}
+          <!-- end Motion Sensor Specifications -->
+        {%- endif -%}
+        {%- if product.metafields.global.application_info != blank
+          and product.metafields.global.application_info != 'No'
+        -%}
+          {{- product.metafields.global.application_info -}}
+        {%- endif -%}
+        {% unless product.metafields.global.int == blank %}
+          <p>
+            <strong
+              >This product is available in increments of {{ product.metafields.global.int }} with a minimum order
+              quantity of {{ product.metafields.global.int -}}
+            </strong>
+          </p>
+        {% endunless %}
+      </section>
+    </div>
+
+    {% comment %} Downloads {% endcomment %}
+    <div id="downloads" class="product-tab-content__container product-tab-content__container--downloads">
+      <div class="rte">
+        <div>{{ product.metafields.custom_metafield.downloads }}</div>
+      </div>
+    </div>
+
+    {% comment %} Reviews {% endcomment %}
+    <div id="reviews" class="product-tab-content__container product-tab-content__container--reviews">
+      <div class="sa-reviews-content">
+        <div id="SA_review_wrapper"></div>
+        <script type="text/javascript">
+          var sa_product = 'Shopify_US_{{product.id}}';
+          var sa_interval = 5000;
+          function saLoadScript(src) {
+            var js = window.document.createElement('script');
+            js.src = src;
+            js.type = 'text/javascript';
+            document.getElementsByTagName('head')[0].appendChild(js);
+          }
+          if (typeof shopper_first == 'undefined')
+            saLoadScript(
+              '//www.shopperapproved.com/widgets/33795/product/' + sa_product + '/product-widget/6c7v8Vbm4Ww0.js'
+            );
+        </script>
+      </div>
+    </div>
+
+    {% comment %} Q&A {% endcomment %}
+    <div id="questions" class="product-tab-content__container product-tab-content__container--questions">
+      <script
+        type="text/javascript"
+        src="https://revolveled.services.answerbase.com/javascript/widget/full-featured-widget.min.js"
+        data-product-external-id="{{product.id}}"
+        data-product-sku="{{ product.sku }}"
+        data-product-title="{{product.title}}"
+        data-product-price="{{ product.price | money_without_currency }}"
+        data-product-url="{{ shop.url }}{{ collection.url }}{{ product.url }}"
+        data-product-description="{{product.description | strip_html | strip_newlines | escape }}"
+        data-product-image-url="https:{{product | img_url}}"
+        data-insert-after=""
+        data-open-ask="expand"
+        data-on-page-search-elements="#product-description, Product Description;"
+        defer
+      ></script>
+    </div>
+  </div>
+</div>

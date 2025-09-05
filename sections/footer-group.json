@@ -3,38 +3,42 @@
   "name": "Footer group",
   "sections": {
     "text-with-icons": {
-      "type": "text-with-icons",
+      "type": "footer-text-with-icons",
       "blocks": {
         "item-1": {
           "type": "item",
           "settings": {
-            "icon": "bi-delivery",
-            "title": "Free shipping",
-            "content": "<p>Short content about your store<\/p>"
+            "icon": "shopify:\/\/shop_images\/icon-Free-Shipping-on-LED-Lighting.svg",
+            "title": "$199 Free Shipping on LED Lighting",
+            "title_mb": "$199 Free Shipping on\nLED Lighting",
+            "text": "<p>*Purchase $199 or more and receive free ground shipping nationwide. Excluding AK, HI, PR. *Exclusions Apply<\/p>"
           }
         },
         "item-2": {
           "type": "item",
           "settings": {
-            "icon": "bi-returns",
-            "title": "Satisfied or refunded",
-            "content": "<p>Short content about your store<\/p>"
+            "icon": "shopify:\/\/shop_images\/icon-Easy-Returns-on-LED-Lights.svg",
+            "title": "Easy Returns on LED Lights",
+            "title_mb": "Easy Returns on LED\nLights",
+            "text": "<p>We know you don't own a crystal ball so we offer no hassle returns within 90 days of purchase.<\/p>"
           }
         },
         "item-3": {
           "type": "item",
           "settings": {
-            "icon": "bi-customer-support",
-            "title": "Top-notch support",
-            "content": "<p>Short content about your store<\/p>"
+            "icon": "shopify:\/\/shop_images\/icon-Top-Notch-LED-Lighting-Support.svg",
+            "title": "Top-Notch LED Lighting Support",
+            "title_mb": "Top-Notch LED\nLighting Support",
+            "text": "<p>Got questions?  We've got answers! Let our LED lighting experts help you with your next project! Give us a call: 1-877-718-0808<\/p>"
           }
         },
         "item-4": {
           "type": "item",
           "settings": {
-            "icon": "bi-secure-payment",
-            "title": "Secure payments",
-            "content": "<p>Short content about your store<\/p>"
+            "icon": "shopify:\/\/shop_images\/icon-Secure-Payment-on-Your-LED-Lights.svg",
+            "title": "Secure Payment on Your LED Lights",
+            "title_mb": "Secure Payment on\nYour LED Lights",
+            "text": "<p>The safety and security of our customers and their data is a top priority for us. Order securely online 24/7/365.<\/p>"
           }
         }
       },
@@ -45,7 +49,7 @@
         "item-4"
       ],
       "settings": {
-        "stack_mobile": false
+        "bg_color": "#EFF8FF"
       }
     },
     "footer": {

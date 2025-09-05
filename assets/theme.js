@@ -5963,6 +5963,8 @@ var Responsive = class {
         return window.matchMedia("screen and (min-width: 641px) and (max-width: 1023px)").matches;
       case "tablet-and-up":
         return window.matchMedia("screen and (min-width: 641px)").matches;
+      case "pocket-999":
+        return window.matchMedia("screen and (max-width: 999px)").matches;
       case "pocket":
         return window.matchMedia("screen and (max-width: 1023px)").matches;
       case "lap":
@@ -8240,6 +8242,9 @@ var ProductGallery = class {
     this.element = element;
     this.delegateElement = new main_default(this.element);
     this.viewInSpaceElement = this.element.querySelector("[data-shopify-xr]");
+    this.thumbnailPrevButton = this.element.querySelector("[data-thumbnail-prev]");
+    this.thumbnailNextButton = this.element.querySelector("[data-thumbnail-next]");
+    this.thumbnailHorizontal = !!this.element.querySelector(".product-gallery--bottom-thumbnails");
     this.options = options;
     this.media = {};
     this.previouslySelectedMedia = null;
@@ -8267,6 +8272,8 @@ var ProductGallery = class {
       this.delegateElement.on("click", ".product-gallery__image", this._openMobileZoom.bind(this));
       this.delegateElement.on("click", ".pswp__button", this._doPswpAction.bind(this));
     }
+    this.thumbnailPrevButton.addEventListener("click", this._handleThumbnailScrollPrev.bind(this));
+    this.thumbnailNextButton.addEventListener("click", this._handleThumbnailScrollNext.bind(this));
     let lastWidth = window.innerWidth;
     window.addEventListener("resize", () => {
       if (window.innerWidth !== lastWidth && this.flickityInstance) {
@@ -8344,7 +8351,7 @@ var ProductGallery = class {
         this.flickityInstance = new import_flickity_fade.default(this.productGalleryElement, {
           accessibility: false,
           prevNextButtons: false,
-          pageDots: false,
+          pageDots: true,
           resize: false,
           adaptiveHeight: true,
           draggable: !Responsive.matchesBreakpoint("supports-hover"),
@@ -8364,6 +8371,8 @@ var ProductGallery = class {
     this.productThumbnailsListElement = this.element.querySelector(".product-gallery__thumbnail-list");
     this.delegateElement.on("click", ".product-gallery__thumbnail", this._onThumbnailClicked.bind(this));
     if (this.productThumbnailsListElement && this.flickityInstance) {
+      this.productThumbnailsListElement.addEventListener('scroll', this._handleCheckSliderButtonEnable.bind(this));
+      this._handleCheckSliderButtonEnable();
       this.productThumbnailsCellsElements = this.productThumbnailsListElement.querySelectorAll(".product-gallery__thumbnail");
       this.flickityInstance.on("select", this._onGallerySlideChanged.bind(this));
       if (this.options["galleryTransitionEffect"] === "fade") {
@@ -8460,6 +8469,82 @@ var ProductGallery = class {
       this.photoSwipeInstance = null;
     }
   }
+  _handleCheckSliderButtonEnable() {
+    if (Responsive.matchesBreakpoint("pocket-999") || this.thumbnailHorizontal) {
+      const el = this.productThumbnailsListElement;
+      // Scrollable
+      (el.clientWidth == el.scrollWidth)
+        ? this.thumbnailPrevButton.setAttribute('hidden', '')
+        : this.thumbnailPrevButton.removeAttribute('hidden');
+      // Prev
+      (el.scrollLeft <= 1)
+        ? this.thumbnailPrevButton.setAttribute('disabled', '')
+        : this.thumbnailPrevButton.removeAttribute('disabled');
+      // Next
+      ((el.scrollLeft + el.clientWidth + 1) >= el.scrollWidth)
+        ? this.thumbnailNextButton.setAttribute('disabled', '')
+        : this.thumbnailNextButton.removeAttribute('disabled');
+    } else {
+      const el = this.productThumbnailsListElement;
+      // Scrollable
+      (el.clientHeight == el.scrollHeight)
+        ? this.thumbnailPrevButton.setAttribute('hidden', '')
+        : this.thumbnailPrevButton.removeAttribute('hidden');
+      // Prev
+      (el.scrollTop <= 1)
+        ? this.thumbnailPrevButton.setAttribute('disabled', '')
+        : this.thumbnailPrevButton.removeAttribute('disabled');
+      // Next
+      ((el.scrollTop + el.clientHeight + 1) >= el.scrollHeight)
+        ? this.thumbnailNextButton.setAttribute('disabled', '')
+        : this.thumbnailNextButton.removeAttribute('disabled');
+    }
+  }
+  _handleSlidePrev(event2) {
+    event2.preventDefault();
+    const currentThumbnail = this.element.querySelector('.product-gallery__thumbnail.is-nav-selected');
+    const toThumbnail = currentThumbnail.previousElementSibling;
+    const mediaId = toThumbnail?.getAttribute("data-media-id");
+    this._handleSlideTo(mediaId);
+  }
+  _handleSlideNext(event2) {
+    event2.preventDefault();
+    const currentThumbnail = this.element.querySelector('.product-gallery__thumbnail.is-nav-selected');
+    const toThumbnail = currentThumbnail.nextElementSibling;
+    const mediaId = toThumbnail?.getAttribute("data-media-id");
+    this._handleSlideTo(mediaId);
+  }
+  _handleSlideTo(mediaId) {
+    if (this.flickityInstance && mediaId != undefined) {
+      this.flickityInstance.selectCell(`[data-media-id="${mediaId}"]`);
+      if (Responsive.matchesBreakpoint("lap-and-up")) {
+        let slides = this.element.querySelectorAll(".product-gallery__carousel-item");
+        slides.forEach((slide) => {
+          slide.classList.remove("product-gallery__carousel-item--hidden");
+        });
+      }
+    }
+  }
+  _handleThumbnailScrollPrev(animate = true) {
+    const rect = this.productThumbnailsListElement.getBoundingClientRect();
+    if (Responsive.matchesBreakpoint("pocket-999") || this.thumbnailHorizontal) {
+      let scrollX = this.productThumbnailsListElement.scrollLeft - rect.width;
+      this.productThumbnailsListElement.scrollTo({ left: (scrollX < 0 ? 0 : scrollX), behavior: animate ? "smooth" : "auto" });
+    } else {
+      let scrollY = this.productThumbnailsListElement.scrollTop - rect.height;
+      this.productThumbnailsListElement.scrollTo({ top: (scrollY < 0 ? 0 : scrollY), behavior: animate ? "smooth" : "auto" });
+    }
+  }
+  _handleThumbnailScrollNext(animate = true) {
+    const rect = this.productThumbnailsListElement.getBoundingClientRect();
+    if (Responsive.matchesBreakpoint("pocket-999") || this.thumbnailHorizontal) {
+      let scrollX = this.productThumbnailsListElement.scrollLeft + rect.width;
+      this.productThumbnailsListElement.scrollTo({ left: scrollX, behavior: animate ? "smooth" : "auto" });
+    } else {
+      let scrollY = this.productThumbnailsListElement.scrollTop + rect.height;
+      this.productThumbnailsListElement.scrollTo({ top: scrollY, behavior: animate ? "smooth" : "auto" });
+    }
+  }
   _onGallerySlideChanged(animate = true) {
     let previousNavElement = null, newNavElement = null;
     this.productThumbnailsCellsElements.forEach((item) => {
@@ -8472,9 +8557,13 @@ var ProductGallery = class {
     });
     previousNavElement.classList.remove("is-nav-selected");
     newNavElement.classList.add("is-nav-selected");
-    if (Responsive.matchesBreakpoint("pocket")) {
+    if (Responsive.matchesBreakpoint("pocket-999")) {
       let scrollX = newNavElement.offsetLeft - (this.productThumbnailsListElement.parentNode.clientWidth - newNavElement.clientWidth) / 2;
+      console.log(scrollX)
       this.productThumbnailsListElement.parentNode.scrollTo({ left: scrollX, behavior: animate ? "smooth" : "auto" });
+    } else if (this.thumbnailHorizontal) {
+      let scrollX = newNavElement.offsetLeft - (this.productThumbnailsListElement.clientWidth - newNavElement.clientWidth) / 2;
+      this.productThumbnailsListElement.scrollTo({ left: scrollX, behavior: animate ? "smooth" : "auto" });
     } else {
       let scrollY = newNavElement.offsetTop - (this.productThumbnailsListElement.clientHeight - newNavElement.clientHeight) / 2;
       this.productThumbnailsListElement.scrollTo({ top: scrollY, behavior: animate ? "smooth" : "auto" });
@@ -11187,6 +11276,10 @@ if (!window.customElements.get("buy-button")) {
           element = element.offsetParent;
         }
         toTop += element.offsetTop;
+        if (target.hasAttribute("data-offset-header")) {
+          const headerOffset = document.querySelector('[data-section-type="header"]')?.clientHeight ?? 0;
+          toTop -= headerOffset;
+        }
         window.scrollTo({ behavior: "smooth", top: toTop - offset });
         event2.preventDefault();
       });

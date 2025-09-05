@@ -1,0 +1,30 @@
+<div class="product-new-tag item-tag">
+  {% assign new_flag = product.metafields.global.new.value | downcase %}
+  {% assign last_flag = product.metafields.global.latest.value | downcase %}
+  {% assign pricedrop_flag = product.metafields.global.priceDropped.value | downcase %}
+  {% if new_flag == 'yes' %}
+    <img
+      src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/new-yellow.svg?v=1750906116"
+      width="66"
+      height="80"
+      alt="New Release"
+      loading="lazy"
+    >
+  {% elsif last_flag == 'yes' %}
+    <img
+      src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/latest-model.svg?v=1750906172"
+      width="66"
+      height="80"
+      alt="Latest Model"
+      loading="lazy"
+    >
+  {% elsif pricedrop_flag == 'yes' %}
+    <img
+      src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/price-yellow.svg?v=1750906116"
+      width="66"
+      height="80"
+      alt="Price Dropped"
+      loading="lazy"
+    >
+  {% endif %}
+</div>

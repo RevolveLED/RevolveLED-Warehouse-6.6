@@ -1,0 +1,28 @@
+<div class="product-short-desc {{ class }}">
+  {% if product.metafields.custom_metafield.short_desc != blank %}
+    <div class="product-short-desc__content rte">{{ product.metafields.custom_metafield.short_desc }}</div>
+  {% endif %}
+
+  <div class="product-short-desc__buttons">
+    <button class="button" data-product-tab-to="#details" data-href="[data-tab-for='#details']" data-offset-header>
+      <span>{{- 'product.general.check_detail' | t -}}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+        <circle cx="9.9992" cy="7.29436" r="2.79412" stroke="currentColor"/>
+        <circle cx="6.29412" cy="13.8826" r="2.79412" stroke="currentColor"/>
+        <circle cx="13.7062" cy="13.8826" r="2.79412" stroke="currentColor"/>
+      </svg>
+    </button>
+    {%- if product.metafields.global.application_info != blank
+      and product.metafields.global.application_info != 'No'
+    -%}
+      <!-- start video button -->
+      <button class="button" data-product-tab-to="#details" data-href="#product-details-video" data-offset-header>
+        <span>Watch Video</span>
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.55566 5.53345C6.81679 5.45894 7.16516 5.49691 7.77637 5.76782C8.38653 6.03831 9.15929 6.4944 10.2402 7.13306L12.6426 8.552C13.6172 9.12782 14.3091 9.53728 14.7832 9.89868C15.2583 10.2608 15.4233 10.5087 15.4707 10.7268C15.5098 10.9071 15.5098 11.0934 15.4707 11.2737C15.4233 11.4918 15.2583 11.7397 14.7832 12.1018C14.3091 12.4632 13.6172 12.8727 12.6426 13.4485L10.2402 14.8674C9.15929 15.5061 8.38653 15.9622 7.77637 16.2327C7.16516 16.5036 6.81678 16.5416 6.55566 16.467C6.34877 16.408 6.15955 16.308 6 16.176C5.80789 16.017 5.66102 15.7359 5.58105 15.1096C5.50097 14.4821 5.5 13.6258 5.5 12.4192V9.5813C5.5 8.37471 5.50097 7.51843 5.58105 6.89087C5.66102 6.26455 5.80789 5.98344 6 5.82446C6.15955 5.69249 6.34877 5.59249 6.55566 5.53345Z" stroke="currentColor"/>
+        </svg>
+      </button>
+      <!-- end video section -->
+    {%- endif -%}
+  </div>
+</div>

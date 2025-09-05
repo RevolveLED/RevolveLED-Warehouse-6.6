@@ -18,7 +18,7 @@
             "show_vendor": true,
             "show_sku": true,
             "show_reviews_badge": true,
-            "show_share_buttons": true
+            "show_share_buttons": false
           }
         },
         "variant_selector": {
@@ -43,8 +43,24 @@
         },
         "description": {
           "type": "description",
+          "disabled": true,
           "settings": {
             "display_mode": "show_all"
+          }
+        },
+        "icon_text": {
+          "type": "icon_text",
+          "settings": {
+            "icon_1": "shopify://shop_images/icon-Secured-payment-methods.svg",
+            "text_1": "<p>Secured payment methods. Revolve LED never stores nor has access to your card information.</p>",
+            "icon_2": "shopify://shop_images/icon-restocking-fee.svg",
+            "text_2": "<p>90 days return without restocking fee*.</p>",
+            "icon_3": "shopify://shop_images/icon-Shipping-on-eligible-products.svg",
+            "text_3": "<p>$199 Free Shipping on eligible products*</p>",
+            "icon_4": "shopify://shop_images/icon-Availability.svg",
+            "text_4": "<p>Availability: Usually Ships in one to three business days.</p>",
+            "text_5": "",
+            "text_6": ""
           }
         }
       },
@@ -52,6 +68,7 @@
         "product_meta",
         "variant_selector",
         "buy_buttons",
+        "icon_text",
         "description"
       ],
       "settings": {
@@ -62,10 +79,14 @@
         "carousel_effect": "slide"
       }
     },
+    "product-tab-content": {
+      "type": "product-tab-content",
+      "settings": {}
+    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
-        "heading": "You may also like",
+        "heading": "Related Products",
         "show_quick_buy": false
       }
     },
@@ -79,6 +100,7 @@
   },
   "order": [
     "main",
+    "product-tab-content",
     "product-recommendations",
     "recently-viewed-products"
   ]

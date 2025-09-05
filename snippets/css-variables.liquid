@@ -20,11 +20,14 @@
   {{ settings.heading_font | font_face: font_display: 'swap' }}
   {{ settings.text_font | font_face: font_display: 'swap' }}
 
+  {%- if text_font_medium -%}
+    {{ text_font_medium | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
   {%- if text_font_semibold -%}
     {{ text_font_semibold | font_face: font_display: 'swap' }}
     {%- assign text_font_bolder_weight = text_font_semibold.weight -%}
   {%- elsif text_font_medium -%}
-    {{ text_font_medium | font_face: font_display: 'swap' }}
     {%- assign text_font_bolder_weight = text_font_medium.weight -%}
   {%- endif -%}
 
@@ -107,7 +110,7 @@
     --product-custom-label-2-color     : {% if product_custom_label_2_lightness < 65 %}#ffffff{% else %}#000000{% endif %};
     --product-review-star-color        : {{ settings.product_star_color }};
 
-    --mobile-container-gutter : 20px;
+    --mobile-container-gutter : 16px;
     --desktop-container-gutter: 40px;
 
     /* Shopify related variables */

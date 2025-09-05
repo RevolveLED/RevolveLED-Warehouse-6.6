@@ -417,7 +417,11 @@
         "zero": "No reviews",
         "one": "{{ count }} review",
         "other": "{{ count }} reviews"
-      }
+      },
+      "write_review": "Write A Review",
+      "ask_question": "Ask A Question",
+      "check_detail": "Check Detail Specification",
+      "what_inbox": "What's in the box"
     },
     "volume_pricing": {
       "title": "Volume pricing",
@@ -444,6 +448,7 @@
         "other": "In stock ({{count}} units), ready to be shipped"
       },
       "add_to_cart": "Add to cart",
+      "add_to_quote": "Add to Quote",
       "sold_out": "Sold out",
       "pre_order": "Pre-order",
       "unavailable": "Unavailable",

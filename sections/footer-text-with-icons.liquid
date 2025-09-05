@@ -1,0 +1,222 @@
+{%- liquid
+  assign hidden_templates = section.settings.hidden_for_templates | split: ','
+-%}
+
+{%- unless hidden_templates contains template.name -%}
+  {{ 'footer-text-with-icons.css' | asset_url | stylesheet_tag }}
+
+  <div
+    class="{{section.settings.section_class}} footer-text-with-icons"
+    style="background-color: {{ section.settings.bg_color }};"
+  >
+    <div class="common-section-container-inner container">
+      {% if section.settings.title != blank or section.settings.subtitle != blank %}
+        <div class="common-header">
+          {% if section.settings.title != blank %}
+            <h2 class="section-title common-title">
+              {{ section.settings.title }}
+            </h2>
+          {% endif %}
+          {% if section.settings.subtitle != blank %}
+            <div class="section-subtitle common-subtitle">
+              {{ section.settings.subtitle }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="footer-text-with-icons__icon-list">
+        {%- for block in section.blocks -%}
+          {%- assign bk_stts = block.settings -%}
+          <div
+            class="footer-text-with-icons__card footer-text-with-icons__card-{{ block.id }}"
+            data-index="{{ forloop.index }}"
+          >
+            <div
+              class="footer-text-with-icons__card-inner"
+              {{ block.shopify_attributes }}
+            >
+              <div class="footer-text-with-icons__image-wrapper">
+                <img
+                  loading="lazy"
+                  src="{{ bk_stts.icon | default: bk_stts.icon.image | image_url: width: 700 }}"
+                  width="{{ bk_stts.icon.width }}"
+                  height="{{ bk_stts.icon.height }}"
+                  alt="{{ bk_stts.icon.alt | escape }}"
+                  loading="lazy"
+                >
+              </div>
+              <div class="footer-text-with-icons__card-info">
+                <h3 class="footer-text-with-icons__card-title ">
+                  <span class="{% if bk_stts.title_mb != blank %}hidden-phone{% endif %}">
+                    {{- bk_stts.title | newline_to_br -}}
+                  </span>
+                  {%- if bk_stts.title_mb != blank -%}
+                    <span class="hidden-tablet-and-up">
+                      {{- bk_stts.title_mb | newline_to_br -}}
+                    </span>
+                  {%- endif -%}
+                </h3>
+                <div class="footer-text-with-icons__card-content {% if bk_stts.text_mb != blank %}hidden-phone{% endif %}">
+                  {{- bk_stts.text -}}
+                </div>
+                {%- if bk_stts.text_mb != blank -%}
+                  <div class="footer-text-with-icons__card-content hidden-tablet-and-up">
+                    {{- bk_stts.text_mb -}}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Why choose",
+  "class": "section-footer-text-with-icons",
+  "settings": [
+    {
+      "type": "header",
+      "content": "+ Section"
+    },
+    {
+      "type": "text",
+      "id": "section_class",
+      "label": "Custom section class"
+    },
+    {
+      "type": "textarea",
+      "id": "hidden_for_templates",
+      "label": "Hidden for template names",
+      "info": "Split by ','."
+    },
+    {
+      "type": "header",
+      "content": "+ Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "+ Background options"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "default": "#EFF8FF",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (PC)",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_top_pad",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (Pad)",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (MB)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (PC)",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_pad",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (Pad)",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (MB)",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "title_mb",
+          "label": "Title (MB)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Text</p>",
+          "label": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "text_mb",
+          "label": "Text (MB)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why choose",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

@@ -1,4 +1,5 @@
 {%- assign selected_variant = product.selected_or_first_available_variant -%}
+{% assign custom_metafield = product.metafields.custom_metafield %}
 
 {%- if block.settings.show_share_buttons -%}
   {%- capture share_buttons -%}
@@ -28,6 +29,31 @@
 {%- endif -%}
 
 <div class="product-meta">
+  <div class="product-meta__brand">
+    {%- if custom_metafield.brand_logo != blank -%}
+      <img
+        class="product-logo lazyload"
+        src="{{ custom_metafield.brand_logo }}"
+        alt="product brand logo"
+        width="88"
+        height="36"
+        loading="lazy"
+      >
+    {%- else -%}
+      <img
+        class="product-logo lazyload"
+        src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/konlite-logo-400x165.webp?v=1756776754"
+        alt="konlite logo"
+        width="88"
+        height="36"
+      >
+    {%- endif -%}
+    {% comment %}
+      Gio added quick ship icon 2021-02-16
+    {% endcomment %}
+    {%- render 'custom-product-quick-ship' for selected_variant as selected_variant -%}
+  </div>
+
   {%- if update_url -%}
     <h1 class="product-meta__title heading h1">{{ product.title }}</h1>
   {%- else -%}
@@ -36,44 +62,47 @@
     </h3>
   {%- endif -%}
 
-  {%- capture product_labels -%}
-    {%- assign custom_badges = product.metafields.custom.badges.value -%}
+  {% comment %} Product labels (Save $xx) {% endcomment %}
+  {%- if show_product_labels -%}
+    {%- capture product_labels -%}
+      {%- assign custom_badges = product.metafields.custom.badges.value -%}
 
-    {%- for badge in custom_badges -%}
-      <span class="product-label product-label--custom1">{{ badge }}</span>
-    {%- endfor -%}
+      {%- for badge in custom_badges -%}
+        <span class="product-label product-label--custom1">{{ badge }}</span>
+      {%- endfor -%}
 
-    {%- for tag in product.tags -%}
-      {%- if tag contains '__label:' -%}
-        <span class="product-label product-label--custom1">{{ tag | split: '__label:' | last }}</span>
+      {%- for tag in product.tags -%}
+        {%- if tag contains '__label:' -%}
+          <span class="product-label product-label--custom1">{{ tag | split: '__label:' | last }}</span>
+        {%- endif -%}
+
+        {%- if tag contains '__label1:' -%}
+          <span class="product-label product-label--custom1">{{ tag | split: '__label1:' | last }}</span>
+        {%- endif -%}
+
+        {%- if tag contains '__label2:' -%}
+          <span class="product-label product-label--custom2">{{ tag | split: '__label2:' | last }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if settings.show_discount -%}
+        {%- assign savings = 0 -%}
+
+        {%- if settings.discount_mode == 'percentage' -%}
+          {%- assign savings = selected_variant.compare_at_price | minus: selected_variant.price | times: 100.0 | divided_by: selected_variant.compare_at_price | round | append: '%' -%}
+        {%- else -%}
+          {%- capture savings -%}<span>{{ selected_variant.compare_at_price | minus: selected_variant.price | money }}</span>{%- endcapture -%}
+        {%- endif -%}
+
+        <span class="product-label product-label--on-sale" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
       {%- endif -%}
+    {%- endcapture -%}
 
-      {%- if tag contains '__label1:' -%}
-        <span class="product-label product-label--custom1">{{ tag | split: '__label1:' | last }}</span>
-      {%- endif -%}
-
-      {%- if tag contains '__label2:' -%}
-        <span class="product-label product-label--custom2">{{ tag | split: '__label2:' | last }}</span>
-      {%- endif -%}
-    {%- endfor -%}
-
-    {%- if settings.show_discount -%}
-      {%- assign savings = 0 -%}
-
-      {%- if settings.discount_mode == 'percentage' -%}
-        {%- assign savings = selected_variant.compare_at_price | minus: selected_variant.price | times: 100.0 | divided_by: selected_variant.compare_at_price | round | append: '%' -%}
-      {%- else -%}
-        {%- capture savings -%}<span>{{ selected_variant.compare_at_price | minus: selected_variant.price | money }}</span>{%- endcapture -%}
-      {%- endif -%}
-
-      <span class="product-label product-label--on-sale" {% unless selected_variant.price < selected_variant.compare_at_price %}style="display: none"{% endunless %}>{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+    {%- if product_labels != blank -%}
+      <div class="product-meta__label-list">
+        {{- product_labels -}}
+      </div>
     {%- endif -%}
-  {%- endcapture -%}
-
-  {%- if product_labels != blank -%}
-    <div class="product-meta__label-list">
-      {{- product_labels -}}
-    </div>
   {%- endif -%}
 
   {%- if block.settings.show_vendor or block.settings.show_sku -%}
@@ -83,24 +112,49 @@
         {%- assign collection_for_vendor = collections[vendor_handle] -%}
 
         {%- unless collection_for_vendor.empty? -%}
-          <a class="product-meta__vendor link link--accented" href="{{ collection_for_vendor.url }}">{{ product.vendor }}</a>
+          <a class="product-meta__vendor link link--accented" href="{{ collection_for_vendor.url }}">
+            {{- product.vendor -}}
+          </a>
         {%- else -%}
-          <a class="product-meta__vendor link link--accented" href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
+          <a class="product-meta__vendor link link--accented" href="{{ product.vendor | url_for_vendor }}">
+            {{- product.vendor -}}
+          </a>
         {%- endunless -%}
       {%- endif -%}
 
       {%- if block.settings.show_sku -%}
-        <span class="product-meta__sku" {% if selected_variant.sku == blank %}style="display: none"{% endif %}>
-          {{- 'product.general.sku' | t -}} <span class="product-meta__sku-number">{{ selected_variant.sku }}</span>
+        <span
+          class="product-meta__sku"
+          {% if selected_variant.sku == blank %}
+            style="display: none"
+          {% endif %}
+        >
+          <b>{{- 'product.general.sku' | t -}}</b>
+          <span class="product-meta__sku-number">{{ selected_variant.sku }}</span>
         </span>
       {%- endif -%}
+
+      {% if product.metafields.global.search_code != '.' and product.metafields.global.search_code != blank %}
+        <span class="product-meta__sku">
+          <b>SEARCH CODE: </b>
+          <span class="product-meta__sku-number">{{ product.metafields.global.search_code }}</span>
+        </span>
+      {% endif %}
     </div>
   {%- endif -%}
 
   {%- if block.settings.show_reviews_badge -%}
-    <a href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#product-reviews" class="product-meta__reviews-badge link" data-offset="30">
-      {%- render 'product-rating', product: product -%}
-    </a>
+    {% comment %}
+      <a
+        href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#product-reviews"
+        class="product-meta__reviews-badge link"
+        data-offset="30"
+      >
+        {%- render 'product-rating', product: product -%}
+      </a>
+    {% endcomment %}
+
+    {%- render 'product-just-stars', product: product -%}
   {%- endif -%}
 
   {%- if block.settings.show_share_buttons -%}
@@ -108,6 +162,14 @@
       {{ share_buttons }}
     </div>
   {%- endif -%}
-</div>
 
-<hr class="card__separator">
+  {% if block.settings.show_bulletpoints %}
+    {% if custom_metafield.bullet != blank %}
+      <div class="product-meta__bulletpoints rte">
+        <ul style="columns: 2; font-size: 16px; margin: 0 0 1rem;font-weight:600;">
+          {{ custom_metafield.bullet }}
+        </ul>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>

@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "checkJs": false,
+    "target": "ES5",
+    "noImplicitAny": false,
+    "noUncheckedIndexedAccess": true,
+    "strictNullChecks": false,
+    "types": [
+      "./global.d.ts",
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@theme/*": [
+        "./assets/*"
+      ],
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{%- assign selected_variant = product.selected_variant -%}
+
+<product-fixed-bar class="product-fixed-bar">
+  <div class="container">
+    {%- assign image = product.selected_or_first_available_variant.featured_image -%}
+    <div class="product-fixed-bar__left hidden-phone">
+      <img
+        class="product-fixed-bar__image"
+        data-image
+        src="{{ image | image_url: width: 200 }}"
+        width="{{ image.width }}"
+        height="{{ image.height }}"
+        alt="{{ image.alt | escape }}"
+        loading="lazy"
+      >
+      <div class="product-fixed-bar__title">
+        <span data-title>
+          {{- product.title -}}
+        </span>
+      </div>
+    </div>
+
+    <div class="product-fixed-bar__right">
+      <div class="price-list">
+        <span class="price price--highlight">
+          <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+          <span data-price>
+            {%- if settings.currency_code_enabled -%}
+              {{- selected_variant.price | money_with_currency -}}
+            {%- else -%}
+              {{- selected_variant.price | money -}}
+            {%- endif -%}
+          </span>
+        </span>
+
+        <span class="price price--compare">
+          <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+          <span data-compare-price>
+            {%- if selected_variant.compare_at_price > selected_variant.price -%}
+              {%- if settings.currency_code_enabled -%}
+                {{- selected_variant.compare_at_price | money_with_currency -}}
+              {%- else -%}
+                {{- selected_variant.compare_at_price | money -}}
+              {%- endif -%}
+            {%- endif -%}
+          </span>
+        </span>
+      </div>
+      {% form 'product', product %}
+        <buy-button class="buy-button">
+          <input type="hidden" name="quantity" value="1">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button type="submit" class="button button--primary">
+            {{- 'product.form.add_to_cart' | t -}}
+            {%- render 'icon', icon: 'add-to-cart' -%}
+          </button>
+        </buy-button>
+      {% endform %}
+    </div>
+  </div>
+</product-fixed-bar>
