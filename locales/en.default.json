@@ -58,7 +58,8 @@
     },
     "form": {
       "max_characters": "{{ max_chars }} characters max"
-    }
+    },
+    "request_for_quote": "Request For Quote",
   },
   "header": {
     "general": {
@@ -160,7 +161,7 @@
     },
     "newsletter": {
       "success": "You have been registered to our newsletter!",
-      "input": "Your email",
+      "input": "Your Email",
       "submit": "Subscribe"
     }
   },
@@ -418,6 +419,7 @@
         "one": "{{ count }} review",
         "other": "{{ count }} reviews"
       },
+      "search_code": "SEARCH CODE:",
       "write_review": "Write A Review",
       "ask_question": "Ask A Question",
       "check_detail": "Check Detail Specification",
@@ -501,6 +503,8 @@
     },
     "article": {
       "tags": "Tags:",
+      "author": "Author:{{author}}",
+      "default_author": "RevolveLED Team",
       "written_by": "{{author}}",
       "share": "Share",
       "previous_article": "Previous article",

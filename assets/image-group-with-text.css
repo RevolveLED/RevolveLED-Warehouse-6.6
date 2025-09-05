@@ -1,0 +1,99 @@
+.image-group-with-text-section__container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.image-group-with-text-section__image-container {
+    flex-basis: 50.347222%;
+    flex-shrink: 0;
+}
+
+.image-group-with-text-section__content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.image-group-with-text-section__content-container .index-section__header {
+    justify-content: flex-start;
+    margin-bottom: 0;
+}
+
+.image-group-with-text-section__content-container .index-section__title {
+    text-align: left;
+}
+
+.image-group-with-text-section__content__description {
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.image-group-with-text-section__content__link {
+    width: 160px;
+    height: 38px;
+    background-color: var(--color-blue-medium-light);
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.image-group-with-text-section__content__link:hover {
+    background-color: #33b1f4;
+}
+
+.image-group-with-text-section__content-container .custom-swiper-button__container {
+    display: flex;
+    gap: 18px;
+}
+
+.image-group-with-text-section__content-container .custom-swiper-button__container .custom-swiper-button.swiper-button-prev,
+.image-group-with-text-section__content-container .custom-swiper-button__container .custom-swiper-button.swiper-button-next {
+    position: static;
+    transform: unset;
+    margin: 0;
+}
+
+@media (min-width:1001px) {
+    .image-group-with-text-section__image-container .custom-swiper-pagination {
+        display: none;
+    }
+}
+
+@media (max-width:1000px) {
+    .image-group-with-text-section__image-container .custom-swiper-pagination.swiper-pagination {
+        margin-top: 16px;
+    }
+
+    .image-group-with-text-section__container {
+        gap: 16px;
+        flex-direction: column;
+    }
+
+    .image-group-with-text-section__content-container .custom-swiper-button__container {
+        display: none;
+    }
+
+    .image-group-with-text-section__content-container {
+        gap: 16px;
+    }
+}
+
+@media (max-width:749px) {
+    .image-group-with-text-section__content-container {
+        gap: 8px;
+    }
+
+    .image-group-with-text-section__content__description {
+        font-size: 14px;
+        line-height: 1.71;
+    }
+
+    .image-group-with-text-section__content__link {
+        width: 100%;
+    }
+}

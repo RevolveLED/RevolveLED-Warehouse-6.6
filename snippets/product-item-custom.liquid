@@ -1,0 +1,197 @@
+{% liquid
+  assign selected_or_first_available_variant = product.selected_or_first_available_variant
+  assign search_code = product.metafields.global.search_code.value
+%}
+<div class="custom-product-card{% if swiper %} swiper-slide{% endif %}">
+  <div class="custom-product-card-wrapper">
+    <a
+      class="custom-product-card-image"
+      href="{{ product.url }}"
+      aria-label="{{ product.title }}"
+      title="{{ product.title }}"
+    >
+      {{
+        product.featured_image
+        | image_url: width: product.featured_image.width
+        | image_tag: class: 'custom-product-card-image__img', loading: loading_type
+      }}
+    </a>
+    <div class="custom-product-card-content">
+      <div class="custom-product-card-title">
+        <a href="{{ product.url }}" class="custom-product-card-product__title" title="{{ product.title}}">
+          {{- product.title -}}
+        </a>
+        {% if selected_or_first_available_variant != blank or search_code != blank %}
+          <div class="custom-product-card-product__info">
+            {%- if selected_or_first_available_variant.sku != blank -%}
+              <span class="custom-product-card-product__sku">
+                <strong>{{- 'product.general.sku' | t }}</strong>
+                {{ selected_or_first_available_variant.sku -}}
+              </span>
+            {%- endif -%}
+            {%- if search_code != blank -%}
+              <i class="icon icon-divider"></i>
+              <span class="custom-product-card-product__search_code">
+                <strong>{{ 'product.general.search_code' | t }}</strong>
+                {{ search_code -}}
+              </span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+        <div class="custom-product-card-review">
+          {% render 'reviews-snippet', product: product %}
+        </div>
+      </div>
+      <div class="custom-product-card-price">
+        {%- if product.price < product.compare_at_price -%}
+          {%- if product.price_varies -%}
+            {%- if settings.currency_code_enabled -%}
+              {%- capture price_min -%}{{ product.price_min | money_with_currency }}{%- endcapture -%}
+              {%- capture price_max -%}{{ product.price_max | money_with_currency }}{%- endcapture -%}
+            {%- else -%}
+              {%- capture price_min -%}{{ product.price_min | money }}{%- endcapture -%}
+              {%- capture price_max -%}{{ product.price_max | money }}{%- endcapture -%}
+            {%- endif -%}
+
+            <span class="price price--highlight">
+              <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+              {{- 'collection.product.from_price_html' | t: price_min: price_min, price_max: price_max -}}
+            </span>
+
+            <span class="price price--compare">
+              <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+
+              {%- if settings.currency_code_enabled -%}
+                {{- product.compare_at_price_min | money_with_currency -}}
+              {%- else -%}
+                {{- product.compare_at_price_min | money -}}
+              {%- endif -%}
+            </span>
+          {%- else -%}
+            <span class="price price--highlight">
+              <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+
+              {%- if settings.currency_code_enabled -%}
+                {{- product.price | money_with_currency -}}
+              {%- else -%}
+                {{- product.price | money -}}
+              {%- endif -%}
+            </span>
+
+            <span class="price price--compare">
+              <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+              {%- if settings.currency_code_enabled -%}
+                {{- product.compare_at_price | money_with_currency -}}
+              {%- else -%}
+                {{- product.compare_at_price | money -}}
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+        {%- elsif product.price_varies -%}
+          {%- if settings.currency_code_enabled -%}
+            {%- capture price_min -%}{{ product.price_min | money_with_currency }}{%- endcapture -%}
+            {%- capture price_max -%}{{ product.price_max | money_with_currency }}{%- endcapture -%}
+          {%- else -%}
+            {%- capture price_min -%}{{ product.price_min | money }}{%- endcapture -%}
+            {%- capture price_max -%}{{ product.price_max | money }}{%- endcapture -%}
+          {%- endif -%}
+
+          <span class="price">
+            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+            {{- 'collection.product.from_price_html' | t: price_min: price_min, price_max: price_max -}}
+          </span>
+        {%- else -%}
+          <span class="price">
+            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+            {%- if settings.currency_code_enabled -%}
+              {{- product.price | money_with_currency -}}
+            {%- else -%}
+              {{- product.price | money -}}
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+      </div>
+      <div class="custom-product-card-actions">
+        {%- form 'product', product, class: 'custom-product-card__form' -%}
+          <input type="hidden" name="quantity" value="1">
+          <input
+            type="hidden"
+            name="id"
+            data-sku="{{ product.selected_or_first_available_variant.sku }}"
+            value="{{ product.selected_or_first_available_variant.id }}"
+          >
+
+          <div class="btn-group">
+            {%- if product.available -%}
+              {%- if product.variants.size == 1 -%}
+                <button
+                  type="submit"
+                  class="{{ quick_buy_classes }} add-to-card-btn"
+                  data-action="add-to-cart"
+                >
+                  {{ 'product.form.add_to_cart' | t }}
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2.91699 3.75H3.97547C4.6712 3.75 5.01906 3.75 5.28094 3.93876C5.54283 4.12752 5.65283 4.45753 5.87284 5.11754L6.25033 6.25" stroke="currentColor" stroke-linecap="round"/>
+                    <path d="M14.5837 14.5834H6.70941C6.0736 14.5834 5.62463 13.9605 5.82569 13.3573V13.3573C6.07928 12.5965 6.79122 12.0834 7.59314 12.0834H12.0837" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.6677 12.0833H9.41206C8.43579 12.0833 7.94766 12.0833 7.53805 11.8872C7.37379 11.8085 7.22103 11.7078 7.08403 11.5878C6.74241 11.2886 6.55012 10.8399 6.16555 9.9426C5.55132 8.5094 5.24421 7.79281 5.44971 7.23305C5.52971 7.01513 5.6592 6.81876 5.82799 6.65938C6.26153 6.25 7.04117 6.25 8.60043 6.25H12.4464C14.2546 6.25 15.1587 6.25 15.6046 6.73714C15.7507 6.89668 15.8605 7.08593 15.9266 7.2919C16.1283 7.92079 15.6797 8.70575 14.7826 10.2757C14.3378 11.0541 14.1154 11.4434 13.7742 11.6944C13.6576 11.7801 13.5321 11.853 13.3998 11.9116C13.0126 12.0833 12.5643 12.0833 11.6677 12.0833Z" stroke="currentColor" stroke-linecap="round"/>
+                    <circle cx="14.1663" cy="16.6667" r="0.833333" fill="currentColor"/>
+                    <ellipse cx="7.50033" cy="16.6667" rx="0.833333" ry="0.833333" fill="currentColor"/>
+                  </svg>
+                </button>
+              {%- else -%}
+                <button
+                  type="button"
+                  class="{{ quick_buy_classes }} add-to-card-btn"
+                  data-action="open-modal"
+                  data-secondary-action="open-quick-view"
+                  aria-controls="modal-quick-view-{{ section.id }}"
+                  data-product-url="{{ product.url }}"
+                >
+                  {{ 'product.form.add_to_cart' | t }}
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2.91699 3.75H3.97547C4.6712 3.75 5.01906 3.75 5.28094 3.93876C5.54283 4.12752 5.65283 4.45753 5.87284 5.11754L6.25033 6.25" stroke="currentColor" stroke-linecap="round"/>
+                    <path d="M14.5837 14.5834H6.70941C6.0736 14.5834 5.62463 13.9605 5.82569 13.3573V13.3573C6.07928 12.5965 6.79122 12.0834 7.59314 12.0834H12.0837" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.6677 12.0833H9.41206C8.43579 12.0833 7.94766 12.0833 7.53805 11.8872C7.37379 11.8085 7.22103 11.7078 7.08403 11.5878C6.74241 11.2886 6.55012 10.8399 6.16555 9.9426C5.55132 8.5094 5.24421 7.79281 5.44971 7.23305C5.52971 7.01513 5.6592 6.81876 5.82799 6.65938C6.26153 6.25 7.04117 6.25 8.60043 6.25H12.4464C14.2546 6.25 15.1587 6.25 15.6046 6.73714C15.7507 6.89668 15.8605 7.08593 15.9266 7.2919C16.1283 7.92079 15.6797 8.70575 14.7826 10.2757C14.3378 11.0541 14.1154 11.4434 13.7742 11.6944C13.6576 11.7801 13.5321 11.853 13.3998 11.9116C13.0126 12.0833 12.5643 12.0833 11.6677 12.0833Z" stroke="currentColor" stroke-linecap="round"/>
+                    <circle cx="14.1663" cy="16.6667" r="0.833333" fill="currentColor"/>
+                    <ellipse cx="7.50033" cy="16.6667" rx="0.833333" ry="0.833333" fill="currentColor"/>
+                  </svg>
+                </button>
+              {%- endif -%}
+            {%- else -%}
+              <button
+                class="{{ quick_buy_classes | replace: 'button--primary', 'button--disabled' }} add-to-card-btn"
+                disabled
+              >
+                {{ 'product.form.add_to_cart' | t }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M2.91699 3.75H3.97547C4.6712 3.75 5.01906 3.75 5.28094 3.93876C5.54283 4.12752 5.65283 4.45753 5.87284 5.11754L6.25033 6.25" stroke="currentColor" stroke-linecap="round"/>
+                  <path d="M14.5837 14.5834H6.70941C6.0736 14.5834 5.62463 13.9605 5.82569 13.3573V13.3573C6.07928 12.5965 6.79122 12.0834 7.59314 12.0834H12.0837" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M11.6677 12.0833H9.41206C8.43579 12.0833 7.94766 12.0833 7.53805 11.8872C7.37379 11.8085 7.22103 11.7078 7.08403 11.5878C6.74241 11.2886 6.55012 10.8399 6.16555 9.9426C5.55132 8.5094 5.24421 7.79281 5.44971 7.23305C5.52971 7.01513 5.6592 6.81876 5.82799 6.65938C6.26153 6.25 7.04117 6.25 8.60043 6.25H12.4464C14.2546 6.25 15.1587 6.25 15.6046 6.73714C15.7507 6.89668 15.8605 7.08593 15.9266 7.2919C16.1283 7.92079 15.6797 8.70575 14.7826 10.2757C14.3378 11.0541 14.1154 11.4434 13.7742 11.6944C13.6576 11.7801 13.5321 11.853 13.3998 11.9116C13.0126 12.0833 12.5643 12.0833 11.6677 12.0833Z" stroke="currentColor" stroke-linecap="round"/>
+                  <circle cx="14.1663" cy="16.6667" r="0.833333" fill="currentColor"/>
+                  <ellipse cx="7.50033" cy="16.6667" rx="0.833333" ry="0.833333" fill="currentColor"/>
+                </svg>
+              </button>
+            {%- endif -%}
+
+            <button
+              type="button"
+              class="rfq-btn"
+              onclick="GRFQApp.addProduct(this, {{ product.id }});"
+            >
+              {{ 'general.request_for_quote' | t }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path d="M13.417 4.16663C14.5874 4.16663 15.1726 4.16663 15.5929 4.44751C15.7749 4.56911 15.9312 4.72536 16.0528 4.90734C16.3337 5.32771 16.3337 5.91291 16.3337 7.08329V15C16.3337 16.5713 16.3337 17.357 15.8455 17.8451C15.3573 18.3333 14.5717 18.3333 13.0003 18.3333H8.00033C6.42898 18.3333 5.6433 18.3333 5.15515 17.8451C4.66699 17.357 4.66699 16.5713 4.66699 15V7.08329C4.66699 5.91291 4.66699 5.32771 4.94788 4.90734C5.06947 4.72536 5.22572 4.56911 5.40771 4.44751C5.82808 4.16663 6.41327 4.16663 7.58366 4.16663" stroke="currentColor"/>
+                <path d="M8 4.16667C8 3.24619 8.74619 2.5 9.66667 2.5H11.3333C12.2538 2.5 13 3.24619 13 4.16667C13 5.08714 12.2538 5.83333 11.3333 5.83333H9.66667C8.74619 5.83333 8 5.08714 8 4.16667Z" stroke="currentColor"/>
+                <path d="M8 10L13 10" stroke="currentColor" stroke-linecap="round"/>
+                <path d="M8 13.3334L11.3333 13.3334" stroke="currentColor" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+  {% render 'product-new-tag', product: product %}
+</div>

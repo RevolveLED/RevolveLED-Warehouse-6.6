@@ -1,0 +1,74 @@
+<style>
+  #backToTop {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 12%;
+    right: 0.5%;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+  }
+  #backToTop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+  }
+  #backToTop:not(.is-visible) {
+    opacity: 0;
+    visibility: hidden;
+  }
+  #backToTop .back {
+    width: 100%;
+    display: block;
+  }
+  @media (max-width: 1000px) {
+    #backToTop {
+      right: 1.2%;
+      width: 50px;
+      height: auto;
+      bottom: 5%;
+    }
+  }
+</style>
+<div id="backToTop" class="backToTop">
+  <img
+    alt="Back to the top of the page of RevolveLED.com"
+    class="back"
+    src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/backToTop.png?v=1670227487"
+    width="70"
+    height="70"
+    loading="lazy"
+  >
+</div>
+<script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= window.innerHeight) {
+        backToTop.classList.add('is-visible');
+      } else {
+        backToTop.classList.remove('is-visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Back to top",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Back to top"
+    }
+  ]
+}
+{% endschema %}

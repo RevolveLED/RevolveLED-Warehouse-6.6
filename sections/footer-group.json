@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "Footer group",
@@ -55,11 +64,19 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "logo_DkXmXc": {
+          "type": "logo",
+          "settings": {
+            "logo_image": "shopify://shop_images/logo-big.png",
+            "address": "1520 Broadmoor Blvd. Ste. B. Buford GA 30518"
+          }
+        },
         "footer-0": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "title": "About the shop",
-            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.<\/p>"
+            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.</p>"
           }
         },
         "footer-1": {
@@ -77,12 +94,13 @@
         "footer-2": {
           "type": "newsletter",
           "settings": {
-            "title": "Newsletter",
-            "subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
+            "title": "About our store",
+            "subheading": "<p>We are a commercial lighting supplier specializing in LED lighting for commercial and industrial lighting applications. We offer solutions for new construction and lighting retrofits in existing structures. </p><p>Call us at <a href=\"tel:1-877-718-0808\" title=\"1-877-718-0808\">1-877-718-0808</a> or <a href=\"/pages/contact-us\" title=\"Contact Us\">send us an email</a> and let us help with your next project!  </p>"
           }
         }
       },
       "block_order": [
+        "logo_DkXmXc",
         "footer-0",
         "footer-1",
         "links_jVzJJD",
@@ -90,10 +108,10 @@
       ],
       "settings": {
         "show_social_media": true,
-        "enable_follow_on_shop": true,
+        "enable_follow_on_shop": false,
         "show_payment_icons": true,
-        "show_locale_selector": true,
-        "show_country_selector": true
+        "show_locale_selector": false,
+        "show_country_selector": false
       }
     }
   },

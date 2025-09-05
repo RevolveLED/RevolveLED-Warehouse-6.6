@@ -1,7 +1,7 @@
 {%- capture section_settings -%}
 {
   "autoPlay": {{ section.settings.autoplay | json }},
-  "prevNextButtons": false,
+  "prevNextButtons": {{ section.settings.show_button | json}},
   "pageDots": {% if section.blocks.size > 1 %}true{% else %}false{% endif %},
   "setGallerySize": {% if section.settings.section_size == 'preserve_ratio' %}true{% else %}false{% endif %},
   "adaptiveHeight": {% if section.settings.section_size == 'preserve_ratio' %}true{% else %}false{% endif %},
@@ -10,9 +10,37 @@
 }
 {%- endcapture -%}
 
-<section data-section-id="{{ section.id }}" data-section-type="slideshow" data-section-settings="{{ section_settings | escape_once }}">
-  <div {% unless section.settings.edge_to_edge %}class="container container--flush"{% endunless %}>
-    <div class="slideshow slideshow--{{ section.settings.section_size | replace: '_', '-' }} {% if section.settings.edge_to_edge %}slideshow--edge2edge{% endif %}" style="color: {{ section.blocks.first.settings.text_color }}">
+<section
+  data-section-id="{{ section.id }}"
+  data-section-type="slideshow"
+  data-section-settings="{{ section_settings | escape_once }}"
+>
+  <div
+    class="slideshow__wrapper{% unless section.settings.edge_to_edge %} container container--flush{% endunless %}"
+  >
+    {% comment %} {%- if section.settings.show_button -%}
+      <button
+        type="button"
+        class="slideshow-prev slideshow__button"
+        aria-label="{{ 'general.accessibility.previous' | t }}"
+      >
+        <svg
+          aria-hidden="true"
+          width="30"
+          height="30"
+          viewBox="0 0 30 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect x="0.5" y="0.5" width="29" height="29" rx="14.5" stroke="currentColor"/>
+          <path d="M17.3083 9.23071L11.5391 14.9999L17.3083 20.7692" stroke="currentColor" stroke-width="1.15385" stroke-linecap="round"/>
+        </svg>
+      </button>
+    {%- endif -%} {% endcomment %}
+    <div
+      class="slideshow slideshow--{{ section.settings.section_size | replace: '_', '-' }} {% if section.settings.edge_to_edge %}slideshow--edge2edge{% endif %}"
+      style="color: {{ section.blocks.first.settings.text_color }}"
+    >
       {%- for block in section.blocks -%}
         {%- capture slide_inner -%}
           <div class="slideshow__slide-inner slideshow__slide-inner--{{ block.settings.content_position | replace: '_', '-' }}">
@@ -62,7 +90,7 @@
               {%- endif -%}
 
               {%- if block.settings.link != blank and block.settings.button_text != blank -%}
-                <a href="{{ block.settings.link }}" class="slideshow__button button">{{ block.settings.button_text | escape }}</a>
+                <a href="{{ block.settings.link }}" class="slideshow__button button{% if block.settings.button_hide_pc %} large-up-hide{% endif %}">{{ block.settings.button_text | escape }}</a>
               {%- endif -%}
             {%- endcapture -%}
 
@@ -99,16 +127,46 @@
         {%- endcapture -%}
 
         {%- if block.settings.link != blank and block.settings.button_text == blank -%}
-          <a href="{{ block.settings.link }}" class="slideshow__slide {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <a
+            href="{{ block.settings.link }}"
+            class="slideshow__slide {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}"
+            id="block-{{ block.id }}"
+            data-block-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
             {{- slide_inner -}}
           </a>
         {%- else -%}
-          <div class="slideshow__slide {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <div
+            class="slideshow__slide {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}"
+            id="block-{{ block.id }}"
+            data-block-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
             {{- slide_inner -}}
           </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
+    {% comment %} {%- if section.settings.show_button -%}
+      <button
+        type="button"
+        class="slideshow-next slideshow__button"
+        aria-label="{{ 'general.accessibility.next' | t }}"
+      >
+        <svg
+          aria-hidden="true"
+          width="30"
+          height="30"
+          viewBox="0 0 30 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect x="-0.5" y="0.5" width="29" height="29" rx="14.5" transform="matrix(-1 0 0 1 29 0)" stroke="currentColor"/>
+          <path d="M12.6917 9.23071L18.4609 14.9999L12.6917 20.7692" stroke="currentColor" stroke-width="1.15385" stroke-linecap="round"/>
+        </svg>
+      </button>
+    {%- endif -%} {% endcomment %}
   </div>
 </section>
 
@@ -162,6 +220,12 @@
         }
       ],
       "default": "slide"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show navigation buttons",
+      "default": false
     },
     {
       "type": "checkbox",
@@ -307,6 +371,13 @@
           "id": "link",
           "label": "Link",
           "info": "If no text is set for button, the whole image becomes clickable."
+        },
+        {
+          "type": "checkbox",
+          "id": "button_hide_pc",
+          "label": "Button hidden on desktop",
+          "default": true,
+          "visible_if": "{{ block.settings.link != blank and block.settings.button_text != blank }}"
         }
       ]
     }

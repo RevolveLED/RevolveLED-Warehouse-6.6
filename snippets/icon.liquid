@@ -137,9 +137,11 @@
     </svg>
 
   {%- when 'account' -%}
-    {% comment %} <svg focusable="false" class="{{ icon_class }}" viewBox="0 0 20 22" role="presentation">
-      <path d="M10 13c2.82 0 5.33.64 6.98 1.2A3 3 0 0 1 19 17.02V21H1v-3.97a3 3 0 0 1 2.03-2.84A22.35 22.35 0 0 1 10 13zm0 0c-2.76 0-5-3.24-5-6V6a5 5 0 0 1 10 0v1c0 2.76-2.24 6-5 6z" stroke="currentColor" stroke-width="2" fill="none"></path>
-    </svg> {% endcomment %}
+    {% comment %}
+      <svg focusable="false" class="{{ icon_class }}" viewBox="0 0 20 22" role="presentation">
+        <path d="M10 13c2.82 0 5.33.64 6.98 1.2A3 3 0 0 1 19 17.02V21H1v-3.97a3 3 0 0 1 2.03-2.84A22.35 22.35 0 0 1 10 13zm0 0c-2.76 0-5-3.24-5-6V6a5 5 0 0 1 10 0v1c0 2.76-2.24 6-5 6z" stroke="currentColor" stroke-width="2" fill="none"></path>
+      </svg>
+    {% endcomment %}
     <svg focusable="false" class="{{ icon_class }}" viewBox="0 0 26 26" fill="none" role="presentation">
       <path d="M22.3242 22.425H20.2409V20.3416C20.2409 18.5708 18.8867 17.2166 17.1159 17.2166H8.78255C7.01172 17.2166 5.65755 18.5708 5.65755 20.3416V22.425H3.57422V20.3416C3.57422 17.425 5.86589 15.1333 8.78255 15.1333H17.1159C20.0326 15.1333 22.3242 17.425 22.3242 20.3416V22.425Z" fill="currentColor"/>
       <path d="M12.9486 13.05C10.0319 13.05 7.74023 10.7583 7.74023 7.84163C7.74023 4.92497 10.0319 2.6333 12.9486 2.6333C15.8652 2.6333 18.1569 4.92497 18.1569 7.84163C18.1569 10.7583 15.8652 13.05 12.9486 13.05ZM12.9486 4.71663C11.1777 4.71663 9.82357 6.0708 9.82357 7.84163C9.82357 9.61247 11.1777 10.9666 12.9486 10.9666C14.7194 10.9666 16.0736 9.61247 16.0736 7.84163C16.0736 6.0708 14.7194 4.71663 12.9486 4.71663Z" fill="currentColor"/>
@@ -599,5 +601,15 @@
         <circle stroke="{{ settings.heading_color }}" cx="9" cy="13" r="9"></circle>
         <path d="M6 0h6M9 0v1" stroke="{{ settings.accent_color }}"></path>
       </g>
+    </svg>
+  {%- when 'custom-swiper-prev' -%}
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0.5" y="0.5" width="29" height="29" rx="14.5" stroke="currentColor"/>
+      <path d="M17.3083 9.23071L11.5391 14.9999L17.3083 20.7692" stroke="currentColor" stroke-width="1.15385" stroke-linecap="round"/>
+    </svg>
+  {%- when 'custom-swiper-next' -%}
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="-0.5" y="0.5" width="29" height="29" rx="14.5" transform="matrix(-1 0 0 1 29 0)" stroke="currentColor"/>
+      <path d="M12.6917 9.23071L18.4609 14.9999L12.6917 20.7692" stroke="currentColor" stroke-width="1.15385" stroke-linecap="round"/>
     </svg>
 {%- endcase -%}

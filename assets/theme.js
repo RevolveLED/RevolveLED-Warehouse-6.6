@@ -9640,7 +9640,7 @@ var FooterSection = class {
    * On mobile, some block items are collapsed, so we must slightly edit their HTML
    */
   _setupCollapsibles() {
-    let collapsibleToggles = this.element.querySelectorAll('[data-action="toggle-collapsible"]'), isPhone = Responsive.matchesBreakpoint("phone");
+    let collapsibleToggles = this.element.querySelectorAll('[data-action="toggle-collapsible"]'), isPhone = this._customIsPhone();
     collapsibleToggles.forEach((collapsibleToggle) => {
       if (isPhone) {
         collapsibleToggle.removeAttribute("disabled");
@@ -9649,6 +9649,11 @@ var FooterSection = class {
         document.getElementById(collapsibleToggle.getAttribute("aria-controls")).style.height = "";
       }
     });
+  }
+
+  _customIsPhone() {
+    console.log("Viewport ≤ 1000px ?", window.matchMedia("(max-width: 1000px)").matches);
+    return window.matchMedia("(max-width: 1000px)").matches;
   }
 };
 
@@ -10532,6 +10537,123 @@ var SlideshowSection = class {
   }
 };
 
+var FeaturedProductsSwiper = class {
+  constructor(element) {
+    this.element = element;
+    this.domDelegate = new main_default(this.element);
+    this.delegateRoot = new main_default(document.documentElement);
+    this.options = JSON.parse(this.element.getAttribute("data-section-settings"));
+    this._attachListeners();
+    this.swiper = this.element.querySelector('.swiper');
+    this.initSwiper();
+  }
+
+  _attachListeners() {
+    this.domDelegate.on("click", '[data-secondary-action="open-quick-view"]', this._openQuickView.bind(this));
+  }
+
+  initSwiper() {
+    const prevButton = this.element.querySelector('.swiper-button-prev');
+    const nextButton = this.element.querySelector('.swiper-button-next');
+    const pagination = this.element.querySelector('.swiper-pagination');
+    const swiper = new Swiper(this.swiper, {
+      slidesPerView: 'auto',
+      // slidesPerGroup: this.options["slidesPerGroup"],
+      // loop: true,
+      pagination: {
+        el: pagination,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: nextButton,
+        prevEl: prevButton,
+      }
+    })
+  }
+
+  _openQuickView(event2, target) {
+    let modal = document.getElementById(target.getAttribute("aria-controls"));
+    modal.classList.add("is-loading");
+    fetch(`${target.getAttribute("data-product-url")}`, {
+      credentials: "same-origin",
+      method: "GET"
+    }).then((response) => {
+      response.text().then((content) => {
+        const fragment = document.createRange().createContextualFragment(content);
+        const modalContent = Dom.deepQuerySelector(fragment, '[data-section-type="product-quick-view"]');
+        modal.querySelector(".modal__inner").replaceChildren(modalContent);
+        modal.classList.remove("is-loading");
+        let modalProductSection = new ProductSection(modalContent);
+        let doCleanUp = () => {
+          modalProductSection.onUnload();
+          modal.removeEventListener("modal:closed", doCleanUp);
+        };
+        modal.addEventListener("modal:closed", doCleanUp);
+      });
+    });
+  }
+}
+
+var BlogPostsSwiper = class {
+  constructor(element) {
+    this.element = element;
+    this.domDelegate = new main_default(this.element);
+    this.delegateRoot = new main_default(document.documentElement);
+    this.options = JSON.parse(this.element.getAttribute("data-section-settings"));
+    this.swiper = this.element.querySelector('.swiper');
+    this.initSwiper();
+  }
+
+  initSwiper() {
+    const prevButton = this.element.querySelector('.swiper-button-prev');
+    const nextButton = this.element.querySelector('.swiper-button-next');
+    const pagination = this.element.querySelector('.swiper-pagination');
+    const swiper = new Swiper(this.swiper, {
+      slidesPerView: 'auto',
+      // slidesPerGroup: this.options["slidesPerGroup"],
+      // loop: true,
+      pagination: {
+        el: pagination,
+        clickable: true,
+      },
+      // navigation: {
+      //   nextEl: nextButton,
+      //   prevEl: prevButton,
+      // }
+    })
+  }
+}
+
+var ImageGroupWithText = class {
+  constructor(element) {
+    this.element = element;
+    this.domDelegate = new main_default(this.element);
+    this.delegateRoot = new main_default(document.documentElement);
+    this.options = JSON.parse(this.element.getAttribute("data-section-settings"));
+    this.swiper = this.element.querySelector('.swiper');
+    this.initSwiper();
+  }
+
+  initSwiper() {
+    const prevButton = this.element.querySelector('.swiper-button-prev');
+    const nextButton = this.element.querySelector('.swiper-button-next');
+    const pagination = this.element.querySelector('.swiper-pagination');
+    const swiper = new Swiper(this.swiper, {
+      slidesPerView: 'auto',
+      // slidesPerGroup: this.options["slidesPerGroup"],
+      // loop: true,
+      pagination: {
+        el: pagination,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: nextButton,
+        prevEl: prevButton,
+      }
+    })
+  }
+}
+
 // js/sections/TextWithIconsSection.js
 var import_flickity5 = __toESM(require_js());
 var TextWithIconsSection = class {
@@ -11155,6 +11277,9 @@ if (!window.customElements.get("buy-button")) {
     sections.register("header", HeaderSection);
     sections.register("login", LoginSection);
     sections.register("map", MapSection);
+    sections.register("blog-posts-swiper", BlogPostsSwiper);
+    sections.register("image-group-with-text", ImageGroupWithText);
+    sections.register("featured-products-swiper", FeaturedProductsSwiper);
     sections.register("minimal-header", MinimalHeaderSection);
     sections.register("popups", PopupsSection);
     sections.register("product-recommendations", ProductRecommendationsSection);
