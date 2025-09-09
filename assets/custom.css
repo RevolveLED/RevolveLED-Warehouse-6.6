@@ -242,3 +242,43 @@
 .mytooltip2:hover .mytooltiptext2 {
     visibility: visible;
 }
+
+/* Shopper Approved Reviews snippet */
+.star_container .group-stars {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.star_container .group-stars .on {
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+}
+
+.star_container .group-stars .ind_cnt {
+    width: auto;
+    display: inline-flex;
+    font-size: inherit;
+    margin-left: 2px;
+    line-height: 1;
+    font-size: 14px;
+}
+
+.star_container .group-stars .ind_cnt::before {
+    content: '(';
+}
+
+.star_container .group-stars .ind_cnt::after {
+    content: ')';
+}
+
+.star_container .group-stars .ind_cnt .ind_cnt_num {
+    display: inline-block;
+}
+
+.star_container .group-stars .ind_cnt .ind_cnt_desc {
+    display: none;
+}
+/* End if Shopper Approved Reviews snippet */
