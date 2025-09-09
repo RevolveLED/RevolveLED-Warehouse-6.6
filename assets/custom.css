@@ -185,6 +185,40 @@
     }
 }
 
+/* Gio: 2021-02-16 - Tooltip for quick ship image on product page */
+/* Tooltip container */
+.mytooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black; */
+  /* If you want dots under the hoverable text */
+  /* width: 75%; */
+}
+
+/* Tooltip text */
+.mytooltip .mytooltiptext {
+  visibility: hidden;
+  width: 225px;
+  background-color: #1f9cfb;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 6px;
+  /* position to the left */
+  top: -10px;
+  right: 50%;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.mytooltip:hover .mytooltiptext {
+  visibility: visible;
+}
+
+/* GIO END: 2021-02-16 - Tooltip for quick ship image on product page */
+
 .mytooltip2 {
     position: relative;
     display: inline-block;
