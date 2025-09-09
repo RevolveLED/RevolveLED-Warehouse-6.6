@@ -1,10 +1,85 @@
+{{ 'custom-product-card.css' | asset_url | stylesheet_tag }}
+<style>
+  .section-recently-viewed-products-placeholder .section__header {
+    display: block;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .section-recently-viewed-products-placeholder .section__title {
+    color: #00487F;
+    font-size: 22px;
+    font-weight: var(--typeface-weight-default-semibold, 700);
+    line-height: var(--typeface-line_height-heading_1, 32px);
+  }
+  .recently-viewed-products-placeholder .swiper {
+    padding: 0;
+    margin: 0;
+    --columns: 4;
+    --column-gap: 21px;
+  }
+
+  .recently-viewed-products-placeholder .swiper-slide {
+    height: auto;
+    width: calc((100% + var(--column-gap)) / var(--columns) - var(--column-gap) - 6px);
+  }
+
+  .recently-viewed-products-placeholder .swiper-slide:not(:last-child) {
+    margin-right: calc(var(--column-gap) + 3px);
+  }
+
+  .recently-viewed-products-placeholder {
+    position: relative;
+    --distance: 18px;
+  }
+
+  @media (max-width: 1440px) {
+    .recently-viewed-products-placeholder {
+      --distance: 8px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .recently-viewed-products-placeholder .swiper {
+      --columns: 3;
+      --column-gap: 21px;
+    }
+  }
+
+  @media (max-width: 999px) {
+    .recently-viewed-products-placeholder .swiper {
+      --columns: 2;
+      --column-gap: 12px;
+      padding: 0 var(--desktop-container-gutter);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section-recently-viewed-products-placeholder .section__title {
+      font-size: 20px;
+    }
+    .recently-viewed-products-placeholder .swiper {
+      --columns: 1;
+      padding: 0 var(--mobile-container-gutter);
+    }
+
+    .recently-viewed-products-placeholder .custom-swiper-button {
+      display: none;
+    }
+  }
+</style>
+
 {%- capture section_settings -%}
 {
   "currentProductId": {{ product.id | json }}
 }
 {%- endcapture -%}
 
-<section class="section" data-section-id="{{ section.id }}" data-section-type="recently-viewed-products" data-section-settings="{{ section_settings | escape_once }}">
+<section
+  class="section section-recently-viewed-products-placeholder"
+  data-section-id="{{ section.id }}"
+  data-section-type="recently-viewed-products"
+  data-section-settings="{{ section_settings | escape_once }}"
+>
   <div class="container">
     {%- if section.settings.title != blank -%}
       <header class="section__header">
@@ -15,12 +90,19 @@
     <div class="recently-viewed-products-placeholder">
       {%- if request.page_type == 'search' -%}
         <div class="scroller">
-          <div class="scroller__inner">
-            <div class="product-list product-list--vertical product-list--scrollable">
+          <button
+            type="button"
+            aria-label="{{ 'product.general.previous_product' | t }}"
+            class="custom-swiper-button swiper-button-prev"
+          >
+            {% render 'icon', icon: 'custom-swiper-prev' %}
+          </button>
+          <div class="swiper">
+            <div class="swiper-wrapper">
               {%- comment -%}
-              NOTE: we are doing an inner for loop to preserve the order (from most recently seen to oldest one), as search.results, out of the box,
-                    will order by title, which is not really desirable. As the number of recently viewed products is kept small, I think the inner loop
-                    should not cause too much performance issue (and is likely faster than fetching using all_products)
+                NOTE: we are doing an inner for loop to preserve the order (from most recently seen to oldest one), as search.results, out of the box,
+                      will order by title, which is not really desirable. As the number of recently viewed products is kept small, I think the inner loop
+                      should not cause too much performance issue (and is likely faster than fetching using all_products)
               {%- endcomment -%}
 
               {%- assign parsed_terms = search.terms | split: ' OR ' -%}
@@ -30,13 +112,25 @@
 
                 {%- for product in search.results -%}
                   {%- if product.id == id -%}
-                    {%- render 'product-item', product: product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy -%}
+                    {%- render 'product-item-custom',
+                      product: product,
+                      swiper: true,
+                      show_add_to_cart: section.settings.show_quick_buy
+                    -%}
                     {%- break -%}
                   {%- endif -%}
                 {%- endfor -%}
               {%- endfor -%}
             </div>
           </div>
+          <button
+            type="button"
+            aria-label="{{ 'product.general.next_product' | t }}"
+            class="custom-swiper-button swiper-button-next"
+          >
+            {% render 'icon', icon: 'custom-swiper-next' %}
+          </button>
+          <div class="custom-swiper-pagination swiper-pagination"></div>
         </div>
       {%- endif -%}
     </div>
@@ -52,14 +146,18 @@
   {%- endif -%}
 
   {%- comment -%}
-  --------------------------------------------------------------------------------------
-  QUICK VIEW CONTAINER
-  --------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------
+    QUICK VIEW CONTAINER
+    --------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   <div id="modal-quick-view-{{ section.id }}" class="modal" aria-hidden="true">
     <div class="modal__dialog modal__dialog--stretch" role="dialog">
-      <button class="modal__close link" data-action="close-modal" title="{{ 'general.accessibility.close' | t | escape }}">
+      <button
+        class="modal__close link"
+        data-action="close-modal"
+        title="{{ 'general.accessibility.close' | t | escape }}"
+      >
         {%- render 'icon', icon: 'close' -%}
       </button>
 

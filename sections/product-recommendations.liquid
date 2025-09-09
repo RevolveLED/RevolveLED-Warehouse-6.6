@@ -1,3 +1,73 @@
+{{ 'custom-product-card.css' | asset_url | stylesheet_tag }}
+<style>
+  .section-product-recommendations .section__header {
+    display: block;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .section-product-recommendations .section__title {
+    color: #00487F;
+    font-size: 22px;
+    font-weight: var(--typeface-weight-default-semibold, 700);
+    line-height: var(--typeface-line_height-heading_1, 32px);
+  }
+  .product-recommendations .swiper {
+    padding: 0;
+    margin: 0;
+    --columns: 4;
+    --column-gap: 21px;
+  }
+
+  .product-recommendations .swiper-slide {
+    height: auto;
+    width: calc((100% + var(--column-gap)) / var(--columns) - var(--column-gap) - 6px);
+  }
+
+  .product-recommendations .swiper-slide:not(:last-child) {
+    margin-right: calc(var(--column-gap) + 3px);
+  }
+
+  .product-recommendations {
+    position: relative;
+    --distance: 18px;
+  }
+
+  @media (max-width: 1440px) {
+    .product-recommendations {
+      --distance: 8px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .product-recommendations .swiper {
+      --columns: 3;
+      --column-gap: 21px;
+    }
+  }
+
+  @media (max-width: 999px) {
+    .product-recommendations .swiper {
+      --columns: 2;
+      --column-gap: 12px;
+      padding: 0 var(--desktop-container-gutter);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section-product-recommendations .section__title {
+      font-size: 20px;
+    }
+    .product-recommendations .swiper {
+      --columns: 1; 
+      padding: 0 var(--mobile-container-gutter);
+    }
+
+    .product-recommendations .custom-swiper-button {
+      display: none;
+    }
+  }
+</style>
+
 {%- capture section_settings -%}
 {
   "stackable": false,
@@ -8,7 +78,12 @@
 }
 {%- endcapture -%}
 
-<section class="section" data-section-id="{{ section.id }}" data-section-type="product-recommendations" data-section-settings="{{ section_settings | escape_once }}">
+<section
+  class="section section-product-recommendations"
+  data-section-id="{{ section.id }}"
+  data-section-type="product-recommendations"
+  data-section-settings="{{ section_settings | escape_once }}"
+>
   <div class="container">
     {%- if section.settings.heading != blank -%}
       <header class="section__header">
@@ -18,11 +93,18 @@
 
     <div class="product-recommendations">
       {%- if recommendations.performed -%}
-        <div class="scroller">
-          <div class="scroller__inner">
-            <div class="product-list product-list--vertical product-list--scrollable">
+        <div class="scroller" role="slider">
+          <button type="button" aria-label="{{ 'product.general.previous_product' | t }}" class="custom-swiper-button swiper-button-prev">
+            {% render 'icon', icon: 'custom-swiper-prev' %}
+          </button>
+          <div class="swiper">
+            <div class="swiper-wrapper">
               {%- for product in recommendations.products -%}
-                {%- render 'product-item', product: product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy -%}
+                {%- render 'product-item-custom',
+                  product: product,
+                  swiper: true,
+                  show_add_to_cart: section.settings.show_quick_buy
+                -%}
               {%- else -%}
                 {%- comment -%}Hide the section if there is no recommendations to show{%- endcomment -%}
                 <style>
@@ -33,20 +115,28 @@
               {%- endfor -%}
             </div>
           </div>
+          <button type="button" aria-label="{{ 'product.general.next_product' | t }}" class="custom-swiper-button swiper-button-next">
+            {% render 'icon', icon: 'custom-swiper-next' %}
+          </button>
+          <div class="custom-swiper-pagination swiper-pagination"></div>
         </div>
       {%- endif -%}
     </div>
   </div>
 
   {%- comment -%}
-  --------------------------------------------------------------------------------------
-  QUICK VIEW CONTAINER
-  --------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------
+    QUICK VIEW CONTAINER
+    --------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   <div id="modal-quick-view-{{ section.id }}" class="modal" aria-hidden="true">
     <div class="modal__dialog modal__dialog--stretch" role="dialog">
-      <button class="modal__close link" data-action="close-modal" title="{{ 'general.accessibility.close' | t | escape }}">
+      <button
+        class="modal__close link"
+        data-action="close-modal"
+        title="{{ 'general.accessibility.close' | t | escape }}"
+      >
         {%- render 'icon', icon: 'close' -%}
       </button>
 

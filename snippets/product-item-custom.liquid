@@ -2,7 +2,7 @@
   assign selected_or_first_available_variant = product.selected_or_first_available_variant
   assign search_code = product.metafields.global.search_code.value
 %}
-<div class="custom-product-card{% if swiper %} swiper-slide{% endif %}">
+<div class="custom-product-card{% if swiper %} swiper-slide{% endif %} {{ grid_classes }}">
   <div class="custom-product-card-wrapper">
     <a
       class="custom-product-card-image"

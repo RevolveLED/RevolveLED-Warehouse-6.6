@@ -10167,9 +10167,9 @@ var ProductRecommendationsSection = class {
     this.delegateElement = new main_default(this.element);
     this.options = JSON.parse(this.element.getAttribute("data-section-settings"));
     if (this.options["useRecommendations"]) {
-      this._loadRecommendations().then(this._createSlideshow.bind(this));
+      this._loadRecommendations().then(this._initSwiper.bind(this));
     } else {
-      this._createSlideshow();
+      this._initSwiper();
     }
     this.productItemColorSwatch = new ProductItemColorSwatch(this.element);
     this._fixSafari();
@@ -10224,6 +10224,23 @@ var ProductRecommendationsSection = class {
         this.element.querySelector(".product-recommendations").innerHTML = container.querySelector(".product-recommendations").innerHTML;
         this.productItemColorSwatch.recalculateSwatches();
       });
+    });
+  }
+  _initSwiper() {
+    const prevButton = this.element.querySelector('.swiper-button-prev');
+    const nextButton = this.element.querySelector('.swiper-button-next');
+    const pagination = this.element.querySelector('.swiper-pagination');
+    const swiperElement = this.element.querySelector('.swiper');
+    const swiper = new Swiper(swiperElement, {
+      slidesPerView: 'auto',
+      pagination: {
+        el: pagination,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: nextButton,
+        prevEl: prevButton,
+      }
     });
   }
   _createSlideshow() {
@@ -10306,6 +10323,23 @@ var RecentlyViewedProductsSection = class {
   _attachListeners() {
     this.delegateElement.on("click", '[data-secondary-action="open-quick-view"]', this._openQuickView.bind(this));
   }
+  _initSwiper() {
+    const prevButton = this.element.querySelector('.swiper-button-prev');
+    const nextButton = this.element.querySelector('.swiper-button-next');
+    const pagination = this.element.querySelector('.swiper-pagination');
+    const swiperElement = this.element.querySelector('.swiper');
+    const swiper = new Swiper(swiperElement, {
+      slidesPerView: 'auto',
+      pagination: {
+        el: pagination,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: nextButton,
+        prevEl: prevButton,
+      }
+    });
+  }
   /**
    * In order to get the products to display, we hit the search template with the given IDs.
    */
@@ -10324,31 +10358,7 @@ var RecentlyViewedProductsSection = class {
         this.element.querySelector(".recently-viewed-products-placeholder").innerHTML = tempElement.querySelector('[data-section-type="recently-viewed-products"] .recently-viewed-products-placeholder').innerHTML;
         this.element.parentNode.style.display = "block";
         this.productItemColorSwatch.recalculateSwatches();
-        this.flickityInstance = new import_flickity4.default(this.element.querySelector(".product-list"), {
-          watchCSS: true,
-          pageDots: false,
-          prevNextButtons: true,
-          contain: true,
-          resize: false,
-          groupCells: true,
-          cellAlign: "left",
-          draggable: !window.matchMedia("(-moz-touch-enabled: 0), (hover: hover)").matches
-        });
-        let lastWidth = window.innerWidth;
-        window.addEventListener("resize", () => {
-          if (window.innerWidth !== lastWidth) {
-            this.flickityInstance.resize();
-            lastWidth = window.innerWidth;
-          }
-        });
-        if (window.ResizeObserver && this.flickityInstance) {
-          this.resizeObserver = new ResizeObserver(() => {
-            this.flickityInstance.resize();
-          });
-          this.element.querySelectorAll(".product-item").forEach((item) => {
-            this.resizeObserver.observe(item);
-          });
-        }
+        this._initSwiper();
       });
     });
   }
