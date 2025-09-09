@@ -351,6 +351,7 @@
   },
   "cart": {
     "general": {
+      "cart": "Cart",
       "title": "My cart",
       "empty": "Your cart is empty",
       "empty_button": "Shop our products",

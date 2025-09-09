@@ -6485,6 +6485,7 @@ var Cart = class {
     if (window.theme.pageType !== "cart" && window.theme.cartType !== "page") {
       this.delegateElement.on("click", '[data-action="toggle-mini-cart"]', this._toggleMiniCart.bind(this));
       this.delegateElement.on("keyup", this._checkMiniCartClose.bind(this));
+      this.delegateRoot.on("click", ".mini-cart__button-close", this._closeMiniCart.bind(this));
       this.delegateRoot.on("click", this._onWindowClick.bind(this));
       window.addEventListener("resize", this._calculateMiniCartHeightListener);
     }
@@ -6546,7 +6547,7 @@ var Cart = class {
           }
         });
         let maxHeight = window.innerHeight - headerGroupHeight;
-        this.miniCartElement.style.maxHeight = `${maxHeight}px`;
+        // this.miniCartElement.style.maxHeight = `${maxHeight}px`;
         let miniCartContentElement = this.miniCartElement.querySelector(".mini-cart__content"), miniCartRecapElement = this.miniCartElement.querySelector(".mini-cart__recap");
         if (miniCartRecapElement) {
           miniCartContentElement.style.maxHeight = `${maxHeight - miniCartRecapElement.clientHeight}px`;
