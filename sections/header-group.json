@@ -104,7 +104,7 @@
         "special_menu": "Shop By Application,Specials",
         "desktop_navigation_layout": "inline",
         "desktop_navigation_open_trigger": "hover",
-        "show_navigation_social_media": true,
+        "show_navigation_social_media": false,
         "navigation_phone_number": "Call us 000-000-0000",
         "navigation_email": "info@yourwebsite.com",
         "show_condensed_search": true,
