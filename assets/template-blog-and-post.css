@@ -460,7 +460,7 @@
 @media screen and (min-width: 641px) {
   .blog-post-list {
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px 16px;
+    gap: 16px;
   }
 
   .blog-post-list .article-item--featured {
@@ -478,7 +478,7 @@
 
 @media screen and (min-width: 1000px) {
   .blog-container {
-    gap: 40px;
+    gap: 32px;
     flex-direction: row;
   }
 
@@ -488,7 +488,7 @@
 
   .blog-sidebar {
     flex: none;
-    width: 300px;
+    width: 320px;
   }
 
   .blog-page-layout .social-media__item svg {
@@ -498,12 +498,16 @@
 }
 
 @media screen and (min-width: 1280px) {
+  .blog-container {
+    gap: 40px;
+  }
+
   .blog-sidebar {
     width: 350px;
   }
 
   .blog-post-list {
-    gap: 40px 24px;
+    gap: 24px;
   }
 
   .blog-post-list .article-item--featured {
@@ -685,8 +689,8 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
   margin-bottom: 8px;
 }
 
