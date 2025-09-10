@@ -1,34 +1,67 @@
-<article data-section-id="{{ section.id }}" data-section-type="blog-post">
+{{ 'template-blog-and-post.css' | asset_url | stylesheet_tag }}
+
+<article data-section-id="{{ section.id }}" data-section-type="blog-post" class="main-blog-post blog-page-layout">
   <div class="container">
-    <header class="page__header page__header--stack">
-      <h1 class="page__title heading h1">{{ article.title }}</h1>
-
-      {%- capture page_meta -%}
-        {%- if section.settings.show_category and article.tags.size > 0 -%}
-          <span class="page__meta-item page__meta-item--category"><a href="/blogs/{{ blog.handle }}/tagged/{{ article.tags.first | handle }}" class="link">{{ article.tags.first }}</a></span>
-        {%- endif -%}
-
-        {%- if section.settings.show_author -%}
-          <span class="page__meta-item page__meta-item--author">{{ 'blog.article.written_by' | t: author: article.author }}</span>
-        {%- endif -%}
-
-        {%- if section.settings.show_date -%}
-          <time class="page__meta-item page__meta-item--date">{{ article.published_at | date: format: 'short_month_day_year' }}</time>
-        {%- endif -%}
-      {%- endcapture -%}
-
-      {%- if page_meta != blank -%}
-        <div class="page__meta">
-          {{ page_meta }}
-        </div>
-      {%- endif -%}
-    </header>
+    <div class="page__sub-header">
+      <div class="breadcrumb-wrapper">
+        <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+              {%- render 'icon', icon: 'arrow-right' -%}
+            </li>
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link link" href="{{ blog.url}}">
+                {{- 'blog.general.blog' | t -}}
+              </a>
+              {%- render 'icon', icon: 'arrow-right' -%}
+            </li>
+            <li class="breadcrumb__item">
+              <span class="breadcrumb__link" aria-current="page">
+                {{- article.title -}}
+              </span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
     <div class="blog-container">
       <div class="blog-post">
+        <header class="page__header page__header--stack">
+          <h1 class="page__title heading h1">{{ article.title }}</h1>
+
+          {%- capture page_meta -%}
+            {%- if section.settings.show_category and article.tags.size > 0 -%}
+              <span class="page__meta-item page__meta-item--category"><a href="/blogs/{{ blog.handle }}/tagged/{{ article.tags.first | handle }}" class="link">{{ article.tags.first }}</a></span>
+            {%- endif -%}
+    
+            {%- if section.settings.show_author -%}
+              <span class="page__meta-item page__meta-item--author">{{ 'blog.article.written_by' | t: author: article.author }}</span>
+            {%- endif -%}
+    
+            {%- if section.settings.show_date -%}
+              <time class="page__meta-item page__meta-item--date">{{ article.published_at | date: format: 'short_month_day_year' }}</time>
+            {%- endif -%}
+          {%- endcapture -%}
+
+          {%- if page_meta != blank -%}
+            <div class="page__meta">
+              {{ page_meta }}
+            </div>
+          {%- endif -%}
+        </header>
+
         {%- if article.image -%}
           <div class="article__image-wrapper">
-            {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: 'min(100vw, 980px)', widths: '300,400,500,600,700,800,900,1000,1100,1200' -}}
+            {{-
+              article.image
+              | image_url: width: article.image.width
+              | image_tag:
+                loading: 'lazy',
+                sizes: 'min(100vw, 980px)',
+                widths: '300,400,500,600,700,800,900,1000,1100,1200'
+            -}}
           </div>
         {%- endif -%}
 
@@ -60,24 +93,22 @@
         {%- endif -%}
 
         {%- if section.settings.show_share_buttons or article.comments_enabled? -%}
-          <div class="card hidden-phone">
-            <div class="card__section card__section--tight">
-              <div class="article__toolbar">
-                {%- if section.settings.show_share_buttons -%}
-                  <div class="article__toolbar-item">
-                    <span class="article__share-label">{{ 'blog.article.share' | t }}</span>
-                    {{- share_buttons -}}
-                  </div>
-                {%- endif -%}
-
-                {%- if article.comments_enabled? -%}
-                  <div class="article__toolbar-item">
-                    {% render 'icon', icon: 'bi-comment' %}
-                    <a href="#comments" class="article__comments-count link">{{ 'blog.article.comments_count' | t: count: article.comments_count }}</a>
-                  </div>
-                {%- endif -%}
+          <div class="article__toolbar">
+            {%- if section.settings.show_share_buttons -%}
+              <div class="article__toolbar-item">
+                <span class="article__share-label">{{ 'blog.article.share' | t }}</span>
+                {{- share_buttons -}}
               </div>
-            </div>
+            {%- endif -%}
+
+            {%- if article.comments_enabled? -%}
+              <div class="article__toolbar-item">
+                {% render 'icon', icon: 'bi-comment' %}
+                <a href="#comments" class="article__comments-count link">
+                  {{- 'blog.article.comments_count' | t: count: article.comments_count -}}
+                </a>
+              </div>
+            {%- endif -%}
           </div>
         {%- endif -%}
 
@@ -86,24 +117,21 @@
             {{ article.content }}
           </div>
 
-          {%- if section.settings.show_share_buttons or section.settings.show_tags and article.tags.size > 0 -%}
+          {%- if section.settings.show_tags and article.tags.size > 0 -%}
             <div class="article__aside">
-              {%- if section.settings.show_tags and article.tags.size > 0 -%}
-                <div class="article__aside-item">
-                  <span class="article__tag-label">{{ 'blog.article.tags' | t }}&nbsp;</span>
+              <div class="article__aside-item">
+                <span class="article__tag-label">{{ 'blog.article.tags' | t }}&nbsp;</span>
 
-                  {%- for tag in article.tags -%}
-                    <a href="/blogs/{{ blog.handle }}/tagged/{{ tag | handle }}" class="link link--accented {% if settings.underline_links %}link--underline{% endif %}">{{ tag | capitalize }}</a>{%- unless forloop.last -%},&nbsp;{%- endunless -%}
-                  {%- endfor -%}
-                </div>
-              {%- endif -%}
-
-              {%- if section.settings.show_share_buttons -%}
-                <div class="article__aside-item">
-                  <span class="article__share-label">{{ 'blog.article.share' | t }}</span>
-                  {{ share_buttons }}
-                </div>
-              {%- endif -%}
+                {%- for tag in article.tags -%}
+                  <a
+                    href="/blogs/{{ blog.handle }}/tagged/{{ tag | handle }}"
+                    class="link link--accented {% if settings.underline_links %}link--underline{% endif %}"
+                  >
+                    {{- tag | capitalize -}}
+                  </a>
+                  {%- unless forloop.last -%},&nbsp;{%- endunless -%}
+                {%- endfor -%}
+              </div>
             </div>
           {%- endif -%}
 
@@ -115,12 +143,33 @@
             {%- endcomment -%}
 
             <div class="article__navigation {% if blog.next_article == nil %}article__navigation--align-right{% endif %}">
-              {%- if blog.next_article -%}
-                <a href="{{ blog.next_article.url }}" class="article__navigation-item article__navigation-item--prev text--strong link" rel="prev">{%- render 'icon', icon: 'arrow-left' -%} {{- 'blog.article.previous_article' | t -}}</a>
+              {%- if section.settings.show_share_buttons -%}
+                <div class="article__aside-item article__aside-item--share">
+                  <span class="article__share-label">{{ 'blog.article.share' | t }}</span>
+                  {{ share_buttons }}
+                </div>
+              {%- else -%}
+                {%- if blog.next_article -%}
+                  <a
+                    href="{{ blog.next_article.url }}"
+                    class="article__navigation-item article__navigation-item--prev text--strong link"
+                    rel="prev"
+                  >
+                    {%- render 'icon', icon: 'arrow-left' -%}
+                    {{- 'blog.article.previous_article' | t -}}
+                  </a>
+                {%- endif -%}
               {%- endif -%}
 
               {%- if blog.previous_article -%}
-                <a href="{{ blog.previous_article.url }}" class="article__navigation-item article__navigation-item--next text--strong link" rel="next">{{- 'blog.article.next_article' | t -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
+                <a
+                  href="{{ blog.previous_article.url }}"
+                  class="article__navigation-item article__navigation-item--next text--strong link"
+                  rel="next"
+                >
+                  {{- 'blog.article.next_article' | t -}}
+                  {%- render 'icon', icon: 'arrow-right' -%}
+                </a>
               {%- endif -%}
             </div>
           {%- endif -%}
@@ -130,18 +179,26 @@
 
             {%- if article.comments_count > 0 -%}
               <div class="article__comment-list">
-                <p class="article__comment-list-heading heading h2">{{ 'blog.article.comments_count' | t: count: article.comments_count }}</p>
+                <p class="article__comment-list-heading heading h2">
+                  {{ 'blog.article.comments_count' | t: count: article.comments_count }}
+                </p>
 
                 {%- paginate article.comments by 50 -%}
                   {%- for comment in article.comments -%}
                     <div class="article-comment">
                       {%- if section.settings.show_gravatar -%}
-                        <img class="article-comment__gravatar" src="//www.gravatar.com/avatar/{{ comment.email | md5 }}?s=100" alt="{{ comment.author }}">
+                        <img
+                          class="article-comment__gravatar"
+                          src="//www.gravatar.com/avatar/{{ comment.email | md5 }}?s=100"
+                          alt="{{ comment.author }}"
+                        >
                       {%- endif -%}
 
                       <div class="article-comment__inner">
                         <p class="article-comment__author text--strong">{{ comment.author }}</p>
-                        <time class="article-comment__date">{{ comment.created_at | date: format: 'month_day_year_time' }}</time>
+                        <time class="article-comment__date">
+                          {{- comment.created_at | date: format: 'month_day_year_time' -}}
+                        </time>
 
                         <div class="article-comment__content rte">
                           {{- comment.content -}}
@@ -179,7 +236,10 @@
                           {%- if field == 'form' -%}
                             <li class="alert__error-item">{{ form.errors.messages[field] }}</li>
                           {%- else -%}
-                            <li class="alert__error-item">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+                            <li class="alert__error-item">
+                              {{ form.errors.translated_fields[field] | capitalize }}
+                              {{ form.errors.messages[field] }}
+                            </li>
                           {%- endif -%}
                         {%- endfor -%}
                       </ul>
@@ -191,24 +251,46 @@
                   <div class="form__input-wrapper form__input-wrapper--labelled">
                     {%- assign form_author = form.author | default: customer.name -%}
 
-                    <input id="comment-form-name" type="text" class="form__field form__field--text {% if form_author != blank %}is-filled{% endif %}" name="comment[author]" value="{{ form_author | escape }}" required="required">
+                    <input
+                      id="comment-form-name"
+                      type="text"
+                      class="form__field form__field--text {% if form_author != blank %}is-filled{% endif %}"
+                      name="comment[author]"
+                      value="{{ form_author | escape }}"
+                      required="required"
+                    >
                     <label for="comment-form-name" class="form__floating-label">{{ 'blog.comments.name' | t }}</label>
                   </div>
 
                   <div class="form__input-wrapper form__input-wrapper--labelled">
                     {%- assign form_email = form.email | default: customer.email -%}
 
-                    <input id="comment-form-email" type="email" class="form__field form__field--text {% if form_email != blank %}is-filled{% endif %}" name="comment[email]" value="{{ form_email | escape }}" required="required">
+                    <input
+                      id="comment-form-email"
+                      type="email"
+                      class="form__field form__field--text {% if form_email != blank %}is-filled{% endif %}"
+                      name="comment[email]"
+                      value="{{ form_email | escape }}"
+                      required="required"
+                    >
                     <label for="comment-form-email" class="form__floating-label">{{ 'blog.comments.email' | t }}</label>
                   </div>
                 </div>
 
                 <div class="form__input-wrapper form__input-wrapper--labelled">
-                  <textarea id="comment-form-body" name="comment[body]" rows="5" class="form__field form__field--textarea {% if form.body != blank %}is-filled{% endif %}" required="required">{{ form.body }}</textarea>
+                  <textarea
+                    id="comment-form-body"
+                    name="comment[body]"
+                    rows="5"
+                    class="form__field form__field--textarea {% if form.body != blank %}is-filled{% endif %}"
+                    required="required"
+                  >{{ form.body }}</textarea>
                   <label for="comment-form-body" class="form__floating-label">{{ 'blog.comments.content' | t }}</label>
                 </div>
 
-                <button type="submit" class="form__submit button button--primary button--min-width">{{ 'blog.comments.submit' | t }}</button>
+                <button type="submit" class="form__submit button button--primary button--min-width">
+                  {{ 'blog.comments.submit' | t }}
+                </button>
               </div>
             {%- endform -%}
           {%- endif -%}
@@ -220,7 +302,11 @@
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'newsletter' -%}
-                <div class="blog-sidebar__item blog-sidebar__item--newsletter" id="block-{{ block.id }}" {{ block.shopify_attributes }}>
+                <div
+                  class="blog-sidebar__item blog-sidebar__item--newsletter"
+                  id="block-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
                   <style>
                     #block-{{ block.id }} {
                       background: {{ block.settings.background }};
@@ -246,17 +332,30 @@
                         <p class="alert alert--success">{{ 'home_page.newsletter.success' | t }}</p>
                       {%- else -%}
                         {%- if form.errors -%}
-                          <p class="alert alert--error">{{ form.errors.messages['email'] }}</p>
+                          <p class="alert alert--error">{{ form.errors.messages.email }}</p>
                         {%- endif -%}
 
                         <input type="hidden" name="contact[tags]" value="newsletter">
 
                         <div class="form__input-wrapper form__input-wrapper--labelled">
-                          <input type="email" name="contact[email]" class="form__field form__field--text form__field--borderless" aria-label="{{ 'home_page.newsletter.input' | t }}" required>
-                          <label for="newsletter[contact][email]" class="form__floating-label">{{ 'home_page.newsletter.input' | t }}</label>
+                          <input
+                            type="email"
+                            name="contact[email]"
+                            class="form__field form__field--text form__field--borderless"
+                            aria-label="{{ 'home_page.newsletter.input' | t }}"
+                            required
+                          >
+                          <label for="newsletter[contact][email]" class="form__floating-label">
+                            {{- 'home_page.newsletter.input' | t -}}
+                          </label>
                         </div>
 
-                        <button type="submit" class="form__submit form__submit--tight button button--primary button--full">{{ 'home_page.newsletter.submit' | t }}</button>
+                        <button
+                          type="submit"
+                          class="form__submit form__submit--tight button button--primary button--full"
+                        >
+                          {{ 'home_page.newsletter.submit' | t }}
+                        </button>
                       {%- endif -%}
                     {%- endform -%}
 
@@ -267,12 +366,19 @@
                 </div>
 
               {%- when 'featured_posts' -%}
-                <div class="blog-sidebar__item blog-sidebar__item--posts" id="block-{{ block.id }}" {{ block.shopify_attributes }}>
+                <div
+                  class="blog-sidebar__item blog-sidebar__item--posts"
+                  id="block-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
                   {%- if block.settings.title != blank -%}
                     <p class="blog-sidebar__block-title heading h3">{{ block.settings.title | escape }}</p>
                   {%- endif -%}
 
-                  <ol class="blog-sidebar__post-list {% if block.settings.show_ranking %}blog-sidebar__post-list--ranked{% endif %}" role="list">
+                  <ol
+                    class="blog-sidebar__post-list {% if block.settings.show_ranking %}blog-sidebar__post-list--ranked{% endif %}"
+                    role="list"
+                  >
                     {%- assign show_placeholder = true -%}
 
                     {%- for i in (1..5) -%}
@@ -284,22 +390,34 @@
                           {%- if article.image -%}
                             <a href="{{ article.url }}" class="blog-sidebar__post-image-wrapper">
                               <div class="blog-sidebar__post-image-overflow">
-                                <img loading="lazy" src="{{ article.image | img_url: '100x80', crop: 'center', scale: 2 }}" alt="{{ article.image.alt | escape }}" class="blog-sidebar__post-image">
+                                <img
+                                  loading="lazy"
+                                  src="{{ article.image | img_url: '100x80', crop: 'center', scale: 2 }}"
+                                  alt="{{ article.image.alt | escape }}"
+                                  class="blog-sidebar__post-image"
+                                >
                               </div>
                             </a>
                           {%- endif -%}
 
                           <div class="blog-sidebar__post-info">
-                            <a class="blog-sidebar__post-title text--strong link" href="{{ article.url }}">{{ article.title }}</a>
+                            <a class="blog-sidebar__post-title text--strong link" href="{{ article.url }}">
+                              {{- article.title -}}
+                            </a>
 
-                            {%- if block.settings.show_date or block.settings.show_category and article.tags.size > 0 -%}
+                            {%- if block.settings.show_date
+                              or block.settings.show_category
+                              and article.tags.size > 0
+                            -%}
                               <div class="blog-sidebar__post-meta">
                                 {%- if block.settings.show_category and article.tags.size > 0 -%}
                                   <span class="blog-sidebar__post-meta-item">{{ article.tags.first }}</span>
                                 {%- endif -%}
 
                                 {%- if block.settings.show_date -%}
-                                  <span class="blog-sidebar__post-meta-item">{{ article.published_at | date: format: 'short_month_day_year' }}</span>
+                                  <span class="blog-sidebar__post-meta-item">
+                                    {{- article.published_at | date: format: 'short_month_day_year' -}}
+                                  </span>
                                 {%- endif -%}
                               </div>
                             {%- endif -%}
@@ -317,22 +435,31 @@
                             <a href="#" class="blog-sidebar__post-image-wrapper">
                               <div class="blog-sidebar__post-image-overflow">
                                 {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
-                                {{ placeholder | placeholder_svg_tag: 'blog-sidebar__post-placeholder placeholder-svg' }}
+                                {{
+                                  placeholder
+                                  | placeholder_svg_tag: 'blog-sidebar__post-placeholder placeholder-svg'
+                                }}
                               </div>
                             </a>
                           {%- endif -%}
 
                           <div class="blog-sidebar__post-info">
-                            <a class="blog-sidebar__post-title text--strong" href="#">{{ 'home_page.onboarding.article_title' | t }}</a>
+                            <a class="blog-sidebar__post-title text--strong" href="#">
+                              {{- 'home_page.onboarding.article_title' | t -}}
+                            </a>
 
                             {%- if block.settings.show_date or block.settings.show_category -%}
                               <div class="blog-sidebar__post-meta">
                                 {%- if block.settings.show_category -%}
-                                  <span class="blog-sidebar__post-meta-item">{{ 'home_page.onboarding.article_category' | t }}</span>
+                                  <span class="blog-sidebar__post-meta-item">
+                                    {{- 'home_page.onboarding.article_category' | t -}}
+                                  </span>
                                 {%- endif -%}
 
                                 {%- if block.settings.show_date -%}
-                                  <span class="blog-sidebar__post-meta-item">{{ 'now' | date: format: 'short_month_day_year' }}</span>
+                                  <span class="blog-sidebar__post-meta-item">
+                                    {{- 'now' | date: format: 'short_month_day_year' -}}
+                                  </span>
                                 {%- endif -%}
                               </div>
                             {%- endif -%}
@@ -344,7 +471,11 @@
                 </div>
 
               {%- when 'rich_text' -%}
-                <div class="blog-sidebar__item blog-sidebar__item--text" id="block-{{ block.id }}" {{ block.shopify_attributes }}>
+                <div
+                  class="blog-sidebar__item blog-sidebar__item--text"
+                  id="block-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
                   {%- if block.settings.title != blank -%}
                     <p class="blog-sidebar__block-title heading h3">{{ block.settings.title | escape }}</p>
                   {%- endif -%}
@@ -357,12 +488,16 @@
                 </div>
 
               {%- when 'featured_products' -%}
-                <div class="blog-sidebar__item blog-sidebar__item--products" id="block-{{ block.id }}" {{ block.shopify_attributes }}>
+                <div
+                  class="blog-sidebar__item blog-sidebar__item--products"
+                  id="block-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
                   {%- if block.settings.title != blank -%}
                     <p class="blog-sidebar__block-title heading h3">{{ block.settings.title | escape }}</p>
                   {%- endif -%}
 
-                  <div class="product-list product-list--horizontal">
+                  <div class="blog-sidebar__product-list">
                     {%- assign show_placeholder = true -%}
 
                     {%- for i in (1..3) -%}
@@ -370,7 +505,7 @@
                       {%- assign product = block.settings[product_option] -%}
 
                       {%- unless product == blank -%}
-                        {%- render 'product-item', product: product, horizontal: true, hide_labels: true -%}
+                        {%- render 'blogs-product-item', product: product, horizontal: true, hide_labels: true -%}
                         {%- assign show_placeholder = false -%}
                       {%- endunless -%}
                     {%- endfor -%}
@@ -384,7 +519,11 @@
                 </div>
 
               {%- when 'links' -%}
-                <div class="blog-sidebar__item blog-sidebar__item--menu" id="block-{{ block.id }}" {{ block.shopify_attributes }}>
+                <div
+                  class="blog-sidebar__item blog-sidebar__item--menu"
+                  id="block-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
                   {%- assign menu = linklists[block.settings.menu] -%}
 
                   {%- unless menu.empty? -%}
@@ -401,7 +540,11 @@
                 </div>
 
               {%- when 'social_media' -%}
-                <div class="blog-sidebar__item blog-sidebar__item--social" id="block-{{ block.id }}" {{ block.shopify_attributes }}>
+                <div
+                  class="blog-sidebar__item blog-sidebar__item--social"
+                  id="block-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
                   {%- if block.settings.title != blank -%}
                     <p class="blog-sidebar__block-title heading h3">{{ block.settings.title | escape }}</p>
                   {%- endif -%}
