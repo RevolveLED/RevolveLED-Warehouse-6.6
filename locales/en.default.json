@@ -497,6 +497,7 @@
   },
   "blog": {
     "general": {
+      "blog": "Blog",
       "empty": "This blog has no articles",
       "empty_button": "Go to Homepage",
       "categories": "Categories",

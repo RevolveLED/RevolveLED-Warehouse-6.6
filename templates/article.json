@@ -1,1 +1,51 @@
-{"sections":{"main":{"type":"main-blog-post","blocks":{"newsletter":{"type":"newsletter","settings":{}},"social-media":{"type":"social_media","settings":{}}},"block_order":["newsletter","social-media"],"settings":{}}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-blog-post",
+      "blocks": {
+        "featured-posts": {
+          "type": "featured_posts",
+          "settings": {
+            "show_ranking": false,
+            "show_category": true,
+            "show_date": true,
+            "title": "Popular posts",
+            "article_1": "shop-talk\/dlc-certification-and-dlc-qpl-products-find-out-what-it-is-and-why-it-matters",
+            "article_2": "shop-talk\/introduction-to-bay-lighting",
+            "article_3": "shop-talk\/round-high-bay-lighting",
+            "article_4": "shop-talk\/not-just-for-grandpas-barn-anymore-meet-the-konlite-bl05-multi-purpose-dusk-to-dawn-led-barn-light",
+            "article_5": "shop-talk\/led-area-lights-the-new-go-to-in-led-coverage"
+          }
+        },
+        "featured-products": {
+          "type": "featured_products",
+          "settings": {
+            "title": "Featured Products",
+            "product_1": "konlite-led-high-bay-light-10-0123",
+            "product_2": "full-cutoff-led-wall-pack-22-0401",
+            "product_3": "konlite-vela-i-wattage-selectable-led-area-light"
+          }
+        },
+        "social-media": {
+          "type": "social_media",
+          "settings": {}
+        },
+        "newsletter": {
+          "disabled": true,
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured-posts",
+        "featured-products",
+        "social-media",
+        "newsletter"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

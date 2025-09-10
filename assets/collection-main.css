@@ -456,34 +456,6 @@
   display: none;
 }
 
-
-.collection-main .pagination__nav-item {
-  background-color: transparent;
-  color: #4E5969;
-}
-
-.pagination__nav-item.is-active {
-  background-color: #F1F8FE;
-  color: var(--color-blue);
-}
-
-.collection-main .pagination__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.collection-main .pagination__prev,
-.collection-main .pagination__next {
-  background-color: transparent;
-  color: #4E5969;
-}
-
-.collection-main .pagination__prev svg,
-.collection-main .pagination__next svg {
-  display: block;
-}
-
 .collection-main .collection-layout-left .filterboxx {
   display: block;
 }
