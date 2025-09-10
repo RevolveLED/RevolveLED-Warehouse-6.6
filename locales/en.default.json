@@ -60,6 +60,7 @@
       "max_characters": "{{ max_chars }} characters max"
     },
     "request_for_quote": "Request For Quote",
+    "copy": "Copy"
   },
   "header": {
     "general": {

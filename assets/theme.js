@@ -6554,11 +6554,11 @@ var Cart = class {
         }
       } else {
         this.miniCartElement.style.maxHeight = "";
-        this.miniCartElement.querySelector(".mini-cart__content").style.maxHeight = "";
+        // this.miniCartElement.querySelector(".mini-cart__content").style.maxHeight = "";
       }
     } else {
       this.miniCartElement.style.maxHeight = "";
-      this.miniCartElement.querySelector(".mini-cart__content").style.maxHeight = "";
+      // this.miniCartElement.querySelector(".mini-cart__content").style.maxHeight = "";
     }
   }
   /**
