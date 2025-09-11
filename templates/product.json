@@ -17,8 +17,14 @@
           "settings": {
             "show_vendor": true,
             "show_sku": true,
-            "show_reviews_badge": true,
             "show_share_buttons": false
+          }
+        },
+        "product_meta_shift": {
+          "type": "product_meta_shift",
+          "settings": {
+            "show_reviews_badge": true,
+            "show_bulletpoints": true
           }
         },
         "variant_selector": {
@@ -66,6 +72,7 @@
       },
       "block_order": [
         "product_meta",
+        "product_meta_shift",
         "variant_selector",
         "buy_buttons",
         "icon_text",
@@ -83,6 +90,13 @@
       "type": "product-tab-content",
       "settings": {}
     },
+    "product-accessories": {
+      "type": "product-accessories",
+      "settings": {
+        "heading": "Accessories",
+        "show_quick_buy": false
+      }
+    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -91,6 +105,7 @@
       }
     },
     "recently-viewed-products": {
+      "disabled": true,
       "type": "recently-viewed-products",
       "settings": {
         "title": "Recently viewed",
@@ -101,6 +116,7 @@
   "order": [
     "main",
     "product-tab-content",
+    "product-accessories",
     "product-recommendations",
     "recently-viewed-products"
   ]

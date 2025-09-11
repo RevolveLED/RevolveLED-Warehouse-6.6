@@ -1,12 +1,16 @@
 {{ 'custom-product-card.css' | asset_url | stylesheet_tag }}
 <style>
+  .section-product-recommendations.section {
+    margin: 0;
+    padding: 64px 0;
+  }
   .section-product-recommendations .section__header {
     display: block;
     text-align: center;
     margin-bottom: 24px;
   }
   .section-product-recommendations .section__title {
-    color: #00487F;
+    color: #00487f;
     font-size: 22px;
     font-weight: var(--typeface-weight-default-semibold, 700);
     line-height: var(--typeface-line_height-heading_1, 32px);
@@ -49,17 +53,20 @@
     .product-recommendations .swiper {
       --columns: 2;
       --column-gap: 12px;
-      padding: 0 var(--desktop-container-gutter);
+      /* padding: 0 var(--desktop-container-gutter); */
     }
   }
 
   @media (max-width: 640px) {
+    .section-product-recommendations.section {
+      padding: 24px 0;
+    }
     .section-product-recommendations .section__title {
       font-size: 20px;
     }
     .product-recommendations .swiper {
-      --columns: 1; 
-      padding: 0 var(--mobile-container-gutter);
+      --columns: 1;
+      /* padding: 0 var(--mobile-container-gutter); */
     }
 
     .product-recommendations .custom-swiper-button {
@@ -93,8 +100,12 @@
 
     <div class="product-recommendations">
       {%- if recommendations.performed -%}
-        <div class="scroller" role="slider">
-          <button type="button" aria-label="{{ 'product.general.previous_product' | t }}" class="custom-swiper-button swiper-button-prev">
+        <div class="product-recommendations__scroller" role="slider">
+          <button
+            type="button"
+            aria-label="{{ 'product.general.previous_product' | t }}"
+            class="custom-swiper-button swiper-button-prev"
+          >
             {% render 'icon', icon: 'custom-swiper-prev' %}
           </button>
           <div class="swiper">
@@ -103,6 +114,7 @@
                 {%- render 'product-item-custom',
                   product: product,
                   swiper: true,
+                  disable_quote_button: true,
                   show_add_to_cart: section.settings.show_quick_buy
                 -%}
               {%- else -%}
@@ -115,7 +127,11 @@
               {%- endfor -%}
             </div>
           </div>
-          <button type="button" aria-label="{{ 'product.general.next_product' | t }}" class="custom-swiper-button swiper-button-next">
+          <button
+            type="button"
+            aria-label="{{ 'product.general.next_product' | t }}"
+            class="custom-swiper-button swiper-button-next"
+          >
             {% render 'icon', icon: 'custom-swiper-next' %}
           </button>
           <div class="custom-swiper-pagination swiper-pagination"></div>

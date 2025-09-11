@@ -1,3 +1,7 @@
+/**
+ * For product page only.
+ */
+
 (function () {
   // Change product tab.
   for (const element of document.querySelectorAll('[data-product-tab-to]')) {
@@ -50,6 +54,7 @@ var ProductDetailTabBar = class extends HTMLElement {
     if (this.tabItems.length > 0) {
       this.previousContentElement = document.querySelector(this.tabItems[0].getAttribute('data-tab-for'));
     }
+    this.section = this.closest('.shopify-section');
   }
 
   connectedCallback() {
@@ -59,6 +64,20 @@ var ProductDetailTabBar = class extends HTMLElement {
       this.index = this.tabItems.indexOf(item);
       if (item) {
         this.handleClickItem(item);
+      }
+    });
+    this.section.addEventListener('click', (e) => {
+      /** @type {HTMLElement} */
+      const collapseButton = e.target.closest('[data-collapse-button]');
+      if (collapseButton) {
+        const $content = $(collapseButton.nextElementSibling);
+        if (collapseButton.hasAttribute('open')) {
+          $content.stop().slideUp();
+          collapseButton.removeAttribute('open');
+        } else {
+          $content.stop().slideDown();
+          collapseButton.setAttribute('open', '');
+        }
       }
     });
   }

@@ -8637,6 +8637,90 @@ var ProductGallery = class {
   }
 };
 
+var ProductShortDesc = class extends HTMLElement {
+  constructor() {
+    super();
+    this.content = this.querySelector('[data-content]');
+    this.contentInner = this.querySelector('[data-content-inner]');
+    this.firstItem = this.querySelector('li');
+    this.allItems = this.querySelectorAll('li');
+    this.buttonMore = this.querySelector('[data-button-more]');
+    this.enableShowMore = this.hasAttribute('data-enable-show-more');
+    if (!this.content || !this.contentInner || !this.firstItem || !this.buttonMore || !this.enableShowMore) {
+      return;
+    }
+    this.delegateElement = new main_default(this);
+    this._resize();
+    this._attachListeners();
+  }
+
+  get isOpened() {
+    return this.content.hasAttribute('open');
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver.disconnect();
+  }
+
+  _attachListeners() {
+    this.delegateElement.on("click", '[data-button-more]', this._clickButton.bind(this));
+    this.resizeObserver = new ResizeObserver((entries) => {
+      this._resize();
+    });
+    this.resizeObserver.observe(this);
+  }
+  _resize() {
+    if (Responsive.matchesBreakpoint("phone") && !this.isOpened) {
+      const smallHeight = this.firstItem.clientHeight;
+      const amallHeight = this.firstItem.clientHeight;
+      const a = this.firstItem.clientHeight;
+      if (this.allItems.length <= 1) {
+        this.buttonMore.classList.add('hidden');
+      } else {
+        this.content.style.setProperty('--height', `${this.firstItem.clientHeight}px`);
+      }
+    }
+  }
+  _clickButton(e) {
+    e.preventDefault();
+    if (this.isOpened) {
+      this._handleShowLess();
+    } else {
+      this._handleShowMore();
+    }
+  }
+  _handleShowMore(duration = 300) {
+    if (this.content.hasAttribute('opening') || this.content.hasAttribute('closing')) return;
+    this.content.setAttribute('opening', '');
+    this.content.removeAttribute('closing');
+    this.content.style.setProperty('--height', `${this.firstItem.clientHeight}px`);
+    window.requestAnimationFrame(() => {
+      this.content.style.setProperty('--height', `${this.contentInner.clientHeight}px`);
+    });
+    setTimeout(() => {
+      this.content?.removeAttribute('opening');
+      this.content.style.setProperty('--height', ``);
+    }, duration);
+    this.content.setAttribute('open', '');
+  }
+  _handleShowLess(duration = 300) {
+    if (this.content.hasAttribute('opening') || this.content.hasAttribute('closing')) return;
+    this.content.setAttribute('closing', '');
+    this.content.removeAttribute('opening');
+    this.content.style.setProperty('--height', `${this.contentInner.clientHeight}px`);
+    window.requestAnimationFrame(() => {
+      this.content.style.setProperty('--height', `${this.firstItem.clientHeight}px`);
+    });
+    setTimeout(() => {
+      this.content?.removeAttribute('closing');
+    }, duration);
+    this.content.removeAttribute('open', '');
+  }
+};
+if (!window.customElements.get("product-short-desc")) {
+  window.customElements.define("product-short-desc", ProductShortDesc);
+}
+
 // js/components/QuantityPicker.js
 var QuantityPicker = class extends HTMLElement {
   constructor() {
