@@ -8928,9 +8928,34 @@ var AccountSection = class {
       new CountrySelector(addressForm.querySelector('[name="address[country]"]'), addressForm.querySelector('[name="address[province]"]'));
     });
     this.pageSelector = new ValuePicker("account-selector");
+    this.addressList = this.element.querySelector(".address-list");
+    console.log("asdfjlasdfkljlasfjdkasdfljk");
+    if (this.addressList) {
+      this._initAddressSwiper();
+    } else {
+      console.log("no address list");
+    }
   }
   _onUnload() {
     this.pageSelector.destroy();
+  }
+  _initAddressSwiper() {
+    console.log("init address swiper");
+    const prevButton = this.addressList.querySelector('.swiper-button-prev');
+    const nextButton = this.addressList.querySelector('.swiper-button-next');
+    // const pagination = this.element.querySelector('.swiper-pagination');
+    const swiperElement = this.addressList.querySelector('.swiper');
+    const swiper = new Swiper(swiperElement, {
+      slidesPerView: 'auto',
+      // pagination: {
+      //   el: pagination,
+      //   clickable: true,
+      // },
+      navigation: {
+        nextEl: nextButton,
+        prevEl: prevButton,
+      }
+    });
   }
 };
 
@@ -9653,7 +9678,7 @@ var FooterSection = class {
   }
 
   _customIsPhone() {
-    console.log("Viewport ≤ 1000px ?", window.matchMedia("(max-width: 1000px)").matches);
+    // console.log("Viewport ≤ 1000px ?", window.matchMedia("(max-width: 1000px)").matches);
     return window.matchMedia("(max-width: 1000px)").matches;
   }
 };
