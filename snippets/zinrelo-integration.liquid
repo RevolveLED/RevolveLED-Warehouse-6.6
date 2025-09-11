@@ -1,0 +1,18 @@
+<script type="text/javascript" defer>
+  {% assign ts = 'now' | date: "%s" %}
+  window._zrl  =  window._zrl || [];
+  var  init_data =
+  {
+	"partner_id" : "bbef2374ac", 
+	"email" : "{{ customer.email }}", 
+	"name" : "{{ customer.name }}",	    
+	"user_id": "{{ customer.id }}",	    
+	{% if customer != nil %}
+	"ts": "{{ 'now' | date: "%s"}}",
+	"access_token": "{{ customer.id | append: customer.email | append: 'bbef2374ac' | append: '75a735cbbf845b4a43fff4e9cae25ac7' | append: ts | sha256 }}"
+	{% endif %}
+  };
+  _zrl.push( [ 'init' , init_data ] );
+</script>
+<script src="//cdn.zinrelo.com/js/all.js" type="text/javascript" defer></script>
+                        
