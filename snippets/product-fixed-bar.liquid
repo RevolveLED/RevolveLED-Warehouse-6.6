@@ -1,4 +1,4 @@
-{%- assign selected_variant = product.selected_variant -%}
+{%- assign selected_variant = product.selected_or_first_available_variant -%}
 
 <product-fixed-bar class="product-fixed-bar">
   <div class="container">
@@ -22,17 +22,6 @@
 
     <div class="product-fixed-bar__right">
       <div class="price-list">
-        <span class="price price--highlight">
-          <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
-          <span data-price>
-            {%- if settings.currency_code_enabled -%}
-              {{- selected_variant.price | money_with_currency -}}
-            {%- else -%}
-              {{- selected_variant.price | money -}}
-            {%- endif -%}
-          </span>
-        </span>
-
         <span class="price price--compare">
           <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
           <span data-compare-price>
@@ -42,6 +31,16 @@
               {%- else -%}
                 {{- selected_variant.compare_at_price | money -}}
               {%- endif -%}
+            {%- endif -%}
+          </span>
+        </span>
+        <span class="price price--highlight">
+          <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+          <span data-price>
+            {%- if settings.currency_code_enabled -%}
+              {{- selected_variant.price | money_with_currency -}}
+            {%- else -%}
+              {{- selected_variant.price | money -}}
             {%- endif -%}
           </span>
         </span>

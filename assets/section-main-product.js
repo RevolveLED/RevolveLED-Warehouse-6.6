@@ -11,6 +11,33 @@
       tab?.click();
     });
   }
+
+  /** @type {MutationObserver} */
+  let observer;
+  let observerDisabled = false;
+  observer = new MutationObserver((mutations) => {
+    if (observerDisabled) return;
+    for (const mutation of mutations) {
+      if (mutation.addedNodes.length > 0) {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE && node.matches('shop-pay-wallet-button')) {
+            observerDisabled = true;
+            const el = document.querySelector('shop-pay-wallet-button');
+            setTimeout(() => {
+              const buttonSpan = document.querySelector('shop-pay-wallet-button').button.querySelector('.button-content>span');
+              buttonSpan.style.fontSize = 'var(--button-font-size)';
+              buttonSpan.style.fontFamily = 'var(--button-font-family)';
+              observer.disconnect();
+            }, 100);
+          }
+        }
+      }
+    }
+  });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 })();
 
 document.querySelector('.product-meta__reviews')?.addEventListener('click', (e) => {

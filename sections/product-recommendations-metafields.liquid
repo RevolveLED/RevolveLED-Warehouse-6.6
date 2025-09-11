@@ -1,0 +1,220 @@
+{{- 'custom-product-card.css' | asset_url | stylesheet_tag -}}
+<style>
+  .section-product-recommendations.section {
+    margin: 0;
+    padding: 64px 0;
+  }
+  .section-product-recommendations .section__header {
+    display: block;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .section-product-recommendations .section__title {
+    color: #00487f;
+    font-size: 22px;
+    font-weight: var(--typeface-weight-default-semibold, 700);
+    line-height: var(--typeface-line_height-heading_1, 32px);
+  }
+  .section-product-recommendations .swiper:not(.swiper-initialized) .swiper-wrapper {
+    justify-content: center;
+  }
+  .section-product-recommendations .swiper-button-lock + .swiper .swiper-wrapper {
+    justify-content: center;
+  }
+  .product-recommendations .swiper {
+    padding: 0;
+    margin: 0;
+    --columns: 4;
+    --column-gap: 21px;
+  }
+
+  .product-recommendations .swiper-slide {
+    height: auto;
+    width: calc((100% + var(--column-gap)) / var(--columns) - var(--column-gap) - 6px);
+  }
+
+  .product-recommendations .swiper-slide:not(:last-child) {
+    margin-right: calc(var(--column-gap) + 3px);
+  }
+
+  .product-recommendations {
+    position: relative;
+    --distance: 18px;
+  }
+
+  @media (max-width: 1440px) {
+    .product-recommendations {
+      --distance: 8px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .product-recommendations .swiper {
+      --columns: 3;
+      --column-gap: 21px;
+    }
+  }
+
+  @media (max-width: 999px) {
+    .product-recommendations .swiper {
+      --columns: 2;
+      --column-gap: 12px;
+      /* padding: 0 var(--desktop-container-gutter); */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section-product-recommendations.section {
+      padding: 24px 0;
+    }
+    .section-product-recommendations .section__title {
+      font-size: 20px;
+    }
+    .product-recommendations .swiper {
+      --columns: 1;
+      /* padding: 0 var(--mobile-container-gutter); */
+    }
+
+    .product-recommendations .custom-swiper-button {
+      display: none;
+    }
+  }
+</style>
+
+{%- capture section_settings -%}
+{
+  "stackable": false,
+  "layout": "vertical",
+  "productId": {{ product.id | json }},
+  "useRecommendations": true,
+  "recommendationsCount": 10
+}
+{%- endcapture -%}
+
+{%- assign related_products = product.metafields.custom_metafield.related_products | strip_html | split: ',' -%}
+
+{%- if related_products != blank -%}
+  <section
+    class="section section-product-recommendations"
+    data-section-id="{{ section.id }}"
+    data-section-type="featured-products-swiper"
+    data-section-settings="{{ section_settings | escape_once }}"
+  >
+    <div class="container">
+      {%- if section.settings.heading != blank -%}
+        <header class="section__header">
+          <h2 class="section__title heading h3">{{ section.settings.heading | escape }}</h2>
+        </header>
+      {%- endif -%}
+
+      <div class="product-recommendations">
+        <div class="product-recommendations__scroller" role="slider">
+          <button
+            type="button"
+            aria-label="{{ 'product.general.previous_product' | t }}"
+            class="custom-swiper-button swiper-button-prev"
+          >
+            {% render 'icon', icon: 'custom-swiper-prev' %}
+          </button>
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              {%- for related_product in related_products limit: section.settings.products_count -%}
+                {%- liquid
+                  assign product = all_products[related_product]
+                  if product.tags contains 'Draft' or product.title == blank
+                    continue
+                  endif
+                -%}
+                {%- render 'product-item-custom',
+                  product: product,
+                  swiper: true,
+                  disable_quote_button: true,
+                  show_add_to_cart: section.settings.show_quick_buy
+                -%}
+              {%- else -%}
+                {%- comment -%}Hide the section if there is no recommendations to show{%- endcomment -%}
+                <style>
+                  #shopify-section-{{ section.id }} {
+                    display: none;
+                  }
+                </style>
+              {%- endfor -%}
+            </div>
+          </div>
+          <button
+            type="button"
+            aria-label="{{ 'product.general.next_product' | t }}"
+            class="custom-swiper-button swiper-button-next"
+          >
+            {% render 'icon', icon: 'custom-swiper-next' %}
+          </button>
+          <div class="custom-swiper-pagination swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%}
+      --------------------------------------------------------------------------------------
+      QUICK VIEW CONTAINER
+      --------------------------------------------------------------------------------------
+    {%- endcomment -%}
+
+    <div id="modal-quick-view-{{ section.id }}" class="modal" aria-hidden="true">
+      <div class="modal__dialog modal__dialog--stretch" role="dialog">
+        <button
+          class="modal__close link"
+          data-action="close-modal"
+          title="{{ 'general.accessibility.close' | t | escape }}"
+        >
+          {%- render 'icon', icon: 'close' -%}
+        </button>
+
+        <div class="modal__loader">
+          {%- render 'icon', icon: 'search-loader' -%}
+        </div>
+
+        <div class="modal__inner"></div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Related products",
+  "templates": ["product"],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Related Products"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Products to show",
+      "min": 4,
+      "max": 50,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "label": "Show quick buy",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "category": "Product",
+      "name": "Related products"
+    }
+  ]
+}
+{% endschema %}

@@ -1,5 +1,14 @@
 .template-product .page__sub-header {
   margin-top: 61px;
+  display: block !important;
+}
+
+.template-product .page__sub-header .breadcrumb__item:last-child {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+  white-space: nowrap;
 }
 
 .section-product-tab-content {
@@ -29,6 +38,12 @@
 @media screen and (max-width: 999px) {
   .template-product .page__sub-header {
     margin-top: 48px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .template-product .page__sub-header {
+    margin-top: 24px;
   }
 }
 
@@ -88,6 +103,10 @@
   display: none;
 }
 
+.product-tab-content__container-inner:empty {
+  display: none;
+}
+
 .product-tab-content__container-inner {
   margin-top: 48px;
 }
@@ -107,7 +126,7 @@
 }
 
 .product-tab-content__container .product-description .mycustomtable {
-  margin: -4px;
+  margin: 0px;
   padding: 0;
   width: 500px;
   max-width: 100%;
@@ -118,11 +137,15 @@
 }
 
 .product-tab-content__container .product-description .mycustomtable td {
-  padding: 4px;
+  padding: 0 0 8px;
   font-weight: 500;
-  line-height: 150%;
+  line-height: 24px;
   width: 246px !important;
   max-width: 100%;
+}
+
+.product-tab-content__container .product-description .mycustomtable tr:last-of-type td {
+  padding-bottom: 0;
 }
 
 .product-tab-content__container img {
@@ -145,7 +168,7 @@
 }
 
 .product-description strong,
-.product-description .rte a:not(.button) {
+.product-description.rte a:not(.button):not(:hover) {
   color: #009DF1;
 }
 
@@ -189,7 +212,7 @@
 .product-specifications tbody {
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100% !important;
   display: block;
 }
 
@@ -269,7 +292,6 @@
   content: '';
   position: relative;
   background-image: url('https://cdn.shopify.com/s/files/1/0377/8933/5692/files/icon-product-downloads.svg?v=1756883846');
-  ;
   width: 24px;
   height: 24px;
   display: block;
@@ -523,9 +545,10 @@
   font-size: inherit;
 }
 
-#questions .answerbase-widget a {
+#questions .answerbase-widget .questions-list a {
   color: #009DF1;
   font-weight: var(--typeface-weight-default-normal, 500);
+  font-size: 18px;
 }
 
 #questions .answerbase-widget .title h5 {
@@ -636,6 +659,10 @@
     font-size: 13px;
   }
 
+  .product-tab-content__container .product-description .mycustomtable {
+    width: 100%;
+  }
+
   .product-detail-tab-bar {
     margin-left: calc(-1 * var(--mobile-container-gutter));
     margin-right: calc(-1 * var(--mobile-container-gutter));
@@ -660,6 +687,10 @@
 
   .product-tab-content__container .product-details-title {
     font-size: 18px;
+  }
+
+  .product-tab-content__container .product-description .mycustomtable td {
+    width: auto !important;
   }
 
   .product-certification-icons__images {
@@ -840,6 +871,32 @@
     font-weight: 400;
     line-height: normal;
   }
+
+  #questions .answerbase-widget {
+    padding-top: 22px;
+  }
+
+  #questions .answerbase-widget .title h5 {
+    font-size: 24px;
+  }
+
+  #questions .answerbase-widget .questions-list>.title h5 {
+    font-size: 20px;
+  }
+
+  #questions .answerbase-widget .questions-list .item .timestamp {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  #questions .answerbase-widget .questions-list a {
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  #questions .answerbase-widget .questions-list .item {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -938,7 +995,7 @@ product-fixed-bar {
 }
 
 .product-fixed-bar__right .price--compare span:nth-child(2):not(:empty) {
-  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .product-fixed-bar__right .button {
@@ -1023,6 +1080,6 @@ product-fixed-bar {
   }
 
   .product-fixed-bar__right .price--compare span:nth-child(2):not(:empty) {
-    margin-left: 4vw;
+    margin-right: 4vw;
   }
 }

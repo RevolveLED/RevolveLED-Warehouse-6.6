@@ -1,4 +1,3 @@
-
 .product-accessories h2 {
   font-size: 22px;
 }
@@ -24,6 +23,10 @@
 .product-accessories-section__swiper-container {
   position: relative;
   --distance: 18px;
+}
+
+.product-accessories-section__container .swiper:not(.swiper-initialized) .swiper-wrapper {
+  justify-content: center;
 }
 
 .product-accessories-section__container .swiper-button-lock+.product-accessories-section__swiper-container .swiper-wrapper {

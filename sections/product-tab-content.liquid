@@ -84,8 +84,8 @@
             -%}
               {{-
                 product.metafields.global.specifications
-                | replace: '>Specifications</strong>', '><span class="product-details-title">Specifications</span>'
-                | replace: '>Specification</strong>', '><span class="product-details-title">Specification</span>'
+                | replace: '>Specifications</strong>', '><span class="product-details-title">Specifications</span></strong>'
+                | replace: '>Specification</strong>', '><span class="product-details-title">Specification</span></strong>'
                 | replace: '&nbsp;', ' '
               -}}
             {%- endif -%}
@@ -94,9 +94,9 @@
               {{-
                 product.metafields.global.specifications2
                 | replace: '>Motion Sensor Specification</strong>',
-                  '><span class="product-details-title">Motion Sensor Specification</span>'
+                  '><span class="product-details-title">Motion Sensor Specification</span></strong>'
                 | replace: '>Motion Sensor Specification</strong>',
-                  '><span class="product-details-title">Motion Sensor Specification</span>'
+                  '><span class="product-details-title">Motion Sensor Specification</span></strong>'
                 | replace: '&nbsp;', ' '
               -}}
               <!-- end Motion Sensor Specifications -->
@@ -104,25 +104,31 @@
           </div>
         </section>
 
-        <!-- Specifications -->
-        <section class="product-video-content rte">
-          <div class="product-tab-content__container-inner">
-            {%- if product.metafields.global.application_info != blank
-              and product.metafields.global.application_info.value != '&nbsp;'
-              and product.metafields.global.application_info != 'No'
-            -%}
-              {{- product.metafields.global.application_info -}}
-            {%- endif -%}
-            {%- unless product.metafields.global.int == blank -%}
-              <p>
-                <strong
-                  >This product is available in increments of {{ product.metafields.global.int }} with a minimum order
-                  quantity of {{ product.metafields.global.int -}}
-                </strong>
-              </p>
-            {%- endunless -%}
-          </div>
-        </section>
+        <!-- Video -->
+        {%- if product.metafields.global.application_info != blank
+          and product.metafields.global.application_info.value != '&nbsp;'
+          and product.metafields.global.application_info != 'No'
+          or product.metafields.global.int != blank
+        -%}
+          <section class="product-video-content rte">
+            <div class="product-tab-content__container-inner">
+              {%- if product.metafields.global.application_info != blank
+                and product.metafields.global.application_info.value != '&nbsp;'
+                and product.metafields.global.application_info != 'No'
+              -%}
+                {{- product.metafields.global.application_info -}}
+              {%- endif -%}
+              {%- unless product.metafields.global.int == blank -%}
+                <p>
+                  <strong
+                    >This product is available in increments of {{ product.metafields.global.int }} with a minimum order
+                    quantity of {{ product.metafields.global.int -}}
+                  </strong>
+                </p>
+              {%- endunless -%}
+            </div>
+          </section>
+        {%- endif -%}
       </div>
     </div>
 

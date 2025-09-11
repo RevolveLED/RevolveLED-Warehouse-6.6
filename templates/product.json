@@ -97,7 +97,15 @@
         "show_quick_buy": false
       }
     },
+    "product-recommendations-metafields": {
+      "type": "product-recommendations-metafields",
+      "settings": {
+        "heading": "Related Products",
+        "show_quick_buy": false
+      }
+    },
     "product-recommendations": {
+      "disabled": true,
       "type": "product-recommendations",
       "settings": {
         "heading": "Related Products",
@@ -117,6 +125,7 @@
     "main",
     "product-tab-content",
     "product-accessories",
+    "product-recommendations-metafields",
     "product-recommendations",
     "recently-viewed-products"
   ]
