@@ -353,7 +353,8 @@
 
   .article__comment-form-wrapper .form__input-wrapper,
   .article__comment-form-wrapper .form__input-row {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .article-comment {
@@ -749,11 +750,19 @@
   .blog-sidebar__post-item+.blog-sidebar__post-item {
     margin-top: 16px;
   }
+
+  .blog-sidebar__item--products .product-item:not(:last-child) {
+    margin-bottom: 16px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .blog-sidebar__post-item+.blog-sidebar__post-item {
     margin-top: 24px;
+  }
+
+  .blog-sidebar__item--products .product-item:not(:last-child) {
+    margin-bottom: 24px;
   }
 }
 

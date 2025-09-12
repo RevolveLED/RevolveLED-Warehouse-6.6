@@ -17,12 +17,39 @@
       </div>
     </product-detail-tab-bar>
 
+    <button data-collapse-button class="product-tab-content__collapse hidden-tablet-and-up" type="button">
+      <span>What’s in the box</span>
+      {%- render 'icon', icon: 'arrow-bottom' -%}
+    </button>
+    <div
+      id="what-in-box"
+      class="product-tab-content__container product-tab-content__container--what-in-box hidden-tablet-and-up"
+    >
+      <div class="product-tab-content__container-inner">
+        <!-- What's in the box -->
+        <section class="product-whats-in-box">
+          {%- if product.metafields.custom_metafield.what_inbox.value != blank -%}
+            <strong class="product-details-title">{{ 'product.general.what_inbox' | t }}</strong>
+            <div>{{ product.metafields.custom_metafield.what_inbox }}</div>
+          {% endif %}
+          {%- if product.metafields.global.what_inbox.value != blank -%}
+            <strong class="product-details-title">{{ 'product.general.what_inbox' | t }}</strong>
+            <div>{{ product.metafields.global.what_inbox }}</div>
+          {%- endif -%}
+        </section>
+      </div>
+    </div>
+
     {% comment %} Product Details {% endcomment %}
+    <button data-collapse-button class="product-tab-content__collapse hidden-tablet-and-up" type="button">
+      <span>Product Details</span>
+      {%- render 'icon', icon: 'arrow-bottom' -%}
+    </button>
     <div id="details" open class="product-tab-content__container product-tab-content__container--details">
-      <!-- Product Description -->
-      {%- if product.description != blank -%}
-        <section class="product-description rte">
-          <div class="product-description__inner">
+      <div class="product-tab-content__container-inner">
+        <!-- Product Description -->
+        {%- if product.description != blank -%}
+          <section class="product-description rte">
             {%- assign replace_overview = '<span class="product-details-title">Product Overview</span></strong>' -%}
             {%- assign replace_applications = '<span class="product-details-title">Applications</span></strong>' -%}
             {{
@@ -31,79 +58,103 @@
               | replace: 'Applications</strong>', replace_applications
               | remove: 'data-section-type="product"'
             }}
+          </section>
+        {%- endif -%}
+
+        <!-- Color temperature -->
+        <section class="product-color-temperature">
+          <div class="product-tab-content__container-inner">
+            {%- render 'product-color-temperature', product: product -%}
           </div>
-          <product-detail-show-more>
-            <button>Show More</button>
-          </product-detail-show-more>
         </section>
-      {%- endif -%}
 
-      <!-- Color temperature -->
-      <section class="product-color-temperature">
-        {%- render 'product-color-temperature', product: product -%}
-      </section>
+        <!-- Certification icons -->
+        <section class="product-certification">
+          <div class="product-tab-content__container-inner">
+            {%- render 'product-certification-icons', product: product -%}
+          </div>
+        </section>
 
-      <!-- Certification icons -->
-      <section class="product-certification">
-        {%- render 'product-certification-icons', product: product -%}
-      </section>
+        <!-- Specifications -->
+        <section class="product-specifications rte">
+          <div class="product-tab-content__container-inner">
+            {%- if product.metafields.global.specifications != blank
+              and product.metafields.global.specifications.value != '&nbsp;'
+              and product.metafields.global.specifications != 'No'
+            -%}
+              {{-
+                product.metafields.global.specifications
+                | replace: '>Specifications</strong>', '><span class="product-details-title">Specifications</span></strong>'
+                | replace: '>Specification</strong>', '><span class="product-details-title">Specification</span></strong>'
+                | replace: '&nbsp;', ' '
+              -}}
+            {%- endif -%}
+            {%- if product.metafields.global.specifications2 != blank -%}
+              <!-- Begin Motion Sensor Specifications -->
+              {{-
+                product.metafields.global.specifications2
+                | replace: '>Motion Sensor Specification</strong>',
+                  '><span class="product-details-title">Motion Sensor Specification</span></strong>'
+                | replace: '>Motion Sensor Specification</strong>',
+                  '><span class="product-details-title">Motion Sensor Specification</span></strong>'
+                | replace: '&nbsp;', ' '
+              -}}
+              <!-- end Motion Sensor Specifications -->
+            {%- endif -%}
+          </div>
+        </section>
 
-      <!-- What's in the box -->
-      <section class="product-whats-in-box">
-        {%- if product.metafields.custom_metafield.what_inbox.value != blank -%}
-          <strong class="product-details-title">{{ 'product.general.what_inbox' | t }}</strong>
-          <div>{{ product.metafields.custom_metafield.what_inbox }}</div>
-        {% endif %}
-        {%- if product.metafields.global.what_inbox.value != blank -%}
-          <strong class="product-details-title">{{ 'product.general.what_inbox' | t }}</strong>
-          <div>{{ product.metafields.global.what_inbox }}</div>
-        {%- endif -%}
-      </section>
-
-      <!-- Specifications -->
-      <section class="product-specifications">
-        {%- if product.metafields.global.specifications != blank
-          and product.metafields.global.specifications != 'No'
-        -%}
-          {{-
-            product.metafields.global.specifications
-            | replace: 'Specifications', '<span class="product-details-title">Specifications</span>'
-            | replace: '&nbsp;', ' '
-          -}}
-        {%- endif -%}
-        {%- if product.metafields.global.specifications2 != blank -%}
-          <!-- Begin Motion Sensor Specifications -->
-          {{-
-            product.metafields.global.specifications2
-            | replace: 'Specifications', '<span class="product-details-title">Specifications</span>'
-            | replace: '&nbsp;', ' '
-          -}}
-          <!-- end Motion Sensor Specifications -->
-        {%- endif -%}
+        <!-- Video -->
         {%- if product.metafields.global.application_info != blank
+          and product.metafields.global.application_info.value != '&nbsp;'
           and product.metafields.global.application_info != 'No'
+          or product.metafields.global.int != blank
         -%}
-          {{- product.metafields.global.application_info -}}
+          <section class="product-video-content rte">
+            <div class="product-tab-content__container-inner">
+              {%- if product.metafields.global.application_info != blank
+                and product.metafields.global.application_info.value != '&nbsp;'
+                and product.metafields.global.application_info != 'No'
+              -%}
+                {{- product.metafields.global.application_info -}}
+              {%- endif -%}
+              {%- unless product.metafields.global.int == blank -%}
+                <p>
+                  <strong
+                    >This product is available in increments of {{ product.metafields.global.int }} with a minimum order
+                    quantity of {{ product.metafields.global.int -}}
+                  </strong>
+                </p>
+              {%- endunless -%}
+            </div>
+          </section>
         {%- endif -%}
-        {% unless product.metafields.global.int == blank %}
-          <p>
-            <strong
-              >This product is available in increments of {{ product.metafields.global.int }} with a minimum order
-              quantity of {{ product.metafields.global.int -}}
-            </strong>
-          </p>
-        {% endunless %}
-      </section>
-    </div>
-
-    {% comment %} Downloads {% endcomment %}
-    <div id="downloads" class="product-tab-content__container product-tab-content__container--downloads">
-      <div class="rte">
-        <div>{{ product.metafields.custom_metafield.downloads }}</div>
       </div>
     </div>
 
+    {% comment %} Downloads {% endcomment %}
+    {%- if product.metafields.custom_metafield.downloads != blank
+      and product.metafields.custom_metafield.downloads.value != '&nbsp;'
+      and product.metafields.custom_metafield.downloads != 'No'
+    -%}
+      <button data-collapse-button class="product-tab-content__collapse hidden-tablet-and-up" type="button">
+        <span>Downloads</span>
+        {%- render 'icon', icon: 'arrow-bottom' -%}
+      </button>
+      <div id="downloads" class="product-tab-content__container product-tab-content__container--downloads">
+        <div class="product-tab-content__container-inner">
+          <div class="rte">
+            <div>{{ product.metafields.custom_metafield.downloads }}</div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
     {% comment %} Reviews {% endcomment %}
+    <button data-collapse-button class="product-tab-content__collapse hidden-tablet-and-up" type="button">
+      <span>Reviews</span>
+      {%- render 'icon', icon: 'arrow-bottom' -%}
+    </button>
     <div id="reviews" class="product-tab-content__container product-tab-content__container--reviews">
       <div class="sa-reviews-content">
         <div id="SA_review_wrapper"></div>
@@ -125,6 +176,10 @@
     </div>
 
     {% comment %} Q&A {% endcomment %}
+    <button data-collapse-button class="product-tab-content__collapse hidden-tablet-and-up" type="button">
+      <span>Q&A</span>
+      {%- render 'icon', icon: 'arrow-bottom' -%}
+    </button>
     <div id="questions" class="product-tab-content__container product-tab-content__container--questions">
       <script
         type="text/javascript"

@@ -1,3 +1,7 @@
+/**
+ * For product page only.
+ */
+
 (function () {
   // Change product tab.
   for (const element of document.querySelectorAll('[data-product-tab-to]')) {
@@ -7,6 +11,33 @@
       tab?.click();
     });
   }
+
+  /** @type {MutationObserver} */
+  let observer;
+  let observerDisabled = false;
+  observer = new MutationObserver((mutations) => {
+    if (observerDisabled) return;
+    for (const mutation of mutations) {
+      if (mutation.addedNodes.length > 0) {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE && node.matches('shop-pay-wallet-button')) {
+            observerDisabled = true;
+            const el = document.querySelector('shop-pay-wallet-button');
+            setTimeout(() => {
+              const buttonSpan = document.querySelector('shop-pay-wallet-button').button.querySelector('.button-content>span');
+              buttonSpan.style.fontSize = 'var(--button-font-size)';
+              buttonSpan.style.fontFamily = 'var(--button-font-family)';
+              observer.disconnect();
+            }, 100);
+          }
+        }
+      }
+    }
+  });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 })();
 
 document.querySelector('.product-meta__reviews')?.addEventListener('click', (e) => {
@@ -50,6 +81,7 @@ var ProductDetailTabBar = class extends HTMLElement {
     if (this.tabItems.length > 0) {
       this.previousContentElement = document.querySelector(this.tabItems[0].getAttribute('data-tab-for'));
     }
+    this.section = this.closest('.shopify-section');
   }
 
   connectedCallback() {
@@ -59,6 +91,20 @@ var ProductDetailTabBar = class extends HTMLElement {
       this.index = this.tabItems.indexOf(item);
       if (item) {
         this.handleClickItem(item);
+      }
+    });
+    this.section.addEventListener('click', (e) => {
+      /** @type {HTMLElement} */
+      const collapseButton = e.target.closest('[data-collapse-button]');
+      if (collapseButton) {
+        const $content = $(collapseButton.nextElementSibling);
+        if (collapseButton.hasAttribute('open')) {
+          $content.stop().slideUp();
+          collapseButton.removeAttribute('open');
+        } else {
+          $content.stop().slideDown();
+          collapseButton.setAttribute('open', '');
+        }
       }
     });
   }

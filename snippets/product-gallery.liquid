@@ -138,6 +138,14 @@
         {%- endif -%}
       </div>
 
+      {%- if template != 'product.quick-view' and section.settings.enable_image_zoom -%}
+        <div class="product-gallery__zoom-notice">
+          {% render 'icon', icon: 'zoom' %}
+          <span class="hidden-pocket">{{ 'product.general.zoom' | t }}</span>
+          <span class="hidden-lap-and-up">{{ 'product.general.zoom_mobile' | t }}</span>
+        </div>
+      {%- endif -%}
+
       {%- if show_thumbnails_if_one_media -%}
         <div id="Gallery-thumbnail-{{ section.id}}" class="scroller product-gallery__thumbnail-wrapper">
           <button
@@ -294,13 +302,5 @@
         </div>
       {%- endif -%}
     </div>
-
-    {%- if template != 'product.quick-view' and section.settings.enable_image_zoom -%}
-      <div class="product-gallery__zoom-notice">
-        {% render 'icon', icon: 'zoom' %}
-        <span class="hidden-pocket">{{ 'product.general.zoom' | t }}</span>
-        <span class="hidden-lap-and-up">{{ 'product.general.zoom_mobile' | t }}</span>
-      </div>
-    {%- endif -%}
   </div>
 {%- endif -%}

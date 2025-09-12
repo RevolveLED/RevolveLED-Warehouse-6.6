@@ -45,7 +45,7 @@
           </li>
 
           <li class="breadcrumb__item">
-            <span class="breadcrumb__link" aria-current="page">{{ product.title | truncate: 40 }}</span>
+            <span class="breadcrumb__link" aria-current="page">{{ product.title }}</span>
           </li>
         </ol>
       </nav>
@@ -182,15 +182,22 @@
         },
         {
           "type": "checkbox",
+          "id": "show_share_buttons",
+          "label": "Show share buttons",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "product_meta_shift",
+      "name": "Product meta (shift)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
           "id": "show_reviews_badge",
           "label": "Show product rating",
           "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/en/manual/products/product-reviews/installation)",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_share_buttons",
-          "label": "Show share buttons",
           "default": false
         },
         {

@@ -19,6 +19,9 @@
               {%- when 'product_meta' -%}
                 {%- render 'product-meta', product: product, block: block, update_url: update_url -%}
 
+              {%- when 'product_meta_shift' -%}
+                {%- render 'product-meta-shift', product: product, block: block -%}
+
               {%- when 'variant_selector' -%}
                 {%- render 'product-variant-selector',
                   product: product,
@@ -580,9 +583,9 @@
             </ul>
           </div>
         {%- endif -%}
+
+        {%- render 'product-short-desc', class: 'hidden-lap-and-up', enable_show_more: true -%}
       {%- endform -%}
     </product-form>
-
-    {%- render 'product-short-desc', class: 'hidden-lap-and-up' -%}
   </div>
 </div>

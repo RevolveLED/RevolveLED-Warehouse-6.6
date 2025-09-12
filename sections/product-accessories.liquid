@@ -1,0 +1,149 @@
+{{- 'section-product-accessories.css' | asset_url | stylesheet_tag -}}
+{{- 'custom-product-card.css' | asset_url | stylesheet_tag -}}
+
+{%- capture section_settings -%}
+{
+  {% comment %} "slidesPerGroup": 4 {% endcomment %}
+  {% comment %} "slidesPerGroupMobile": 2 {% endcomment %}
+}
+{%- endcapture -%}
+{%- liquid
+  if section.settings.image_lazy
+    assign image_lazy = 'lazy'
+  else
+    assign image_lazy = ''
+  endif
+  assign accessories = product.metafields.custom_metafield.accessories | split: ','
+-%}
+
+{%- if accessories != blank -%}
+  <section
+    class="section product-accessories"
+    data-section-id="{{ section.id }}"
+    data-section-type="featured-products-swiper"
+    data-section-settings="{{ section_settings | escape_once }}"
+  >
+    <div
+      class="product-accessories-section__container container"
+    >
+      <div class="product-accessories-section__content-container">
+        <div class="product-accessories-section__content-wrapper index-section__header-button_inversion">
+          {%- if section.settings.heading != blank -%}
+            <header class="section__header index-section__header">
+              <h2 class="heading h3 index-section__title">{{ section.settings.heading }}</h2>
+            </header>
+            {% if section.settings.show_button %}
+              <div class="section__header-button-container">
+                <a
+                  class="section__header-button"
+                  aria-label="{{ section.settings.link_title }}"
+                  href="{{ collections[section.settings.collection].url}}"
+                >
+                  {{ section.settings.link_title }}
+                </a>
+              </div>
+            {% endif %}
+          {%- endif -%}
+          <div class="custom-swiper-button swiper-button-prev">
+            {% render 'icon', icon: 'custom-swiper-prev' %}
+          </div>
+          <div class="product-accessories-section__swiper-container">
+            <div class="swiper scroller">
+              <div class="swiper-wrapper">
+                {%- for accessories_handle in accessories limit: section.settings.products_count -%}
+                  {% assign product = all_products[accessories_handle] %}
+                  {%- render 'product-item-custom',
+                    product: product,
+                    show_add_to_cart: true,
+                    show_quick_view: true,
+                    swiper: true,
+                    disable_quote_button: true,
+                    loading_type: image_lazy
+                  -%}
+                {% endfor %}
+              </div>
+              <div class="custom-swiper-pagination swiper-pagination"></div>
+            </div>
+            <div class="custom-swiper-button swiper-button-next">
+              {% render 'icon', icon: 'custom-swiper-next' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%}
+      --------------------------------------------------------------------------------------
+      QUICK VIEW CONTAINER
+      --------------------------------------------------------------------------------------
+    {%- endcomment -%}
+
+    <div
+      id="modal-quick-view-{{ section.id }}"
+      class="modal"
+      aria-hidden="true"
+    >
+      <div class="modal__dialog modal__dialog--stretch" role="dialog">
+        <button class="modal__close link" data-action="close-modal">{%- include 'icon' with 'close' -%}</button>
+
+        <div class="modal__loader">
+          {%- include 'icon' with 'search-loader' -%}
+        </div>
+
+        <div class="modal__inner"></div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{%- schema -%}
+{
+  "name": "Featured products swiper",
+  "settings": [
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Products to show",
+      "min": 4,
+      "max": 50,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "link_title",
+      "label": "Link title",
+      "default": "View All"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_lazy",
+      "label": "Image lazy loading",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "category": "Product",
+      "name": "Featured products swiper",
+      "settings": {}
+    }
+  ]
+}
+{%- endschema -%}

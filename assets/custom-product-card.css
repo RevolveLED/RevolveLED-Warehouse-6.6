@@ -25,6 +25,10 @@
     width: 160px;
 }
 
+.custom-product-card-image img {
+    aspect-ratio: 1;
+}
+
 .custom-product-card-content {
     display: flex;
     flex-direction: column;
