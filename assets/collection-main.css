@@ -120,7 +120,7 @@
   color: #1D2129;
   font-size: 14px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 100%;
   /* 14px */
   letter-spacing: 0px;
@@ -137,8 +137,8 @@
 }
 
 .collection-main .bullet-content>ul:first-of-type {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
@@ -146,8 +146,8 @@
 
 .collection-main .bullet-content>ul:first-of-type>li {
   font-size: 14px;
-  /* min-width: 50%; */
-  /* max-width: 50%; */
+  min-width: 50%;
+  max-width: 50%;
   padding-inline: 3px;
 }
 
@@ -168,13 +168,16 @@
 }
 
 .collection-main .price-wrapper .current-price {
-  color: #000;
-
+  color: red;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
   margin: 0;
+}
+
+.collection-main .price-wrapper .current-price span {
+  color: #000;
 }
 
 .collection-main .price-wrapper .compare-price {
@@ -193,8 +196,7 @@
 
 .collection-main .add-to-card-btn {
   width: 100%;
-  background-color: var(--color-blue);
-
+  background-color: var(--color-blue-medium-light);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -213,7 +215,7 @@
 }
 
 .collection-main .add-to-card-btn:hover {
-  background-color: #023359;
+  background-color: #33b1f4;
 }
 
 
@@ -546,6 +548,20 @@
   }
 }
 
+@media (min-width:1441px) {
+  .collection-main .bullet-content>ul:first-of-type {
+    column-count: 2;
+    column-gap: 8px;
+    display: block;
+  }
+
+  .collection-main .bullet-content>ul:first-of-type>li {
+    min-width: unset;
+    max-width: unset;
+    width: 100%;
+  }
+}
+
 @media (max-width: 1440px) {
   .collection-main .bullet-content>ul:first-of-type>li {
     min-width: 100%;
@@ -842,6 +858,12 @@
 
   .collection-main {
     padding-top: 24px;
+  }
+}
+
+@media (max-width:749px) {
+  .collection-main .bullet-content>ul:first-of-type {
+    display: none;
   }
 }
 
