@@ -216,6 +216,10 @@
   display: block;
 }
 
+.product-specifications table {
+  max-width: 1024px;
+}
+
 .product-specifications.rte::after {
   content: none;
 }
