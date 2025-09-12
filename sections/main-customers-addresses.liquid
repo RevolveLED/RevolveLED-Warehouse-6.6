@@ -132,7 +132,7 @@
                   <div class="address-list__item address-list__item-default swiper-slide">
                     <div class="address-list__item-top">
                       <p class="heading h6">{{ 'customer.addresses.default_address' | t }}</p>
-                      {{- customer.default_address | format_address -}}
+                      {{- customer.default_address | format_address | append: customer.default_address.phone -}}
                     </div>
 
                     <div class="address-list__action-list">
@@ -164,7 +164,7 @@
                     <div class="address-list__item swiper-slide">
                       <div class="address-list__item-top">
                         <p class="heading h6">{{ 'customer.addresses.address_number' | t: number: address_count }}</p>
-                        {{- address | format_address -}}
+                        {{- address | format_address | append: address.phone -}}
                       </div>
 
                       <div class="address-list__action-list">

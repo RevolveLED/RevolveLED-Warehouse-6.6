@@ -4097,7 +4097,7 @@ body:not(.is-tabbing) textarea:focus {
 
 .form__input-wrapper {
   width: 100%;
-  /* margin-bottom: 12px; */
+  margin-bottom: 12px;
   position: relative;
 }
 
@@ -4957,6 +4957,10 @@ select option {
 
 .footer__wrapper .payment-list {
   margin: 0;
+}
+
+.footer__block-item--newsletter .form__input-wrapper {
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 1000px) {
@@ -13818,12 +13822,15 @@ product-rerender {
 
 .account-layout__main .table-wrapper {
   margin-top: 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .account-layout__main .table-wrapper .table {
   border-collapse: initial;
   table-layout: fixed;
   text-align: center;
+  min-width: 100%;
 }
 
 .account-layout__main .table__cell--left {
@@ -13865,6 +13872,10 @@ product-rerender {
   line-height: 1.5;
 }
 
+.account-layout__main .card .pagination {
+  border-top: none;
+}
+
 /* address */
 .account-address {}
 
@@ -13882,18 +13893,21 @@ product-rerender {
 }
 
 .account-address~.modal .modal__dialog {
-  padding: var(--modal-padding-block) var(--modal-padding-inline);
+  padding-inline: var(--modal-padding-inline);
 }
 
 .account-address~.modal .modal__header {
   /* padding: var(--modal-padding-block) var(--modal-padding-inline); */
-  padding: 0;
+  /* padding: 0; */
+  padding-block: var(--modal-padding-block) 8px;
   border: none;
   justify-content: center;
+  /* 遮住下方input的box-shadow */
+  margin-inline: -2px;
 }
 
 .account-address~.modal .modal__header+.modal__content {
-  padding-block: 8px 0;
+  padding-block: 0 var(--modal-padding-block);
   padding-inline: 0;
 }
 
@@ -13983,7 +13997,7 @@ product-rerender {
 }
 
 .account-address~.modal .modal__close {
-  top: 0;
+  top: var(--modal-padding-block);
   right: 0;
   position: absolute;
   padding: 0;
@@ -14221,14 +14235,16 @@ product-rerender {
 
   .account-layout__main .table-wrapper {
     margin-top: 16px;
+    max-width: 100%;
+    overflow-x: scroll !important;
     scrollbar-width: thin;
     scrollbar-color: var(--color-blue) #e5e5e5;
   }
 
   .account-layout__main .table-wrapper .table {
     margin-left: 0;
+    table-layout: initial;
     width: max-content;
-    overflow: auto;
     margin-bottom: 16px;
   }
 
@@ -14258,6 +14274,10 @@ product-rerender {
     background: #e5e5e5;
   }
 
+  .account-layout__main .table td:first-child {
+    gap: 24px;
+  }
+
   .account-address .account-layout__main-header {
     flex-direction: row;
   }
@@ -14282,6 +14302,9 @@ product-rerender {
 
   .account-address~.modal .modal__close {
     right: -10px;
-    top: -5px;
+  }
+
+  .account-address~.modal .form__input-row {
+    flex-direction: row;
   }
 }
