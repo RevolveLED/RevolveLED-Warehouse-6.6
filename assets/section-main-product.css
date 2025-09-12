@@ -116,9 +116,9 @@
 }
 
 .product-tab-content__container .product-details-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1.6;
+  line-height: 24px;
   display: block;
   margin-top: 48px;
   margin-bottom: 16px;
@@ -683,10 +683,6 @@
 
   .product-tab-content__container .product-details-title {
     margin-top: 16px;
-  }
-
-  .product-tab-content__container .product-details-title {
-    font-size: 18px;
   }
 
   .product-tab-content__container .product-description .mycustomtable td {
