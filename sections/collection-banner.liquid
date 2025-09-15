@@ -4,18 +4,18 @@
   <div class="bg-wrapper">
     {% comment %} 如果是 'all' 集合页，并且设置了专用横幅 {% endcomment %}
     {% if collection.handle == 'all' and settings.collection_all_banner_img != blank %}
-      <img 
-        src="{{ settings.collection_all_banner_img | image_url }}" 
-        alt="{{ settings.collection_all_banner_img.alt | escape }}" 
+      <img
+        src="{{ settings.collection_all_banner_img | image_url }}"
+        alt="{{ settings.collection_all_banner_img.alt | escape }}"
         loading="lazy"
         width="{{ settings.collection_all_banner_img.width }}"
         height="{{ settings.collection_all_banner_img.height }}"
       >
-    {% comment %} 其他情况使用默认背景图 {% endcomment %}
+      {% comment %} 其他情况使用默认背景图 {% endcomment %}
     {% elsif section.settings.background != blank %}
-      <img 
-        src="{{ section.settings.background | image_url }}" 
-        alt="{{ section.settings.background.alt | escape }}" 
+      <img
+        src="{{ section.settings.background | image_url }}"
+        alt="{{ section.settings.background.alt | escape }}"
         loading="lazy"
         width="{{ section.settings.background.width }}"
         height="{{ section.settings.background.height }}"
@@ -26,16 +26,46 @@
     <div class="content-wrapper">
       <h2 class="title">{{ collection.title }}</h2>
       {% if collection.handle == 'all' and settings.collection_all_banner_text != blank %}
-        {{ settings.collection_all_banner_text  }}
+        {{ settings.collection_all_banner_text }}
       {% else %}
         {{ collection.description }}
-      {% endif  %}
+      {% endif %}
     </div>
   </div>
 </div>
 
 {% javascript %}
+  document.addEventListener('DOMContentLoaded', () => {
+    const collectionBanner = document.querySelector('.collection-banner');
+    if (!collectionBanner) return;
 
+    const outerContainer = collectionBanner.querySelector('.outer.container');
+    if (!outerContainer) return;
+
+    const bannerImg = collectionBanner.querySelector('.bg-wrapper img');
+    if (!bannerImg) return;
+
+    const mediaQuery = window.matchMedia('(max-width: 425px)');
+
+    const updateBannerHeight = () => {
+      if (mediaQuery.matches) {
+        const outerHeight = outerContainer.offsetHeight;
+        if (outerHeight > 450) {
+          bannerImg.style.minHeight = `${outerHeight + 20}px`;
+        } else {
+          bannerImg.style.minHeight = '';
+        }
+      } else {
+        bannerImg.style.minHeight = '';
+      }
+    };
+
+    updateBannerHeight();
+
+    mediaQuery.addEventListener('change', updateBannerHeight);
+
+    window.addEventListener('resize', updateBannerHeight);
+  });
 {% endjavascript %}
 
 {% schema %}

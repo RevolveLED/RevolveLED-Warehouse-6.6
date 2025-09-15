@@ -58,3 +58,7 @@ span.custom-article-card-article__author {
     background-color: #1d2129;
     border-radius: 100%;
 }
+
+.custom-article-card-img {
+    aspect-ratio: 338/225;
+}
