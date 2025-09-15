@@ -248,6 +248,7 @@
   line-height: 1.5;
   font-weight: 500;
   white-space: normal;
+  height: initial !important;
 }
 
 .product-specifications table tr td:nth-child(2):not(:last-child) {
