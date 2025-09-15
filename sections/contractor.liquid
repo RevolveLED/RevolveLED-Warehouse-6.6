@@ -1,0 +1,95 @@
+{% stylesheet %}
+  .contractor-content .block-list__block {
+    text-align: center;
+  }
+
+  .contractor-content .block-list__block .text {
+    max-width: 66%;
+    margin: auto;
+  }
+{% endstylesheet %}
+<div class="container container--narrow contractor-page">
+  <header class="page__header page__header--centered">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+    {{ page.content }}
+
+    {{ section.settings.text }}
+    {% if section.blocks.size %}
+      <div class="block-list contractor-content">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.image -%}
+            <div class="block-list__block  1/1--phone 1/3--tablet-and-up 1/3--desk">
+              <center>
+                <img
+                  class="lazyload image--fade-in"
+                  data-src="{{ block.settings.image | img_url: '80x' }}"
+                  alt="{{ block.settings.image.alt | escape }}"
+                >
+              </center>
+
+              <noscript>
+                <center>
+                  <img src="{{ block.settings.image | img_url: '80x' }}" alt="{{ block.settings.image.alt | escape }}">
+                </center>
+              </noscript>
+
+              <div class="text">{{ block.settings.text }}</div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {% endif %}
+    <div class="container container--medium contractor-form">
+      <div class="{% comment %}layout{% endcomment %}">
+        <div class="{% comment %}layout__section{% endcomment %}">
+          {% comment %}
+            2021-03-02 - GIO new form to support multiple recipients using a shopify app "Form Builder with File Upload" %}
+          {% endcomment %}
+
+          <div style="margin:0 auto;" class="pxFormGenerator" id="R3anuQEGwFRvmwsG4f5t0Q"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contractor",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "80 x 80px .png recommended"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Icon Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contractor",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

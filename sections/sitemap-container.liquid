@@ -1,0 +1,102 @@
+<div class="container html-sitemap">
+  <div class="page__content">
+    <div class="heading-container">
+      <div class="topbg">
+        <header class="page__header page__header--centered">
+          <h1 class="page__title heading h1">{{ page.title }}</h1>
+        </header>
+      </div>
+
+      <div class="block pages">
+        <div class="block-heading"><strong>Pages</strong></div>
+        <ul>
+          {% for page in pages %}
+            {% unless page.metafields.seo.hide_from_sitemap %}
+              <li>
+                <a href="{{ page.url  }}">{{ page.title }}</a>
+              </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="block categories">
+        <div class="block-heading"><strong>Categories</strong></div>
+        <ul>
+          {% for collection in collections %}
+            {% unless collection.metafields.seo.hide_from_sitemap %}
+              <li>
+                <a href="{{ collection.url }}">{{ collection.title }}</a>
+              </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% stylesheet %}
+        .topbg {
+          background-color: #eff8ff;
+          display: flex;
+          justify-content: center;
+        }
+        .html-sitemap ul {
+          column-count: 3;
+          column-gap: 40px;
+        }
+        .html-sitemap ul li {
+          text-transform: capitalize !important;
+        }
+        .html-sitemap .block {
+          margin: 60px 0;
+        }
+        .html-sitemap ul a:hover {
+          color: #00487f;
+        }
+        .html-sitemap .block-heading {
+          margin: 0 0 20px;
+        }
+        .html-sitemap > :last-child {
+          margin-bottom: 0;
+        }
+        @media only screen and (max-width: 990px) {
+          .html-sitemap ul {
+            column-count: 2;
+            column-gap: 20px;
+          }
+        }
+        @media only screen and (max-width: 768px) {
+          .html-sitemap ul {
+            column-count: 1;
+          }
+        }
+      {% endstylesheet %}
+
+      {% javascript %}
+      {% endjavascript %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .html-sitemap {
+    margin-top: 60px;
+  }
+  .html-sitemap h1 {
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Sitemap Container",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Sitemap Container",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

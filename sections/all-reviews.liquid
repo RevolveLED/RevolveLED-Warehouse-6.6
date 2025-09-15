@@ -1,0 +1,60 @@
+{% stylesheet %}
+  @media (max-width: 749px) {
+    #SA_review_wrapper .SA__review_container {
+      padding: 0 !important;
+    }
+  }
+{% endstylesheet %}
+<header class="page__header page__header--centered page__header--stack">
+  <h1 class="page__title heading h1">Customer Reviews on RevolveLED</h1>
+</header>
+{% comment %} <center><h1 class="all-reviews-header h1">Customer Reviews on RevolveLED</h1></center> {% endcomment %}
+<!-- Shopper Approved Review Page - templates/page.opinew_all_reviews -->
+<div style="clear:both;"></div>
+<div class="container container--narrow">
+  <div class="page__content rte">
+    {% comment %}
+      <script type="text/javascript"> var sa_review_count = 20; var sa_date_format = 'F j, Y'; function saLoadScript(src) { var js = window.document.createElement("script"); js.src = src; js.type = "text/javascript"; document.getElementsByTagName("head")[0].appendChild(js); } saLoadScript("https://www.shopperapproved.com/merchant/33795.js"); </script><div id="shopper_review_page"><div id="review_header"></div><div id="merchant_page"></div><div id="review_image"><a href="https://www.shopperapproved.com/reviews/revolveled.com/" target="_blank" rel="nofollow"></a></div></div>
+    {% endcomment %}
+    <div id="SA_review_wrapper"></div>
+    <script type="text/javascript">
+      var sa_interval = 5000;
+      function saLoadScript(src) {
+        var js = window.document.createElement('script');
+        js.src = src;
+        js.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(js);
+      }
+      if (typeof shopper_first == 'undefined')
+        saLoadScript('https://www.shopperapproved.com/widgets/33795/merchant/review-page/6e1BWCHvT8hD.js');
+      shopper_first = true;
+    </script>
+  </div>
+</div>
+<style>
+  #review_header .block {
+    box-sizing: content-box !important;
+  }
+</style>
+<!-- END Shopper Approved Review Page - templates/page.opinew_all_reviews -->
+<div style="clear:both;"></div>
+<div
+  id="opinew-reviews-all-reviews-code"
+  data-opw-prodreviews="{{ shop.metafields.opinew['opinew_all_reviews'] }}"
+  class="opw-widget-wrapper-default"
+>
+  <span id="opinew_all_reviews_plugin_app"></span>
+</div>
+
+{% schema %}
+{
+  "name": "All reviews",
+  "settings": [],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "All reviews"
+    }
+  ]
+}
+{% endschema %}

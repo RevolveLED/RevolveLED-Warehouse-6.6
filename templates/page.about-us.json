@@ -1,0 +1,50 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "main": {
+            "type": "main-page",
+            "disabled": true,
+            "custom_css": [],
+            "settings": {}
+        },
+        "newsletter": {
+            "type": "newsletter",
+            "disabled": true,
+            "settings": {
+                "title": "Newsletter",
+                "content": "<p>A short sentence describing what someone will receive by subscribing</p>",
+                "background": "#1e2d7d",
+                "text": "#ffffff"
+            }
+        },
+        "about_us_gQFY9B": {
+            "type": "about-us",
+            "name": "About us",
+            "settings": {
+                "image_width": 50,
+                "image": "shopify:\/\/shop_images\/revolve-about-us-image1.jpg",
+                "top_title": "",
+                "top_content": "<p>As a leader in green lighting products and energy saving solutions, our mission at Revolve LED is to be a provider of top quality products at competitive prices and to offer the highest level of service and expertise to our customers. We believe that by helping to change lighting we can make a meaningful contribution towards the common goal of a more sustainable future for our planet which will in turn preserve the resources necessary for the success of future generations.From simple household LED retrofits to those found in more complex commercial and industrial lighting design every product in our extensive inventory adheres to our three primary core values of Superior Quality, Superior Performance, and Superior Efficiency.Our depth of expertise in LED products and energy saving solutions ensures that the needs of our customers are met fully from hands on design and support to superior customer service on every project.<\/p>",
+                "l_image": "shopify:\/\/shop_images\/revolve-about-us-image2.jpg",
+                "right_title": "",
+                "right_content": "<p>Revolve LED offers Solid State Lighting products for both residential and commercial lighting applications serving end users, contractors, businesses, municipalities, and wholesale distribution customers. Each of our products has undergone rigorous development and testing before being added to our product line in order to maximize energy savings, provide market leading reliability, and keep costs to the end user as low as possible. In addition to immediate savings in energy costs our products also dramatically reduce maintenance costs over the life of the lamps allowing our customers to achieve ROI (return on investment) quickly. Many customers are eligible for rebates through their utility providers that in some cases can dramatically reduce or even absorb entirely the cost of their investment in energy efficient LED lighting products.<\/p>",
+                "r_image": "shopify:\/\/shop_images\/revolve-about-us-image3.jpg",
+                "left_title": "",
+                "left_content": "<p>Revolve LED products are built with environmental sustainability in mind. Our products contain NO MERCURY and are made from 100% recyclable materials. The majority of our products are contain at least one each of the following certifications: Energy Star, Design Lights Consortium (DLC), UL, and ETL. All of our electrical products are guaranteed with a manufacturer&rsquo;s warranty. As we continue to grow our product offering we take pride in staying up to date on the latest trends in the lighting industry and providing the value of that knowledge to our customers.<\/p>"
+            }
+        }
+    },
+    "order": [
+        "main",
+        "newsletter",
+        "about_us_gQFY9B"
+    ]
+}
