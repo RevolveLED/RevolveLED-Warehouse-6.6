@@ -188,33 +188,33 @@
 /* Gio: 2021-02-16 - Tooltip for quick ship image on product page */
 /* Tooltip container */
 .mytooltip {
-  position: relative;
-  display: inline-block;
-  /* border-bottom: 1px dotted black; */
-  /* If you want dots under the hoverable text */
-  /* width: 75%; */
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+    /* If you want dots under the hoverable text */
+    /* width: 75%; */
 }
 
 /* Tooltip text */
 .mytooltip .mytooltiptext {
-  visibility: hidden;
-  width: 225px;
-  background-color: #1f9cfb;
-  color: #fff;
-  text-align: center;
-  padding: 10px 8px;
-  border-radius: 6px;
-  /* position to the left */
-  top: -10px;
-  right: 50%;
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
+    visibility: hidden;
+    width: 225px;
+    background-color: #1f9cfb;
+    color: #fff;
+    text-align: center;
+    padding: 10px 8px;
+    border-radius: 6px;
+    /* position to the left */
+    top: -10px;
+    right: 50%;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .mytooltip:hover .mytooltiptext {
-  visibility: visible;
+    visibility: visible;
 }
 
 /* GIO END: 2021-02-16 - Tooltip for quick ship image on product page */
@@ -281,4 +281,36 @@
 .star_container .group-stars .ind_cnt .ind_cnt_desc {
     display: none;
 }
+
 /* End if Shopper Approved Reviews snippet */
+
+/* member-rewards-program */
+.mytext-with-icons__icon-wrapper img {
+    max-width: 60px;
+    margin: 0.5em 18px 0 0;
+    display: inline-block;
+}
+
+@media (max-width:749px) {
+    .mytext-with-icons__icon-wrapper img {
+        margin: 0;
+    }
+}
+
+/* about us */
+.page-aboutus .topbg {
+    position: relative;
+}
+
+.page-aboutus .page__header {
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.page-aboutus .page__header h1 {
+    font-weight: bold;
+}

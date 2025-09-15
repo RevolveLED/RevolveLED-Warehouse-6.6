@@ -1,7 +1,18 @@
-<div {% if page.handle != 'contact' %}class="section"{% endif %}>
+{% stylesheet %}
+  @media (max-width: 749px) {
+    .holiday-info_container.page__description {
+      margin-top: 30px;
+    }
+  }
+{% endstylesheet %}
+<div
+  {% if page.handle != 'contact' %}
+    class="section"
+  {% endif %}
+>
   <div class="container container--medium">
-    <div class="layout">
-      <div class="layout__section">
+    <div class="{% comment %}layout{% endcomment %}">
+      <div class="{% comment %}layout__section{% endcomment %}">
         {%- form 'contact', class: 'form' -%}
           {%- if section.settings.form_heading != blank -%}
             <div class="form__header {% unless section.settings.show_store_info %}text-center{% endunless %}">
@@ -24,7 +35,10 @@
                   {%- if field == 'form' -%}
                     <li class="alert__error-item">{{ form.errors.messages[field] }}</li>
                   {%- else -%}
-                    <li class="alert__error-item">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+                    <li class="alert__error-item">
+                      {{ form.errors.translated_fields[field] | capitalize }}
+                      {{ form.errors.messages[field] }}
+                    </li>
                   {%- endif -%}
                 {%- endfor -%}
               </ul>
@@ -33,12 +47,35 @@
 
           <div class="form__input-row">
             <div class="form__input-wrapper form__input-wrapper--labelled">
-              <input id="contact-form-name" type="text" class="form__field form__field--text {% if customer.name != blank %}is-filled{% endif %}" name="contact[name]" aria-label="{{ 'contact.form.name' | t }}" required {% if customer %}value="{{ customer.name }}"{% endif %}>
+              <input
+                id="contact-form-name"
+                type="text"
+                class="form__field form__field--text {% if customer.name != blank %}is-filled{% endif %}"
+                name="contact[name]"
+                aria-label="{{ 'contact.form.name' | t }}"
+                required
+                {% if customer %}
+                  value="{{ customer.name }}"
+                {% endif %}
+              >
               <label for="contact-form-name" class="form__floating-label">{{ 'contact.form.name' | t }}</label>
             </div>
 
             <div class="form__input-wrapper form__input-wrapper--labelled">
-              <input id="contact-form-email" type="email" class="form__field form__field--text {% if customer.email != blank %}is-filled{% endif %}" name="contact[email]" aria-label="{{ 'contact.form.email' | t }}" required {% if customer %}value="{{ customer.email }}"{% endif %} {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="contact-form-error"{% endif %}>
+              <input
+                id="contact-form-email"
+                type="email"
+                class="form__field form__field--text {% if customer.email != blank %}is-filled{% endif %}"
+                name="contact[email]"
+                aria-label="{{ 'contact.form.email' | t }}"
+                required
+                {% if customer %}
+                  value="{{ customer.email }}"
+                {% endif %}
+                {% if form.errors contains 'email' %}
+                  aria-invalid="true" aria-describedby="contact-form-error"
+                {% endif %}
+              >
               <label for="contact-form-email" class="form__floating-label">{{ 'contact.form.email' | t }}</label>
             </div>
           </div>
@@ -53,11 +90,33 @@
             {%- if block.type == 'text' -%}
               <div class="form__input-wrapper form__input-wrapper--labelled">
                 {%- if block.settings.use_long_text -%}
-                  <textarea id="contact-form-{{ field_title | handle }}" name="contact[{{ field_title | escape }}]" rows="7" class="form__field form__field--textarea" aria-label="{{ block.settings.title | escape }}" {% if block.settings.is_required %}required{% endif %}></textarea>
-                  <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">{{ block.settings.title | escape }}</label>
+                  <textarea
+                    id="contact-form-{{ field_title | handle }}"
+                    name="contact[{{ field_title | escape }}]"
+                    rows="7"
+                    class="form__field form__field--textarea"
+                    aria-label="{{ block.settings.title | escape }}"
+                    {% if block.settings.is_required %}
+                      required
+                    {% endif -%}
+                  ></textarea>
+                  <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">
+                    {{- block.settings.title | escape -}}
+                  </label>
                 {%- else -%}
-                  <input id="contact-form-{{ field_title | handle }}" type="text" class="form__field form__field--text" name="contact[{{ field_title | escape }}]" aria-label="{{ block.settings.title | escape }}" {% if block.settings.is_required %}required{% endif %}>
-                  <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">{{ block.settings.title | escape }}</label>
+                  <input
+                    id="contact-form-{{ field_title | handle }}"
+                    type="text"
+                    class="form__field form__field--text"
+                    name="contact[{{ field_title | escape }}]"
+                    aria-label="{{ block.settings.title | escape }}"
+                    {% if block.settings.is_required %}
+                      required
+                    {% endif %}
+                  >
+                  <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">
+                    {{- block.settings.title | escape -}}
+                  </label>
                 {%- endif -%}
               </div>
             {%- elsif block.type == 'dropdown' -%}
@@ -71,7 +130,11 @@
                 <div id="contact-form-{{ field_title | handle }}" class="select-wrapper select-wrapper--primary">
                   {%- render 'icon', icon: 'arrow-bottom' -%}
 
-                  <select name="contact[{{ field_title | escape }}]" title="{{ block.settings.title | escape }}" required>
+                  <select
+                    name="contact[{{ field_title | escape }}]"
+                    title="{{ block.settings.title | escape }}"
+                    required
+                  >
                     <option value="" disabled selected></option>
 
                     {%- for value in values -%}
@@ -82,17 +145,31 @@
                   </select>
                 </div>
 
-                <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">{{ block.settings.title | escape }}</label>
+                <label for="contact-form-{{ field_title | handle }}" class="form__floating-label">
+                  {{- block.settings.title | escape -}}
+                </label>
               </div>
             {%- endif -%}
           {%- endfor -%}
 
           <div class="form__input-wrapper form__input-wrapper--labelled">
-            <textarea id="contact-form-message" name="contact[body]" rows="8" class="form__field form__field--textarea" aria-label="{{ 'contact.form.message' | t }}" required></textarea>
+            <textarea
+              id="contact-form-message"
+              name="contact[body]"
+              rows="8"
+              class="form__field form__field--textarea"
+              aria-label="{{ 'contact.form.message' | t }}"
+              required
+            ></textarea>
             <label for="contact-form-message" class="form__floating-label">{{ 'contact.form.message' | t }}</label>
           </div>
 
-          <button type="submit" class="form__submit {% unless section.settings.show_store_info %}form__submit--centered{% endunless %} button button--primary button--min-width">{{ 'contact.form.submit' | t }}</button>
+          <button
+            type="submit"
+            class="form__submit {% unless section.settings.show_store_info %}form__submit--centered{% endunless %} button button--primary button--min-width"
+          >
+            {{ 'contact.form.submit' | t }}
+          </button>
         {%- endform -%}
       </div>
 
@@ -105,8 +182,17 @@
 
             {%- if section.settings.store_image -%}
               <div class="contact__store-image">
-                <div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by: section.settings.store_image.aspect_ratio }}%">
-                  <img loading="lazy" width="{{ section.settings.store_image.width }}" height="{{ section.settings.store_image.height }}" src="{{ section.settings.store_image | img_url: '700x' }}" alt="{{ section.settings.store_image.alt | escape }}">
+                <div
+                  class="aspect-ratio"
+                  style="padding-bottom: {{ 100.0 | divided_by: section.settings.store_image.aspect_ratio }}%"
+                >
+                  <img
+                    loading="lazy"
+                    width="{{ section.settings.store_image.width }}"
+                    height="{{ section.settings.store_image.height }}"
+                    src="{{ section.settings.store_image | img_url: '700x' }}"
+                    alt="{{ section.settings.store_image.alt | escape }}"
+                  >
                 </div>
               </div>
             {%- endif -%}
@@ -120,6 +206,64 @@
         </div>
       {%- endif -%}
     </div>
+    <!-- GIO: holiday info schedule -->
+    <div class="holiday-info_container page__description rte">
+      <h2><b>2025 Holiday&nbsp;Observances</b></h2>
+      <!-- begin: actual holiday schedule listed here -->
+      <div class="table-wrapper">
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>NEW YEARS DAY</td>
+              <td>JAN 1, 2025</td>
+              <td>WED</td>
+            </tr>
+            <tr>
+              <td>MLK DAY</td>
+              <td>JAN 20, 2025</td>
+              <td>MON</td>
+            </tr>
+            <tr>
+              <td>PRESIDENTS’ DAY</td>
+              <td>FEB 17, 2025</td>
+              <td>MON</td>
+            </tr>
+            <tr>
+              <td>MEMORIAL DAY</td>
+              <td>MAY 26, 2025</td>
+              <td>MON</td>
+            </tr>
+            <tr>
+              <td>INDEPENDENCE DAY</td>
+              <td>JULY 4, 2025</td>
+              <td>MON</td>
+            </tr>
+            <tr>
+              <td>LABOR DAY</td>
+              <td>SEP 1, 2025</td>
+              <td>MON</td>
+            </tr>
+            <tr>
+              <td>THANKSGIVING</td>
+              <td>NOV 27 &amp; 28, 2025</td>
+              <td>THU &amp; FRI</td>
+            </tr>
+            <tr>
+              <td>CHRISTMAS DAY</td>
+              <td>DEC 25, 2025</td>
+              <td>THU</td>
+            </tr>
+            <tr>
+              <td>DAY AFTER CHRISTMAS</td>
+              <td>DEC 26, 2025</td>
+              <td>FRI</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end: actual schedule listed here -->
+    </div>
+    <!-- GIO: END  holiday info schedule -->
   </div>
 </div>
 

@@ -1,0 +1,92 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "main": {
+            "type": "main-page",
+            "disabled": true,
+            "settings": {}
+        },
+        "newsletter": {
+            "type": "newsletter",
+            "disabled": true,
+            "settings": {
+                "title": "Newsletter",
+                "content": "<p>A short sentence describing what someone will receive by subscribing</p>",
+                "background": "#1e2d7d",
+                "text": "#ffffff"
+            }
+        },
+        "contractor_9FbwNh": {
+            "type": "contractor",
+            "name": "Contractor",
+            "blocks": {
+                "1598521092291": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/icon01.png",
+                        "text": "<p>Preferential pricing on all Quotes</p>"
+                    }
+                },
+                "1598521125455": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/icon02.png",
+                        "text": "<p>Responsive support: Dedicated Lighting Specialist to assist with product selection, lighting applications and layouts.</p>"
+                    }
+                },
+                "1598521135991": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/icon03.png",
+                        "text": "<p>Custom Quotes</p>"
+                    }
+                },
+                "1598521145526": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/icon04.png",
+                        "text": "<p>Promotions, Specials, New Product Alerts before available to public</p>"
+                    }
+                },
+                "1598521155439": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/icon05.png",
+                        "text": "<p>Competitive Price Match</p>"
+                    }
+                },
+                "1598521165166": {
+                    "type": "image",
+                    "settings": {
+                        "image": "shopify://shop_images/icon06.png",
+                        "text": "<p>Resources to meet your lighting needs: Documentation, 90 Day Returns and much more!</p>"
+                    }
+                }
+            },
+            "block_order": [
+                "1598521092291",
+                "1598521125455",
+                "1598521135991",
+                "1598521145526",
+                "1598521155439",
+                "1598521165166"
+            ],
+            "settings": {
+                "text": "<p>At Revolve LED, we value the opportunity to work with our registered<strong> </strong>electricians, facility managers and contractors to provide high quality, energy efficient lighting solutions to meet all their applications. Whether you are doing retrofit, replacement or new construction; we are here to work for you. As an approved preferred contractor account, we offer a number of benefits from this partnership:</p>"
+            }
+        }
+    },
+    "order": [
+        "main",
+        "newsletter",
+        "contractor_9FbwNh"
+    ]
+}

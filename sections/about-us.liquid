@@ -1,0 +1,261 @@
+<div class="container container--narrow page-aboutus">
+  <div class="page__content ">
+    <div class="topbg">
+      <div>
+        {%- capture supported_sizes -%}{%- render 'image-size', sizes: '300,400,500,600,700,800,900,1000,1100,1200', image: section.settings.image -%}{%- endcapture -%}
+        {%- assign image_url1 = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+        <img
+          class="lazyload image--fade-in"
+          data-src="{{ image_url1 }}"
+          data-widths="[{{ supported_sizes }}]"
+          data-sizes="auto"
+          alt="{{ section.settings.image.alt | escape }}"
+          width="1300"
+          height="310"
+        >
+
+        <noscript>
+          <img src="{{ section.settings.image | img_url: '800x' }}" alt="{{ section.settings.image.alt | escape }}">
+        </noscript>
+      </div>
+
+      <header class="page__header page__header--centered">
+        <h1 class="page__title heading h1">{{ page.title }}</h1>
+      </header>
+    </div>
+
+    <div class="container">
+      <h2>{{ section.settings.top_tilte }}</h2>
+      <div class="rte">
+        {{ section.settings.top_content }}
+        {% comment %}{{ page.content }}{% endcomment %}
+      </div>
+    </div>
+    <div class="container">
+      <div class="image-with-text">
+        <div class="image-with-text__image-container" style="width: {{ section.settings.image_width }}%;">
+          {%- if section.settings.l_image -%}
+            <div
+              class="aspect-ratio"
+              style="padding-bottom: {{ 100.0 | divided_by: section.settings.l_image.aspect_ratio }}%"
+            >
+              {%- capture supported_sizes -%}{%- render 'image-size', sizes: '300,400,500,600,700,800,900,1000,1100,1200', image: section.settings.l_image -%}{%- endcapture -%}
+              {%- assign image_url = section.settings.l_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+              <img
+                class="lazyload image--fade-in"
+                data-src="{{ image_url }}"
+                data-widths="[{{ supported_sizes }}]"
+                data-sizes="auto"
+                alt="{{ section.settings.l_image.alt | escape }}"
+                width="620"
+                height="414"
+              >
+
+              <noscript>
+                <img
+                  src="{{ section.settings.l_image | img_url: '800x' }}"
+                  alt="{{ section.settings.l_image.alt | escape }}"
+                >
+              </noscript>
+            </div>
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        <div class="image-with-text__text-container">
+          <div class="image-with-text__text-aligner">
+            {%- if section.settings.right_title != blank -%}
+              <h2 class="heading h3">{{ section.settings.right_title | escape }}</h2>
+            {%- endif -%}
+
+            <div class="rte">
+              {{ section.settings.right_content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="image-with-text">
+        <div class="image-with-text__text-container">
+          <div class="image-with-text__text-aligner">
+            {%- if section.settings.left_title != blank -%}
+              <h2 class="heading h3">{{ section.settings.left_title | escape }}</h2>
+            {%- endif -%}
+
+            <div class="rte">
+              {{ section.settings.left_content }}
+            </div>
+          </div>
+        </div>
+
+        <div class="image-with-text__image-container" style="width: {{ section.settings.image_width }}%;">
+          {%- if section.settings.r_image -%}
+            <div
+              class="aspect-ratio"
+              style="padding-bottom: {{ 100.0 | divided_by: section.settings.r_image.aspect_ratio }}%"
+            >
+              {%- capture supported_sizes -%}{%- render 'image-size', sizes: '300,400,500,600,700,800,900,1000,1100,1200', image: section.settings.r_image -%}{%- endcapture -%}
+              {%- assign image_url2 = section.settings.r_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+              <img
+                class="lazyload image--fade-in"
+                data-src="{{ image_url2 }}"
+                data-widths="[{{ supported_sizes }}]"
+                data-sizes="auto"
+                alt="{{ section.settings.r_image.alt | escape }}"
+                width="620"
+                height="425"
+              >
+
+              <noscript>
+                <img
+                  src="{{ section.settings.r_image | img_url: '800x' }}"
+                  alt="{{ section.settings.r_image.alt | escape }}"
+                >
+              </noscript>
+            </div>
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "AboutPage",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://revolveled.com/pages/about-us"
+        },
+        "name": "About Us - Revolve LED",
+        "description": "Revolve LED offers Solid State Lighting products for both residential and commercial lighting applications, serving end users, contractors, businesses, municipalities, and wholesale distribution customers. Our products undergo rigorous development and testing to maximize energy savings, ensure market-leading reliability, and minimize costs for end users. Additionally, our energy-efficient LED lighting products not only reduce energy costs but also significantly lower maintenance expenses over their lifespan, enabling customers to achieve quick ROI. Many customers qualify for rebates through utility providers, which can offset or completely cover the investment in LED lighting products.",
+        "url": "https://revolveled.com/pages/about-us",
+        "sameAs": [
+          "https://www.facebook.com/RevolveLED",
+          "https://www.instagram.com/revolveledlights",
+          "https://twitter.com/RevolveLED"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2880 N Berkeley Lake Rd NW, Suite 8",
+          "addressLocality": "Duluth",
+          "postalCode": "30096",
+          "addressCountry": "US"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-877-718-0808",
+          "contactType": "Customer Service",
+          "areaServed": "US"
+        },
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "opens": "08:00",
+          "closes": "18:00",
+          "dayOfWeek": [
+            "http://schema.org/Monday",
+            "http://schema.org/Tuesday",
+            "http://schema.org/Wednesday",
+            "http://schema.org/Thursday",
+            "http://schema.org/Friday"
+          ]
+        }
+      }
+    </script>
+
+    {% stylesheet %}
+    {% endstylesheet %}
+
+    {% javascript %}
+    {% endjavascript %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "About us",
+  "settings": [
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 20,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "label": "Image width",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "top"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "background image",
+      "info": "1700 x 400px .jpg recommended"
+    },
+    {
+      "type": "text",
+      "id": "top_title",
+      "label": "top title"
+    },
+    {
+      "type": "richtext",
+      "id": "top_content",
+      "label": "top content"
+    },
+    {
+      "type": "header",
+      "content": "left image width text"
+    },
+    {
+      "type": "image_picker",
+      "id": "l_image",
+      "label": "left image",
+      "info": "670 x 450px .jpg recommended"
+    },
+    {
+      "type": "text",
+      "id": "right_title",
+      "label": "right title"
+    },
+    {
+      "type": "richtext",
+      "id": "right_content",
+      "label": "right content"
+    },
+    {
+      "type": "header",
+      "content": "right image width text"
+    },
+    {
+      "type": "image_picker",
+      "id": "r_image",
+      "label": "right image",
+      "info": "670 x 450px .jpg recommended"
+    },
+    {
+      "type": "text",
+      "id": "left_title",
+      "label": "left title"
+    },
+    {
+      "type": "richtext",
+      "id": "left_content",
+      "label": "left content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About us",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
