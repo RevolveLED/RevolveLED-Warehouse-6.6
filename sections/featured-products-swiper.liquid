@@ -51,7 +51,8 @@
                     show_add_to_cart: true,
                     show_quick_view: true,
                     swiper: true,
-                    loading_type: image_lazy
+                    loading_type: image_lazy,
+                    disable_quote_button: section.settings.disable_quote_button
                   -%}
                 {% endfor %}
               </div>
@@ -104,6 +105,12 @@
       "type": "checkbox",
       "id": "show_button",
       "label": "Show button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_quote_button",
+      "label": "Disable quote button",
       "default": false
     },
     {

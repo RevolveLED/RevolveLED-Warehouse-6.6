@@ -14,6 +14,7 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {
+        "enable_sticky_header": true,
         "background": "#00487f",
         "background_mobile": "#0098c4",
         "text_color": "#ffffff",
@@ -96,7 +97,7 @@
         "enable_sticky_header": true,
         "logo": "shopify://shop_images/logo-big.png",
         "logo_max_width": 220,
-        "mobile_logo_max_width": 100,
+        "mobile_logo_max_width": 120,
         "show_locale_selector": true,
         "show_country_selector": false,
         "navigation_menu": "shopping-menu-new-250814",

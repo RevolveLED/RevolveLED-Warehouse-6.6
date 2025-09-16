@@ -109,7 +109,7 @@
               <a href="{{ line_item.url }}" class="mini-cart__product-title text--strong link">
                 {{- line_item.title -}}
               </a>
-
+              {% comment %} {% render 'reviews-snippet', product: line_item.product %} {% endcomment %}
               {%- if line_item.selling_plan_allocation -%}
                 <p class="mini-cart__plan-allocation">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
               {%- endif -%}
