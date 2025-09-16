@@ -5430,7 +5430,29 @@ select option {
   }
 
   .header__action-item {
-    padding: 0 8px;
+    padding: 0 4px;
+  }
+
+  .header .icon--search {
+    width: 18px;
+    height: 18px;
+  }
+
+  .header .icon--account {
+    width: 22px;
+  }
+
+  .header .icon--cart {
+    width: 22px;
+    height: 22px;
+  }
+
+  .header__action-list {
+    margin-left: 0;
+  }
+
+  .header__inner {
+    justify-content: space-between;
   }
 }
 
@@ -13843,6 +13865,8 @@ product-rerender {
 .custom-swiper-pagination.swiper-pagination {
   position: static;
   display: flex;
+  row-gap: 6px;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 24px;

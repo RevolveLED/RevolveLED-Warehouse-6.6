@@ -600,6 +600,8 @@
   .product-list--collection .box .mytooltip2,
   .product-list--collection .box .variant-sku {
     display: flex;
+    row-gap: 2px;
+    flex-wrap: wrap;
   }
 
   .collection__toolbar-item--count .value-picker-wrapper {

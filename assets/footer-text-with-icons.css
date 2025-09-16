@@ -121,6 +121,7 @@ footer-text-with-icons {
 
   .footer-text-with-icons__card .footer-text-with-icons__card-info .footer-text-with-icons__card-content {
     font-size: 1.4em;
+    display: none;
   }
 
   .footer-text-with-icons__card .footer-text-with-icons__card-info p {
