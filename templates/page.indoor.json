@@ -1,0 +1,126 @@
+{
+  "sections": {
+    "section_l2_WJRLQz": {
+      "type": "section-L2",
+      "blocks": {
+        "block_cWDJBd": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/round-high-bay-lights",
+            "title": "LED Round High Bay Lights",
+            "image": "shopify:\/\/shop_images\/RKRH0302LMW5KDNLCB-1_7e293c51-04cd-4ed4-9b49-a44302522027.jpg"
+          }
+        },
+        "block_7gyPg6": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/linear-high-bay",
+            "title": "LED Linear High Bay Lights",
+            "image": "shopify:\/\/shop_images\/KAT300MCLV4F-1_59ad979d-8123-485f-8920-77f9f7886aa0.jpg"
+          }
+        },
+        "block_DiKCP3": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/strip-lights",
+            "title": "LED Strip Light Fixtures",
+            "image": "shopify:\/\/shop_images\/MLF02-4FT-Side_1ab6fe03-5564-43ab-8acf-af30c0eceaf9.jpg"
+          }
+        },
+        "block_4H9FzU": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/led-architectural-suspended-lights",
+            "title": "LED Architectural Suspended Lights",
+            "image": "shopify:\/\/shop_images\/konlite-4ft-black-led-architectural-linear-light-fixture-01.jpg"
+          }
+        },
+        "block_3BrQhd": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/panel-lights",
+            "title": "LED Panel and Troffer Lights",
+            "image": "shopify:\/\/shop_images\/menu-led-panel-and-troffer-lights.png"
+          }
+        },
+        "block_JmGqaK": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/canopy-lights",
+            "title": "LED Canopy Lights",
+            "image": "shopify:\/\/shop_images\/KCPLMWMCLVB-1.jpg"
+          }
+        },
+        "block_idgxEV": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/exit-signs-and-emergency-lighting",
+            "title": "LED Emergency Lights And Exit Signs",
+            "image": "shopify:\/\/shop_images\/Konlite_LED_Exit_Emergency_Light_Combo_-_Red_or_Green_Letter_Selectable_1.png"
+          }
+        },
+        "block_P8WGXH": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/linear-tubes-lamp-lights",
+            "title": "LED Tube Lights",
+            "image": "shopify:\/\/shop_images\/menu-linear-tubes-lamp-lights.png"
+          }
+        },
+        "block_yCmEGn": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/fluorescent-strip-light-retrofit-kits",
+            "title": "LED Retrofit Kits",
+            "image": "shopify:\/\/shop_images\/konlite-4ft-magnetic-linear-led-retrofit-kit-01.jpg"
+          }
+        },
+        "block_VtnyT6": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/light-bulbs",
+            "title": "LED Bulbs",
+            "image": "shopify:\/\/shop_images\/KFB855K3937-1.jpg"
+          }
+        },
+        "block_Bem8aG": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/emergency-backups",
+            "title": "LED Emegergency Backups",
+            "image": "shopify:\/\/shop_images\/KPV-EB-40-3.jpg"
+          }
+        },
+        "block_Dg3MHC": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/all",
+            "title": "All LED Light Fixture",
+            "image": "shopify:\/\/shop_images\/menu-all-led-light-fixtures.png"
+          }
+        }
+      },
+      "block_order": [
+        "block_cWDJBd",
+        "block_7gyPg6",
+        "block_DiKCP3",
+        "block_4H9FzU",
+        "block_3BrQhd",
+        "block_JmGqaK",
+        "block_idgxEV",
+        "block_P8WGXH",
+        "block_yCmEGn",
+        "block_VtnyT6",
+        "block_Bem8aG",
+        "block_Dg3MHC"
+      ],
+      "name": "Section L2",
+      "settings": {
+        "navigation_menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "section_l2_WJRLQz"
+  ]
+}

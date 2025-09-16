@@ -156,5 +156,18 @@
     </ul>
 
     {% render 'end-content-scripts' %}
+    <script defer>
+      window.addEventListener('load', function () {
+        var submitButton = document.getElementById('submitRFQForm');
+        if (submitButton) {
+          submitButton.addEventListener('click', function () {
+            gtag('event', 'conversion', { send_to: 'AW-653967201/VDi3COuk-6IYEOH-6rcC' });
+            window.uetq = window.uetq || [];
+            window.uetq.push({ ec: 'requestQuote', ea: 'submit', el: 'form' });
+          });
+        }
+      });
+    </script>
+    {% render 'samita-custom' %}
   </body>
 </html>
