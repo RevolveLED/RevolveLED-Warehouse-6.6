@@ -1,0 +1,200 @@
+{
+  "sections": {
+    "section_l1_JkjcTe": {
+      "type": "section-L1",
+      "blocks": {
+        "block_mfkLJr": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/wall-pack-lights",
+            "title": "Led wall pack",
+            "image": "shopify:\/\/shop_images\/KWPT063SMCLV-1.jpg"
+          }
+        },
+        "block_dnagXD": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/led-flood-lights",
+            "title": "LED Flood Lights",
+            "image": "shopify:\/\/shop_images\/KNV155MCPLV77TR-16.jpg"
+          }
+        },
+        "block_ygB8GH": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/led-area-and-site-lights",
+            "title": "LED Area Lights",
+            "image": "shopify:\/\/shop_images\/KVLHMW50KHV3SF-19_d00cd00a-8517-4a85-814a-eea9824b2351.jpg"
+          }
+        },
+        "block_nxwayW": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/canopy-lights",
+            "title": "LED Canopy Lights",
+            "image": "shopify:\/\/shop_images\/KCPLMWMCLVB-1.jpg"
+          }
+        },
+        "block_QBcT93": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/round-high-bay-lights",
+            "title": "LED Round High Bay Lights",
+            "image": "shopify:\/\/shop_images\/RKRH0302LMW5KDNLCB-1_7e293c51-04cd-4ed4-9b49-a44302522027.jpg"
+          }
+        },
+        "block_7QyVLU": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/linear-high-bay",
+            "title": "LED Linear High Bay Lights",
+            "image": "shopify:\/\/shop_images\/KAT300MCLV4F-1_59ad979d-8123-485f-8920-77f9f7886aa0.jpg"
+          }
+        },
+        "block_JVUtic": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/strip-lights",
+            "title": "LED Strip Light Fixtures",
+            "image": "shopify:\/\/shop_images\/MLF02-4FT-Side_1ab6fe03-5564-43ab-8acf-af30c0eceaf9.jpg"
+          }
+        },
+        "block_p4zjiL": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/led-architectural-suspended-lights",
+            "title": "LED Architectural Suspended Lights",
+            "image": "shopify:\/\/shop_images\/konlite-4ft-black-led-architectural-linear-light-fixture-01.jpg"
+          }
+        },
+        "block_nVXmmL": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/panel-lights",
+            "title": "LED Panel and Troffer Lights",
+            "image": "shopify:\/\/shop_images\/menu-led-panel-and-troffer-lights.png"
+          }
+        },
+        "block_xgyH8j": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/barn-lights",
+            "title": "LED Barn and Roadway Lights",
+            "image": "shopify:\/\/shop_images\/RL02-Side1_1000x1000_f1074726-f458-4668-a945-65199bb3b035.png"
+          }
+        },
+        "block_TgwLxP": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/bollard-and-post-top-lights",
+            "title": "LED Bollards and Post Top Lights",
+            "image": "shopify:\/\/shop_images\/Bollard-Light-24in.jpg"
+          }
+        },
+        "block_GTCUn3": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/vapor-tight",
+            "title": "LED Vapor Tight Lights",
+            "image": "shopify:\/\/shop_images\/NSF165MCLV-2.jpg"
+          }
+        },
+        "block_kepKRH": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/exit-signs-and-emergency-lighting",
+            "title": "LED Emergency Lights And Exit Signs",
+            "image": "shopify:\/\/shop_images\/Konlite_LED_Exit_Emergency_Light_Combo_-_Red_or_Green_Letter_Selectable_1.png"
+          }
+        },
+        "block_QEy6bG": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/linear-tubes-lamp-lights",
+            "title": "LED Tube Lights",
+            "image": "shopify:\/\/shop_images\/menu-linear-tubes-lamp-lights.png"
+          }
+        },
+        "block_LARwrY": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/fluorescent-strip-light-retrofit-kits",
+            "title": "LED Retrofit Kits",
+            "image": "shopify:\/\/shop_images\/konlite-4ft-magnetic-linear-led-retrofit-kit-01.jpg"
+          }
+        },
+        "block_P9TWaM": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/light-bulbs",
+            "title": "LED Bulbs",
+            "image": "shopify:\/\/shop_images\/KFB855K3937-1.jpg"
+          }
+        },
+        "block_tKprK3": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/emergency-backups",
+            "title": "LED Emegergency Backups",
+            "image": "shopify:\/\/shop_images\/outdoor-led-emergency-backup-driver-01.jpg"
+          }
+        },
+        "block_nVP43H": {
+          "type": "block",
+          "settings": {
+            "url": "shopify:\/\/collections\/all",
+            "title": "All LED Light Fixture",
+            "image": "shopify:\/\/shop_images\/menu-all-led-light-fixtures.png"
+          }
+        },
+        "block_yNnDR7": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "url": "shopify:\/\/collections\/decorative-wall-lighting",
+            "title": "LED Wall Sconces",
+            "image": "shopify:\/\/shop_images\/6.1_-led-cylinder-up-and-down-wall-light-black-fixture-outdoor-wall-sconce-01.jpg"
+          }
+        },
+        "block_qYwcLh": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "url": "shopify:\/\/collections\/led-stadium-lights",
+            "title": "LED Stadium Lights",
+            "image": "shopify:\/\/shop_images\/konlite-vega-premium-led-stadium-light-01.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "block_mfkLJr",
+        "block_dnagXD",
+        "block_ygB8GH",
+        "block_nxwayW",
+        "block_QBcT93",
+        "block_7QyVLU",
+        "block_JVUtic",
+        "block_p4zjiL",
+        "block_nVXmmL",
+        "block_xgyH8j",
+        "block_TgwLxP",
+        "block_GTCUn3",
+        "block_kepKRH",
+        "block_QEy6bG",
+        "block_LARwrY",
+        "block_P9TWaM",
+        "block_tKprK3",
+        "block_nVP43H",
+        "block_yNnDR7",
+        "block_qYwcLh"
+      ],
+      "name": "Section L1",
+      "settings": {
+        "navigation_menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "section_l1_JkjcTe"
+  ]
+}

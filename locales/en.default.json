@@ -68,7 +68,7 @@
       "language": "Language",
       "account": "My account",
       "login": "Login \/ Signup",
-      "welcome": "Hello {{first_name}}",
+      "welcome": "Hello, {{first_name}}",
       "cart": "Cart"
     },
     "navigation": {
