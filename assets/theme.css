@@ -838,14 +838,14 @@ html {
 .h5,
 .rte h4 {
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 14px));
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   line-height: 1.85;
 }
 
 .h6,
 .rte h5 {
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 12px));
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   line-height: 1.85;
 }
 

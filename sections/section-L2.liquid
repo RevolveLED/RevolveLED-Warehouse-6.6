@@ -1,0 +1,636 @@
+<style>
+  .page-L1 .topblock .more-p {
+    display: none;
+  }
+
+  .page-L1 .bottom-block .hide-p {
+    display: none;
+  }
+
+  .page-L1 .topblock {
+    background: #eff8ff;
+    color: #000;
+    padding: 5% 0;
+  }
+
+  .page-L1 .main {
+    display: flex;
+    transform: translate(0, -3%);
+  }
+
+  .page-L1 .main a {
+    text-decoration: unset !important;
+  }
+
+  .page-L1 .product-item:after,
+  .page-L1 .product-list:before {
+    display: none;
+  }
+
+  .page-L1 .right-block .menu-images a span {
+    display: block;
+  }
+
+  .page-L1 .main ul {
+    margin-left: 0;
+    list-style: none;
+  }
+
+  .page-L1 .main ul li:before {
+    display: none;
+  }
+
+  .page-L1 .left-block {
+    flex: 1 1 20%;
+  }
+
+  .page-L1 .left-block .box {
+    box-shadow: 0px 0px 3px #ccc;
+    margin-left: 0;
+    padding: 10%;
+    margin-right: 10%;
+    background: #fff;
+    color: #000;
+  }
+
+  @media screen and (max-width: 640px) {
+    .page-L1 .left-block .box {
+      margin-right: 0;
+    }
+  }
+
+  .page-L1 .left-block .box h4 {
+    font-weight: bold;
+  }
+
+  .page-L1 .left-block .box a {
+    color: #000;
+  }
+
+  .page-L1 .left-block .box a:hover {
+    color: #1f9cfb;
+  }
+
+  .page-L1 .right-block {
+    flex: 1 1 70%;
+  }
+
+  @media screen and (max-width: 640px) {
+    .page-L1 .right-block {
+      margin-top: 20px;
+    }
+  }
+
+  .page-L1 .right-block .box {
+    box-shadow: 0px 0px 3px #ccc;
+    padding: 3%;
+    background: #fff;
+  }
+
+  .page-L1 .right-block .box a {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .page-L1 .right-block .box a:hover {
+    color: #1f9cfb;
+  }
+
+  .page-L1 .right-block .topimage {
+    display: flex;
+  }
+
+  @media screen and (max-width: 640px) {
+    .page-L1 .right-block .topimage {
+      display: block;
+    }
+  }
+
+  .page-L1 .right-block .topimage img {
+    width: 100%;
+    margin: 0;
+    border-radius: 4px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .page-L1 .right-block .topimage img {
+      width: 100%;
+    }
+  }
+
+  .page-L1 .right-block .topimage img.imageleft {
+    padding-right: 1%;
+  }
+
+  @media screen and (max-width: 640px) {
+    .page-L1 .right-block .topimage img.imageleft {
+      padding-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  .page-L1 .right-block .topimage img.imageright {
+    padding-left: 1%;
+  }
+
+  @media screen and (max-width: 640px) {
+    .page-L1 .right-block .topimage img.imageright {
+      padding-left: 0;
+    }
+  }
+
+  .page-L1 .right-block .menu-images a {
+    text-align: center;
+  }
+
+  .page-L1 .right-block .menu-images ul {
+    margin-left: 0;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .page-L1 .right-block .link-image {
+    width: 100%;
+    max-width: 200px;
+    margin: auto;
+  }
+
+  .page-L1 .bottom-block {
+    background: #f5f5f5;
+    padding: 2% 0;
+    margin: 2% 0;
+  }
+
+  .page-L1 .bottom-block h1,
+  .page-L1 .bottom-block h2,
+  .page-L1 .bottom-block h3,
+  .page-L1 .bottom-block h4,
+  .page-L1 .bottom-block h5,
+  .page-L1 .bottom-block h6 {
+    margin-top: 0;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .page-L1 .main .left-block {
+      display: none;
+    }
+    .page-L1 .main {
+      transform: translateY(0);
+    }
+    .page-L1 .topblock {
+      background: #ffffff;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .page-L1 .right-block .box {
+      box-shadow: none;
+    }
+    .page-L1 .right-block .box {
+      padding: 0;
+    }
+    .page-L1 .topblock p {
+      line-height: 150%;
+      font-weight: 600;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6;
+      margin-bottom: 0;
+    }
+    .page-L1 .topblock p.open {
+      display: block;
+    }
+    .page-L1 .topblock .more-p {
+      text-decoration-line: underline;
+      color: #00487f;
+      font-weight: 600;
+      display: block;
+    }
+    .page-L1 .page__header--centered {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .page-L1 .page__header--centered h1 {
+      text-transform: capitalize;
+    }
+    .page-L1 .right-block .menu-images ul {
+      margin-bottom: 0;
+    }
+    .page-L1 .menu-images .product-item {
+      /*     padding: 0; */
+    }
+    .page-L1 .bottom-block {
+      font-weight: 600;
+      line-height: 150%;
+    }
+    /* .container--narrow {
+      margin-top: 50px;
+    } */
+    .page-L1 .container--narrow:first-child {
+      margin-top: 0px;
+    }
+    .page-L1 .bottom-block .container--narrow {
+      margin-top: 0px;
+      padding: 0 10px;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .page-L1 .main {
+      display: block;
+      transform: translate(0, -25px);
+    }
+  }
+</style>
+{% assign one_sections = page.content | split: '[abovetext]' %}
+{%- comment -%} <div class="page-{{page.template_suffix}}"> <!-- by gio --> {%- endcomment -%}
+<div class="page-L1">
+  <div class="topblock">
+    <div class="container container--narrow">
+      <header class="page__header page__header--centered">
+        <h1 class="page__title heading h1">{{ page.title }}</h1>
+      </header>
+      {% if page.content contains '[abovetext]' %}
+        {{ one_sections[0] | remove: '[abovetext]' }}
+      {% else %}
+        {{ page.content }}
+      {% endif %}
+      <div class="more-p">Show More</div>
+    </div>
+  </div>
+  <div class="container container--narrow" style="padding: 0 10px;">
+    <div class="page__content rte">
+      {%- assign navigation_menu_handle = section.settings.navigation_menu | default: 'main-menu' -%}
+      {%- assign navigation_menu = linklists[navigation_menu_handle] -%}
+      {% assign customDesc = page.metafields.custom_metafield %}
+      <div class="main">
+        <div class="left-block">
+          {%- for link in navigation_menu.links -%}
+            {% if link.current %}
+            {% endif %}
+            {% if page.title == page.title %}
+              <div class="box">
+                <h4>
+                  <a href="{{ link.url }}">{{- link.title -}}</a>
+                </h4>
+                <ul>
+                  {%- for sub_link in link.links -%}
+                    <li>
+                      <a href="{{ sub_link.url }}">{{- sub_link.title -}}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {% endif %}
+          {%- endfor -%}
+        </div>
+        <div class="right-block">
+          <div class="box">
+            {% comment %}
+              <div class="topimage">
+                {% if customDesc.banner1 != blank %}
+                  {% comment %} {{ customDesc.banner1_link}} {% endcomment %}
+                  <a href="https://revolveled.com/collections/newest-led-lighting-fixtures"
+                    ><img class="lazyload imageleft" data-src="{{ customDesc.banner1}}" width="558" height="280"
+                  ></a>
+                {% endif %}
+                {% if customDesc.banner2 != blank %}
+                  {% comment %} {{ customDesc.banner2_link}} {% endcomment %}
+                  <a href="https://revolveled.com/collections/all/brand_konlite?sort_by=best-selling"
+                    ><img class="lazyload imageright" data-src="{{ customDesc.banner2}}" width="558" height="280"
+                  ></a>
+                {% endif %}
+                <div></div>
+              </div>
+            {% endcomment %}
+            <div class="menu-images">
+              {%- assign my_collection = 'yes' -%}
+              {% comment %}
+                {% raw %}
+                  {%- for link in navigation_menu.links -%}
+                {% if link.current %}
+
+                {% endif%}
+                {% if page.title == page.title %}
+
+                  <ul class="product-list">
+                  {%- for sub_link in link.links -%}
+                        {%- if sub_link.url contains "wall-pack-lights" or sub_link.url contains "led-flood-lights" or sub_link.url contains "led-area-and-site-lights" or sub_link.url contains "barn-lights" or sub_link.url contains "bollard-lights"  or sub_link.url contains "vapor-tight" or sub_link.url contains "work-lights" or sub_link.url contains "promotions" or sub_link.url contains "outlet-deals" or sub_link.url contains "warehouse-lighting" or sub_link.url contains "parking-lot-lighting" or sub_link.url contains "office-lighting" or sub_link.url contains "garage-lighting" -%}
+                          {% comment %} <!-- We hide promotions and outlet-deals url --> {% endcomment %}
+                          {%- assign my_collection = "no" -%}
+                       {%- elsif sub_link.url contains "canopy-lights" and my_collection == "no" -%}
+                           <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="{{ sub_link.url }}">
+                      <img class="link-image lazyload" data-src=" {{ sub_link.title | handle |  prepend: 'menu-'| append:'.png'| file_img_url: 'master' }}" alt="" onerror="this.src='{{ 'default-image'| append: '.png' | asset_url }};this.onerror=null'" width="600" height="600"/>
+
+                      <span>{{- sub_link.title -}}</span> </a>
+                  </li>
+                  {%- assign my_collection = "no" -%}
+
+                  {%- else -%}
+                      <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="{{ sub_link.url }}">
+                      <img class="link-image lazyload" data-src=" {{ sub_link.title | handle |  prepend: 'menu-'| append:'.png'| file_img_url: 'master' }}" alt="" onerror="this.src='{{ 'default-image'| append: '.png' | asset_url }};this.onerror=null'" width="600" height="600"/>
+
+                      <span>{{- sub_link.title -}}</span> </a>
+                  </li>
+
+                  {%- assign my_collection = "no" -%}
+                      {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+
+                {% endif%}
+                {%- endfor -%}
+                  {% endraw %} <!-- actual code hidden -->
+              {% endcomment %}
+              <!-- indoor categories -->
+              {% comment %}
+                <ul class="product-list">
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/canopy-lights">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-canopy-lights.png?v=1664878068128851155"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-canopy-lights.png?v=1664878068128851155"
+                      >
+
+                      <span>LED Canopy Lights</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/high-bay-ceiling-lights">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-bay-lights.png?v=156254081888776683"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-bay-lights.png?v=156254081888776683"
+                      >
+
+                      <span>LED Bay Lights</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/panel-lights">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-panel-and-troffer-lights.png?v=16435394310407838275"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-panel-and-troffer-lights.png?v=16435394310407838275"
+                      >
+
+                      <span>LED Panel and Troffer Lights</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/linear-tubes-lamp-lights">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-linear-tubes-lamp-lights.png?v=10781677936682379336"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-linear-tubes-lamp-lights.png?v=10781677936682379336"
+                      >
+
+                      <span>Linear Tubes &amp; Lamp Lights</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/recessed-downlights">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-recessed-lights.png?v=4364618478768627349"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-recessed-lights.png?v=4364618478768627349"
+                      >
+
+                      <span>Recessed Lights</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/exit-signs-and-emergency-lighting">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-exit-signs-and-emergency.png?v=6845759140293283827"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-exit-signs-and-emergency.png?v=6845759140293283827"
+                      >
+
+                      <span>LED Exit Signs and Emergency</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/strip-lights">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-strip-lights.png?v=4977746671698034945"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-strip-lights.png?v=4977746671698034945"
+                      >
+
+                      <span>LED Strip Lights</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/led-tube-ready-lighting-fixtures">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-tube-ready-fixtures.png?v=15991710778222330900"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-tube-ready-fixtures.png?v=15991710778222330900"
+                      >
+
+                      <span>Tube Ready Fixtures</span>
+                    </a>
+                  </li>
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="/collections/light-bulbs">
+                      <img
+                        class="link-image lazyloaded"
+                        data-src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-light-bulbs.png?v=2357680240787060804"
+                        alt=""
+                        onerror="this.src='//cdn.shopify.com/s/files/1/0377/8933/5692/t/47/assets/default-image.png?v=11096516954773205547;this.onerror=null'"
+                        width="600"
+                        height="600"
+                        src=" //cdn.shopify.com/s/files/1/0377/8933/5692/files/menu-led-light-bulbs.png?v=2357680240787060804"
+                      >
+
+                      <span>LED Light Bulbs</span>
+                    </a>
+                  </li>
+                </ul>
+              {% endcomment %}
+              <!-- end indoor categories -->
+              <ul class="product-list">
+                {%- for block in section.blocks -%}
+                  {%- assign bs = block.settings -%}
+                  <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                    <a href="{{ bs.url }}">
+                      <img
+                        class="link-image lazyload"
+                        data-src=" {{ bs.image | image_url: width:bs.image.width }}"
+                        alt=""
+                        onerror="this.src='{{ 'default-image'| append: '.png' | asset_url }};this.onerror=null'"
+                        width="600"
+                        height="600"
+                      >
+                      <span>{{- bs.title -}}</span>
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+              {% comment %} new code to seperate applications starts here {% endcomment %}
+              <h4><strong>Shop by Application</strong></h4>
+              {%- for link in navigation_menu.links -%}
+                {% if link.current %}
+                {% endif %}
+                {% if page.title == page.title %}
+                  <ul class="product-list">
+                    {%- for sub_link in link.links -%}
+                      {%- if sub_link.url contains 'warehouse-lighting'
+                        or sub_link.url contains 'parking-lot-lighting'
+                        or sub_link.url contains 'office-lighting'
+                        or sub_link.url contains 'garage-lighting'
+                      -%}
+                        <li class="product-item product-item--vertical 1/2--phone 1/3--tablet 1/3--lap-and-up">
+                          <a href="{{ sub_link.url }}">
+                            <img
+                              class="link-image lazyload"
+                              data-src=" {{ sub_link.title | handle |  prepend: 'menu-'| append:'.png'| file_img_url: 'master' }}"
+                              alt=""
+                              onerror="this.src='{{ 'default-image'| append: '.png' | asset_url }};this.onerror=null'"
+                              width="600"
+                              height="600"
+                            >
+
+                            <span>{{- sub_link.title -}}</span>
+                          </a>
+                        </li>
+                      {%- else -%}
+                        {% comment %} <!-- We hide non application collections url --> {% endcomment %}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                {% endif %}
+              {%- endfor -%}
+              {% comment %} new code to seperate applications END here {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if page.content contains '[abovetext]' %}
+        <div class="bottom-block">
+          <div class="container container--narrow">
+            {{ one_sections[1] | remove: '[abovetext]' }}
+          </div>
+          <div class="hide-p">
+            <div class="show-p">Show More</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {{ page.metafields.global['obx-boc'].value }}
+</div>
+
+<script>
+  $('.more-p').click(function () {
+    $('.page-L1 .topblock p').toggleClass('open');
+    $(this).text($(this).text() == 'Show More' ? 'Show Less' : 'Show More');
+  });
+  $('.show-p').click(function () {
+    $('.page-L1 .bottom-block').toggleClass('open');
+    $('.page-L1 .bottom-block .hide-p').toggleClass('open2');
+    $(this).text($(this).text() == 'Show More' ? 'Show Less' : 'Show More');
+  });
+</script>
+
+<script>
+  var acc = document.getElementsByClassName('accordion');
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener('click', function () {
+      /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+      this.classList.toggle('active');
+      /* Toggle between hiding and showing the active panel */
+      var panel = this.nextElementSibling;
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Section L2",
+  "presets": [
+    {
+      "name": "Section L2"
+    }
+  ],
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "navigation_menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}

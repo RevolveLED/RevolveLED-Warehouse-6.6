@@ -351,8 +351,9 @@
               {% render 'icon', icon: 'account' %}
               {%- if customer -%}
                 <span class="header__action-item-title hidden-pocket hidden-lap">
-                  {% comment %} {{- 'header.general.welcome' | t: first_name: customer.first_name | truncate: 20 -}} {% endcomment %}
-                  {{ 'customer.general.account' | t }}
+                  {%- assign first_name = customer.first_name | capitalize -%}
+                  {{- 'header.general.welcome' | t: first_name: first_name | truncate: 20 -}}
+                  {% comment %} {{ 'customer.general.account' | t }} {% endcomment %}
                 </span>
               {%- else -%}
                 <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.login' | t }}</span>
@@ -510,7 +511,7 @@
     {%- if section.settings.enable_sticky_header -%}
       position: -webkit-sticky;
       position: sticky;
-      top: 0;
+      top: var(--announcement-bar-height,0);
     {%- endif -%}
   }
 
@@ -524,11 +525,11 @@
         max-width: {{ section.settings.logo_max_width }}px !important;
       }
     }
-    @media screen and (min-width: 750px) {
+    {% comment %} @media screen and (min-width: 750px) {
       .header__logo-image {
         max-width: {{ section.settings.logo_max_width | times: 0.6 }}px !important;
       }
-    }
+    } {% endcomment %}
   {%- endif -%}
 
   {%- if settings.header_background == settings.secondary_background -%}
