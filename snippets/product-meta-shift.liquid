@@ -1,20 +1,4 @@
-{% comment %} This snippet will be moved (visually) on mobile. {% endcomment %}
-
 {%- assign custom_metafield = product.metafields.custom_metafield -%}
-
-{%- if block.settings.show_reviews_badge -%}
-  {% comment %}
-    <a
-      href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#product-reviews"
-      class="product-meta__reviews-badge link"
-      data-offset="30"
-    >
-      {%- render 'product-rating', product: product -%}
-    </a>
-  {% endcomment %}
-
-  {%- render 'product-just-stars', product: product -%}
-{%- endif -%}
 
 {%- if block.settings.show_bulletpoints -%}
   {%- if custom_metafield.bullet != blank -%}

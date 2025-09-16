@@ -9211,6 +9211,10 @@ shopify-accelerated-checkout {
   align-items: center;
 }
 
+.product-info__block-item--product-meta-shift {
+  margin-top: 16px;
+}
+
 .product-meta__bulletpoints {
   margin-bottom: 16px;
 }
@@ -9426,6 +9430,10 @@ shopify-accelerated-checkout {
 }
 
 @media screen and (min-width: 641px) {
+  .product-info__block-item--product-meta-shift {
+    margin-top: 0px;
+  }
+  
   .inventory {
     font-size: 1rem;
   }
@@ -9676,7 +9684,7 @@ shopify-accelerated-checkout {
 
 @media screen and (max-width: 640px) {
   .product-meta__reviews {
-    margin-top: 8px;
+    margin-bottom: 8px;
   }
 }
 
