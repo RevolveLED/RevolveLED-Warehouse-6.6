@@ -44,10 +44,10 @@
               </div>
             {% endif %}
           {%- endif -%}
-          <div class="custom-swiper-button swiper-button-prev">
-            {% render 'icon', icon: 'custom-swiper-prev' %}
-          </div>
           <div class="product-accessories-section__swiper-container">
+            <div class="custom-swiper-button swiper-button-prev">
+              {% render 'icon', icon: 'custom-swiper-prev' %}
+            </div>
             <div class="swiper scroller">
               <div class="swiper-wrapper">
                 {%- for accessories_handle in accessories limit: section.settings.products_count -%}

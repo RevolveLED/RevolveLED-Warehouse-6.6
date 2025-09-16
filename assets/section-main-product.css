@@ -249,14 +249,25 @@
   font-weight: 500;
   white-space: normal;
   height: initial !important;
+  background: #F6FBFF;
+}
+
+.product-specifications table tr td * {
+  background: initial !important;
+  background-color: initial !important;
 }
 
 .product-specifications table tr td:nth-child(2):not(:last-child) {
   margin-right: calc(var(--table-columns-spacing) / 2);
 }
 
+.product-specifications table tr td:nth-child(odd) {
+  background: #EFF8FF;
+}
+
 .product-specifications table tr td:nth-child(3) {
   margin-left: calc(var(--table-columns-spacing) / 2);
+  background: #EFF8FF;
 }
 
 .product-specifications table tr:last-child td {
@@ -705,7 +716,7 @@
 
   .product-specifications table tr td {
     line-height: 24px;
-    padding: 8px 0 !important;
+    padding: 8px 12px !important;
     width: calc(50% - 4px) !important;
     margin: 0 !important;
   }

@@ -8439,16 +8439,21 @@ select option {
 }
 
 .product-gallery__thumbnail-button {
-  color: #00487F;
+  color: #ABB1B4;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all .3s;
 }
 
 .product-gallery__thumbnail-button:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+.product-gallery__thumbnail-button:not(:disabled):hover {
+  color: #00487F;
 }
 
 @media screen and (max-width: 999px) {
