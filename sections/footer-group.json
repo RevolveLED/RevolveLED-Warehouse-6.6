@@ -17,37 +17,41 @@
         "item-1": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/icon-Free-Shipping-on-LED-Lighting.svg",
+            "icon": "shopify://shop_images/icon-Free-Shipping-on-LED-Lighting.svg",
             "title": "$199 Free Shipping on LED Lighting",
             "title_mb": "$199 Free Shipping on\nLED Lighting",
-            "text": "<p>*Purchase $199 or more and receive free ground shipping nationwide. Excluding AK, HI, PR. *Exclusions Apply<\/p>"
+            "text": "<p>*Purchase $199 or more and receive free ground shipping nationwide. Excluding AK, HI, PR. *Exclusions Apply</p>",
+            "text_mb": ""
           }
         },
         "item-2": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/icon-Easy-Returns-on-LED-Lights.svg",
+            "icon": "shopify://shop_images/icon-Easy-Returns-on-LED-Lights.svg",
             "title": "Easy Returns on LED Lights",
             "title_mb": "Easy Returns on LED\nLights",
-            "text": "<p>We know you don't own a crystal ball so we offer no hassle returns within 90 days of purchase.<\/p>"
+            "text": "<p>We know you don't own a crystal ball so we offer no hassle returns within 90 days of purchase.</p>",
+            "text_mb": ""
           }
         },
         "item-3": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/icon-Top-Notch-LED-Lighting-Support.svg",
+            "icon": "shopify://shop_images/icon-Top-Notch-LED-Lighting-Support.svg",
             "title": "Top-Notch LED Lighting Support",
             "title_mb": "Top-Notch LED\nLighting Support",
-            "text": "<p>Got questions?  We've got answers! Let our LED lighting experts help you with your next project! Give us a call: 1-877-718-0808<\/p>"
+            "text": "<p>Got questions?  We've got answers! Let our LED lighting experts help you with your next project! Give us a call: 1-877-718-0808</p>",
+            "text_mb": ""
           }
         },
         "item-4": {
           "type": "item",
           "settings": {
-            "icon": "shopify:\/\/shop_images\/icon-Secure-Payment-on-Your-LED-Lights.svg",
+            "icon": "shopify://shop_images/icon-Secure-Payment-on-Your-LED-Lights.svg",
             "title": "Secure Payment on Your LED Lights",
             "title_mb": "Secure Payment on\nYour LED Lights",
-            "text": "<p>The safety and security of our customers and their data is a top priority for us. Order securely online 24/7/365.<\/p>"
+            "text": "<p>The safety and security of our customers and their data is a top priority for us. Order securely online 24/7/365.</p>",
+            "text_mb": ""
           }
         }
       },
@@ -58,7 +62,16 @@
         "item-4"
       ],
       "settings": {
-        "bg_color": "#EFF8FF"
+        "section_class": "",
+        "hidden_for_templates": "",
+        "title": "",
+        "bg_color": "#eff8ff",
+        "padding_top": 64,
+        "padding_top_pad": 48,
+        "padding_top_mb": 32,
+        "padding_bottom": 64,
+        "padding_bottom_pad": 48,
+        "padding_bottom_mb": 32
       }
     },
     "footer": {
@@ -94,7 +107,7 @@
         "footer-2": {
           "type": "newsletter",
           "settings": {
-            "title": "About our store",
+            "title": "About Revolve LED",
             "subheading": "<p>We are a commercial lighting supplier specializing in LED lighting for commercial and industrial lighting applications. We offer solutions for new construction and lighting retrofits in existing structures. </p><p>Call us at <a href=\"tel:1-877-718-0808\" title=\"1-877-718-0808\">1-877-718-0808</a> or <a href=\"/pages/contact-us\" title=\"Contact Us\">send us an email</a> and let us help with your next project!  </p>"
           }
         }
