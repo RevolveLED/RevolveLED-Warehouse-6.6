@@ -932,7 +932,7 @@ product-fixed-bar {
   left: 0;
   right: 0;
   background-color: #fff;
-  z-index: 100;
+  z-index: 4;
   padding-top: 16px;
   padding-bottom: 16px;
   box-shadow: 0 -1px 8px 0 rgba(20, 20, 20, 0.08);
