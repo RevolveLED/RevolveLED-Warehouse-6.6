@@ -1123,6 +1123,10 @@ body:not(.is-tabbing) textarea:focus {
   margin-right: auto;
 }
 
+.template-collection .container {
+  --page-width: 1700px;
+}
+
 .template-collection .standard-container figure {
   max-width: 100%;
   overflow: auto;
