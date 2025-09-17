@@ -80,6 +80,7 @@
           <div class="product-tab-content__container-inner">
             {%- if product.metafields.global.specifications != blank
               and product.metafields.global.specifications.value != '&nbsp;'
+              and product.metafields.global.specifications.value != '<!-- this field is blank -->'
               and product.metafields.global.specifications != 'No'
             -%}
               {{-
@@ -107,6 +108,7 @@
         <!-- Video -->
         {%- if product.metafields.global.application_info != blank
           and product.metafields.global.application_info.value != '&nbsp;'
+          and product.metafields.global.application_info.value != '<!-- this field is blank -->'
           and product.metafields.global.application_info != 'No'
           or product.metafields.global.int != blank
         -%}
@@ -114,6 +116,7 @@
             <div class="product-tab-content__container-inner">
               {%- if product.metafields.global.application_info != blank
                 and product.metafields.global.application_info.value != '&nbsp;'
+                and product.metafields.global.application_info.value != '<!-- this field is blank -->'
                 and product.metafields.global.application_info != 'No'
               -%}
                 {{- product.metafields.global.application_info -}}
@@ -135,6 +138,7 @@
     {% comment %} Downloads {% endcomment %}
     {%- if product.metafields.custom_metafield.downloads != blank
       and product.metafields.custom_metafield.downloads.value != '&nbsp;'
+      and product.metafields.custom_metafield.downloads.value != '<!-- this field is blank -->'
       and product.metafields.custom_metafield.downloads != 'No'
     -%}
       <button data-collapse-button class="product-tab-content__collapse hidden-tablet-and-up" type="button">

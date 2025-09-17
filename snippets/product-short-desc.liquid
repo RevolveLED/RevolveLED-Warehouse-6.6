@@ -28,6 +28,7 @@
     </button>
     {%- if product.metafields.global.application_info != blank
       and product.metafields.global.application_info.value != '&nbsp;'
+      and product.metafields.global.application_info.value != '<!-- this field is blank -->'
       and product.metafields.global.application_info != 'No'
     -%}
       <!-- start video button -->
