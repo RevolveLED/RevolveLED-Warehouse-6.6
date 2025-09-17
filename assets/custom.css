@@ -421,6 +421,7 @@
 }
 
 .sa-reviews-content #SA_review_wrapper .SA__review_date {
+    text-align: inherit;
     margin-top: 16px;
     display: block;
     line-height: inherit;
