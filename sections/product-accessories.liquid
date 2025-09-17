@@ -52,14 +52,16 @@
               <div class="swiper-wrapper">
                 {%- for accessories_handle in accessories limit: section.settings.products_count -%}
                   {% assign product = all_products[accessories_handle] %}
-                  {%- render 'product-item-custom',
-                    product: product,
-                    show_add_to_cart: true,
-                    show_quick_view: true,
-                    swiper: true,
-                    disable_quote_button: true,
-                    loading_type: image_lazy
-                  -%}
+                  {%- if product != blank -%}
+                    {%- render 'product-item-custom',
+                      product: product,
+                      show_add_to_cart: true,
+                      show_quick_view: true,
+                      swiper: true,
+                      disable_quote_button: true,
+                      loading_type: image_lazy
+                    -%}
+                  {%- endif -%}
                 {% endfor %}
               </div>
               <div class="custom-swiper-pagination swiper-pagination"></div>

@@ -29,7 +29,7 @@
   justify-content: center;
 }
 
-.product-accessories-section__container .swiper-button-lock+.product-accessories-section__swiper-container .swiper-wrapper {
+.product-accessories-section__container .swiper-button-lock+.swiper .swiper-wrapper {
   justify-content: center;
 }
 
