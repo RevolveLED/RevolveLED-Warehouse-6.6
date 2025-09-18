@@ -6,7 +6,6 @@
       {%- assign selected_media = product.selected_variant.featured_media | default: product.featured_media -%}
 
       <div class="product-gallery__carousel-wrapper">
-        {%- render 'product-new-tag', product: product -%}
         <div
           class="product-gallery__carousel"
           data-media-count="{{ product.media.size }}"
@@ -69,6 +68,9 @@
                 data-group-value="{{ media_group_parts.last | strip | downcase | escape }}"
               {% endif %}
             >
+              {%- if forloop.first -%}
+                {%- render 'product-new-tag', product: product -%}
+              {%- endif -%}
               {%- case media.media_type -%}
                 {%- when 'image' -%}
                   <div class="product-gallery__size-limiter" style="max-width: {{ media.width }}px">
