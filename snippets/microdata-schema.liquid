@@ -6,10 +6,10 @@ managed at the theme level.
 {%- endcomment -%}
 
 {%- if request.page_type == 'product' -%}
-  {% comment %} <script type="application/ld+json">
+  <script type="application/ld+json">
     {{- product | structured_data -}}
-  </script> {% endcomment %}
-  <script type="application/ld+json" class="product_json">
+  </script>
+  {% comment %} <script type="application/ld+json" class="product_json">
     {
       "@context": "http://schema.org/",
       "@type": "Product",
@@ -33,7 +33,7 @@ managed at the theme level.
         {%- endfor -%}
       ]
     }
-  </script>
+  </script> {% endcomment %}
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">
     {{- article | structured_data -}}
