@@ -98,6 +98,9 @@ Gio END: 2021-01-21 - To end robots from following urls with collections/all
 {%  if request.path contains 'sort_by' %}
 <meta name="robots" content="none">
 {% endif %}
+{% if request.path contains 'tube-style_' %}
+<meta name="robots" content="none">
+{% endif %}
     
   {%- if request.path == '/collections/vendors' and collection.all_products_count == 0 -%}
     <meta name="robots" content="noindex">
