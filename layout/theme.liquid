@@ -25,9 +25,117 @@
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
+{% comment %}
+Gio: 2021-01-21 - To end robots from following urls with collections/all
+{% endcomment %}
+    {% if canonical_url contains 'collections/all' %}
+         <meta name="robots" content="noindex">
+    {% endif %}
+ {% comment %}
+Gio END: 2021-01-21 - To end robots from following urls with collections/all
+{% endcomment %} 
 
+{% comment %}
+    <!-- Gio BEGIN: 8/2/2024  Add "noindex" to the following pages -->
+{% endcomment %}
+{% if request.path contains 'brand_' %}
+<meta name="robots" content="none">
+{% endif %}
+{%  if request.path contains 'style_' %}
+  <meta name="robots" content="none">
+{% endif %}
+{%  if request.path contains 'equivalent_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'wattage_' %}
+<meta name="robots" content="none">
+{% endif %}
+{%  if request.path contains 'lumens_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'input-voltage_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'output-voltage_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'mounting-location_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'dlc_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'special-features_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'lumens_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if  request.path contains 'made-in-usa_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'accessories_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'mounting-type_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'light-distribution_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'cct_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'quickship_' %}
+<meta name="robots" content="none">
+{% endif %}
+{% if request.path contains 'finish_' %}
+<meta name="robots" content="none">
+{% endif %}
+{%  if request.path contains 'emergency-backup_' %}
+<meta name="robots" content="none">
+{% endif %}
+{%  if request.path contains 'sort_by' %}
+<meta name="robots" content="none">
+{% endif %}
+    
+  {%- if request.path == '/collections/vendors' and collection.all_products_count == 0 -%}
+    <meta name="robots" content="noindex">
+  {%- endif -%}
+    
+{% comment %}
+    <!-- Gio END: 8/2/2024  Add "noindex" to the following pages -->
+{% endcomment %}
+
+{% comment %} <!-- 9/19/2025 Gio add code to overwrite canonical url -> {% endcomment %}
+{% if template contains 'collection' and current_tags %}
+    <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+  {% elsif template == "product" %}
+      <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
+    {%  comment %} <!-- GIO BEGIN 10/29/2023 - Canonical page for some important pages --> {%  endcomment %}
+    {%  elsif  page.handle == "outdoor-lighting" %}
+         <link rel="canonical" href="https://revolveled.com/pages/outdoor-lighting" />
+    {%  elsif  page.handle == "indoor-lighting" %}
+         <link rel="canonical" href="https://revolveled.com/pages/indoor-lighting" />
+    {%  elsif  page.handle == "shop-by-application" %}
+         <link rel="canonical" href="https://revolveled.com/pages/shop-by-application" />
+    {%  elsif  page.handle == "outlet" %}
+        <link rel="canonical" href="https://revolveled.com/pages/outlet" /> 
+    {%  elsif  page.handle == "lighting-layout" %}
+        <link rel="canonical" href="https://revolveled.com/pages/lighting-layout" />   
+    {%  elsif  page.handle == "contractor-registration" %}
+        <link rel="canonical" href="https://revolveled.com/pages/contractor-registration" />
+    {%  elsif  page.handle == "member-rewards-program" %}
+        <link rel="canonical" href="https://revolveled.com/pages/member-rewards-program" /> 
+    {%  elsif template contains 'blog' %}
+            <link rel="canonical" href="{{ shop.url }}{{ blog.url }}" />
+    {%  elsif template contains 'article' %}
+            <link rel="canonical" href="{{ shop.url }}{{ article.url  }}" />
+    {%  comment %}  <!-- END gio 10/29/2023 --> {%  endcomment %}
+  {% else %}
     <link rel="canonical" href="{{ canonical_url }}">
-
+  {% endif %}
+  
     {%- if settings.favicon -%}
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '96x96' }}" type="image/png">
     {%- endif -%}
