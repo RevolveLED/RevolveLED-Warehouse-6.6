@@ -9,6 +9,42 @@ managed at the theme level.
   <script type="application/ld+json">
     {{- product | structured_data -}}
   </script>
+  {%- assign product_description = product.metafields.global.description_tag.value | default: product.description | strip_newlines | escape -%}
+  {%- assign variants_array = '' | split: ',' -%}
+  {%- for variant in product.variants -%}
+    {%- assign variant_obj = 
+      {
+        "@type": "Product",
+        "@id": shop.url | append: variant.url | append: "#variant",
+        "name": variant.title,
+        "sku": variant.sku,
+        "description": product_description,
+        "offers": {
+          "@type": "Offer",
+          "price": variant.price | money_without_currency,
+          "priceCurrency": shop.currency,
+          "availability": "http://schema.org/" | append: variant.available | replace: 'true', 'InStock' | replace: 'false', 'OutOfStock'
+        }
+      }
+    -%}
+    {%- assign variants_array = variants_array | push: variant_obj -%}
+  {%- endfor -%}
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": "{{ product.title | escape }}",
+    "description": "{{ product_description }}",
+    "image": "{{ product.featured_image | image_url: width: 1200 }}",
+    "sku": "{{ product.variants.first.sku | escape }}",
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ product.vendor | escape }}"
+    },
+    "hasVariant": {{ variants_array | json }}
+  }
+  </script>
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">
     {{- article | structured_data -}}
