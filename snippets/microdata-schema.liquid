@@ -50,6 +50,7 @@ or change the format of some info
           "availability": {%- if variant.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
           "price": {{ variant.price | money_without_currency | remove: ',' | json }},
           "priceCurrency": {{ shop.currency | json }},
+          "description": {{ product.description | escape | json }},
           "priceValidUntil": "{{ 'now' | date: '%s' | plus: days_product_price_valid_until | date: '%Y-%m-%d'}}",
           {%- if variant.sku != blank -%}
             "sku": {{ variant.sku | json }},
