@@ -6,34 +6,9 @@ managed at the theme level.
 {%- endcomment -%}
 
 {%- if request.page_type == 'product' -%}
-  <script type="application/ld+json" class="product_json">
+  <script type="application/ld+json" class="product-seo-json">
     {{- product | structured_data -}}
   </script>
-  {% comment %} <script type="application/ld+json" class="product_json">
-    {
-      "@context": "http://schema.org/",
-      "@type": "Product",
-      "name": "{{ product.title | escape }}",
-      "description": "{{ product.metafields.global.description_tag.value | escape }}",
-      "hasVariant": [
-        {%- for variant in product.variants -%}
-          {
-            "@type": "Product",
-            "@id": "{{ shop.url }}{{ variant.url }}#variant",
-            "name": "{{ variant.title | escape }}",
-            "sku": "{{ variant.sku | escape }}",
-            "description": "{{ product.metafields.global.description_tag.value | escape }}",
-            "offers": {
-              "@type": "Offer",
-              "price": "{{ variant.price | money_without_currency }}",
-              "priceCurrency": "{{ shop.currency }}",
-              "availability": "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}"
-            }
-          }{%- unless forloop.last -%},{%- endunless -%}
-        {%- endfor -%}
-      ]
-    }
-  </script> {% endcomment %}
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">
     {{- article | structured_data -}}
