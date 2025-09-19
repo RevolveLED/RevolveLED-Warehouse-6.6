@@ -6,7 +6,7 @@ managed at the theme level.
 {%- endcomment -%}
 
 {%- if request.page_type == 'product' -%}
-  <script type="application/ld+json">
+  <script type="application/ld+json" class="product_json">
     {{- product | structured_data -}}
   </script>
   {% comment %} <script type="application/ld+json" class="product_json">
