@@ -9,10 +9,7 @@ managed at the theme level.
   <script type="application/ld+json">
     {{- product | structured_data -}}
   </script>
-  {%- assign product_description = product.metafields.global.description_tag.value | default: product.description | strip_newlines | escape -%}
-  {%- assign variants_array = '' | split: ',' -%}
-  {%- for variant in product.variants -%}
-    <script type="application/ld+json">
+  <script type="application/ld+json">
     {
       "@context": "http://schema.org/",
       "@type": "Product",
@@ -36,8 +33,7 @@ managed at the theme level.
         {%- endfor -%}
       ]
     }
-    </script>
-  {%- endfor -%}
+  </script>
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">
     {{- article | structured_data -}}
