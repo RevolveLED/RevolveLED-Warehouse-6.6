@@ -69,18 +69,18 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/NAVI_LED_Flood_Light-PC.jpg",
-            "mobile_image": "shopify://shop_images/NAVI_LED_Flood_Light-MP.png",
+            "image": "shopify://shop_images/fall-big-sale-pc1-desktop-banner.jpg",
+            "mobile_image": "shopify://shop_images/fall-big-sale-mobile-banner.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
-            "text_color": "#ffffff",
+            "text_color": "#00487f",
             "title": "",
             "content": "",
-            "content_position": "middle_center",
+            "content_position": "bottom_right",
             "button_background": "#c8ee07",
             "button_text_color": "#000000",
             "button_text": "Shop Now",
-            "link": "https://revolveled.com/collections/led-flood-lights",
+            "link": "https://revolveled.com/collections/all?sort_by=best-selling",
             "button_hide_pc": false
           }
         }
