@@ -12,6 +12,25 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slide-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/fall-big-sale-pc1-desktop-banner.jpg",
+            "mobile_image": "shopify://shop_images/fall-big-sale-mobile-banner.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 68,
+            "text_color": "#00487f",
+            "title": "",
+            "content": "",
+            "content_position": "bottom_right",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/collections/all?sort_by=best-selling",
+            "button_hide_pc": false
+          }
+        },
         "image_JrMeFH": {
           "type": "image",
           "settings": {
@@ -65,31 +84,13 @@
             "link": "https://revolveled.com/collections/led-stadium-lights",
             "button_hide_pc": false
           }
-        },
-        "slide-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/fall-big-sale-pc1-desktop-banner.jpg",
-            "mobile_image": "shopify://shop_images/fall-big-sale-mobile-banner.jpg",
-            "show_overlay": false,
-            "overlay_opacity": 68,
-            "text_color": "#00487f",
-            "title": "",
-            "content": "",
-            "content_position": "bottom_right",
-            "button_background": "#c8ee07",
-            "button_text_color": "#000000",
-            "button_text": "Shop Now",
-            "link": "https://revolveled.com/collections/all?sort_by=best-selling",
-            "button_hide_pc": false
-          }
         }
       },
       "block_order": [
+        "slide-1",
         "image_JrMeFH",
         "slide-2",
-        "image_4kCYBD",
-        "slide-1"
+        "image_4kCYBD"
       ],
       "settings": {
         "edge_to_edge": true,
