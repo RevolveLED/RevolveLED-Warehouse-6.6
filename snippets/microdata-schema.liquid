@@ -63,7 +63,7 @@ managed at the theme level.
     "image": "https:{{ product.featured_image.src | image_url: width: 100 }}",
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": {{ review_value }},
+      "ratingValue": 5,
       "bestRating": 5,
       "worstRating": 0,
       "reviewCount": {% if review_count <= 0 %}1{% else %}{{ review_count }}{% endif %}
