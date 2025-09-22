@@ -29,6 +29,9 @@ managed at the theme level.
   {
     "@context": "http://schema.org/",
     "@type": "{% if product.variants %}ProductGroup{% else %}Product{% endif %}",
+    {% if product.variants %}
+    "productGroupID": "{{ product.id }}",
+    {% endif %}
     "@id": {{ canonical_url | append: '#product' | json }},
     "name": "{{ product.title | strip_html | escape | replace: '"', '' }}",
     "url": "{{ shop.url }}{{ product.url }}",
