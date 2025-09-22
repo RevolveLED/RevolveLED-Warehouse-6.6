@@ -7070,7 +7070,8 @@ select option {
   .nav-bar {
     /* border-bottom: 1px solid var(--border-color); */
     /* background: var(--secondary-background); */
-    background: var(--color-gray-50);
+    /* background: var(--color-gray-50); */
+    background: #E9E9E9;
     width: 100%;
     display: block;
     position: relative;
