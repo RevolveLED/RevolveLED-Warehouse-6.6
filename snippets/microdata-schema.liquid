@@ -291,16 +291,14 @@ managed at the theme level.
                     }
                   }],
                   "url": "{{ shop.url }}{{ variant.url }}"
-                  {% if review_count > 0   %}
                   ,"aggregateRating": {
                     "@type": "AggregateRating",
-                    "ratingValue": {{ review_value }},
+                    "ratingValue": 5,
                     "bestRating": 5,
                     "worstRating": 0,
                     "reviewCount": {% if review_count <= 0 %}1{% else %}{{ review_count }}{% endif %},
                     "itemReviewed":"Product"
                   }
-                  {% endif %}
               }
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
