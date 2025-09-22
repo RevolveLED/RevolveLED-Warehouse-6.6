@@ -9,7 +9,7 @@ managed at the theme level.
   {% comment %} <script type="application/ld+json" class="product-seo-json">
     {{- product | structured_data -}}
   </script> {% endcomment %}
-    {%- assign review_count = product.metafields.judgeme.badge
+    {% comment %} {%- assign review_count = product.metafields.judgeme.badge
     | split: "data-number-of-reviews='"
     | last
     | split: "'"
@@ -308,7 +308,7 @@ managed at the theme level.
       {% endif %}
     }
   }
-  </script>
+  </script> {% endcomment %}
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">
     {{- article | structured_data -}}
