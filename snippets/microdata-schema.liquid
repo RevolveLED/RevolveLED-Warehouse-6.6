@@ -255,29 +255,30 @@ managed at the theme level.
                     "priceValidUntil":"2030/12/12",
                     "hasMerchantReturnPolicy": {
                       "@type": "MerchantReturnPolicy",
-                      "applicableCountry": "CA",
+                      "applicableCountry": "US",
                       "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-                      "merchantReturnDays": 30,
+                      "merchantReturnDays": 45,
                       "returnMethod": "https://schema.org/ReturnByMail",
-                      "returnFees": "https://schema.org/FreeReturn"
+                      "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+                      "inStoreReturnFees": "https://schema.org/FreeReturn"
                     },
                     "shippingDetails": {
                       "@type": "OfferShippingDetails",
                       "shippingRate": {
                         "@type": "MonetaryAmount",
                         "value": 0,
-                        "currency": "CAD"
+                        "currency": "USD"
                       },
                       "shippingDestination": {
                         "@type": "DefinedRegion",
-                        "addressCountry": "CA"
+                        "addressCountry": "US"
                       },
                       "deliveryTime": {
                         "@type": "ShippingDeliveryTime",
                         "handlingTime": {
                           "@type": "QuantitativeValue",
-                          "minValue": 3,
-                          "maxValue": 7,
+                          "minValue": 1,
+                          "maxValue": 2,
                           "unitCode": "DAY"
                         },
                         "transitTime": {
@@ -288,8 +289,7 @@ managed at the theme level.
                         }
                       }
                     }
-                    }
-                  ],
+                  }],
                   "url": "{{ shop.url }}{{ variant.url }}"
                   {% if review_count > 0   %}
                   ,"aggregateRating": {
@@ -301,8 +301,6 @@ managed at the theme level.
                     "itemReviewed":"Product"
                   }
                   {% endif %}
-
-
               }
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
