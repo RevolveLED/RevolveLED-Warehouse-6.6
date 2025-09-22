@@ -160,6 +160,8 @@ managed at the theme level.
         "hasVariant": [
           {% for variant in product.variants %}
           {
+            
+            "@id": "{{ variant.url | append: '#variant' | json }}",
             "@type": "Product",
             {% if variant.sku != blank %}
               "sku": "{{ variant.sku }}",
