@@ -61,7 +61,7 @@ managed at the theme level.
     },
     "description": "{{ product.description | strip_html | strip_newlines | strip | remove: '"' | replace: '&gt;', '' | default: product.title | strip_html | escape | replace: '"', '' }}",
     "image": "https:{{ product.featured_image.src | image_url: width: 100 }}",
-    "aggregateRating": {
+    {% comment %} "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": 5,
       "bestRating": 5,
@@ -79,7 +79,7 @@ managed at the theme level.
         "@type": "Person",
         "name": "Fred Benson"
       }
-    },
+    }, {% endcomment %}
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "{{ shop.currency }}",
@@ -204,7 +204,7 @@ managed at the theme level.
                   }
                 }
               },
-              "itemOffered" :
+              {% comment %} "itemOffered" :
               {
                   "@type" : "Product",
                   {% if variant.image %}
@@ -301,7 +301,7 @@ managed at the theme level.
                     "itemReviewed":"Product"
                   }
                   {% endif %}
-              }
+              } {% endcomment %}
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
         ]
