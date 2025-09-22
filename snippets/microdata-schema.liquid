@@ -164,7 +164,7 @@ managed at the theme level.
           {% for variant in product.variants %}
           {
             
-            "@id": {{ variant.url | append: '#variant' | json }},
+            "@id": {{ shop.url }}{{ variant.url | append: '#variant' | json }},
             "@type": "Product",
             {% if variant.sku != blank %}
               "sku": "{{ variant.sku }}",
@@ -195,7 +195,7 @@ managed at the theme level.
             {% endfor %}
             "offers": {
               "@type": "Offer",
-              "url": "{{ variant.url }}",
+              "url": "{{ shop.url }}{{ variant.url }}",
               "priceCurrency": "{{ shop.currency }}",
               "price": {{ variant.price | money_without_currency  | strip_html }},
               "itemCondition": "https://schema.org/NewCondition",
