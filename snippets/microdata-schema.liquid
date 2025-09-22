@@ -184,7 +184,7 @@ managed at the theme level.
             {% endif %}
             "image": "{{ variant.image }}",
             "name": "{{ variant.title }}",
-            "description": "{{ product.description }}",
+            "description": "{{ product.description | strip_html | strip_newlines | strip | remove: '"' | replace: '&gt;', '' | default: product.title | strip_html | escape | replace: '"', '' }}",
             {% for option in product.options %}
               "{{ option }}": "{{ variant.options[forloop.index0] }}"{% unless forloop.last %},{% endunless %}
             {% endfor %}
