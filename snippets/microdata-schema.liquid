@@ -186,7 +186,7 @@ managed at the theme level.
             "name": "{{ variant.title | strip_html | escape | replace: '"', '' }}",
             "description": "{{ product.description | strip_html | strip_newlines | strip | remove: '"' | replace: '&gt;', '' | default: product.title | strip_html | escape | replace: '"', '' }}",
             {% for option in product.options %}
-              "{{ option }}": "{{ variant.options[forloop.index0] }}"{% unless forloop.last %},{% endunless %}
+              "{{ option }}": "{{ variant.options[forloop.index0] }}",
             {% endfor %}
             "offers": {
               "@type": "Offer",
