@@ -87,32 +87,38 @@ managed at the theme level.
       "highPrice": "{{ product.price_max   | money_without_currency  | strip_html  }}",
       "priceValidUntil":"2030/12/12",
       "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingRate": {
-          "@type": "MonetaryAmount",
-          "value": 0,
-          "currency": "USD"
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": 0,
+        "currency": "USD"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "US"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 2,
+          "unitCode": "DAY"
         },
-        "shippingDestination": {
-          "@type": "DefinedRegion",
-          "addressCountry": "CA"
-        },
-        "deliveryTime": {
-          "@type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 3,
-            "maxValue": 7,
-            "unitCode": "DAY"
-          },
-          "transitTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 3,
-            "maxValue": 7,
-            "unitCode": "DAY"
-          }
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 3,
+          "maxValue": 7,
+          "unitCode": "DAY"
         }
       },
+      "shippingSettingsLink": "https://revolveled.com/pages/shipping-policy",
+      "freeShippingThreshold": {
+        "@type": "MonetaryAmount",
+        "value": 199,
+        "currency": "USD"
+      }
+    },
       "hasMerchantReturnPolicy": {
         "@type": "MerchantReturnPolicy",
         "applicableCountry": "CA",
