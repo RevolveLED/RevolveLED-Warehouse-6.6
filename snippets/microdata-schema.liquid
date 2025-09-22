@@ -4,10 +4,279 @@ the structured_data built-in filter to ensure that Shopify can keep it up to dat
 you believe some information for products are missing, please reach Shopify support directly, as it is no longer
 managed at the theme level.
 {%- endcomment -%}
-
+{% assign url = shop.url %}
 {%- if request.page_type == 'product' -%}
-  <script type="application/ld+json" class="product-seo-json">
+  {% comment %} <script type="application/ld+json" class="product-seo-json">
     {{- product | structured_data -}}
+  </script> {% endcomment %}
+    {%- assign review_count = product.metafields.judgeme.badge
+    | split: "data-number-of-reviews='"
+    | last
+    | split: "'"
+    | first
+    | plus: 0
+  -%}
+
+  {%- assign review_value = product.metafields.judgeme.badge
+    | split: "data-average-rating='"
+    | last
+    | split: "'"
+    | first
+    | plus: 0
+  -%}
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": "{{ product.title | strip_html | escape | replace: '"', '' }}",
+    "url": "{{ shop.url }}{{ product.url }}",
+
+    {% if product.first_available_variant.sku != blank %}
+      "sku": "{{ product.first_available_variant.sku }}",
+    {% else %}
+      "sku": "{{ product.first_available_variant.id }}",
+    {% endif %}
+
+    {% if product.first_available_variant.barcode.size == 8 %}
+      "gtin8": {{ product.first_available_variant.barcode }},
+    {% endif %}
+
+    {% if product.first_available_variant.barcode.size == 12 %}
+      "gtin12": {{ product.first_available_variant.barcode }},
+    {% endif %}
+
+    {% if product.first_available_variant.barcode.size == 13 %}
+      "gtin13": {{ product.first_available_variant.barcode }},
+    {% endif %}
+
+    {% if product.first_available_variant.barcode.size == 14 %}
+      "gtin14": {{ product.first_available_variant.barcode }},
+    {% endif %}
+
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ product.vendor | escape  | default : 'redragon' }}"
+    },
+    "description": "{{ product.description | strip_html | strip_newlines | strip | remove: '"' | replace: '&gt;', '' | default: product.title | strip_html | escape | replace: '"', '' }} {{ product.metafields.custom_desc.short_desc | replace: '&gt;', '' | strip_html | escape | replace: '"', '' }}",
+    "image": "https:{{ product.featured_image.src | image_url: width: 100 }}",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": {{ review_value }},
+      "bestRating": 5,
+      "worstRating": 0,
+      "reviewCount": {% if review_count <= 0 %}1{% else %}{{ review_count }}{% endif %}
+    },
+    "review": {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 4,
+        "bestRating": 5
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Fred Benson"
+      }
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "{{ shop.currency }}",
+      "lowPrice": "{{ product.price_min  | money_without_currency   | strip_html }}",
+      "highPrice": "{{ product.price_max   | money_without_currency  | strip_html  }}",
+      "priceValidUntil":"2030/12/12",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": "USD"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "CA"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 3,
+            "maxValue": 7,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 3,
+            "maxValue": 7,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "CA",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn"
+      },
+      "name": "Fred Benson",
+      "offerCount": "{% assign count = 0 %}{% if product.available %}{% for variant in product.variants %}{% assign count =  count | plus : variant.inventory_quantity %}{% endfor %}{% endif %}{% if count <= 0 %}1{% else %}{{ count }}{% endif %}",
+
+
+      {% if product.variants %}
+        "offers": [
+          {% for variant in product.variants %}
+            {
+              "@type" : "Offer",
+              "priceCurrency": "{{ shop.currency }}",
+              "price": "{{ variant.price | money_without_currency  | strip_html }}",
+              "itemCondition" : "http://schema.org/NewCondition",
+              "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+              "url" : "{{ shop.url }}{{ variant.url }}",
+              "priceValidUntil":"2030/12/12",
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "US",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                "merchantReturnDays": 30,
+                "returnMethod": "https://schema.org/ReturnByMail",
+                "returnFees": "https://schema.org/FreeReturn"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "value": 0,
+                  "currency": "USD"
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "CA"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 3,
+                    "maxValue": 7,
+                    "unitCode": "DAY"
+                  },
+                  "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 3,
+                    "maxValue": 7,
+                    "unitCode": "DAY"
+                  }
+                }
+              },
+              "itemOffered" :
+              {
+                  "@type" : "Product",
+                  {% if variant.image %}
+                    {% assign variant_image_size = variant.image.width | append: 'x' %}
+                    "image": "http:{{ variant.image.src | image_url: variant_image_size }}",
+                  {% else %}
+                    "image": "http:{{ product.featured_image.src | image_url: width: 100 }}",
+                  {% endif %}
+                  {% if variant.title != blank %}
+                    "name" : "{{ variant.title | escape | replace: '"', ''}}",
+                  {% endif %}
+                  {% if variant.barcode.size == 12 %}
+                    "gtin12": "{{ variant.barcode }}",
+                  {% endif %}
+                  {% if variant.barcode.size == 13 %}
+                    "gtin13": "{{ variant.barcode }}",
+                  {% endif %}
+                  {% if variant.barcode.size == 14 %}
+                    "gtin14": "{{ variant.barcode }}",
+                  {% endif %}
+                    "brand": "{{ product.vendor }}",
+                  {% if variant.description != blank %}
+                    "description" : "{{ variant.description | strip_html  | remove: '"' | remove :'&amp;' | default: product.title | strip_html | escape | replace: '"', '' }}",
+                  {% else %}
+                    "description" : "{{ product.description | strip_html  | remove : '"' | remove :'&amp;' | default: product.title | strip_html | escape | replace: '"', '' }}",
+                  {% endif %}
+                  {% if variant.sku != blank %}
+                    "sku": "{{ variant.sku }}",
+                    {% else %}
+                    "sku": "{{ variant.id }}",
+                  {% endif %}
+                  {% if variant.weight != blank %}
+                    "weight": {
+                      "@type": "QuantitativeValue",
+                      {% if variant.weight_unit != blank %}
+                        "unitCode": "{{ variant.weight_unit }}",
+                      {% endif %}
+                      "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
+                    },
+                  {% endif %}
+                  "offers":[{
+                    "@type" : "Offer",
+                    "priceCurrency": "{{ shop.currency }}",
+                    "price": "{{ variant.price | money_without_currency  | strip_html }}",
+                    "itemCondition" : "http://schema.org/NewCondition",
+                    "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+                    "url" : "{{ shop.url }}{{ variant.url }}",
+                    "priceValidUntil":"2030/12/12",
+                    "hasMerchantReturnPolicy": {
+                      "@type": "MerchantReturnPolicy",
+                      "applicableCountry": "CA",
+                      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                      "merchantReturnDays": 30,
+                      "returnMethod": "https://schema.org/ReturnByMail",
+                      "returnFees": "https://schema.org/FreeReturn"
+                    },
+                    "shippingDetails": {
+                      "@type": "OfferShippingDetails",
+                      "shippingRate": {
+                        "@type": "MonetaryAmount",
+                        "value": 0,
+                        "currency": "CAD"
+                      },
+                      "shippingDestination": {
+                        "@type": "DefinedRegion",
+                        "addressCountry": "CA"
+                      },
+                      "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 3,
+                          "maxValue": 7,
+                          "unitCode": "DAY"
+                        },
+                        "transitTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 3,
+                          "maxValue": 7,
+                          "unitCode": "DAY"
+                        }
+                      }
+                    }
+                    }
+                  ],
+                  "url": "{{ shop.url }}{{ variant.url }}"
+                  {% if review_count > 0   %}
+                  ,"aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": {{ review_value }},
+                    "bestRating": 5,
+                    "worstRating": 0,
+                    "reviewCount": {% if review_count <= 0 %}1{% else %}{{ review_count }}{% endif %},
+                    "itemReviewed":"Product"
+                  }
+                  {% endif %}
+
+
+              }
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      {% endif %}
+    }
+  }
   </script>
 {%- elsif request.page_type == 'article' -%}
   <script type="application/ld+json">
