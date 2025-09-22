@@ -14,7 +14,6 @@
       "blocks": {
         "slide-1": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/fall-big-sale-pc1-desktop-banner.jpg",
             "mobile_image": "shopify://shop_images/fall-big-sale-mobile-banner.jpg",
