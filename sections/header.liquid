@@ -453,11 +453,12 @@
         <div class="container">
           <ul class="nav-bar__linklist list--unstyled" data-type="menu" role="list">
             {%- assign special_menus = section.settings.special_menu | split: ',' -%}
+            {%- assign contact_menus = section.settings.contact_menu | split: ',' -%}
             {%- for link in navigation_menu.links -%}
               {% liquid
                 assign downcase_title = link.title | downcase | strip
-                assign is_spec_level_1_menu = false
 
+                assign is_spec_level_1_menu = false
                 for special_menu in special_menus
                   assign special_menu_setting_downcase = special_menu | downcase | strip
                   if special_menu_setting_downcase == downcase_title
@@ -465,8 +466,22 @@
                     break
                   endif
                 endfor
+
+                assign is_contact_level_1_menu = false
+                for contact_menu in contact_menus
+                  assign contact_menu_setting_downcase = contact_menu | downcase | strip
+                  if contact_menu_setting_downcase == downcase_title
+                    assign is_contact_level_1_menu = true
+                    break
+                  endif
+                endfor
               %}
-              <li class="nav-bar__item" data-first-level="true" data-special="{{ is_spec_level_1_menu }}">
+              <li
+                class="nav-bar__item"
+                data-first-level="true"
+                data-special="{{ is_spec_level_1_menu }}"
+                data-contact="{{ is_contact_level_1_menu }}"
+              >
                 {%- if link.links.size == 0 -%}
                   <a href="{{ link.url }}" class="nav-bar__link link" data-type="menuitem">{{ link.title }}</a>
                 {%- else -%}
@@ -486,7 +501,12 @@
                     {%- render 'icon', icon: 'nav-triangle' -%}
                   </a>
 
-                  {%- render 'desktop-menu', menu: link, index: index, is_spec_level_1_menu: is_spec_level_1_menu -%}
+                  {%- render 'desktop-menu',
+                    menu: link,
+                    index: index,
+                    is_spec_level_1_menu: is_spec_level_1_menu,
+                    is_contact_level_1_menu: is_contact_level_1_menu
+                  -%}
                 {%- endif -%}
               </li>
             {%- endfor -%}
@@ -721,6 +741,11 @@
       "label": "Special level 1 menu"
     },
     {
+      "type": "textarea",
+      "id": "contact_menu",
+      "label": "Contact level 1 menu"
+    },
+    {
       "type": "select",
       "id": "desktop_navigation_layout",
       "label": "Desktop layout",
@@ -822,6 +847,23 @@
           "type": "text",
           "id": "content",
           "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "contact_menu",
+      "name": "Contact menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "contact_menu",
+          "label": "Contact menu",
+          "info": "Match menu item names"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon"
         }
       ]
     }

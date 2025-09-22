@@ -6,7 +6,7 @@
   <div class="mobile-menu__inner">
     <div class="mobile-menu__panel">
       <div class="mobile-menu__section">
-        <ul class="mobile-menu__nav" data-type="menu" role="list">
+        <ul class="mobile-menu__nav" data-type="menu" role="list" data-level="1">
           {%- for link in menu.links -%}
             <li class="mobile-menu__nav-item mobile-menu__nav-bold">
               {%- if link.links != blank -%}
@@ -65,15 +65,25 @@
 
     {%- comment -%}We now need to loop again (for the second level) to create the nested panel{%- endcomment -%}
     {%- assign special_menus = section.settings.special_menu | split: ',' -%}
+    {%- assign contact_menus = section.settings.contact_menu | split: ',' -%}
     {%- for link in menu.links -%}
       {% liquid
         assign downcase_title = link.title | downcase | strip
+        
         assign is_spec_level_1_menu = false
-
         for special_menu in special_menus
           assign special_menu_setting_downcase = special_menu | downcase | strip
           if special_menu_setting_downcase == downcase_title
             assign is_spec_level_1_menu = true
+            break
+          endif
+        endfor
+
+        assign is_contact_level_1_menu = false
+        for contact_menu in contact_menus
+          assign contact_menu_setting_downcase = contact_menu | downcase | strip
+          if contact_menu_setting_downcase == downcase_title
+            assign is_contact_level_1_menu = true
             break
           endif
         endfor
@@ -91,7 +101,7 @@
             </button>
           </div>
 
-          <div class="mobile-menu__section">
+          <div class="mobile-menu__section mobile-menu__section-main">
             {%- assign is_mega_menu = false -%}
             {%- assign downcase_title = link.title | downcase | strip -%}
 
@@ -204,7 +214,7 @@
               {%- endif -%}
             {%- else -%}
               <ul
-                class="mobile-menu__nav mobile-menu__nav-level-2{% if is_spec_level_1_menu %} mobile-menu__nav__spec_menu{% endif %}"
+                class="mobile-menu__nav mobile-menu__nav-level-2{% if is_spec_level_1_menu %} mobile-menu__nav__spec_menu{% elsif is_contact_level_1_menu %} mobile-menu__nav__contact_menu{% endif %}"
                 data-type="menu"
                 role="list"
               >
@@ -293,34 +303,85 @@
                         class="mobile-menu__nav-link mobile-menu__spec_link mobile-menu__nav-bold"
                         data-type="menuitem"
                       >
-                        {{- sub_link.title -}}
+                        {% if is_spec_menu %}
+                          {%- assign image = matched_block.settings.image -%}
+                          {%- assign content = matched_block.settings.content -%}
+                          {%- if image != blank or content != blank -%}
+                            <div
+                              href="{{ sub_link.url }}"
+                              aria-label="{{ sub_link.title }}"
+                              class="nav-dropdown__spec_menu_link_content-box"
+                              data-block-index="{{ matched_block_index }}"
+                            >
+                              {%- if image != blank -%}
+                                {{
+                                  image
+                                  | image_url: width: image.width
+                                  | image_tag:
+                                    loading: 'lazy',
+                                    width: 60,
+                                    class: 'nav-dropdown__spec_menu_link_content-box_image'
+                                }}
+                              {%- endif -%}
+                              {% comment %}
+                                {%- if content != blank -%}
+                                  <p class="nav-dropdown__spec_menu_link_content-box_text">{{ content }}</p>
+                                {%- endif -%}
+                              {% endcomment %}
+                            </div>
+                          {%- endif -%}
+                        {% endif %}
+                        <span>{{- sub_link.title -}}</span>
                       </a>
-                      {% if is_spec_menu %}
-                        {%- assign image = matched_block.settings.image -%}
-                        {%- assign content = matched_block.settings.content -%}
-                        {%- if image != blank or content != blank -%}
-                          <a
-                            href="{{ sub_link.url }}"
-                            aria-label="{{ sub_link.title }}"
-                            class="nav-dropdown__spec_menu_link_content-box"
-                            data-block-index="{{ matched_block_index }}"
-                          >
-                            {%- if image != blank -%}
-                              {{
-                                image
-                                | image_url: width: image.width
-                                | image_tag:
-                                  loading: 'lazy',
-                                  width: 60,
-                                  class: 'nav-dropdown__spec_menu_link_content-box_image'
-                              }}
-                            {%- endif -%}
-                            {%- if content != blank -%}
-                              <p class="nav-dropdown__spec_menu_link_content-box_text">{{ content }}</p>
-                            {%- endif -%}
-                          </a>
-                        {%- endif -%}
-                      {% endif %}
+                    {%- elsif is_contact_level_1_menu -%}
+                      {% liquid
+                        assign downcase_title = sub_link.title | downcase | strip
+                        assign is_contact_menu = false
+                        assign matched_block_index = null
+                        assign matched_block = null
+                      %}
+                      {% for block in section.blocks %}
+                        {% liquid
+                          assign contact_menu_downcase = block.settings.contact_menu | downcase | strip
+                          if contact_menu_downcase == downcase_title
+                            assign is_contact_menu = true
+                            assign matched_block_index = forloop.index0
+                            # 第几个 block（从0开始）
+                            assign matched_block = block
+                            break
+                          endif
+                        %}
+                      {% endfor %}
+                      <a
+                        href="{{ sub_link.url }}"
+                        aria-label="{{ sub_link.title }}"
+                        class="mobile-menu__nav-link mobile-menu__contact_link mobile-menu__nav-bold"
+                        data-type="menuitem"
+                      >
+                        {% if is_contact_menu %}
+                          {%- assign image = matched_block.settings.image -%}
+                          {%- if image != blank or content != blank -%}
+                            <div
+                              href="{{ sub_link.url }}"
+                              aria-label="{{ sub_link.title }}"
+                              class="nav-dropdown__contact_menu_link_content-box"
+                              data-block-index="{{ matched_block_index }}"
+                            >
+                              {%- if image != blank -%}
+                                {{
+                                  image
+                                  | image_url: width: image.width
+                                  | image_tag:
+                                    loading: 'lazy',
+                                    width: 60,
+                                    class: 'nav-dropdown__contact_menu_link_content-box_image'
+                                }}
+                              {%- endif -%}
+                            </div>
+                          {%- endif -%}
+                        {% endif %}
+                        <span>{{- sub_link.title -}}</span>
+                      </a>
                     {%- else -%}
                       <a
                         href="{{ sub_link.url }}"
