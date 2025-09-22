@@ -164,7 +164,7 @@ managed at the theme level.
           {% for variant in product.variants %}
           {
             
-            "@id": "{{ variant.url | append: '#variant' | json }}",
+            "@id": {{ variant.url | append: '#variant' | json }},
             "@type": "Product",
             {% if variant.sku != blank %}
               "sku": "{{ variant.sku }}",
