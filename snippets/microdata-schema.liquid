@@ -57,7 +57,7 @@ managed at the theme level.
 
     "brand": {
       "@type": "Brand",
-      "name": "{{ product.vendor | escape  | default : 'redragon' }}"
+      "name": "{{ product.vendor | escape  | default : 'RevolveLED' }}"
     },
     "description": "{{ product.description | strip_html | strip_newlines | strip | remove: '"' | replace: '&gt;', '' | default: product.title | strip_html | escape | replace: '"', '' }} {{ product.metafields.custom_desc.short_desc | replace: '&gt;', '' | strip_html | escape | replace: '"', '' }}",
     "image": "https:{{ product.featured_image.src | image_url: width: 100 }}",
