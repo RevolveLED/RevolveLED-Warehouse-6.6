@@ -163,7 +163,6 @@ managed at the theme level.
         "hasVariant": [
           {% for variant in product.variants %}
           {
-            
             "@id": {{ shop.url }}{{ variant.url | append: '#variant' | json }},
             "@type": "Product",
             {% if variant.sku != blank %}
