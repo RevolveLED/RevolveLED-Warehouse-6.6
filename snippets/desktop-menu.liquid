@@ -65,32 +65,83 @@
             {% endfor %}
             <a class="nav-dropdown__spec_menu_link" href="{{ link.url }}">
               <div class="nav-dropdown__spec_menu_link_title">
+                {% if is_spec_menu %}
+                  {%- assign image = matched_block.settings.image -%}
+                  {%- assign content = matched_block.settings.content -%}
+                  {%- if image != blank or content != blank -%}
+                    <div
+                      class="nav-dropdown__spec_menu_link_content-box"
+                      data-block-index="{{ matched_block_index }}"
+                    >
+                      {%- if image != blank -%}
+                        {{
+                          image
+                          | image_url: width: image.width
+                          | image_tag:
+                            loading: 'lazy',
+                            width: 80,
+                            class: 'nav-dropdown__spec_menu_link_content-box_image'
+                        }}
+                      {%- endif -%}
+                      {% comment %}
+                        {%- if content != blank -%}
+                          <p class="nav-dropdown__spec_menu_link_content-box_text">{{ content }}</p>
+                        {%- endif -%}
+                      {% endcomment %}
+                    </div>
+                  {%- endif -%}
+                {% endif %}
                 <span>{{ link.title }}</span>
               </div>
-              {% if is_spec_menu %}
-                {%- assign image = matched_block.settings.image -%}
-                {%- assign content = matched_block.settings.content -%}
-                {%- if image != blank or content != blank -%}
-                  <div
-                    class="nav-dropdown__spec_menu_link_content-box"
-                    data-block-index="{{ matched_block_index }}"
-                  >
-                    {%- if image != blank -%}
-                      {{
-                        image
-                        | image_url: width: image.width
-                        | image_tag:
-                          loading: 'lazy',
-                          width: 80,
-                          class: 'nav-dropdown__spec_menu_link_content-box_image'
-                      }}
-                    {%- endif -%}
-                    {%- if content != blank -%}
-                      <p class="nav-dropdown__spec_menu_link_content-box_text">{{ content }}</p>
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
-              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      {%- elsif is_contact_level_1_menu -%}
+        <div class="nav-dropdown__contact_menu">
+          {% for link in menu.links %}
+            {% liquid
+              assign downcase_title = link.title | downcase | strip
+              assign is_contact_menu = false
+              assign matched_block_index = null
+              assign matched_block = null
+            %}
+            {% for block in section.blocks %}
+              {% liquid
+                assign contact_menu_downcase = block.settings.contact_menu | downcase | strip
+                if contact_menu_downcase == downcase_title
+                  assign is_contact_menu = true
+                  assign matched_block_index = forloop.index0
+                  # 第几个 block（从0开始）
+                  assign matched_block = block
+                  break
+                endif
+              %}
+            {% endfor %}
+            <a class="nav-dropdown__contact_menu_link" href="{{ link.url }}">
+              <div class="nav-dropdown__contact_menu_link_title">
+                {% if is_contact_menu %}
+                  {%- assign image = matched_block.settings.image -%}
+                  {%- assign content = matched_block.settings.content -%}
+                  {%- if image != blank or content != blank -%}
+                    <div
+                      class="nav-dropdown__contact_menu_link_content-box"
+                      data-block-index="{{ matched_block_index }}"
+                    >
+                      {%- if image != blank -%}
+                        {{
+                          image
+                          | image_url: width: image.width
+                          | image_tag:
+                            loading: 'lazy',
+                            width: 80,
+                            class: 'nav-dropdown__contact_menu_link_content-box_image'
+                        }}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {% endif %}
+                <span>{{ link.title }}</span>
+              </div>
             </a>
           {% endfor %}
         </div>
@@ -109,7 +160,10 @@
             {%- endfor -%}
 
             <li class="nav-dropdown__item {% if is_mega_menu %}has-mega-menu{% endif %}" data-second-level="true">
-              {%- if link.links.size == 0 -%}
+              {%- if link.links.size == 0
+                and link.type != 'collection_link'
+                and link.object.metafields.custom.nav_collection_image == blank
+              -%}
                 <a href="{{ link.url }}" class="nav-dropdown__link link" data-type="menuitem" data-has-dropdown="false">
                   {{- link.title -}}
                 </a>
@@ -169,7 +223,7 @@
         </ul>
         <div class="nav-dropdown__collection-container">
           {% for link in menu.links %}
-            {% if link.links.size == 0 %}
+            {% if link.links.size == 0 and link.type != 'collection_link' %}
             {% else %}
               {%- capture index_nested -%}{{ index }}-{% increment nav_dropdown_collection %}{%- endcapture -%}
               <ul
@@ -179,36 +233,57 @@
                 aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
                 role="list"
               >
-                {% for sub_link in link.links %}
+                {%- if link.links.size == 0
+                  and link.type == 'collection_link'
+                  and link.object.metafields.custom.nav_collection_image != blank
+                -%}
                   <li class="nav-dropdown__item list--unstyled nav-dropdown__product-item-li">
                     <a
                       class="nav-dropdown__link link nav-dropdown__product-item"
-                      href="{{ sub_link.url}}"
-                      aria-label="{{ sub_link.title }}"
-                      title="{{ sub_link.title }}"
+                      href="{{ link.url}}"
+                      aria-label="{{ link.title }}"
+                      title="{{ link.title }}"
                     >
-                      <img
-                        class="colimage lazyload"
-                        loading="lazy"
-                        src=" {{ sub_link.title | handle |  prepend: 'menu-'| append:'.png' | file_img_url: '160x' }}"
-                        alt="{{ sub_link.title }}"
-                        width="80"
-                        height="80"
-                      >
-                      <span>{{ sub_link.title }}</span>
+                      {{
+                        link.object.metafields.custom.nav_collection_image
+                        | image_url: width: 200
+                        | image_tag: loading: 'lazy', class: 'colimage lazyload', width: 80, height: 80
+                      }}
+                      <span>{{ 'header.navigation.view_all' | t }}</span>
                     </a>
                   </li>
-                {% endfor %}
-                <li class="nav-dropdown__item nav-dropdown__item-more list--unstyled">
-                  <a
-                    class="nav-dropdown__link link nav-dropdown__product-item"
-                    href="{{ link.url}}"
-                    aria-label="{{ link.title }}"
-                    title="{{ link.title }}"
-                  >
-                    {{ 'header.navigation.view_all' | t }}
-                  </a>
-                </li>
+                {%- else -%}
+                  {% for sub_link in link.links %}
+                    <li class="nav-dropdown__item list--unstyled nav-dropdown__product-item-li">
+                      <a
+                        class="nav-dropdown__link link nav-dropdown__product-item"
+                        href="{{ sub_link.url}}"
+                        aria-label="{{ sub_link.title }}"
+                        title="{{ sub_link.title }}"
+                      >
+                        <img
+                          class="colimage lazyload"
+                          loading="lazy"
+                          src=" {{ sub_link.title | handle |  prepend: 'menu-'| append:'.png' | file_img_url: '160x' }}"
+                          alt="{{ sub_link.title }}"
+                          width="80"
+                          height="80"
+                        >
+                        <span>{{ sub_link.title }}</span>
+                      </a>
+                    </li>
+                  {% endfor %}
+                  <li class="nav-dropdown__item nav-dropdown__item-more list--unstyled">
+                    <a
+                      class="nav-dropdown__link link nav-dropdown__product-item"
+                      href="{{ link.url}}"
+                      aria-label="{{ link.title }}"
+                      title="{{ link.title }}"
+                    >
+                      {{ 'header.navigation.view_all' | t }}
+                    </a>
+                  </li>
+                {%- endif -%}
               </ul>
             {% endif %}
           {% endfor %}

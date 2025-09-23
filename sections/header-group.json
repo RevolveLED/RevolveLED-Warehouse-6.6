@@ -36,6 +36,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "WAREHOUSE",
+            "image": "shopify://shop_images/Frame_1712_8725d1f0-5af0-4ee2-b361-087ec7a383b3.webp",
             "content": ""
           }
         },
@@ -43,6 +44,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "PARKING LOT",
+            "image": "shopify://shop_images/Frame_1713.webp",
             "content": ""
           }
         },
@@ -50,6 +52,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "OFFICE",
+            "image": "shopify://shop_images/Frame_1712_8725d1f0-5af0-4ee2-b361-087ec7a383b3.webp",
             "content": ""
           }
         },
@@ -57,6 +60,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "GARAGE",
+            "image": "shopify://shop_images/Frame_1712_8725d1f0-5af0-4ee2-b361-087ec7a383b3.webp",
             "content": ""
           }
         },
@@ -64,13 +68,14 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "ALL LED LIGHT FIXTURES",
+            "image": "shopify://shop_images/Frame_1712_8725d1f0-5af0-4ee2-b361-087ec7a383b3.webp",
             "content": ""
           }
         },
         "spec_menu_MiHD9U": {
           "type": "spec_menu",
           "settings": {
-            "special_menu": "PROMOTIONS",
+            "special_menu": "Promotions",
             "image": "shopify://shop_images/menu-all-led-light-fixtures.png",
             "content": "Light Up Your Fall – Seasonal Savings Thru Nov 30"
           }
@@ -78,9 +83,45 @@
         "spec_menu_98ytXd": {
           "type": "spec_menu",
           "settings": {
-            "special_menu": "CLEARANCE",
+            "special_menu": "Clearance",
             "image": "shopify://shop_images/menu-warehouse.png",
             "content": "Find amazing deals everyday! Limited quantities."
+          }
+        },
+        "spec_menu_gVQf7w": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "Active offers expired. Come back soon!",
+            "image": "shopify://shop_images/menu-warehouse.png",
+            "content": "Find amazing deals everyday! Limited quantities."
+          }
+        },
+        "contact_menu_VxdNRx": {
+          "type": "contact_menu",
+          "settings": {
+            "contact_menu": "1-877-718-0808",
+            "image": "shopify://shop_images/header_phone.webp"
+          }
+        },
+        "contact_menu_PCK8rE": {
+          "type": "contact_menu",
+          "settings": {
+            "contact_menu": "Contact@RevolveLED.com",
+            "image": "shopify://shop_images/header-email.webp"
+          }
+        },
+        "contact_menu_djYemG": {
+          "type": "contact_menu",
+          "settings": {
+            "contact_menu": "Contact Form",
+            "image": "shopify://shop_images/header-form.webp"
+          }
+        },
+        "contact_menu_9YHbBU": {
+          "type": "contact_menu",
+          "settings": {
+            "contact_menu": "About Us",
+            "image": "shopify://shop_images/header-contact.webp"
           }
         }
       },
@@ -91,7 +132,12 @@
         "spec_menu_BqbLyb",
         "spec_menu_BMmmWR",
         "spec_menu_MiHD9U",
-        "spec_menu_98ytXd"
+        "spec_menu_98ytXd",
+        "spec_menu_gVQf7w",
+        "contact_menu_VxdNRx",
+        "contact_menu_PCK8rE",
+        "contact_menu_djYemG",
+        "contact_menu_9YHbBU"
       ],
       "settings": {
         "enable_sticky_header": true,
@@ -103,6 +149,7 @@
         "navigation_menu": "shopping-menu-new-250814",
         "navigation_mobile_menu": "mobile-menu",
         "special_menu": "Shop By Application,Specials",
+        "contact_menu": "Contact Us",
         "desktop_navigation_layout": "inline",
         "desktop_navigation_open_trigger": "hover",
         "show_navigation_social_media": false,
