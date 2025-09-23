@@ -157,9 +157,9 @@ managed at the theme level.
         }
       },
       "name": "Fred Benson",
-      "offerCount": "{% assign count = 0 %}{% if product.available %}{% for variant in product.variants %}{% assign count =  count | plus : variant.inventory_quantity %}{% endfor %}{% endif %}{% if count <= 0 %}1{% else %}{{ count }}{% endif %}",
-
+      "offerCount": "{% assign count = 0 %}{% if product.available %}{% for variant in product.variants %}{% assign count =  count | plus : variant.inventory_quantity %}{% endfor %}{% endif %}{% if count <= 0 %}1{% else %}{{ count }}{% endif %}"
       {% unless product.has_only_default_variant %}
+        ,
         "hasVariant": [
           {% for variant in product.variants %}
             {
@@ -238,9 +238,10 @@ managed at the theme level.
               }
           }{% unless forloop.last %},{% endunless %}
         {% endfor %}
-        ],
+        ]
       {% endunless %}
       {% unless product.has_only_default_variant %}
+        ,
         "offers": [
           {% for variant in product.variants %}
             {
