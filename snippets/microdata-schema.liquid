@@ -86,8 +86,8 @@ managed at the theme level.
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "{{ shop.currency }}",
-      "lowPrice": "{{ product.price_min  | money_without_currency   | strip_html }}",
-      "highPrice": "{{ product.price_max   | money_without_currency  | strip_html  }}",
+      "lowPrice": "{{ product.price_min  | divided_by: 100.00  | strip_html }}",
+      "highPrice": "{{ product.price_max   | divided_by: 100.00  | strip_html  }}",
       "priceValidUntil":"2030/12/12",
       "shippingDetails": {
       "@type": "OfferShippingDetails",
