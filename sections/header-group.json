@@ -36,7 +36,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "WAREHOUSE",
-            "image": "shopify://shop_images/Frame_1712_8725d1f0-5af0-4ee2-b361-087ec7a383b3.webp",
+            "image": "shopify://shop_images/menu-warehouse.png",
             "content": ""
           }
         },
@@ -44,7 +44,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "PARKING LOT",
-            "image": "shopify://shop_images/Frame_1713.webp",
+            "image": "shopify://shop_images/menu-parking-lot.png",
             "content": ""
           }
         },
@@ -52,7 +52,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "OFFICE",
-            "image": "shopify://shop_images/Frame_1712_8725d1f0-5af0-4ee2-b361-087ec7a383b3.webp",
+            "image": "shopify://shop_images/menu-office.png",
             "content": ""
           }
         },
@@ -60,7 +60,7 @@
           "type": "spec_menu",
           "settings": {
             "special_menu": "GARAGE",
-            "image": "shopify://shop_images/Frame_1712_8725d1f0-5af0-4ee2-b361-087ec7a383b3.webp",
+            "image": "shopify://shop_images/menu-garage.png",
             "content": ""
           }
         },
