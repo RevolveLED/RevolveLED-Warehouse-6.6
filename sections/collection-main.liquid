@@ -44,7 +44,7 @@
 
               <div class="card">
                 <!-- Gio 4/3/2024 - category images were here -->
-                <div class="collection__toolbar {% if collection.description != blank or collection.template_suffix == 'brand' %}collection__toolbar--bordered{% endif %}">
+                <div class="collection__toolbar {% if collection.description != blank or collection.template_suffix == 'brand' or collection.handle == 'all' %}collection__toolbar--bordered{% endif %}">
                   <h2 class="filter-by">Filter by</h2>
                   <div class="right-wrapper">
                     <div class="collection__toolbar-item collection__toolbar-item--count">
@@ -346,15 +346,15 @@
       if (productCount <= 0) return;
       if (scrollY > sidebarTop - combinedHeight && sidebarBottom < containerBottom) {
         sidebar.style.position = 'fixed';
-        sidebar.style.top = combinedHeight + 32 + 'px';
+        {% comment %} sidebar.style.top = combinedHeight + 32 + 'px'; {% endcomment %}
         sidebar.style.width = container.offsetWidth + 'px';
       } else if (sidebarBottom >= containerBottom) {
         sidebar.style.position = 'absolute';
-        sidebar.style.top = container.offsetHeight - sidebarHeight + 32 + 'px';
+        {% comment %} sidebar.style.top = container.offsetHeight - sidebarHeight + 32 + 'px'; {% endcomment %}
         sidebar.style.width = '100%';
       } else {
         sidebar.style.position = '';
-        sidebar.style.top = '';
+        {% comment %} sidebar.style.top = ''; {% endcomment %}
         sidebar.style.width = '';
       }
     });

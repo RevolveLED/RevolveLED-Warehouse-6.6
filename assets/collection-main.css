@@ -326,7 +326,7 @@
 .collection-main .layout__section .collection-layout-left {
   background-color: #F9F9FA;
   position: sticky;
-  top: 0;
+  top: calc(var(--announcement-bar-height, 0) + var(--header-height, 0) + 10px);
 }
 
 .collection-main .collection-layout-left .active-filter a {
@@ -465,7 +465,7 @@
 .collection-layout-left .filter-type .filter-item-title {
   font-size: 16px;
   font-weight: 500;
-  padding-block: 16px;
+  padding-block: 8px;
   /* font-family: Avenir Next; */
   cursor: pointer;
 }
@@ -865,8 +865,32 @@
 
 @media (max-width:749px) {
   .collection-main .bullet-content>ul:first-of-type {
-    display: none;
+    /* display: none; */
+    column-count: 2;
+    line-height: 1.5;
+    column-gap: unset;
+    display: block;
+    padding-inline: 0;
+    margin: 0 0 0 1rem;
+    width: calc(100% - 1rem);
   }
+
+  .collection-main .bullet-content>ul:first-of-type>li {
+    /* position: relative; */
+    /* list-style: none; */
+    font-size: 13px;
+    list-style-position: outside;
+    padding: 0;
+  }
+
+  /* .collection-main .bullet-content>ul:first-of-type>li::before {
+    content: '●';
+    font-size: 5px;
+    vertical-align: middle;
+    position: absolute;
+    left: -5px;
+    top: 1.2em;
+  } */
 }
 
 @media (max-width: 500px) {
