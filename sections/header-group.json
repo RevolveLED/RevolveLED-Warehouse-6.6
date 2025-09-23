@@ -90,6 +90,7 @@
         },
         "spec_menu_gVQf7w": {
           "type": "spec_menu",
+          "disabled": true,
           "settings": {
             "special_menu": "Active offers expired. Come back soon!",
             "image": "shopify://shop_images/menu-warehouse.png",
