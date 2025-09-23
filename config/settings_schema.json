@@ -401,6 +401,21 @@
     ]
   },
   {
+    "name": "Collection",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "collection_all_banner_img",
+        "label": "Collection[all] banner image"
+      },
+      {
+        "type": "textarea",
+        "id": "collection_all_banner_text",
+        "label": "Collection[all] banner text"
+      }
+    ]
+  },
+  {
     "name": "Cart",
     "settings": [
       {
