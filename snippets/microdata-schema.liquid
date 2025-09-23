@@ -196,7 +196,7 @@ managed at the theme level.
               "@type": "Offer",
               "url": "{{ shop.url }}{{ variant.url }}",
               "priceCurrency": "{{ shop.currency }}",
-              "price": {{ variant.price | money_without_currency  | strip_html }},
+              "price": {{ variant.price | divided_by: 100 }},
               "itemCondition": "https://schema.org/NewCondition",
               "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
               "shippingDetails": {
