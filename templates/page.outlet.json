@@ -19,6 +19,7 @@
       "settings": {
         "title": "",
         "show_button": false,
+        "disable_quote_button": true,
         "link_title": "View All",
         "collection": "konlite-branded-products",
         "image_lazy": false
@@ -30,6 +31,7 @@
       "settings": {
         "title": "",
         "show_button": false,
+        "disable_quote_button": true,
         "link_title": "View All",
         "collection": "outlet-deals",
         "image_lazy": false

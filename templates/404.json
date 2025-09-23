@@ -1,1 +1,40 @@
-{"sections":{"main":{"type":"main-404","settings":{}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {}
+    },
+    "section_l1_9qd98b": {
+      "type": "section-L1",
+      "blocks": {
+        "block_dYTUEp": {
+          "type": "block",
+          "settings": {
+            "url": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_dYTUEp"
+      ],
+      "name": "Section L1",
+      "settings": {
+        "navigation_menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_l1_9qd98b"
+  ]
+}
