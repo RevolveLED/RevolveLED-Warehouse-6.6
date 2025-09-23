@@ -27,6 +27,7 @@
       "block_order": [
         "block_dYTUEp"
       ],
+      "disabled": true,
       "name": "Section L1",
       "settings": {
         "navigation_menu": "main-menu"
