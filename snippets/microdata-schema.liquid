@@ -86,8 +86,8 @@ managed at the theme level.
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "{{ shop.currency }}",
-      "lowPrice": "{{ product.price_min  | divided_by: 100.00 }}",
-      "highPrice": "{{ product.price_max   | divided_by: 100.00 }}",
+      "lowPrice": {{ product.price_min  | divided_by: 100.00 }},
+      "highPrice": {{ product.price_max   | divided_by: 100.00 }},
       "priceValidUntil":"2030/12/12",
       "shippingDetails": {
       "@type": "OfferShippingDetails",
@@ -246,7 +246,7 @@ managed at the theme level.
             {
               "@type" : "Offer",
               "priceCurrency": "{{ shop.currency }}",
-              "price": "{{ variant.price | divided_by:100.00 }}",
+              "price": {{ variant.price | divided_by:100.00 }},
               "itemCondition" : "http://schema.org/NewCondition",
               "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
               "url" : "{{ shop.url }}{{ variant.url }}",
