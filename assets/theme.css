@@ -7066,6 +7066,12 @@ select option {
   }
 }
 
+@media screen and (min-width: 1441px) {
+  .nav-bar__item {
+    font-size:18.5px;
+  }
+}
+
 @media screen and (min-width: 1000px) {
   .nav-bar {
     /* border-bottom: 1px solid var(--border-color); */
