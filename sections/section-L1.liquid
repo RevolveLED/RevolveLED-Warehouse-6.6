@@ -161,7 +161,11 @@
   .page-L1 .bottom-block h6 {
     margin-top: 0;
   }
-
+  @media screen and (min-width: 750px) {
+    .more-p,.hide-p{
+      display: none;
+    }
+  }
   @media only screen and (max-width: 1000px) {
     .page-L1 .main .left-block {
       display: none;
@@ -278,17 +282,30 @@
     }
   }
 </style>
-{% assign one_sections = page.content | split: '[abovetext]' %}
+{% liquid
+  if section.settings.heading != blank
+    assign heading = section.settings.heading
+  else
+    assign heading = page.title
+  endif
+
+  if section.settings.content != blank
+    assign content = section.settings.content
+  else
+    assign content = page.content
+    assign one_sections = content | split: '[abovetext]'
+  endif
+%}
 <div class="page-L1">
   <div class="topblock">
     <div class="container container--narrow">
       <header class="page__header page__header--centered">
-        <h1 class="page__title heading h1">{{ page.title }}</h1>
+        <h1 class="page__title heading h1">{{ heading }}</h1>
       </header>
-      {% if page.content contains '[abovetext]' %}
+      {% if content contains '[abovetext]' %}
         {{ one_sections[0] | remove: '[abovetext]' }}
       {% else %}
-        {{ page.content }}
+        {{ content }}
       {% endif %}
       <div class="more-p">Show More</div>
     </div>
@@ -466,7 +483,7 @@
           </div>
         </div>
       </div>
-      {% if page.content contains '[abovetext]' %}
+      {% if content contains '[abovetext]' %}
         <div class="bottom-block">
           <div class="container container--narrow" style="padding: 0 10px;">
             {{ one_sections[1] | remove: '[abovetext]' }}
@@ -506,6 +523,16 @@
       "id": "navigation_menu",
       "label": "Menu",
       "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
     }
   ],
   "blocks": [

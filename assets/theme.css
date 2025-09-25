@@ -14383,6 +14383,10 @@ product-rerender {
   padding: 0;
 }
 
+.template-404 .empty-state {
+  margin-block: 100px;
+}
+
 @media (max-width:1560px) {
 
   .custom-swiper-button.swiper-button-prev,
@@ -14686,5 +14690,9 @@ product-rerender {
 
   .account-address~.modal .form__input-row {
     flex-direction: row;
+  }
+
+  .template-404 .empty-state {
+    margin-block: 50px;
   }
 }
