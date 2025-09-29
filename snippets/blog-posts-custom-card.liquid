@@ -14,7 +14,8 @@
       <div class="custom-article-card-meta">
         <span class="custom-article-card-article__author">
           {%- assign default_author = 'blog.article.default_author' | t -%}
-          {{ 'blog.article.author' | t: author: article.author | default: default_author }}
+         {% comment %} {{ 'blog.article.author' | t: author: article.author | default: default_author }} {% endcomment %}
+             <span class="page__meta-item page__meta-item--author">Revoleve LED Team</span>
         </span>
         <time class="custom-article-card-article__date" datetime="{{ article.published_at | date: '%Y-%m-%d'}}">
           {{ article.published_at | date: format: 'date' }}
