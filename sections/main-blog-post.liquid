@@ -38,7 +38,7 @@
     
             {%- if section.settings.show_author -%}
             {% comment %}  <span class="page__meta-item page__meta-item--author">{{ 'blog.article.written_by' | t: author: article.author }}</span> {% endcomment %}
-              <span class="page__meta-item page__meta-item--author">{{ 'blog.article.written_by'}}&nbsp;&nbsp;|&nbsp;&nbsp; {{blog.metafields.global.article_author.value }}</span>
+              <span class="page__meta-item page__meta-item--author">{{ 'blog.article.written_by'}}&nbsp;&nbsp;|&nbsp;&nbsp; {{ 'blog.metafields.global.article_author.value' }}</span>
             {%- endif -%}
     
             {%- if section.settings.show_date -%}
