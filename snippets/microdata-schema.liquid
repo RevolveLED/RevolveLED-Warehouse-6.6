@@ -186,7 +186,14 @@ managed at the theme level.
               {% if variant.barcode.size == 14 %}
                 "gtin14": {{ variant.barcode }},
               {% endif %}
-              "image": "https:{{ variant.image.src | image_url: width: 100 }}",
+              {% liquid
+                if variant.image != blank
+                  assign v_image = variant.image
+                else
+                  assign v_image = product.featured_image
+                endif
+              %}
+              "image": "https:{{ v_image.src | image_url: width: 100 }}",
               "name": "{{ variant.title | strip_html | escape | replace: '"', '' }}",
               "description": "{{ product.description | strip_html | strip_newlines | strip | remove: '"' | replace: '&gt;', '' | default: product.title | strip_html | escape | replace: '"', '' }}",
               {% for option in product.options %}
