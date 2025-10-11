@@ -177,7 +177,11 @@ Gio END: 2021-01-21 - To end robots from following urls with collections/all
         currencyCodeEnabled: {{ settings.currency_code_enabled | json }},
         showDiscount: {{ settings.show_discount | json }},
         discountMode: {{ settings.discount_mode | json }},
-        cartType: {{ settings.cart_type | json }}
+        cartType: {{ settings.cart_type | json }},
+        strings: {
+          products: {{ 'header.search.products' | t | json }},
+          noResults: {{ 'header.search.no_results' | t | json }}
+        }
       };
 
       window.routes = {

@@ -9909,27 +9909,118 @@ var SearchBar = class {
       }
       this.searchResultsElement.setAttribute("aria-hidden", "false");
       this.searchBarElement.classList.add("is-expanded", "is-loading");
-      let queryOptions = { method: "GET", credentials: "same-origin" }, url = `${window.Shopify.routes.root}search${this._supportsPredictiveApi() ? "/suggest" : ""}`, productQuery = `${this.productTypeFilter !== "" ? `product_type:${this.productTypeFilter} AND ` : ""}${encodeURIComponent(this.lastInputValue)}`, queries = [fetch(`${url}?section_id=predictive-search&q=${productQuery}&resources[limit]=3&resources[limit_scope]=each&resources[options][fields]=title,product_type,variants.title,variants.sku,vendor`, queryOptions)];
-      Promise.all(queries).then((responses) => {
-        if (this.lastInputValue !== currentInput) {
+      const productQuery = `${this.productTypeFilter !== '' ? `product_type:${this.productTypeFilter} AND ` : ''}${encodeURIComponent(this.lastInputValue)}*`;
+      const shopifyUrl = `${window.Shopify.routes.root}search${this._supportsPredictiveApi() ? '/suggest' : ''}?section_id=predictive-search&q=${productQuery}&resources[limit]=3&resources[limit_scope]=each&resources[options][fields]=title,product_type,variants.title,variants.sku,vendor`;
+      const customUrl = `${window.Shopify.routes.root}search?type=product&q=${encodeURIComponent(this.lastInputValue)}`;
+
+      Promise.all([
+        fetch(shopifyUrl, { method: 'GET', credentials: 'same-origin' }).then(response => response.text()),
+        fetch(customUrl, { method: 'GET', credentials: 'same-origin' }).then(response => response.text())
+      ]).then(([shopifyResponse, customResponse]) => {
+        if (this.lastInputValue !== this.inputElement.value) {
           return;
         }
-        Promise.all(responses.map((response) => {
-          return response.text().then((responseAsText) => {
-            let div = document.createElement("div");
-            div.innerHTML = responseAsText;
-            return div.querySelector(".search-ajax").innerHTML;
+
+        this.searchBarElement.classList.remove('is-loading');
+
+        const shopifyDiv = document.createElement('div');
+        shopifyDiv.innerHTML = shopifyResponse;
+        const searchAjax = shopifyDiv.querySelector('.search-ajax');
+
+        // Highlighting for suggestions
+        if (searchAjax) {
+          const suggestionLinks = searchAjax.querySelectorAll('.search-bar__result-linklist .search-bar__result-link');
+          const searchTerm = this.lastInputValue;
+          const escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\\\]/g, '\\\\$&'); // Escape special characters
+          const regex = new RegExp(escapedSearchTerm, 'gi');
+
+          suggestionLinks.forEach(link => {
+            const originalHtml = link.innerHTML; // e.g., <span>3300 lumens</span>
+            const spanElement = document.createElement('span');
+            spanElement.innerHTML = originalHtml;
+            const textContent = spanElement.textContent; // e.g., 3300 lumens
+
+            if (textContent) {
+              const highlightedText = textContent.replace(regex, (match) => `<mark>${match}</mark>`);
+              spanElement.innerHTML = highlightedText;
+              link.innerHTML = spanElement.outerHTML;
+            }
           });
-        })).then((contents) => {
-          this.searchBarElement.classList.remove("is-loading");
-          let searchContent = document.createElement("div");
-          searchContent.innerHTML = contents.join("").trim();
-          let viewAll = searchContent.querySelector(".search-bar__view-all");
-          if (viewAll) {
-            searchContent.insertAdjacentElement("beforeend", viewAll);
+        }
+
+        const customDiv = document.createElement('div');
+        customDiv.innerHTML = customResponse;
+        const productItems = Array.from(customDiv.querySelectorAll('.product-list--collection .product-item'));
+
+        let customResultsHtml = '';
+
+          productItems.slice(0, 3).forEach(item => {
+          const titleElement = item.querySelector('.product-item__title');
+          const linkElement = item.querySelector('a');
+          const imageElement = item.querySelector('.product-item__primary-image');
+
+          if (titleElement && linkElement) {
+            const title = titleElement.innerText;
+            const url = linkElement.href;
+            const imageUrl = imageElement ? imageElement.src : window.theme.defaultImage;
+
+            customResultsHtml += `
+              <a href="${url}" class="search-bar__result-item">
+                <div class="search-bar__image-container">
+                  <div class="aspect-ratio aspect-ratio--square">
+                    <img src="${imageUrl}" alt="${title}">
+                  </div>
+                </div>
+                <div class="search-bar__item-info">
+                  <p class="search-bar__item-title">${title}</p>
+                  <span class="search-bar__item-price"></span>
+                </div>
+              </a>`;
           }
-          this.searchBarElement.querySelector(".search-bar__results-inner").innerHTML = searchContent.innerHTML;
         });
+
+        if (searchAjax) {
+          const emptyState = searchAjax.querySelector('.search-bar__empty-state');
+          if (emptyState) {
+            emptyState.remove();
+          }
+
+          const productResultsContainer = searchAjax.querySelector('.search-bar__result-products');
+          if (productResultsContainer) {
+            productResultsContainer.innerHTML = '';
+          productResultsContainer.insertAdjacentHTML('beforeend', customResultsHtml);
+          } else if (customResultsHtml) {
+            const categoryHtml = `<p class="search-bar__result-category">${window.theme.strings.products}</p>`;
+            const containerHtml = `<div class="search-bar__result-products">${customResultsHtml}</div>`;
+            searchAjax.innerHTML += categoryHtml + containerHtml;
+          }
+          // Check if searchAjax has no results and add empty state
+          const hasResults = searchAjax.querySelector('.search-bar__result-item') || searchAjax.querySelector('.search-bar__result-link');
+          if (!hasResults && !customResultsHtml) {
+            this.searchBarElement.querySelector('.search-bar__results-inner').innerHTML = `
+              <div class="search-bar__empty-state">
+                <p class="heading h4">${window.theme.strings.noResults}</p>
+              </div>
+            `;
+          } else {
+            this.searchBarElement.querySelector('.search-bar__results-inner').innerHTML = searchAjax.innerHTML;
+          }
+        } else if (customResultsHtml) {
+          const emptyState = this.searchBarElement.querySelector('.search-bar__empty-state');
+          if (emptyState) {
+            emptyState.remove();
+          }
+
+          const categoryHtml = `<p class="search-bar__result-category">${window.theme.strings.products}</p>`;
+          const containerHtml = `<div class="search-bar__result-products">${customResultsHtml}</div>`;
+          this.searchBarElement.querySelector('.search-bar__results-inner').innerHTML = categoryHtml + containerHtml;
+        } else {
+          this.searchBarElement.querySelector('.search-bar__results-inner').innerHTML = `
+            <div class="search-bar__empty-state">
+              <p class="heading h4">${window.theme.strings.noResults}</p>
+            </div>
+          `;
+        }
       });
     }
   }
