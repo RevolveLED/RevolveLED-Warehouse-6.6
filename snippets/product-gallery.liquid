@@ -1,3 +1,8 @@
+{%- if section.settings.enable_image_zoom and section.settings.image_zoom_type == 'fancybox' -%}
+  <link rel="stylesheet" href="{{ 'fancybox.css' | asset_url }}">
+  <script src="{{ 'fancybox.umd.js' | asset_url }}" defer></script>
+{%- endif -%}
+
 {%- if product.media.size > 0 -%}
   {%- assign show_thumbnails_if_one_media = true -%}
 
@@ -86,7 +91,8 @@
                           widths: '400,500,600,700,800,900,1000,1100,1200',
                           class: 'product-gallery__image',
                           data-zoom: data_zoom_url,
-                          data-zoom-width: data_zoom_width
+                          data-zoom-width: data_zoom_width,
+                          data-fancybox: 'gallery-a'
                       -}}
                     </div>
                   </div>
@@ -264,7 +270,7 @@
         </div>
       {%- endif -%}
 
-      {%- if section.settings.enable_image_zoom -%}
+      {%- if section.settings.enable_image_zoom and section.settings.image_zoom_type == 'default' -%}
         {%- comment -%}This code is used to power the mobile zoom and must not be removed nor altered{%- endcomment -%}
         <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="pswp__bg"></div>
