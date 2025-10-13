@@ -8430,6 +8430,10 @@ select option {
   width: 100%;
 }
 
+.product-gallery__carousel-item img {
+  cursor: pointer;
+}
+
 .product-gallery__carousel-item--hidden,
 .product-gallery__carousel-item[aria-hidden="true"] .plyr__control {
   visibility: hidden;
