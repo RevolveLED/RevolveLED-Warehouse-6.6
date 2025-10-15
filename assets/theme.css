@@ -9072,6 +9072,19 @@ shopify-payment-terms {
   text-underline-position: from-font;
 }
 
+.product-out-of-stock-hint {
+  background: #4EA9D5;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+}
+
+.product-out-of-stock-hint p {
+  margin: 0;
+  padding: 8px;
+  line-height: 24px;
+}
+
 @media screen and (min-width: 641px) {
   .product-form__option-name {
     margin-bottom: 7px;
@@ -9090,12 +9103,17 @@ shopify-payment-terms {
   .product-form__quantity-with-submit {
     flex-direction: row;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .product-form__quantity-with-submit>.quantity-selector,
   .product-form__quantity-with-submit>.buy-button {
     flex: 1;
+  }
+
+  .product-out-of-stock-hint {
+    padding: 8px;
+    font-size: 15px;
   }
 }
 
