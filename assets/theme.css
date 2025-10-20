@@ -1116,16 +1116,17 @@ body:not(.is-tabbing) textarea:focus {
 
 .container,
 .template-collection .standard-container {
-  --page-width: 1440px;
+  --page-width: 1700px;
   padding: 0 var(--mobile-container-gutter);
   max-width: calc(var(--page-width) + (var(--mobile-container-gutter) * 2));
   margin-left: auto;
   margin-right: auto;
 }
 
-.template-collection .container {
+/* .template-collection .container,
+.template-index .container {
   --page-width: 1700px;
-}
+} */
 
 .template-collection .standard-container figure {
   max-width: 100%;
