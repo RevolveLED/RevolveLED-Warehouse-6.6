@@ -15,8 +15,8 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/LED-Flood-Lights-12-OFF-pc.jpg",
-            "mobile_image": "shopify://shop_images/LED-Flood-Lights-12-OFF-mb.jpg",
+            "image": "shopify://shop_images/pc-wall-pack-12-percent-off.jpg",
+            "mobile_image": "shopify://shop_images/mobile-wall-pack-12-percent-off.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
             "text_color": "#00487f",
@@ -504,6 +504,7 @@
         "link_url": "",
         "image_size": "small",
         "enable_image_zoom": true,
+        "image_zoom_type": "fancybox",
         "enable_video_looping": false,
         "zoom_effect": "outside",
         "carousel_effect": "fade"
