@@ -42,16 +42,11 @@
             "progress_bar_max_value": 50
           }
         },
-        "icon_text_MTNWDh": {
-          "type": "icon_text",
+        "button_LFDkyn": {
+          "type": "button",
           "settings": {
-            "icon_1": "shopify://shop_images/header-form.webp",
-            "text_1": "<p>Get Contractor or Bulk Pricing</p>",
-            "text_2": "",
-            "text_3": "",
-            "text_4": "",
-            "text_5": "",
-            "text_6": ""
+            "text": "Get Contractor or Bulk Pricing",
+            "link": "shopify://pages/request-for-quote"
           }
         },
         "buy_buttons": {
@@ -72,7 +67,7 @@
         "product_meta",
         "button_R9QYPV",
         "variant_selector",
-        "icon_text_MTNWDh",
+        "button_LFDkyn",
         "buy_buttons",
         "description"
       ],
