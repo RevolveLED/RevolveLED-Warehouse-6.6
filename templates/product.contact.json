@@ -42,15 +42,17 @@
             "progress_bar_max_value": 50
           }
         },
-        "button_LFDkyn": {
-          "type": "button",
+        "liquid_zPQy8X": {
+          "type": "liquid",
           "settings": {
-            "text": "Get Contractor or Bulk Pricing",
-            "link": "shopify://pages/request-for-quote"
+            "title": "<center>CALL TO ORDER 1-877-718-0808</center>",
+            "liquid": "<div class=\"product-form__buy-buttons\"><div class=\"product-form__payment-container\"><a href=\"/pages/request-for-quote\" class=\"button button--primary\" target=\"_blank\" rel=\"noopener\" aria-describedby=\"a11y-new-window-message\"><span style=\"font-size: x-large;\">Get Custom Contractor or Bulk Pricing</span></a></div></div>",
+            "display_mode": "show_all"
           }
         },
         "buy_buttons": {
           "type": "buy_buttons",
+          "disabled": true,
           "settings": {
             "show_payment_button": true,
             "show_gift_card_recipient": true
@@ -67,7 +69,7 @@
         "product_meta",
         "button_R9QYPV",
         "variant_selector",
-        "button_LFDkyn",
+        "liquid_zPQy8X",
         "buy_buttons",
         "description"
       ],
