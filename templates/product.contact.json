@@ -53,8 +53,8 @@
         "content_qhyF7c": {
           "type": "content",
           "settings": {
-            "title": "<center>Get your quote within 24 hours</center>",
-            "content": "",
+            "title": "",
+            "content": "<p>&lt;center&gt;Get your quote within 24 hours!&lt;/center&gt;</p>",
             "page": "",
             "display_mode": "show_all"
           }
