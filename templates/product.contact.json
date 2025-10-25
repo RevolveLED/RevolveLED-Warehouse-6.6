@@ -50,12 +50,11 @@
             "display_mode": "show_all"
           }
         },
-        "content_qhyF7c": {
-          "type": "content",
+        "liquid_MfNH83": {
+          "type": "liquid",
           "settings": {
-            "title": "",
-            "content": "<p>&lt;center&gt;Get your quote within 24 hours!&lt;/center&gt;</p>",
-            "page": "",
+            "title": "<center>Get your quote within 24 hours</center>",
+            "liquid": "",
             "display_mode": "show_all"
           }
         },
@@ -79,7 +78,7 @@
         "button_R9QYPV",
         "variant_selector",
         "liquid_zPQy8X",
-        "content_qhyF7c",
+        "liquid_MfNH83",
         "buy_buttons",
         "description"
       ],
