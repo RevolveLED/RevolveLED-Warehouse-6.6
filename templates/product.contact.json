@@ -53,8 +53,8 @@
         "liquid_MfNH83": {
           "type": "liquid",
           "settings": {
-            "title": "<center>Get your quote within 24 hours</center>",
-            "liquid": "",
+            "title": "",
+            "liquid": "<center>Get your quote within 24 hours</center>",
             "display_mode": "show_all"
           }
         },
