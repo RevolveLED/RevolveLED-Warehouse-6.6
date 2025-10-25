@@ -45,8 +45,17 @@
         "liquid_zPQy8X": {
           "type": "liquid",
           "settings": {
-            "title": "<center>CALL TO ORDER 1-877-718-0808</center>",
+            "title": "CALL TO ORDER 1-877-718-0808",
             "liquid": "<div class=\"product-form__buy-buttons\"><div class=\"product-form__payment-container\"><a href=\"/pages/request-for-quote\" class=\"button button--primary\" target=\"_blank\" rel=\"noopener\" aria-describedby=\"a11y-new-window-message\"><span style=\"font-size: x-large;\">Get Custom Contractor or Bulk Pricing</span></a></div></div>",
+            "display_mode": "show_all"
+          }
+        },
+        "content_qhyF7c": {
+          "type": "content",
+          "settings": {
+            "title": "<center>Get your quote within 24 hours</center>",
+            "content": "",
+            "page": "",
             "display_mode": "show_all"
           }
         },
@@ -70,6 +79,7 @@
         "button_R9QYPV",
         "variant_selector",
         "liquid_zPQy8X",
+        "content_qhyF7c",
         "buy_buttons",
         "description"
       ],
