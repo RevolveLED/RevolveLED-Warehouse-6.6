@@ -46,15 +46,7 @@
           "type": "liquid",
           "settings": {
             "title": "CALL TO ORDER 1-877-718-0808",
-            "liquid": "<div class=\"product-form__buy-buttons\"><div class=\"product-form__payment-container\"><a href=\"/pages/request-for-quote\" class=\"button button--primary\" target=\"_blank\" rel=\"noopener\" aria-describedby=\"a11y-new-window-message\"><span style=\"font-size: x-large;\">Get Custom Contractor or Bulk Pricing</span></a></div></div>",
-            "display_mode": "show_all"
-          }
-        },
-        "liquid_MfNH83": {
-          "type": "liquid",
-          "settings": {
-            "title": "",
-            "liquid": "<center>Get your quote within 24 hours</center>",
+            "liquid": "<div class=\"product-form__buy-buttons\"><div class=\"product-form__payment-container\"><a href=\"/pages/request-for-quote\" class=\"button button--primary\" target=\"_blank\" rel=\"noopener\" aria-describedby=\"a11y-new-window-message\"><span style=\"font-size: x-large;\">Get Custom Contractor or Bulk Pricing</span></a></div></div>\n<center><i><b>Get your quote within 24 hours!</b></i></center>",
             "display_mode": "show_all"
           }
         },
@@ -78,7 +70,6 @@
         "button_R9QYPV",
         "variant_selector",
         "liquid_zPQy8X",
-        "liquid_MfNH83",
         "buy_buttons",
         "description"
       ],
