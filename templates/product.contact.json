@@ -50,20 +50,12 @@
             "display_mode": "show_all"
           }
         },
-        "liquid_bfeemf": {
-          "type": "liquid",
-          "settings": {
-            "title": "",
-            "liquid": "<!-- icon_text -->                                     \n<div class=\"product-info__block-item product-info__block-item--icon-text\" data-block-id=\"icon_text\" data-block-type=\"icon-text\"><!-- icon_text -->\n     <ul class=\"hidden-pocket\"><li>\n         <img src=\"//revolveled.com/cdn/shop/files/icon-Secured-payment-methods.svg?v=1756799232\" width=\"30\" height=\"31\" alt=\"\" loading=\"lazy\">\n         <span><p>Secured payment methods. Revolve LED never stores nor has access to your card information.</p></span>\n     </li><li>\n         <img src=\"//revolveled.com/cdn/shop/files/icon-restocking-fee.svg?v=1756799237\" width=\"30\" height=\"31\" alt=\"\" loading=\"lazy\">\n         span><p>90 days return without restocking fee*.</p></span>\n     </li><li>\n         <img src=\"//revolveled.com/cdn/shop/files/icon-Shipping-on-eligible-products.svg?v=1756799239\" width=\"30\" height=\"31\" alt=\"\" loading=\"lazy\">\n         <span><p>$199 Free Shipping on eligible products*</p></span>\n      </li><li>\n         <img src=\"//revolveled.com/cdn/shop/files/icon-Availability.svg?v=1756799241\" width=\"30\" height=\"31\" alt=\"\" loading=\"lazy\">\n      <span><p>Availability: Usually Ships in one to three business days.</p></span>\n     </li></ul></div>",
-            "display_mode": "show_all"
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "disabled": true,
           "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true
+            "show_payment_button": false,
+            "show_gift_card_recipient": false
           }
         },
         "description": {
@@ -78,7 +70,6 @@
         "button_R9QYPV",
         "variant_selector",
         "liquid_zPQy8X",
-        "liquid_bfeemf",
         "buy_buttons",
         "description"
       ],
