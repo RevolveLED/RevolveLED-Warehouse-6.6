@@ -28,9 +28,14 @@
             "link": ""
           }
         },
+        "text_ERaPUc": {
+          "type": "text",
+          "settings": {
+            "content": "<h2>Starting price at:</h2>"
+          }
+        },
         "variant_selector": {
           "type": "variant_selector",
-          "disabled": true,
           "settings": {
             "selector_mode": "block",
             "color_mode": "swatch",
@@ -83,6 +88,7 @@
       "block_order": [
         "product_meta",
         "button_R9QYPV",
+        "text_ERaPUc",
         "variant_selector",
         "liquid_zPQy8X",
         "icon_text_qyAxPW",
