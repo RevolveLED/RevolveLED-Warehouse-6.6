@@ -17,6 +17,7 @@
           "settings": {
             "show_vendor": true,
             "show_sku": true,
+            "show_reviews_badge": true,
             "show_share_buttons": false
           }
         },
@@ -26,13 +27,19 @@
             "show_bulletpoints": true
           }
         },
+        "text_yYfYcL": {
+          "type": "text",
+          "settings": {
+            "content": "<h2>Starting Price At:</h2>"
+          }
+        },
         "variant_selector": {
           "type": "variant_selector",
           "settings": {
             "selector_mode": "dropdown",
             "color_mode": "swatch",
             "variant_image_options": "",
-            "show_quantity_selector": true,
+            "show_quantity_selector": false,
             "show_taxes_included": false,
             "show_inventory_quantity": false,
             "low_inventory_threshold": 0,
@@ -41,16 +48,10 @@
         },
         "buy_buttons": {
           "type": "buy_buttons",
-          "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "description": {
-          "type": "description",
           "disabled": true,
           "settings": {
-            "display_mode": "show_all"
+            "show_payment_button": false,
+            "show_gift_card_recipient": true
           }
         },
         "icon_text": {
@@ -67,11 +68,19 @@
             "text_5": "",
             "text_6": ""
           }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "display_mode": "show_all"
+          }
         }
       },
       "block_order": [
         "product_meta",
         "product_meta_shift",
+        "text_yYfYcL",
         "variant_selector",
         "buy_buttons",
         "icon_text",
@@ -81,6 +90,7 @@
         "image_size": "small",
         "enable_video_looping": false,
         "enable_image_zoom": true,
+        "image_zoom_type": "fancybox",
         "zoom_effect": "outside",
         "carousel_effect": "slide"
       }
@@ -92,13 +102,19 @@
     "product-accessories": {
       "type": "product-accessories",
       "settings": {
-        "heading": "Accessories"
+        "heading": "Accessories",
+        "products_count": 12,
+        "show_button": false,
+        "link_title": "View All",
+        "collection": "",
+        "image_lazy": false
       }
     },
     "product-recommendations-metafields": {
       "type": "product-recommendations-metafields",
       "settings": {
         "heading": "Related Products",
+        "products_count": 12,
         "show_quick_buy": false
       }
     },
