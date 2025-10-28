@@ -27,6 +27,14 @@
             "show_bulletpoints": true
           }
         },
+        "liquid_iQVhdQ": {
+          "type": "liquid",
+          "settings": {
+            "title": "&nbsp;",
+            "liquid": "<center><a href=\"tel:18777180808\" title=\"Call 1-877-718-0808\"><button class=\"form__submit form__submit--tight button button--primary\" type=\"button\"><span style=\"font-size: 1.33rem; font-weight: bold;\">CALL TO ORDER 1-877-718-0808</span></button></a></center>",
+            "display_mode": "show_all"
+          }
+        },
         "liquid_VhCL6n": {
           "type": "liquid",
           "settings": {
@@ -88,6 +96,7 @@
       "block_order": [
         "product_meta",
         "product_meta_shift",
+        "liquid_iQVhdQ",
         "liquid_VhCL6n",
         "text_yYfYcL",
         "variant_selector",
