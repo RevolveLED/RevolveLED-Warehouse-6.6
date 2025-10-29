@@ -23,7 +23,7 @@
           </span>
 
           <span class="price price--highlight">
-            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+            <span class="visually-hidden">Starting At {{ 'product.general.sale_price' | t }}</span>
 
             {%- if settings.currency_code_enabled -%}
               {{- selected_variant.price | money_with_currency -}}
