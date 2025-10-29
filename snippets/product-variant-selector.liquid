@@ -6,15 +6,14 @@
     <span class="product-form__info-title text--strong hidden">{{ 'product.form.price' | t }}:</span>
 
     <div class="product-form__info-content" role="region" aria-live="polite">
-      <div class="price-list">Starting at: 
+      <div class="price-list">
+          {% if template.suffix == 'contact-2' %}
+        <span style="color: #24242480; font-size: 18px; font-weight: 700;">Starting At: </span>"
+          {% else %}
+          {% endif %}
         {%- if selected_variant.compare_at_price > selected_variant.price -%}
           <span class="price price--compare">
-            {% if template.suffix == 'contact-2' %}
-               <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
-            {% else %}
             <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
-            {% endif %}
-
             {%- if settings.currency_code_enabled -%}
               {{- selected_variant.compare_at_price | money_with_currency -}}
             {%- else -%}
