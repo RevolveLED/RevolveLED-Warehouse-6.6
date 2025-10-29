@@ -36,7 +36,6 @@
         },
         "variant_selector": {
           "type": "variant_selector",
-          "disabled": true,
           "settings": {
             "selector_mode": "dropdown",
             "color_mode": "none",
