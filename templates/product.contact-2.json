@@ -27,14 +27,6 @@
             "show_bulletpoints": true
           }
         },
-        "liquid_VhCL6n": {
-          "type": "liquid",
-          "settings": {
-            "title": "​",
-            "liquid": "<center><a href=\"tel:18777180808\" title=\"Call 1-877-718-0808\"><button class=\"form__submit form__submit--tight button button--primary\" type=\"button\"><span style=\"font-size: 1.25rem; font-weight: bold;\">CALL TO ORDER AT<br>1-877-718-0808</span></button></a></center>\n<div class=\"product-form__buy-buttons\"><div class=\"product-form__payment-container\">\n{%- if product.template_suffix == 'contact-2' -%}\n    {%- if product.selected_or_first_available_variant.available -%}\n        <button\n          type=\"button\"\n          class=\"product-form__add-button button button--transparent rfq-btn-0 rfq-btn\"\n          id=\"rfq-btn-0\"\n          data-product-id=\"{{ product.id }}\"\n          onclick=\"GRFQApp.addProduct(this,{{ product.id }})\"\n        >\n          {{- 'product.form.add_to_quote' | t -}}\n          {%- render 'icon', icon: 'add-to-quote' -%}\n        </button>\n      {%- endif -%}\n{%- endif -%}</div></div>\n<center><i><b>Get your quote in 1-2 business days!</b></i></center>",
-            "display_mode": "show_all"
-          }
-        },
         "text_yYfYcL": {
           "type": "text",
           "settings": {
@@ -44,14 +36,22 @@
         "variant_selector": {
           "type": "variant_selector",
           "settings": {
-            "selector_mode": "dropdown",
-            "color_mode": "swatch",
+            "selector_mode": "block",
+            "color_mode": "none",
             "variant_image_options": "",
             "show_quantity_selector": false,
             "show_taxes_included": false,
             "show_inventory_quantity": false,
             "low_inventory_threshold": 0,
             "progress_bar_max_value": 50
+          }
+        },
+        "liquid_VhCL6n": {
+          "type": "liquid",
+          "settings": {
+            "title": "​",
+            "liquid": "<center><a href=\"tel:18777180808\" title=\"Call 1-877-718-0808\"><button class=\"form__submit form__submit--tight button button--primary\" type=\"button\"><span style=\"font-size: 1.25rem; font-weight: bold;\">CALL TO ORDER AT<br>1-877-718-0808</span></button></a></center>\n<div class=\"product-form__buy-buttons\"><div class=\"product-form__payment-container\">\n{%- if product.template_suffix == 'contact-2' -%}\n    {%- if product.selected_or_first_available_variant.available -%}\n        <button\n          type=\"button\"\n          class=\"product-form__add-button button button--transparent rfq-btn-0 rfq-btn\"\n          id=\"rfq-btn-0\"\n          data-product-id=\"{{ product.id }}\"\n          onclick=\"GRFQApp.addProduct(this,{{ product.id }})\"\n        >\n          {{- 'product.form.add_to_quote' | t -}}\n          {%- render 'icon', icon: 'add-to-quote' -%}\n        </button>\n      {%- endif -%}\n{%- endif -%}</div></div>\n<center><i><b>Get your quote in 1-2 business days!</b></i></center>",
+            "display_mode": "show_all"
           }
         },
         "buy_buttons": {
@@ -88,9 +88,9 @@
       "block_order": [
         "product_meta",
         "product_meta_shift",
-        "liquid_VhCL6n",
         "text_yYfYcL",
         "variant_selector",
+        "liquid_VhCL6n",
         "buy_buttons",
         "icon_text",
         "description"
