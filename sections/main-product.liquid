@@ -134,7 +134,7 @@
 </template>
 
 <!-- BEGIN: 10/28/2025 gio disable product fixed bar -->
-{% if template.name == 'contact-2' %}
+{% if template.suffix == 'contact-2' %}
   <!-- hide the fix bar to add to cart -->
 {%  else %}
 {%- render 'product-fixed-bar', product: product -%}
