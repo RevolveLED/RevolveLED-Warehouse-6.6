@@ -133,8 +133,13 @@
   </section>
 </template>
 
+<!-- BEGIN: 10/28/2025 gio disable product fixed bar -->
+{% if template.name == 'contact-2' %}
+  <!-- hide the fix bar to add to cart -->
+{%  else %}
 {%- render 'product-fixed-bar', product: product -%}
-
+{%  endif %}
+<!-- END: gio disable product fixed bar -->
 <script>
   window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
   ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
