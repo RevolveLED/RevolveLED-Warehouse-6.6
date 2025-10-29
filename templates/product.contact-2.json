@@ -29,12 +29,14 @@
         },
         "text_yYfYcL": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "content": "<h2>Starting At:</h2>"
           }
         },
         "variant_selector": {
           "type": "variant_selector",
+          "disabled": true,
           "settings": {
             "selector_mode": "dropdown",
             "color_mode": "none",
