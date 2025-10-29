@@ -36,7 +36,7 @@
         "variant_selector": {
           "type": "variant_selector",
           "settings": {
-            "selector_mode": "block",
+            "selector_mode": "dropdown",
             "color_mode": "none",
             "variant_image_options": "",
             "show_quantity_selector": false,
