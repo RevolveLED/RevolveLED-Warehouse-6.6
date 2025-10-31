@@ -309,8 +309,20 @@
                 </button>
               {%- endif -%}
 {% if product.tags contains 'CustomShipping' %}
-
-{%  endif %}
+<button
+                type="button"
+                class="rfq-btn2"
+                onclick="GRFQApp.addProduct(this, {{ product.id }});"
+              >
+                {{ 'general.request_for_quote' | t }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                  <path d="M13.417 4.16663C14.5874 4.16663 15.1726 4.16663 15.5929 4.44751C15.7749 4.56911 15.9312 4.72536 16.0528 4.90734C16.3337 5.32771 16.3337 5.91291 16.3337 7.08329V15C16.3337 16.5713 16.3337 17.357 15.8455 17.8451C15.3573 18.3333 14.5717 18.3333 13.0003 18.3333H8.00033C6.42898 18.3333 5.6433 18.3333 5.15515 17.8451C4.66699 17.357 4.66699 16.5713 4.66699 15V7.08329C4.66699 5.91291 4.66699 5.32771 4.94788 4.90734C5.06947 4.72536 5.22572 4.56911 5.40771 4.44751C5.82808 4.16663 6.41327 4.16663 7.58366 4.16663" stroke="#00487F"/>
+                  <path d="M8 4.16667C8 3.24619 8.74619 2.5 9.66667 2.5H11.3333C12.2538 2.5 13 3.24619 13 4.16667C13 5.08714 12.2538 5.83333 11.3333 5.83333H9.66667C8.74619 5.83333 8 5.08714 8 4.16667Z" stroke="#00487F"/>
+                  <path d="M8 10L13 10" stroke="#00487F" stroke-linecap="round"/>
+                  <path d="M8 13.3334L11.3333 13.3334" stroke="#00487F" stroke-linecap="round"/>
+                </svg>
+              </button>
+            {%  else %}
               <button
                 type="button"
                 class="rfq-btn"
@@ -324,9 +336,7 @@
                   <path d="M8 13.3334L11.3333 13.3334" stroke="#00487F" stroke-linecap="round"/>
                 </svg>
               </button>
-             {% if product.tags contains 'CustomShipping' %} 
-            </div></div> <!-- gio added this -->
-          {%  endif %}
+            {%  endif %}
               <a href="{{ product.url }}" class="learn-btn">
                 Learn More
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
