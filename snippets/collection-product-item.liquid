@@ -308,7 +308,9 @@
                   </svg>
                 </button>
               {%- endif -%}
-
+{% if product.tags contains 'CustomShipping' %}
+<div class="product-form__buy-buttons"><div class="product-form__payment-container"> <!-- 10/31/2025 gio added this -->
+{%  endif %}
               <button
                 type="button"
                 class="rfq-btn"
@@ -322,7 +324,9 @@
                   <path d="M8 13.3334L11.3333 13.3334" stroke="#00487F" stroke-linecap="round"/>
                 </svg>
               </button>
-
+             {% if product.tags contains 'CustomShipping' %} 
+            </div></div> <!-- gio added this -->
+          {%  endif %}
               <a href="{{ product.url }}" class="learn-btn">
                 Learn More
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
