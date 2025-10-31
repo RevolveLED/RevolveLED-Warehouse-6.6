@@ -253,6 +253,10 @@
 
                 {%- elsif product.variants.size == 1 -%}
                   <buy-button class="buy-button">
+                    <!-- GIO 10/31/2025 hide add to cart in collection -->
+                    {% if product.tags contains 'CustomShipping' %}
+                      <!-- Product requires custom shipping -->
+                    {%  else %}
                     <button
                       type="submit"
                       class="{{ quick_buy_classes }} add-to-card-btn"
@@ -267,6 +271,7 @@
                         <ellipse cx="7.50033" cy="16.6667" rx="0.833333" ry="0.833333" fill="white"/>
                       </svg>
                     </button>
+                  {% endif %} <!-- END GIO 10/31/2025 hide add to cart in collection -->
                   </buy-button>
                 {%- else -%}
                   <button
