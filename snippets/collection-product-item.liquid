@@ -186,10 +186,10 @@
 
     <div class="item-bottom">
       <div class="top">
-              {% if product.tags contains 'CustomShipping' %}
+        <div class="price-wrapper">
+           {% if product.tags contains 'CustomShipping' %}
               <p><h4 style="font-size: 16px; color: #4e5969; font-style: normal; font-weight: 500; line-height: 100%;">Starting At:</h4></p>
             {% endif %}
-        <div class="price-wrapper">
           {% if product.variants.size == 1 %}
             <h2 class="current-price">{{ product.price | money }}</h2>
             {% if product.compare_at_price > product.price %}
