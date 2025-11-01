@@ -906,28 +906,6 @@
 /* BEGIN: Added by Gio 10/31/2025 */
 .collection-main .rfq-btn2 {
   width: 100%;
-  background-color: #023359;
-  color: #ffffff;
-  border: 1px solid var(--color-blue);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 100%;
-  display: flex;
-  gap: 8px;
-  padding: 12px 0;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.collection-main .rfq-btn2:hover {
-  color: #ffffff;
-  border: 1px solid #023359;
-}
-
-.collection-main .rfq-btn3 {
-  width: 100%;
   background-color: #0eacda;
   color: #ffffff;
   border: 1px solid #0eacda;
@@ -943,8 +921,30 @@
   cursor: pointer;
 }
 
-.collection-main .rfq-btn3:hover {
+.collection-main .rfq-btn2:hover {
   color: #ffffff;
   border: 1px solid #0eacda;
+}
+
+.collection-main .rfq-btn3 {
+  width: 100%;
+  background-color: #023359;
+  color: #ffffff;
+  border: 1px solid #023359;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.collection-main .rfq-btn3:hover {
+  color: #ffffff;
+  border: 1px solid #023359;
 }
 /* END: Added by Gio 10/31/2025 */
