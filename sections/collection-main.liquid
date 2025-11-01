@@ -266,7 +266,11 @@
 
                     <div class="product-list product-list--collection">
                       {%- for product in collection.products -%}
+                        {% if collection.handle == 'konlite-tenon-mounts-pole-top-accessories' %} 
+                          {%- include 'collection-product-item-rfq', list: true -%}
+                      {%  else %}
                         {%- include 'collection-product-item', list: true -%}
+                      {% endif %}
                       {%- endfor -%}
                     </div>
 
