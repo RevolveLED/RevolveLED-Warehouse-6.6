@@ -15,8 +15,8 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/pc-wall-pack-12-percent-off.jpg",
-            "mobile_image": "shopify://shop_images/mobile-wall-pack-12-percent-off.jpg",
+            "image": "shopify://shop_images/Desktop-banner-pc1.jpg",
+            "mobile_image": "shopify://shop_images/mobile-banner-pc1.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
             "text_color": "#00487f",
