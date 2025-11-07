@@ -8649,6 +8649,7 @@ select option {
 .product-gallery--bottom-thumbnails .product-gallery__thumbnail-button[hidden] {
   display: flex !important;
   visibility: hidden;
+  transition: none;
 }
 
 .product-gallery__thumbnail-button:disabled {
