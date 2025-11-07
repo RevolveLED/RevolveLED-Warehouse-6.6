@@ -167,7 +167,6 @@
   text-decoration: none !important;
 }
 
-.product-description strong,
 .product-description.rte a:not(.button):not(:hover) {
   color: #009DF1;
 }
