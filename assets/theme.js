@@ -8477,6 +8477,9 @@ var ProductGallery = class {
       (el.clientWidth == el.scrollWidth)
         ? this.thumbnailPrevButton.setAttribute('hidden', '')
         : this.thumbnailPrevButton.removeAttribute('hidden');
+      (el.clientWidth == el.scrollWidth)
+        ? this.thumbnailNextButton.setAttribute('hidden', '')
+        : this.thumbnailNextButton.removeAttribute('hidden');
       // Prev
       (el.scrollLeft <= 1)
         ? this.thumbnailPrevButton.setAttribute('disabled', '')
@@ -8491,6 +8494,9 @@ var ProductGallery = class {
       (el.clientHeight == el.scrollHeight)
         ? this.thumbnailPrevButton.setAttribute('hidden', '')
         : this.thumbnailPrevButton.removeAttribute('hidden');
+      (el.clientHeight == el.scrollHeight)
+        ? this.thumbnailNextButton.setAttribute('hidden', '')
+        : this.thumbnailNextButton.removeAttribute('hidden');
       // Prev
       (el.scrollTop <= 1)
         ? this.thumbnailPrevButton.setAttribute('disabled', '')
