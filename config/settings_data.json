@@ -115,6 +115,11 @@
         "type": "shopify://apps/blockify-fraud-filter/blocks/app_embed/2e3e0ba5-0e70-447a-9ec5-3bf76b5ef12e",
         "disabled": false,
         "settings": {}
+      },
+      "17533959386656333658": {
+        "type": "shopify://apps/easyban-country-blocker/blocks/easyban-blocker/6583aec2-8e90-464e-9601-efb6039a18f8",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
