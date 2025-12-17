@@ -17,6 +17,7 @@
           "settings": {
             "show_vendor": true,
             "show_sku": true,
+            "show_reviews_badge": true,
             "show_share_buttons": false
           }
         },
@@ -26,8 +27,16 @@
             "show_bulletpoints": true
           }
         },
+        "button_TXTgUA": {
+          "type": "button",
+          "settings": {
+            "text": "Product discontinued, See Replacement",
+            "link": ""
+          }
+        },
         "variant_selector": {
           "type": "variant_selector",
+          "disabled": true,
           "settings": {
             "selector_mode": "dropdown",
             "color_mode": "swatch",
@@ -46,13 +55,6 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {
-            "display_mode": "show_all"
-          }
-        },
         "icon_text": {
           "type": "icon_text",
           "settings": {
@@ -67,11 +69,19 @@
             "text_5": "",
             "text_6": ""
           }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "display_mode": "show_all"
+          }
         }
       },
       "block_order": [
         "product_meta",
         "product_meta_shift",
+        "button_TXTgUA",
         "variant_selector",
         "buy_buttons",
         "icon_text",
@@ -81,6 +91,7 @@
         "image_size": "small",
         "enable_video_looping": false,
         "enable_image_zoom": true,
+        "image_zoom_type": "fancybox",
         "zoom_effect": "outside",
         "carousel_effect": "slide"
       }
@@ -92,13 +103,19 @@
     "product-accessories": {
       "type": "product-accessories",
       "settings": {
-        "heading": "Accessories"
+        "heading": "Accessories",
+        "products_count": 12,
+        "show_button": false,
+        "link_title": "View All",
+        "collection": "",
+        "image_lazy": false
       }
     },
     "product-recommendations-metafields": {
       "type": "product-recommendations-metafields",
       "settings": {
         "heading": "Related Products",
+        "products_count": 12,
         "show_quick_buy": false
       }
     },
