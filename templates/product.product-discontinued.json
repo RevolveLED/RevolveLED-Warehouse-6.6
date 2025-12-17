@@ -30,8 +30,8 @@
         "liquid_cpYRxV": {
           "type": "liquid",
           "settings": {
-            "title": "↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓",
-            "liquid": "<div class=\"product-info__block-item product-info__block-item--button\" data-block-id=\"button_TXTgUA\" data-block-type=\"button\"><a href=\"{{ product.metafields.custom.new_url.value }}\" class=\"product-meta__button button button--primary\">Product&nbsp;discontinued, See Replacement</a></div>",
+            "title": "&nbsp;",
+            "liquid": "<div class=\"product-info__block-item product-info__block-item--button\" data-block-id=\"button_TXTgUA\" data-block-type=\"button\"><a href=\"{{ product.metafields.custom.new_url.value }}\" class=\"product-meta__button button button--primary\">Product&nbsp;discontinued, See Replacement.</a></div>",
             "display_mode": "show_all"
           }
         },
