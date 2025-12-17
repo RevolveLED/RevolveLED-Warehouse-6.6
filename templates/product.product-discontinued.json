@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "product_meta": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": true,
+            "show_sku": true,
+            "show_share_buttons": false
+          }
+        },
+        "product_meta_shift": {
+          "type": "product_meta_shift",
+          "settings": {
+            "show_bulletpoints": true
+          }
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "dropdown",
+            "color_mode": "swatch",
+            "variant_image_options": "",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 0,
+            "progress_bar_max_value": 50
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "display_mode": "show_all"
+          }
+        },
+        "icon_text": {
+          "type": "icon_text",
+          "settings": {
+            "icon_1": "shopify://shop_images/icon-Secured-payment-methods.svg",
+            "text_1": "<p>Secured payment methods. Revolve LED never stores nor has access to your card information.</p>",
+            "icon_2": "shopify://shop_images/icon-restocking-fee.svg",
+            "text_2": "<p>90 days return without restocking fee*.</p>",
+            "icon_3": "shopify://shop_images/icon-Shipping-on-eligible-products.svg",
+            "text_3": "<p>$199 Free Shipping on eligible products*</p>",
+            "icon_4": "shopify://shop_images/icon-Availability.svg",
+            "text_4": "<p>Availability: Usually Ships in one to three business days.</p>",
+            "text_5": "",
+            "text_6": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_meta",
+        "product_meta_shift",
+        "variant_selector",
+        "buy_buttons",
+        "icon_text",
+        "description"
+      ],
+      "settings": {
+        "image_size": "small",
+        "enable_video_looping": false,
+        "enable_image_zoom": true,
+        "zoom_effect": "outside",
+        "carousel_effect": "slide"
+      }
+    },
+    "product-tab-content": {
+      "type": "product-tab-content",
+      "settings": {}
+    },
+    "product-accessories": {
+      "type": "product-accessories",
+      "settings": {
+        "heading": "Accessories"
+      }
+    },
+    "product-recommendations-metafields": {
+      "type": "product-recommendations-metafields",
+      "settings": {
+        "heading": "Related Products",
+        "show_quick_buy": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "heading": "Related Products",
+        "show_quick_buy": false
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "disabled": true,
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-tab-content",
+    "product-accessories",
+    "product-recommendations-metafields",
+    "product-recommendations",
+    "recently-viewed-products"
+  ]
+}
