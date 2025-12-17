@@ -27,11 +27,12 @@
             "show_bulletpoints": true
           }
         },
-        "button_TXTgUA": {
-          "type": "button",
+        "liquid_cpYRxV": {
+          "type": "liquid",
           "settings": {
-            "text": "Product discontinued, See Replacement",
-            "link": ""
+            "title": "↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓",
+            "liquid": "<div class=\"product-info__block-item product-info__block-item--button\" data-block-id=\"button_TXTgUA\" data-block-type=\"button\"><a href=\"{{ custom.new_url.value }}\" class=\"product-meta__button button button--primary\">Product&nbsp;discontinued, See Replacement</a></div>",
+            "display_mode": "show_all"
           }
         },
         "variant_selector": {
@@ -81,7 +82,7 @@
       "block_order": [
         "product_meta",
         "product_meta_shift",
-        "button_TXTgUA",
+        "liquid_cpYRxV",
         "variant_selector",
         "buy_buttons",
         "icon_text",
