@@ -16,6 +16,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/revolveled_Holidays-PC.jpg",
+            "mobile_image": "shopify://shop_images/revolveled_Holidays-Mobile.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
             "text_color": "#00487f",
