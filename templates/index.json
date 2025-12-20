@@ -16,8 +16,8 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Amazon-Gift-card-Give-away_PC1.jpg",
-            "mobile_image": "shopify://shop_images/Amazon-Gift-card-Give-away_Mobile1.jpg",
+            "image": "shopify://shop_images/revolveled_Holidays-PC.jpg",
+            "mobile_image": "shopify://shop_images/revolveled_Holidays-256x256.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
             "text_color": "#00487f",
