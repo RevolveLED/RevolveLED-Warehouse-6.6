@@ -12,6 +12,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_4kCYBD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Stadium_Lights-PC.png",
+            "mobile_image": "shopify://shop_images/Stadium_Lights-MP.png",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "bottom_center",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/collections/led-stadium-lights",
+            "button_hide_pc": false
+          }
+        },
         "slide-1": {
           "type": "image",
           "disabled": true,
@@ -66,31 +84,13 @@
             "link": "https://revolveled.com/collections/led-architectural-suspended-lights",
             "button_hide_pc": false
           }
-        },
-        "image_4kCYBD": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Stadium_Lights-PC.png",
-            "mobile_image": "shopify://shop_images/Stadium_Lights-MP.png",
-            "show_overlay": false,
-            "overlay_opacity": 30,
-            "text_color": "#ffffff",
-            "title": "",
-            "content": "",
-            "content_position": "bottom_center",
-            "button_background": "#c8ee07",
-            "button_text_color": "#000000",
-            "button_text": "Shop Now",
-            "link": "https://revolveled.com/collections/led-stadium-lights",
-            "button_hide_pc": false
-          }
         }
       },
       "block_order": [
+        "image_4kCYBD",
         "slide-1",
         "image_JrMeFH",
-        "slide-2",
-        "image_4kCYBD"
+        "slide-2"
       ],
       "settings": {
         "edge_to_edge": true,
