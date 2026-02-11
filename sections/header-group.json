@@ -32,6 +32,14 @@
     "header": {
       "type": "header",
       "blocks": {
+        "spec_menu_KVax7n": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "LED Shop Lights",
+            "image": "shopify://shop_images/menu-led-shop-lights.png",
+            "content": ""
+          }
+        },
         "spec_menu_p3mFVC": {
           "type": "spec_menu",
           "settings": {
@@ -127,6 +135,7 @@
         }
       },
       "block_order": [
+        "spec_menu_KVax7n",
         "spec_menu_p3mFVC",
         "spec_menu_LkzEVq",
         "spec_menu_cxEzU6",
