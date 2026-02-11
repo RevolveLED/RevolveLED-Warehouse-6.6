@@ -86,6 +86,17 @@
     loading="lazy"
   >
 {%- endif -%}
+{%- if product.metafields.global.colortemp_selectable.value == 'Yes5' -%}
+  <strong class="product-details-title">Color Temperature</strong>
+  <img
+    class="color-temp-img"
+    alt="Selectable 3,000k, 3,500k, & 4,000k color temperature"
+    src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/color-temp_3000K-3500K-4000K.png?v=1770846824"
+    width="637"
+    height="105"
+    loading="lazy"
+  >
+{%- endif -%}
 {%- if product.metafields.global.colortemp_selectable.value == '6500k' -%}
   <strong class="product-details-title">Color Temperature</strong>
   <img
