@@ -11,6 +11,9 @@
   "sections": {
     "custom_html_9Cc7Ly": {
       "type": "custom-html",
+      "custom_css": [
+        "section{margin: 0px !important;}"
+      ],
       "name": "Custom HTML",
       "settings": {
         "title": "",
