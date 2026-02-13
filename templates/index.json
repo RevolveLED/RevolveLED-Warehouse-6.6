@@ -9,6 +9,14 @@
  */
 {
   "sections": {
+    "custom_html_9Cc7Ly": {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "html": "<div id=\"SA_trust_widget_top_179\" class=\"SA__wrapper\"></div><script type=\"text/javascript\">function saLoadScript(src) { var js = window.document.createElement('script'); js.src = src; js.type = 'text/javascript'; document.getElementsByTagName(\"head\")[0].appendChild(js); } if (typeof(shopper_first) == 'undefined') saLoadScript('https://www.shopperapproved.com/trust-widgets/33795/top/179.js'); </script>"
+      }
+    },
     "slideshow": {
       "type": "slideshow",
       "blocks": {
@@ -528,6 +536,7 @@
     }
   },
   "order": [
+    "custom_html_9Cc7Ly",
     "slideshow",
     "featured_collections_grid_3eYbHR",
     "promotion_list_H9Gak8",
