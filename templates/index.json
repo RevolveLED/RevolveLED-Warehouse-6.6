@@ -12,7 +12,7 @@
     "custom_html_9Cc7Ly": {
       "type": "custom-html",
       "custom_css": [
-        "section{margin: 0px !important;}"
+        "section {margin: 0px !important;}"
       ],
       "name": "Custom HTML",
       "settings": {
@@ -23,6 +23,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_DjHHbq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Spring_Project_Prep_Sale-PC1.jpg",
+            "mobile_image": "shopify://shop_images/Spring_Project_Prep_Sale-MP1.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "Shop Now",
+            "content": "Tell your story",
+            "content_position": "middle_center",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/pages/promotions",
+            "button_hide_pc": true
+          }
+        },
         "image_4kCYBD": {
           "type": "image",
           "settings": {
@@ -98,6 +116,7 @@
         }
       },
       "block_order": [
+        "image_DjHHbq",
         "image_4kCYBD",
         "slide-1",
         "image_JrMeFH",
