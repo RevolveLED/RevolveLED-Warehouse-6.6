@@ -163,7 +163,8 @@
       <div class="sa-reviews-content">
         <div id="SA_review_wrapper"></div>
         <script type="text/javascript">
-          var sa_product = 'Shopify_US_{{product.id}}';
+          //var sa_product = 'Shopify_US_{{product.id}}';
+          var sa_product = '{{product.id}}';
           var sa_interval = 5000;
           function saLoadScript(src) {
             var js = window.document.createElement('script');
@@ -173,7 +174,7 @@
           }
           if (typeof shopper_first == 'undefined')
             saLoadScript(
-              '//www.shopperapproved.com/widgets/33795/product/' + sa_product + '/product-widget/6c7v8Vbm4Ww0.js'
+              '//www.shopperapproved.com/widgets/33795/product/' + sa_product + '/product-widget/6d9mtpNsZvRK.js'
             );
         </script>
       </div>
