@@ -185,6 +185,8 @@
       {%- render 'icon', icon: 'arrow-bottom' -%}
     </button>
     <div id="questions" class="product-tab-content__container product-tab-content__container--questions">
+      <div id="abqa"></div>
+      {% comment %}
       <script
         type="text/javascript"
         src="https://revolveled.services.answerbase.com/javascript/widget/full-featured-widget.min.js"
@@ -200,6 +202,7 @@
         data-on-page-search-elements="#product-description, Product Description;"
         defer
       ></script>
+      {% endcomment %}
     </div>
   </div>
 </div>
