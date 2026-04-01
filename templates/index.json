@@ -25,6 +25,7 @@
       "blocks": {
         "image_DjHHbq": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Spring_Project_Prep_Sale-PC1.jpg",
             "mobile_image": "shopify://shop_images/Spring_Project_Prep_Sale-MP1.jpg",
