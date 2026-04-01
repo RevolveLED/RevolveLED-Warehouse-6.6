@@ -23,6 +23,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slide-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Architectural_Linear_Light-PC.jpg",
+            "mobile_image": "shopify://shop_images/Architectural_Linear_Light-MP.png",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/collections/led-architectural-suspended-lights",
+            "button_hide_pc": false
+          }
+        },
         "image_DjHHbq": {
           "type": "image",
           "disabled": true,
@@ -96,32 +114,14 @@
             "link": "https://revolveled.com/products/led-post-top-light-20-0610",
             "button_hide_pc": false
           }
-        },
-        "slide-2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Architectural_Linear_Light-PC.jpg",
-            "mobile_image": "shopify://shop_images/Architectural_Linear_Light-MP.png",
-            "show_overlay": false,
-            "overlay_opacity": 30,
-            "text_color": "#ffffff",
-            "title": "",
-            "content": "",
-            "content_position": "middle_center",
-            "button_background": "#c8ee07",
-            "button_text_color": "#000000",
-            "button_text": "Shop Now",
-            "link": "https://revolveled.com/collections/led-architectural-suspended-lights",
-            "button_hide_pc": false
-          }
         }
       },
       "block_order": [
+        "slide-2",
         "image_DjHHbq",
         "image_4kCYBD",
         "slide-1",
-        "image_JrMeFH",
-        "slide-2"
+        "image_JrMeFH"
       ],
       "settings": {
         "edge_to_edge": true,
