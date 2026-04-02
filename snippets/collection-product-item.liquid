@@ -172,10 +172,10 @@
             {{- product.metafields.global.search_code.value }}
           </div>
 
-          <!-- Shopper Approved Category Code - snippets/product-item.liquid -->
-          <div class="star_container {{ product.id }}"></div>
+          <!-- Shopper Approved Category Code - snippets/collection-product-item.liquid -->
+          <div class="star_container {{product.selected_or_first_available_variant.id}}"></div>
 
-          <!-- END Shopper Approved Category Code - snippets/product-item.liquid -->
+          <!-- END Shopper Approved Category Code - snippets/collection-product-item.liquid -->
 
           <div class="bullet-content">{{ product.metafields.custom_metafield.bullet.value }}</div>
         </div>
