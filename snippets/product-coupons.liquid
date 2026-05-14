@@ -1,7 +1,14 @@
-{% unless product.type != "LED Office Lighting" %}
-  <b>Coupon code "OFFICE10". Expires 5/29/2026</b>
+{% assign is_in_LED-Office-Lighting = product.collections | where: 'handle', 'LED Office Lighting' %}
+{% assign is_in_LED-Panel-Lights = product.collections | where: 'handle', 'LED Panel Lights' %}
+
+{% if is_in_LED-Office-Lighting != blank %}
+<b>Coupon code "OFFICE10". Expires 5/29/2026</b>
         <img style="max-height: 500px;" alt="10% off on office lighting"  src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/2026-office-lighting-coupon-code.jpg?v=1778728275"/>
-{% endunless %}
+{% elsif is_in_LED-Panel-Lights != blank %}
+<b>Coupon code "OFFICE10". Expires 5/29/2026</b>
+        <img style="max-height: 500px;" alt="10% off on office lighting"  src="https://cdn.shopify.com/s/files/1/0377/8933/5692/files/2026-office-lighting-coupon-code.jpg?v=1778728275"/>
+{% endif %}
+
 
 {%  comment  %}
 {% if product.id == 6887856242828 %}
