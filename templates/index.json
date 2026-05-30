@@ -23,8 +23,28 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slide-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Double-Points-Month-PC_2026.jpg",
+            "mobile_image": "shopify://shop_images/Double-Points-Month-MP_2026.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 68,
+            "text_color": "#00487f",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Check Details",
+            "link": "https://revolveled.com/pages/promotions",
+            "button_hide_pc": false
+          }
+        },
         "image_DjHHbq": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Office-Lighting-Sale-PC-01c.jpg",
             "mobile_image": "shopify://shop_images/Office-Lighting-Sale-MP-01c.jpg",
@@ -94,33 +114,14 @@
             "link": "https://revolveled.com/collections/led-stadium-lights",
             "button_hide_pc": false
           }
-        },
-        "slide-1": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/revolveled_Holidays-PC.jpg",
-            "mobile_image": "shopify://shop_images/revolveled_Holidays-Mobile.jpg",
-            "show_overlay": false,
-            "overlay_opacity": 68,
-            "text_color": "#00487f",
-            "title": "",
-            "content": "",
-            "content_position": "middle_center",
-            "button_background": "#c8ee07",
-            "button_text_color": "#000000",
-            "button_text": "Check Details",
-            "link": "https://revolveled.com/pages/promotions",
-            "button_hide_pc": false
-          }
         }
       },
       "block_order": [
+        "slide-1",
         "image_DjHHbq",
         "image_JrMeFH",
         "slide-2",
-        "image_4kCYBD",
-        "slide-1"
+        "image_4kCYBD"
       ],
       "settings": {
         "edge_to_edge": true,
