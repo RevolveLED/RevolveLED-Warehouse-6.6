@@ -27,8 +27,8 @@
           "type": "image",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Double-Points-Month-PC_2026.jpg",
-            "mobile_image": "shopify://shop_images/Double-Points-Month-MP_2026.jpg",
+            "image": "shopify://shop_images/Double-Points-Month-PCb-web_2026.jpg",
+            "mobile_image": "shopify://shop_images/Double-Points-Month-MPb-web_2026.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
             "text_color": "#00487f",
