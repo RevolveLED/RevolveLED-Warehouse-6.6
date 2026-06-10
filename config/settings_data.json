@@ -54,7 +54,7 @@
     "low_inventory_threshold": 0,
     "collection_all_banner_img": "shopify://shop_images/lQDPJwaqD2Jcu83NAZDNB4CwI6FmOBI-Z6AIaTLFMKstAA_1920_400.jpg",
     "collection_all_banner_text": "All products",
-    "cart_type": "drawer",
+    "cart_type": "page",
     "cart_empty_button_link": "shopify://collections/all",
     "cart_show_checkout_button": true,
     "cart_show_free_shipping_threshold": false,
@@ -108,11 +108,6 @@
       },
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
-        "disabled": false,
-        "settings": {}
-      },
-      "12439146293631897289": {
-        "type": "shopify://apps/blockify-fraud-filter/blocks/app_embed/2e3e0ba5-0e70-447a-9ec5-3bf76b5ef12e",
         "disabled": false,
         "settings": {}
       },
