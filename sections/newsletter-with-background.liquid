@@ -44,6 +44,7 @@
 
         <div class="newsletter newsletter--compact">
           {%- form 'customer', id: newsletter_id, class: 'form newsletter__form' -%}
+             <input type="hidden" name="contact[tags]" value="trueloyalty">
             {%- if form.posted_successfully? -%}
               <p class="alert alert--success">{{ 'home_page.newsletter.success' | t }}</p>
             {%- else -%}
