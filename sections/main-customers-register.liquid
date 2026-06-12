@@ -53,10 +53,11 @@
       </div>
       <!-- accept marketing 6/11/2026 by Gio -->
       <div class="accepts-marketing">
-        <input type="hidden" name="customer [accepts_marketing]" value="true" />
-        <input type="checkbox" name="customer [accepts_marketing]" id="accepts-marketing" />
+        <input type="hidden" name="customer [accepts_marketing]" value="false" />
+        <input type="checkbox" name="customer [accepts_marketing]" id="accepts-marketing" [checked]="true" />
         {% if block.settings.accepts-marketing != blank %}
           <input type="hidden" name="contact[tags]" value="trueloyalty">
+          <input type="hidden" name="customer [accepts_marketing]" value="true" />
         {% endif %}
         <label for="accepts-marketing">
         Subscribe to RevolveLED email promotions
