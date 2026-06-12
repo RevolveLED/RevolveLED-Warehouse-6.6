@@ -44,7 +44,7 @@
 
         <div class="newsletter newsletter--compact">
           {%- form 'customer', id: newsletter_id, class: 'form newsletter__form' -%}
-             <input type="hidden" name="contact[tags]" value="trueloyalty">
+             <input type="hidden" name="contact[tags]" value="newsletter,trueloyalty">
             {%- if form.posted_successfully? -%}
               <p class="alert alert--success">{{ 'home_page.newsletter.success' | t }}</p>
             {%- else -%}
@@ -52,7 +52,7 @@
                 <p class="alert alert--error">{{ form.errors.messages.email }}</p>
               {%- endif -%}
 
-              <input type="hidden" name="contact[tags]" value="newsletter">
+              <!-- <input type="hidden" name="contact[tags]" value="newsletter"> -->
 
               <div class="form__input-row">
                 <div class="form__input-wrapper form__input-wrapper--labelled">
