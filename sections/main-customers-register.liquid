@@ -53,9 +53,9 @@
       </div>
       <!-- accept marketing 6/11/2026 by Gio -->
       <div class="accepts-marketing">
-        <input type="hidden" name="customer [accepts_marketing]" value="false" />
+        <input type="hidden" name="customer [accepts_marketing]" value="true" />
         <input type="checkbox" name="customer [accepts_marketing]" id="accepts-marketing" />
-        {% if block.settings.accepts-marketing == blank %}
+        {% if block.settings.accepts-marketing != blank %}
           <input type="hidden" name="contact[tags]" value="trueloyalty">
         {% endif %}
         <label for="accepts-marketing">
