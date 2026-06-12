@@ -51,7 +51,18 @@
         <input type="password" id="customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="new-password" {% if form.errors contains 'password' %}aria-invalid="true" aria-describedby="register-form-error"{% endif %}>
         <label for="customer[password]" class="form__floating-label">{{ 'customer.register.password' | t }}</label>
       </div>
-
+      <!-- accept marketing 6/11/2026 by Gio -->
+      <div class="accepts-marketing">
+        <input type="hidden" name="customer [accepts_marketing]" value="false" />
+        <input type="checkbox" name="customer [accepts_marketing]" id="accepts-marketing" />
+        {% if block.settings.accepts-marketing %}
+          <input type="hidden" name="contact[tags]" value="trueloyalty">
+        {% endif %}
+        <label for="accepts-marketing">
+        Subscribe to RevolveLED email promotions
+        </label>
+        </div>
+        <!-- END accept marketing -->
       <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.register.submit' | t }}</button>
 
       <small class="form__spam-disclaimer">{{- 'shopify.online_store.spam_detection.disclaimer_html' | t -}}</small>
