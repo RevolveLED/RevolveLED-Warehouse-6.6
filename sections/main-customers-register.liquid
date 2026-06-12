@@ -1,6 +1,9 @@
 <section data-section-id="{{ section.id }}" data-section-type="register">
   <div class="container">
     {%- form 'create_customer', name: 'create', class: 'form form--main', id: 'create_customer' -%}
+            <!-- accept marketing 6/11/2026 by Gio -->
+      <input type="hidden" name="return_to" value="/pages/newsletter" />
+        <!-- END accept marketing -->
       <header class="form__header">
         <h1 class="form__title heading h1">{{ 'customer.register.create_account' | t }}</h1>
         <p class="form__legend">{{ 'customer.register.description' | t }}</p>
@@ -51,9 +54,7 @@
         <input type="password" id="customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="new-password" {% if form.errors contains 'password' %}aria-invalid="true" aria-describedby="register-form-error"{% endif %}>
         <label for="customer[password]" class="form__floating-label">{{ 'customer.register.password' | t }}</label>
       </div>
-      <!-- accept marketing 6/11/2026 by Gio -->
-      <b>Note:</b><i></i> If you wish to register to receive email offers, please visit <a href="https://revolveled.com/pages/newsletter" title="newsletter registration">our newsletter registration page</a>.</i>
-        <!-- END accept marketing -->
+
       <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.register.submit' | t }}</button>
 
       <small class="form__spam-disclaimer">{{- 'shopify.online_store.spam_detection.disclaimer_html' | t -}}</small>
