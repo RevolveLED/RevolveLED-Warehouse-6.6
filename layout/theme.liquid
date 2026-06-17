@@ -218,7 +218,7 @@ Gio END: 2021-01-21 - To end robots from following urls with collections/all
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer></script>
-    {% render 'zinrelo-integration' %}
+    {% comment %} {% raw %} {% render 'zinrelo-integration' %} {%  endraw %} {%  endcomment %}
 
     {%- if request.page_type != 'cart' -%}
       <script>
