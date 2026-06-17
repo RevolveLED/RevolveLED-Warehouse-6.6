@@ -91,7 +91,8 @@
               {% comment %} {% if customer.orders.size > 0 %}({{ customer.orders.size }}){% endif %} {% endcomment %}
             </h1>
             <div class="account-rewards">
-              <div data-zrl-dashboard='show-redeem-tab'>Check available rewards. <span>Wait 10 secs to open Rewards Dashboard.</span></div>
+              <a href="#" data-zrl-dashboard> <span data-zrl-tier></span></a><span>Wait 10 secs to open Rewards Dashboard.</span>
+              <div data-zrl-dashboard='show-redeem-tab'>Check available rewards. </div>
               {%  comment %} {%  raw  %} <div data-zrl-dashboard="show-redeem-tab"> 
                 <div id='zrl_embed_div'>
                 <span>Check Available Rewards</span><span>Wait 10 secs to open Rewards Dashboard.</span>
