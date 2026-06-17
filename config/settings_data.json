@@ -115,6 +115,14 @@
         "type": "shopify://apps/easyban-country-blocker/blocks/easyban-blocker/6583aec2-8e90-464e-9601-efb6039a18f8",
         "disabled": false,
         "settings": {}
+      },
+      "9664535818894045410": {
+        "type": "shopify://apps/trueloyalty-formerly-zinrelo/blocks/embed/6e99a1e9-b7b7-4f8c-b45d-433ab7fff18f",
+        "disabled": false,
+        "settings": {
+          "check_tag": "trueloyalty",
+          "liquid_code": ""
+        }
       }
     }
   },
