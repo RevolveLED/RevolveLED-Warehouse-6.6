@@ -118,7 +118,7 @@
       },
       "9664535818894045410": {
         "type": "shopify://apps/trueloyalty-formerly-zinrelo/blocks/embed/6e99a1e9-b7b7-4f8c-b45d-433ab7fff18f",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "check_tag": "trueloyalty",
           "liquid_code": ""
