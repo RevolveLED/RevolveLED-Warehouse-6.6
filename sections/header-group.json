@@ -32,6 +32,14 @@
     "header": {
       "type": "header",
       "blocks": {
+        "spec_menu_atfDKA": {
+          "type": "spec_menu",
+          "settings": {
+            "special_menu": "Atria Architectural Lighting",
+            "image": "shopify://shop_images/menu-Atria-Architectural-Lighting.jpg",
+            "content": ""
+          }
+        },
         "spec_menu_KVax7n": {
           "type": "spec_menu",
           "settings": {
@@ -135,6 +143,7 @@
         }
       },
       "block_order": [
+        "spec_menu_atfDKA",
         "spec_menu_KVax7n",
         "spec_menu_p3mFVC",
         "spec_menu_LkzEVq",
