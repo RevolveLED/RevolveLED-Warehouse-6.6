@@ -25,6 +25,7 @@
       "blocks": {
         "slide-1": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Celebrate-America-250th-Birthday-with-RevolveLED-PC1.jpg",
             "mobile_image": "shopify://shop_images/Celebrate-America-250th-Birthday-with-RevolveLED-MB1.jpg",
