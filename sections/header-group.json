@@ -106,11 +106,10 @@
         },
         "spec_menu_gVQf7w": {
           "type": "spec_menu",
-          "disabled": true,
           "settings": {
-            "special_menu": "Active offers expired. Come back soon!",
-            "image": "shopify://shop_images/menu-warehouse.png",
-            "content": "Find amazing deals everyday! Limited quantities."
+            "special_menu": "Wildlife-Friendly Amber LED Lights",
+            "image": "shopify://shop_images/KARLWAMLT5TPD-Lit-Fixture.jpg",
+            "content": "Wildlife-Friendly Amber LED Lights"
           }
         },
         "contact_menu_VxdNRx": {
