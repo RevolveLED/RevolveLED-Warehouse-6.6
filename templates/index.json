@@ -37,7 +37,7 @@
             "button_background": "#c8ee07",
             "button_text_color": "#000000",
             "button_text": "Check Details",
-            "link": "shopify://pages/shop-by-application",
+            "link": "shopify://pages/promotions",
             "button_hide_pc": false
           }
         },
