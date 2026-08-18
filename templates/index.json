@@ -23,24 +23,6 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
-        "image_d7xNcn": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/AMBER-desktop.jpg",
-            "mobile_image": "shopify://shop_images/AMBER-Mobile.jpg",
-            "show_overlay": false,
-            "overlay_opacity": 30,
-            "text_color": "#ffffff",
-            "title": "",
-            "content": "",
-            "content_position": "middle_center",
-            "button_background": "#c8ee07",
-            "button_text_color": "#000000",
-            "button_text": "Shop Now",
-            "link": "https://revolveled.com/collections/amber-led-outdoor-lights",
-            "button_hide_pc": false
-          }
-        },
         "slide-1": {
           "type": "image",
           "settings": {
@@ -56,6 +38,24 @@
             "button_text_color": "#000000",
             "button_text": "Check Details",
             "link": "shopify://pages/shop-by-application",
+            "button_hide_pc": false
+          }
+        },
+        "image_d7xNcn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AMBER-desktop.jpg",
+            "mobile_image": "shopify://shop_images/AMBER-Mobile.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#c8ee07",
+            "button_text_color": "#000000",
+            "button_text": "Shop Now",
+            "link": "https://revolveled.com/collections/amber-led-outdoor-lights",
             "button_hide_pc": false
           }
         },
@@ -134,8 +134,8 @@
         }
       },
       "block_order": [
-        "image_d7xNcn",
         "slide-1",
+        "image_d7xNcn",
         "image_DjHHbq",
         "image_JrMeFH",
         "slide-2",
