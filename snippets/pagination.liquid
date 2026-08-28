@@ -47,4 +47,7 @@
       </a>
     </div>
   </div>
+  if ({{ paginate.current_page }} > {{ paginate.pages }}) {
+  window.location.href = '/404';
+}
 {%- endif -%}
