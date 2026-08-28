@@ -47,7 +47,11 @@
       </a>
     </div>
   </div>
-  if ({{ paginate.current_page }} > {{ paginate.pages }}) {
-  window.location.href = '/404';
-}
+ <!-- Forward to 404 if wrongly page is input by user -->
+  <script defer>
+    if ({{ paginate.current_page }} > {{ paginate.pages }}) {
+      window.location.href = '/404';
+    }
+  </script>
+  <!-- END Forward to 404 if wrongly page is input by user -->
 {%- endif -%}
