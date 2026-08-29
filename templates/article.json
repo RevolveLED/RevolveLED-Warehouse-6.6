@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,15 +15,15 @@
         "featured-posts": {
           "type": "featured_posts",
           "settings": {
+            "title": "Popular posts",
             "show_ranking": false,
             "show_category": true,
             "show_date": true,
-            "title": "Popular posts",
-            "article_1": "shop-talk\/dlc-certification-and-dlc-qpl-products-find-out-what-it-is-and-why-it-matters",
-            "article_2": "shop-talk\/introduction-to-bay-lighting",
-            "article_3": "shop-talk\/round-high-bay-lighting",
-            "article_4": "shop-talk\/not-just-for-grandpas-barn-anymore-meet-the-konlite-bl05-multi-purpose-dusk-to-dawn-led-barn-light",
-            "article_5": "shop-talk\/led-area-lights-the-new-go-to-in-led-coverage"
+            "article_1": "shop-talk/dlc-certification-dlc-qpl-products",
+            "article_2": "shop-talk/introduction-to-bay-lighting",
+            "article_3": "shop-talk/round-high-bay-lighting",
+            "article_4": "shop-talk/not-just-for-grandpas-barn-anymore-meet-the-konlite-bl05-multi-purpose-dusk-to-dawn-led-barn-light",
+            "article_5": "shop-talk/led-area-lights-the-new-go-to-in-led-coverage"
           }
         },
         "featured-products": {
@@ -31,8 +40,8 @@
           "settings": {}
         },
         "newsletter": {
-          "disabled": true,
           "type": "newsletter",
+          "disabled": true,
           "settings": {}
         }
       },
