@@ -260,6 +260,12 @@ Gio END: 2021-01-21 - To end robots from following urls with collections/all
   });
 </script>
 <!-- END 8/26/2026 MerchantWidget Code -->
+<!-- BEGIN Include structure data for FAQ page -->
+{% if request.path contains 'faq' %}
+  <!-- Your custom HTML, script, or CSS goes here -->
+ {% render 'faq-json-ld-structure-data' %}
+{% endif %}
+<!-- END Include structure data for FAQ page -->
   </head>
 
   <body
