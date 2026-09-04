@@ -167,7 +167,7 @@
           "settings": {
             "image": "shopify://shop_images/featured-collections-image_3.webp",
             "overlay_image": "shopify://shop_images/featured-collections-hover-image_2.webp",
-            "collection": "led-area-and-site-lights",
+            "collection": "led-area-site-lights",
             "title": "LED Area Lights"
           }
         },
@@ -232,7 +232,7 @@
             "button_background": "#ffffff",
             "button_text_color": "#fc2a68",
             "button_text": "",
-            "button_link": "shopify://collections/led-area-and-site-lights"
+            "button_link": "shopify://collections/led-area-site-lights"
           }
         },
         "item_pgwbbf": {
