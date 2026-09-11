@@ -164,7 +164,7 @@ managed at the theme level.
         "hasVariant": [
           {% for variant in product.variants %}
             {
-              "@id": "{{ shop.url }}{{ variant.url }}",
+            {% comment %}   "@id": "{{ shop.url }}{{ variant.url }}", {% endcomment %} 
               "@type": "Product",
               {% if variant.sku != blank %}
                 "sku": "{{ variant.sku }}",
