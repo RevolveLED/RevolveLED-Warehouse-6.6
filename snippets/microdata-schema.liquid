@@ -158,8 +158,8 @@ managed at the theme level.
           "addressCountry": "US"
         }
       },
-      "name": "{{ product.title | escape }}",
-      "offerCount": {% assign count = 0 %}{% if product.available %}{% for variant in product.variants %}{% assign count =  count | plus : variant.inventory_quantity %}{% endfor %}{% endif %}{% if count <= 0 %}1{% else %}{{ count }}{% endif %},
+      {% comment %}  "name": "{{ product.title | escape }}", {% endcomment %} 
+      {% comment %}  "offerCount": {% assign count = 0 %}{% if product.available %}{% for variant in product.variants %}{% assign count =  count | plus : variant.inventory_quantity %}{% endfor %}{% endif %}{% if count <= 0 %}1{% else %}{{ count }}{% endif %}, {% endcomment %} 
       {% unless product.has_only_default_variant %}
         "hasVariant": [
           {% for variant in product.variants %}
