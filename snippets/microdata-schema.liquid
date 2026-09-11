@@ -34,6 +34,7 @@ managed at the theme level.
     {% endif %}
     {% comment %} "@id": {{ canonical_url | append: '#product' | json }}, {%  endcomment %}
     {% comment %}  "@id": "{{ canonical_url }}", {%  endcomment %}
+     "@id": "{{ canonical_url }}{% if product.variants %}#variant={{ product.selected_or_first_available_variant.id }}{% endif %}"
     "name": "{{ product.title | strip_html | escape | replace: '"', '' }}",
     "url": "{{ shop.url }}{{ product.url }}",
 
