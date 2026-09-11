@@ -33,7 +33,7 @@ managed at the theme level.
     "productGroupID": "{{ product.id }}",
     {% endif %}
     {% comment %} "@id": {{ canonical_url | append: '#product' | json }}, {%  endcomment %}
-    "@id": {{ canonical_url | append: '#product' }},
+    "@id": "{{ canonical_url }}",
     "name": "{{ product.title | strip_html | escape | replace: '"', '' }}",
     "url": "{{ shop.url }}{{ product.url }}",
 
