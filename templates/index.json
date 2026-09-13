@@ -26,8 +26,8 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/SUMMER-ENDS-Project-Bulk-Deal-PC-web.jpg",
-            "mobile_image": "shopify://shop_images/SUMMER-ENDS-Project-Bulk-Deal-MB_web.jpg",
+            "image": "shopify://shop_images/Fall-Outdoor-Lighting-Upgrade-PC_web-offer.jpg",
+            "mobile_image": "shopify://shop_images/Fall-Outdoor-Lighting-Upgrade-MB_web-offer.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
             "text_color": "#00487f",
