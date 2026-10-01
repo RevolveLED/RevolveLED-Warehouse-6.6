@@ -26,8 +26,8 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Fall-Outdoor-Lighting-Upgrade-PC_web-offer.jpg",
-            "mobile_image": "shopify://shop_images/Fall-Outdoor-Lighting-Upgrade-MB_web-offer.jpg",
+            "image": "shopify://shop_images/12-Years-of-Lighting-Experience-PC-1a.jpg",
+            "mobile_image": "shopify://shop_images/12-Years-of-Lighting-Experience-MB-1a.jpg",
             "show_overlay": false,
             "overlay_opacity": 68,
             "text_color": "#00487f",
@@ -37,7 +37,7 @@
             "button_background": "#c8ee07",
             "button_text_color": "#000000",
             "button_text": "Check Details",
-            "link": "shopify://pages/promotions",
+            "link": "/pages/shop-by-application",
             "button_hide_pc": false
           }
         },
