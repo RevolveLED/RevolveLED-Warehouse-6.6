@@ -165,10 +165,10 @@
         "block_gJz4gR": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/featured-collections-image_3.webp",
-            "overlay_image": "shopify://shop_images/featured-collections-hover-image_2.webp",
-            "collection": "led-area-site-lights",
-            "title": "LED Area Lights"
+            "image": "shopify://shop_images/featured-collection_led-architecture-lights_600x600px.jpg",
+            "overlay_image": "shopify://shop_images/featured-collection_led-architecture-lights_600x336px.jpg",
+            "collection": "led-architectural-suspended-lights",
+            "title": "LED Architectural Suspended Lights"
           }
         },
         "block_hQNTzz": {
