@@ -156,10 +156,10 @@
         "block_bGJ8gY": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/featured-collections-image_2.webp",
-            "overlay_image": "shopify://shop_images/featured-collections-hover-image_1.webp",
-            "collection": "led-stadium-lights",
-            "title": "LED Stadium Lights"
+            "image": "shopify://shop_images/featured-collection_spica-tennis-court_600x600_f7da1460-fbec-4280-ad07-0f79e351237e.jpg",
+            "overlay_image": "shopify://shop_images/featured-collection_spica-tennis-court_600x336px.jpg",
+            "collection": "outdoor-tennis-court-lights",
+            "title": "Outdoor Tennis Court Lights"
           }
         },
         "block_gJz4gR": {
