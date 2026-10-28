@@ -174,10 +174,10 @@
         "block_hQNTzz": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/featured-collections-image_1.webp",
-            "overlay_image": "shopify://shop_images/featured-collections-hover-image_3.webp",
-            "collection": "wall-pack-lights",
-            "title": "LED Wall Pack Lights"
+            "image": "shopify://shop_images/featured-collection_decorative-wall-sconce_600x600px.jpg",
+            "overlay_image": "shopify://shop_images/featured-collection_decorative-wall-sconce_600x336px.jpg",
+            "collection": "decorative-wall-lighting",
+            "title": "Decorative Wall Lighting"
           }
         }
       },
