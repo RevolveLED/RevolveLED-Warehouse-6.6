@@ -25,6 +25,7 @@
       "blocks": {
         "image_DjHHbq": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Veterans-Day-Sale-PC_web.jpg",
             "mobile_image": "shopify://shop_images/Veteran-Day-Sale-MB_web.jpg",
